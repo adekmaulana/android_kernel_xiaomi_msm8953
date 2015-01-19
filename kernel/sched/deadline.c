@@ -1603,7 +1603,7 @@ static void rq_offline_dl(struct rq *rq)
 	if (rq->dl.overloaded)
 		dl_clear_overload(rq);
 
-	cpudl_clear(&rq->rd->cpudl, rq->cpu);
+	cpudl_set(&rq->rd->cpudl, rq->cpu, 0, 0);
 	cpudl_clear_freecpu(&rq->rd->cpudl, rq->cpu);
 }
 
