@@ -37,6 +37,9 @@ static void cpudl_heapify_down(struct cpudl *cp, int idx)
 
 	int orig_cpu = cp->elements[idx].cpu;
 	u64 orig_dl = cp->elements[idx].dl;
+static void cpudl_exchange(struct cpudl *cp, int a, int b)
+{
+	int cpu_a = cp->elements[a].cpu, cpu_b = cp->elements[b].cpu;
 
 	if (left_child(idx) >= cp->size)
 		return;
