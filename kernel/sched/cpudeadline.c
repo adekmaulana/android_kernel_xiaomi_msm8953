@@ -207,11 +207,11 @@ void cpudl_set(struct cpudl *cp, int cpu, u64 dl)
 
 	old_idx = cp->elements[cpu].idx;
 	if (old_idx == IDX_INVALID) {
-		int new_idx = cp->size++;
-		cp->elements[new_idx].dl = dl;
-		cp->elements[new_idx].cpu = cpu;
-		cp->elements[cpu].idx = new_idx;
-		cpudl_heapify_up(cp, new_idx);
+		cp->size++;
+		cp->elements[cp->size - 1].dl = dl;
+		cp->elements[cp->size - 1].cpu = cpu;
+		cp->elements[cpu].idx = cp->size - 1;
+		cpudl_change_key(cp, cp->size - 1, dl);
 		cpumask_clear_cpu(cpu, cp->free_cpus);
 	} else {
 		cp->elements[old_idx].dl = dl;
