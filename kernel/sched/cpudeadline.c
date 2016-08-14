@@ -51,6 +51,12 @@ static void cpudl_heapify_down(struct cpudl *cp, int idx)
 {
 	int l, r, largest;
 
+	int orig_cpu = cp->elements[idx].cpu;
+	u64 orig_dl = cp->elements[idx].dl;
+
+	if (left_child(idx) >= cp->size)
+		return;
+
 	/* adapted from lib/prio_heap.c */
 	while(1) {
 		u64 largest_dl;
