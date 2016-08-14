@@ -41,8 +41,15 @@ static void cpudl_exchange(struct cpudl *cp, int a, int b)
 {
 	int cpu_a = cp->elements[a].cpu, cpu_b = cp->elements[b].cpu;
 
-	if (left_child(idx) >= cp->size)
-		return;
+	swap(cp->elements[a].cpu, cp->elements[b].cpu);
+	swap(cp->elements[a].dl , cp->elements[b].dl );
+
+	swap(cp->elements[cpu_a].idx, cp->elements[cpu_b].idx);
+}
+
+static void cpudl_heapify_down(struct cpudl *cp, int idx)
+{
+	int l, r, largest;
 
 	/* adapted from lib/prio_heap.c */
 	while(1) {
@@ -100,6 +107,20 @@ static void cpudl_heapify_up(struct cpudl *cp, int idx)
 	cp->elements[idx].cpu = orig_cpu;
 	cp->elements[idx].dl = orig_dl;
 	cp->elements[cp->elements[idx].cpu].idx = idx;
+}
+
+static void cpudl_heapify(struct cpudl *cp, int idx)
+{
+	if (idx > 0 && dl_time_before(cp->elements[parent(idx)].dl,
+				cp->elements[idx].dl))
+		cpudl_heapify_up(cp, idx);
+	else
+		cpudl_heapify_down(cp, idx);
+	while (idx > 0 && dl_time_before(cp->elements[parent(idx)].dl,
+			cp->elements[idx].dl)) {
+		cpudl_exchange(cp, idx, parent(idx));
+		idx = parent(idx);
+	}
 }
 
 static void cpudl_heapify(struct cpudl *cp, int idx)
@@ -180,6 +201,7 @@ void cpudl_clear(struct cpudl *cp, int cpu)
 		cp->elements[new_cpu].idx = old_idx;
 		cp->elements[cpu].idx = IDX_INVALID;
 		cpudl_heapify(cp, old_idx);
+		cpumask_set_cpu(cpu, cp->free_cpus);
 
 		cpumask_set_cpu(cpu, cp->free_cpus);
 	}
@@ -207,11 +229,11 @@ void cpudl_set(struct cpudl *cp, int cpu, u64 dl)
 
 	old_idx = cp->elements[cpu].idx;
 	if (old_idx == IDX_INVALID) {
-		cp->size++;
-		cp->elements[cp->size - 1].dl = dl;
-		cp->elements[cp->size - 1].cpu = cpu;
-		cp->elements[cpu].idx = cp->size - 1;
-		cpudl_change_key(cp, cp->size - 1, dl);
+		int new_idx = cp->size++;
+		cp->elements[new_idx].dl = dl;
+		cp->elements[new_idx].cpu = cpu;
+		cp->elements[cpu].idx = new_idx;
+		cpudl_heapify_up(cp, new_idx);
 		cpumask_clear_cpu(cpu, cp->free_cpus);
 	} else {
 		cp->elements[old_idx].dl = dl;
