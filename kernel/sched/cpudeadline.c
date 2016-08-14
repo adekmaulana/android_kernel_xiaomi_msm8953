@@ -207,7 +207,6 @@ void cpudl_clear(struct cpudl *cp, int cpu)
 		cp->elements[new_cpu].idx = old_idx;
 		cp->elements[cpu].idx = IDX_INVALID;
 		cpudl_heapify(cp, old_idx);
-		cpumask_set_cpu(cpu, cp->free_cpus);
 
 		cpumask_set_cpu(cpu, cp->free_cpus);
 	}
