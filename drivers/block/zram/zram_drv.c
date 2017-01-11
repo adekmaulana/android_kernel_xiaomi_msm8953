@@ -1049,9 +1049,8 @@ static ssize_t disksize_store(struct device *dev,
 	zram->comp = comp;
 	zram->disksize = disksize;
 	set_capacity(zram->disk, zram->disksize >> SECTOR_SHIFT);
-	up_write(&zram->init_lock);
-
 	revalidate_disk(zram->disk);
+	up_write(&zram->init_lock);
 
 	return len;
 
