@@ -619,7 +619,7 @@ static void smp_send_all_cpu_backtrace(void)
 	unsigned int this_cpu;
 	int i;
 
-	this_cpu = get_cpu();;
+	this_cpu = get_cpu();
 	if (test_and_set_bit(0, &backtrace_flag)) {
 		/*
 		 * If there is already a trigger_all_cpu_backtrace() in progress
