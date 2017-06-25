@@ -53,8 +53,14 @@
 #include "debug.h"
 #include "xhci.h"
 
-#define DWC3_IDEV_CHG_MAX 2000
-#define DWC3_HVDCP_CHG_MAX 2000
+
+#ifdef CONFIG_FORCE_FAST_CHARGE
+#define DWC3_IDEV_CHG_MAX 2500
+#define DWC3_HVDCP_CHG_MAX 2500
+#else
+#define DWC3_IDEV_CHG_MAX 1500
+#define DWC3_HVDCP_CHG_MAX 1800
+#endif
 
 /* AHB2PHY register offsets */
 #define PERIPH_SS_AHB2PHY_TOP_CFG 0x10
