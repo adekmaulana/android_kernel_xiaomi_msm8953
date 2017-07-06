@@ -133,6 +133,7 @@ void tty_buffer_free_all(struct tty_port *port)
 	buf->tail = &buf->sentinel;
 
 	atomic_set(&buf->mem_used, 0);
+
 }
 
 /**
