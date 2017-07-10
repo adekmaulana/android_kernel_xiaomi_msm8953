@@ -1084,7 +1084,7 @@ static struct attribute *zram_disk_attrs[] = {
 	NULL,
 };
 
-static struct attribute_group zram_disk_attr_group = {
+static const struct attribute_group zram_disk_attr_group = {
 	.attrs = zram_disk_attrs,
 };
 static int zram_add(void)
