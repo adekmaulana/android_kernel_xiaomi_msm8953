@@ -1189,8 +1189,12 @@ CONFIG_USB_EXT_TYPE_C_PERICOM=y
 # CONFIG_USB_EXT_TYPE_C_TI is not set
 # CONFIG_TI_DRV2667 is not set
 # CONFIG_QPNP_MISC is not set
+<<<<<<< HEAD
 # CONFIG_UID_SYS_STATS_DEBUG is not set
 # CONFIG_MEMORY_STATE_TIME is not set
+=======
+CONFIG_FORCE_FAST_CHARGE=y
+>>>>>>> ce652337d708... implement usb fast charge mode
 # CONFIG_C2PORT is not set
 
 #
