@@ -112,5 +112,10 @@ struct zram {
 	u64 disksize;	/* bytes */
 	char compressor[CRYPTO_MAX_ALG_NAME];
 	bool claim; /* Protected by bdev->bd_mutex */
+#ifdef CONFIG_ZRAM_WRITEBACK
+	struct file *backing_dev;
+	struct block_device *bdev;
+	unsigned int old_block_size;
+#endif
 };
 #endif
