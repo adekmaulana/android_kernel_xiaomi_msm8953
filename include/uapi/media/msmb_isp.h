@@ -785,7 +785,6 @@ struct msm_isp_sof_info {
 	uint16_t stats_get_buf_fail_mask;
 	/* delta between master and slave */
 	struct msm_isp_ms_delta_info ms_delta_info;
-#ifndef CONFIG_MACH_XIAOMI_MARKW
 	/*
 	 * mask with AXI_SRC in paused state. In PAUSED
 	 * state there is no Buffer output. So this mask is used
@@ -797,9 +796,6 @@ struct msm_isp_sof_info {
 };
 #define AXI_UPDATING_MASK 1
 #define REG_UPDATE_FAIL_MASK_EXT 1
-#else
-};
-#endif
 
 struct msm_isp_event_data {
 	/*Wall clock except for buffer divert events
@@ -828,7 +824,6 @@ struct msm_isp_event_data {
 	} u; /* union can have max 52 bytes */
 };
 
-#ifndef CONFIG_MACH_XIAOMI_MARKW
 enum msm_vfe_ahb_clk_vote {
 	MSM_ISP_CAMERA_AHB_SVS_VOTE = 1,
 	MSM_ISP_CAMERA_AHB_TURBO_VOTE = 2,
@@ -840,7 +835,6 @@ struct msm_isp_ahb_clk_cfg {
 	uint32_t vote;
 	uint32_t reserved[2];
 };
-#endif
 
 #define V4L2_PIX_FMT_QBGGR8  v4l2_fourcc('Q', 'B', 'G', '8')
 #define V4L2_PIX_FMT_QGBRG8  v4l2_fourcc('Q', 'G', 'B', '8')
@@ -1003,7 +997,6 @@ enum msm_isp_ioctl_cmd_code {
 	_IOWR('V', MSM_ISP_UNMAP_BUF, \
 		struct msm_isp_unmap_buf_req)
 
-#ifndef CONFIG_MACH_XIAOMI_MARKW
 #define VIDIOC_MSM_ISP_AHB_CLK_CFG \
 	_IOWR('V', BASE_VIDIOC_PRIVATE+25, struct msm_isp_ahb_clk_cfg)
 
@@ -1014,6 +1007,5 @@ enum msm_isp_ioctl_cmd_code {
 #define VIDIOC_MSM_ISP_MAP_BUF_START_MULTI_PASS_FE \
 	_IOWR('V', MSM_ISP_MAP_BUF_START_MULTI_PASS_FE, \
 		struct msm_vfe_fetch_eng_multi_pass_start)
-#endif
 
 #endif /* __MSMB_ISP__ */
