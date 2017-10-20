@@ -6,9 +6,7 @@
 #define MAX_PLANES_PER_STREAM 3
 #define MAX_NUM_STREAM 7
 
-#ifndef CONFIG_MACH_XIAOMI_MARKW
 #define ISP_VERSION_48        48
-#endif
 #define ISP_VERSION_47        47
 #define ISP_VERSION_46        46
 #define ISP_VERSION_44        44
@@ -265,7 +263,6 @@ struct msm_vfe_fetch_eng_start {
 	uint32_t frame_id;
 };
 
-#ifndef CONFIG_MACH_XIAOMI_MARKW
 enum msm_vfe_fetch_eng_pass {
 	OFFLINE_FIRST_PASS,
 	OFFLINE_SECOND_PASS,
@@ -285,7 +282,6 @@ struct msm_vfe_fetch_eng_multi_pass_start {
 	enum msm_vfe_fetch_eng_pass  offline_pass;
 	uint32_t output_stream_id;
 };
-#endif
 
 struct msm_vfe_axi_plane_cfg {
 	uint32_t output_width; /*Include padding*/
@@ -353,14 +349,10 @@ enum msm_vfe_axi_stream_update_type {
 	UPDATE_STREAM_ADD_BUFQ,
 	UPDATE_STREAM_REMOVE_BUFQ,
 	UPDATE_STREAM_SW_FRAME_DROP,
-#ifndef CONFIG_MACH_XIAOMI_MARKW
 	UPDATE_STREAM_REQUEST_FRAMES_VER2,
 	UPDATE_STREAM_OFFLINE_AXI_CONFIG,
 };
 #define UPDATE_STREAM_REQUEST_FRAMES_VER2 UPDATE_STREAM_REQUEST_FRAMES_VER2
-#else
-};
-#endif
 
 enum msm_vfe_iommu_type {
 	IOMMU_ATTACH,
@@ -425,7 +417,6 @@ struct msm_vfe_axi_stream_update_cmd {
 					update_info[MSM_ISP_STATS_MAX];
 #endif
 };
-
 struct msm_vfe_smmu_attach_cmd {
 	uint32_t security_mode;
 	uint32_t iommu_attach_mode;
@@ -891,10 +882,8 @@ enum msm_isp_ioctl_cmd_code {
 	MSM_ISP_SET_DUAL_HW_MASTER_SLAVE,
 	MSM_ISP_MAP_BUF_START_FE,
 	MSM_ISP_UNMAP_BUF,
-#ifndef CONFIG_MACH_XIAOMI_MARKW
 	MSM_ISP_FETCH_ENG_MULTI_PASS_START,
 	MSM_ISP_MAP_BUF_START_MULTI_PASS_FE,
-#endif
 };
 
 #define VIDIOC_MSM_VFE_REG_CFG \
