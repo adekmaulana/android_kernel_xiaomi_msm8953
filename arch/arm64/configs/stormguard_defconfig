@@ -358,6 +358,10 @@ CONFIG_PCI_LABEL=y
 # Kernel Features
 #
 
+# Qnovo
+CONFIG_QNS_SYSTEM=y
+CONFIG_MSM_BCL_SOMC_CTL=y
+
 #
 # ARM errata workarounds via the alternatives framework
 #
