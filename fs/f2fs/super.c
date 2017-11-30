@@ -2679,11 +2679,9 @@ try_onemore:
 		goto free_nm;
 	}
 
-	f2fs_join_shrinker(sbi);
-
 	err = f2fs_build_stats(sbi);
 	if (err)
-		goto free_nm;
+		goto free_node_inode;
 
 	f2fs_sbi_list_add(sbi);
 
@@ -2692,7 +2690,7 @@ try_onemore:
 	if (IS_ERR(root)) {
 		f2fs_msg(sb, KERN_ERR, "Failed to read root inode");
 		err = PTR_ERR(root);
-		goto free_node_inode;
+		goto free_stats;
 	}
 	if (!S_ISDIR(root->i_mode) || !root->i_blocks || !root->i_size) {
 		iput(root);
@@ -2788,6 +2786,8 @@ skip_recovery:
 			sbi->valid_super_block ? 1 : 2, err);
 	}
 
+	f2fs_join_shrinker(sbi);
+
 	f2fs_msg(sbi->sb, KERN_NOTICE, "Mounted with checkpoint version = %llx",
 				cur_cp_version(F2FS_CKPT(sbi)));
 	f2fs_update_time(sbi, CP_TIME);
@@ -2814,15 +2814,12 @@ free_sysfs:
 free_root_inode:
 	dput(sb->s_root);
 	sb->s_root = NULL;
-free_node_inode:
-	truncate_inode_pages_final(NODE_MAPPING(sbi));
-	mutex_lock(&sbi->umount_mutex);
-	release_ino_entry(sbi, true);
-	f2fs_leave_shrinker(sbi);
-	iput(sbi->node_inode);
-	mutex_unlock(&sbi->umount_mutex);
-	f2fs_sbi_list_del(sbi);
+free_stats:
 	f2fs_destroy_stats(sbi);
+free_node_inode:
+	release_ino_entry(sbi, true);
+	truncate_inode_pages_final(NODE_MAPPING(sbi));
+	iput(sbi->node_inode);
 free_nm:
 	destroy_node_manager(sbi);
 free_sm:
