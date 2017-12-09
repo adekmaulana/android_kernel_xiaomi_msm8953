@@ -1714,7 +1714,6 @@ static int msm_venc_queue_setup(struct vb2_queue *q,
 				*num_buffers);
 		msm_venc_update_plane_count(inst, OUTPUT_PORT);
 		*num_planes = inst->fmts[OUTPUT_PORT].num_planes;
-
 		rc = call_hfi_op(hdev, session_set_property, inst->session,
 					property_id, &new_buf_count);
 		if (rc)

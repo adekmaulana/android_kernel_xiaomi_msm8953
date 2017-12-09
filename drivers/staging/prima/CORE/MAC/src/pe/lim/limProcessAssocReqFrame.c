@@ -1699,14 +1699,14 @@ void limSendMlmAssocInd(tpAniSirGlobal pMac, tpDphHashNode pStaDs, tpPESession p
                 if ((psessionEntry->vhtTxChannelWidthSet ==
                                                 eHT_CHANNEL_WIDTH_80MHZ) &&
                                  pAssocReq->HTCaps.supportedChannelWidthSet) {
-                    pMlmAssocInd->chan_info.info = MODE_11AC_VHT80;
+                pMlmAssocInd->chan_info.info = MODE_11AC_VHT80;
                 } else if ((psessionEntry->vhtTxChannelWidthSet ==
                                                 eHT_CHANNEL_WIDTH_40MHZ) &&
                                   pAssocReq->HTCaps.supportedChannelWidthSet) {
-                    pMlmAssocInd->chan_info.info = MODE_11AC_VHT40;
+                pMlmAssocInd->chan_info.info = MODE_11AC_VHT40;
                 } else
-                    pMlmAssocInd->chan_info.info = MODE_11AC_VHT20;
-                    pMlmAssocInd->VHTCaps = pAssocReq->VHTCaps;
+                pMlmAssocInd->chan_info.info = MODE_11AC_VHT20;
+                pMlmAssocInd->VHTCaps = pAssocReq->VHTCaps;
             } else if (psessionEntry->htCapability &&
                                 pAssocReq->HTCaps.present) {
                 if ((psessionEntry->vhtTxChannelWidthSet ==

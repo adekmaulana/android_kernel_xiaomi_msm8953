@@ -4883,10 +4883,10 @@ limHandleDelBssInReAssocContext(tpAniSirGlobal pMac, tpDphHashNode pStaDs,tpPESe
               pBeaconStruct);
             if(pMac->lim.gLimProtectionControl != WNI_CFG_FORCE_POLICY_PROTECTION_DISABLE)
                 limDecideStaProtectionOnAssoc(pMac, pBeaconStruct, psessionEntry);
-                if(pBeaconStruct->erpPresent) {
-                if (pBeaconStruct->erpIEInfo.barkerPreambleMode)
+            if(pBeaconStruct->erpPresent) {
+            if (pBeaconStruct->erpIEInfo.barkerPreambleMode)
                     psessionEntry->beaconParams.fShortPreamble = 0;
-                else
+            else
                     psessionEntry->beaconParams.fShortPreamble = 1;
             }
             //updateBss flag is false, as in this case, PE is first deleting the existing BSS and then adding a new one.
@@ -4902,7 +4902,7 @@ limHandleDelBssInReAssocContext(tpAniSirGlobal pMac, tpDphHashNode pStaDs,tpPESe
                 vos_mem_free(assocRsp);
                 vos_mem_vfree(pBeaconStruct);
                 pMac->lim.gLimAssocResponseData = NULL;
-                goto Error;
+            goto Error;
             }
             vos_mem_free(assocRsp);
             vos_mem_vfree(pBeaconStruct);
@@ -4958,11 +4958,11 @@ limProcessBtampAddBssRsp( tpAniSirGlobal pMac, tpSirMsgQ limMsgQ ,tpPESession ps
          {
              if (limSetLinkState(pMac, eSIR_LINK_BTAMP_AP_STATE, psessionEntry->bssId,
                   psessionEntry->selfMacAddr, NULL, NULL) != eSIR_SUCCESS )
-               goto end;
+             goto end;
          } else if (psessionEntry->bssType == eSIR_BTAMP_STA_MODE) {
             if (limSetLinkState(pMac, eSIR_LINK_SCAN_STATE, psessionEntry->bssId,
                  psessionEntry->selfMacAddr, NULL, NULL) != eSIR_SUCCESS )
-                goto end;
+            goto end;
          }
 
         // Set MLME state
