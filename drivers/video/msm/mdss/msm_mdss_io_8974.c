@@ -1103,7 +1103,7 @@ static void mdss_dsi_phy_regulator_ctrl(struct mdss_dsi_ctrl_pdata *ctrl,
 			switch (ctrl->shared_data->hw_rev) {
 			case MDSS_DSI_HW_REV_103:
 				mdss_dsi_20nm_phy_regulator_enable(ctrl);
-				break;
+			break;
 			default:
 			/*
 			 * For dual dsi case, do not reconfigure dsi phy
@@ -1114,7 +1114,7 @@ static void mdss_dsi_phy_regulator_ctrl(struct mdss_dsi_ctrl_pdata *ctrl,
 				(other_ctrl && (!other_ctrl->is_phyreg_enabled
 						|| other_ctrl->mmss_clamp)))
 				mdss_dsi_28nm_phy_regulator_enable(ctrl);
-				break;
+			break;
 			}
 		}
 		ctrl->is_phyreg_enabled = 1;
