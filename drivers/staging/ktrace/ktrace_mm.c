@@ -220,7 +220,7 @@ int __init ktrace_mm_init(struct dentry *dir, struct ktrace_queue *q)
 	BUILD_BUG_ON(sizeof(mm_event_name) / sizeof(mm_event_name[0])
 			!= KTRACE_MM_TYPE_NR);
 
-	memset(mm, sizeof(struct ktrace_mm), 0);
+	memset(mm, 0, sizeof(struct ktrace_mm));
 
 	buf = (void *)__get_free_pages(GFP_KERNEL | __GFP_ZERO, 1);
 	if (!buf)

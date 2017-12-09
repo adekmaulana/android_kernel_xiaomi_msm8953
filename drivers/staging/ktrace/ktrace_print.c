@@ -75,7 +75,7 @@ int __init ktrace_print_init(struct dentry *dir, struct ktrace_queue *q)
 	struct ktrace_print *kp = &__print;
 	void *buf;
 
-	memset(kp, sizeof(struct ktrace_print), 0);
+	memset(kp, 0, sizeof(struct ktrace_print));
 
 	buf = (void *)__get_free_pages(GFP_KERNEL | __GFP_ZERO, 1);
 	if (!buf)

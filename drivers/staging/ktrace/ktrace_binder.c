@@ -159,7 +159,7 @@ int __init ktrace_binder_init(struct dentry *dir, struct ktrace_queue *q)
 	BUILD_BUG_ON(sizeof(binder_event_name) / sizeof(binder_event_name[0])
 			!= KTRACE_BINDER_TYPE_NR);
 
-	memset(binder, sizeof(struct ktrace_binder), 0);
+	memset(binder, 0, sizeof(struct ktrace_binder));
 
 	buf = (void *)__get_free_pages(GFP_KERNEL | __GFP_ZERO, 1);
 	if (!buf)

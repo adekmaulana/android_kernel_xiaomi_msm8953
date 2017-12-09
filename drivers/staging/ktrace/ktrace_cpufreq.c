@@ -57,7 +57,7 @@ struct ktrace_cpufreq {
 
 static struct ktrace_cpufreq __cf;
 
-static const char const *cpufreq_event_name[KTRACE_CPUFREQ_TYPE_NR] = {
+static const char *cpufreq_event_name[KTRACE_CPUFREQ_TYPE_NR] = {
 	"sam_1",
 	"sam_2",
 	"sam_3",

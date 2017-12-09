@@ -650,11 +650,14 @@ static unsigned char GetChannelNum(void)
 		ReCode = ReadReg(FT_8606_LEFT_KEY_REG, &regData);
 		if (ReCode == ERROR_CODE_OK) {
 			if (((regData >> 0) & 0x01))
-					g_stSCapConfEx.bLeftKey1 = true; ++g_stSCapConfEx.KeyNum;
+				g_stSCapConfEx.bLeftKey1 = true;
+			++g_stSCapConfEx.KeyNum;
 			if (((regData >> 1) & 0x01))
-					g_stSCapConfEx.bLeftKey2 = true; ++g_stSCapConfEx.KeyNum;
+				g_stSCapConfEx.bLeftKey2 = true;
+			++g_stSCapConfEx.KeyNum;
 			if (((regData >> 2) & 0x01))
-				g_stSCapConfEx.bLeftKey3 = true; ++g_stSCapConfEx.KeyNum;
+				g_stSCapConfEx.bLeftKey3 = true;
+			++g_stSCapConfEx.KeyNum;
 		} else {
 			printk("Failed to get Key number\n");
 			SysDelay(150);
@@ -663,11 +666,14 @@ static unsigned char GetChannelNum(void)
 		ReCode = ReadReg(FT_8606_RIGHT_KEY_REG, &regData);
 		if (ReCode == ERROR_CODE_OK) {
 			if (((regData >> 0) & 0x01))
-				g_stSCapConfEx.bRightKey1 = true; ++g_stSCapConfEx.KeyNum;
+				g_stSCapConfEx.bRightKey1 = true;
+			++g_stSCapConfEx.KeyNum;
 			if (((regData >> 1) & 0x01))
-				g_stSCapConfEx.bRightKey2 = true; ++g_stSCapConfEx.KeyNum;
+				g_stSCapConfEx.bRightKey2 = true;
+			++g_stSCapConfEx.KeyNum;
 			if (((regData >> 2) & 0x01))
-				g_stSCapConfEx.bRightKey3 = true; ++g_stSCapConfEx.KeyNum;
+				g_stSCapConfEx.bRightKey3 = true;
+			++g_stSCapConfEx.KeyNum;
 			break;
 		} else {
 			printk("Failed to get Key number\n");

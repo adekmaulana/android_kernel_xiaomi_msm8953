@@ -376,7 +376,7 @@ int __init rtmm_pool_init(struct dentry *dir)
 {
 	struct rtmm_pool *pool = get_pool();
 
-	memset(pool, sizeof(struct rtmm_pool), 0);
+	memset(pool, 0, sizeof(struct rtmm_pool));
 
 	pool->dir = debugfs_create_dir("pool", dir);
 	if (!pool->dir) {

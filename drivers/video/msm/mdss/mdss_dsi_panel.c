@@ -887,7 +887,8 @@ static int mdss_dsi_panel_on(struct mdss_panel_data *pdata)
 			if (LCM_effect[1] == 0x0010)
 				break;
 			else
-				mdss_dsi_panel_cmds_send(change_par_ctrl, CABC_off_cmds_point, CMD_REQ_COMMIT); break;
+			mdss_dsi_panel_cmds_send(change_par_ctrl, CABC_off_cmds_point, CMD_REQ_COMMIT);
+				break;
 		}
 
 	} else {
@@ -931,7 +932,8 @@ static int mdss_dsi_panel_on(struct mdss_panel_data *pdata)
 			if (LCM_effect[1] == 0x0010)
 				break;
 			else
-				mdss_dsi_panel_cmds_send(change_par_ctrl, CABC_off_cmds_point, CMD_REQ_COMMIT); break;
+			mdss_dsi_panel_cmds_send(change_par_ctrl, CABC_off_cmds_point, CMD_REQ_COMMIT);
+				break;
 		}
 
 	}

@@ -4661,7 +4661,7 @@ tSirRetStatus
 limEnableHT20Protection(tpAniSirGlobal pMac, tANI_U8 enable,
     tANI_U8 overlap, tpUpdateBeaconParams pBeaconParams,tpPESession psessionEntry)
 {
-    if(!psessionEntry->htCapability)
+        if(!psessionEntry->htCapability)
         return eSIR_SUCCESS; // this protection  is only for HT stations.
 
         //overlapping protection configuration check.
@@ -4688,7 +4688,7 @@ limEnableHT20Protection(tpAniSirGlobal pMac, tANI_U8 enable,
             }
         }
 
-    if (enable)
+        if (enable)
     {
         //If we are AP and HT capable, we need to set the HT OP mode
         //appropriately.
@@ -4856,7 +4856,7 @@ limEnableHT20Protection(tpAniSirGlobal pMac, tANI_U8 enable,
         }
     }
 
-    return eSIR_SUCCESS;
+        return eSIR_SUCCESS;
 }
 
 /** -------------------------------------------------------------
@@ -4871,7 +4871,7 @@ tSirRetStatus
 limEnableHTNonGfProtection(tpAniSirGlobal pMac, tANI_U8 enable,
     tANI_U8 overlap, tpUpdateBeaconParams pBeaconParams,tpPESession psessionEntry)
 {
-    if(!psessionEntry->htCapability)
+        if(!psessionEntry->htCapability)
         return eSIR_SUCCESS; // this protection  is only for HT stations.
 
         //overlapping protection configuration check.
@@ -4898,7 +4898,7 @@ limEnableHTNonGfProtection(tpAniSirGlobal pMac, tANI_U8 enable,
                  }
             }
         }
-    if(psessionEntry->limSystemRole == eLIM_AP_ROLE){
+        if(psessionEntry->limSystemRole == eLIM_AP_ROLE){
         if ((enable) && (false == psessionEntry->beaconParams.llnNonGFCoexist))
         {
             PELOG1(limLog(pMac, LOG1, FL(" => Prtection from non GF Enabled"));)
@@ -4927,7 +4927,7 @@ limEnableHTNonGfProtection(tpAniSirGlobal pMac, tANI_U8 enable,
         }
     }
 
-    return eSIR_SUCCESS;
+        return eSIR_SUCCESS;
 }
 
 /** -------------------------------------------------------------
@@ -4942,7 +4942,7 @@ tSirRetStatus
 limEnableHTLsigTxopProtection(tpAniSirGlobal pMac, tANI_U8 enable,
     tANI_U8 overlap, tpUpdateBeaconParams pBeaconParams,tpPESession psessionEntry)
 {
-    if(!psessionEntry->htCapability)
+        if(!psessionEntry->htCapability)
         return eSIR_SUCCESS; // this protection  is only for HT stations.
 
         //overlapping protection configuration check.
@@ -4971,7 +4971,7 @@ limEnableHTLsigTxopProtection(tpAniSirGlobal pMac, tANI_U8 enable,
         }
 
 
-    if(psessionEntry->limSystemRole == eLIM_AP_ROLE){
+        if(psessionEntry->limSystemRole == eLIM_AP_ROLE){
         if ((enable) && (false == psessionEntry->beaconParams.fLsigTXOPProtectionFullSupport))
         {
             PELOG1(limLog(pMac, LOG1, FL(" => Prtection from LsigTxop Enabled"));)
@@ -4999,7 +4999,7 @@ limEnableHTLsigTxopProtection(tpAniSirGlobal pMac, tANI_U8 enable,
             pBeaconParams->paramChangeBitmap |= PARAM_LSIG_TXOP_FULL_SUPPORT_CHANGED;
         }
     }
-    return eSIR_SUCCESS;
+        return eSIR_SUCCESS;
 }
 //FIXME_PROTECTION : need to check for no APSD whenever we want to enable this protection.
 //This check will be done at the caller.
@@ -5015,7 +5015,7 @@ tSirRetStatus
 limEnableHtRifsProtection(tpAniSirGlobal pMac, tANI_U8 enable,
     tANI_U8 overlap, tpUpdateBeaconParams pBeaconParams,tpPESession psessionEntry)
 {
-    if(!psessionEntry->htCapability)
+        if(!psessionEntry->htCapability)
         return eSIR_SUCCESS; // this protection  is only for HT stations.
 
 

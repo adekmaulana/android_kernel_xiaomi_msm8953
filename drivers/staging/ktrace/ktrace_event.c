@@ -25,7 +25,7 @@ struct ktrace_event {
 
 };
 
-static const char const *event_str[KTRACE_EVENT_NR] = {
+static const char *event_str[KTRACE_EVENT_NR] = {
 	"event-1",
 	"event-2",
 	"event-3",
@@ -115,7 +115,7 @@ int __init ktrace_event_init(struct dentry *dir)
 {
 	struct ktrace_event *event = &__event;
 
-	memset(event, sizeof(struct ktrace_event), 0);
+	memset(event, 0, sizeof(struct ktrace_event));
 
 	event->dir = debugfs_create_dir("event", dir);
 

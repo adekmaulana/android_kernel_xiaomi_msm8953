@@ -5979,8 +5979,8 @@ tSirRetStatus limSendAddBARsp( tpAniSirGlobal pMac,
     statusCode = eSIR_FAILURE;
     //Pkt will be freed up by the callback
     return statusCode;
-  }
-  else
+    }
+    else
     return eSIR_SUCCESS;
 
     returnAfterError:
@@ -6159,44 +6159,44 @@ tSirRetStatus limSendDelBAInd( tpAniSirGlobal pMac,
        || ( psessionEntry->pePersona == VOS_P2P_CLIENT_MODE ) ||
          ( psessionEntry->pePersona == VOS_P2P_GO_MODE)
          )
-    {
-        txFlag |= HAL_USE_BD_RATE2_FOR_MANAGEMENT_FRAME;
-    }
+     {
+         txFlag |= HAL_USE_BD_RATE2_FOR_MANAGEMENT_FRAME;
+     }
 
-   MTRACE(macTrace(pMac, TRACE_CODE_TX_MGMT,
-          psessionEntry->peSessionId,
-          pMacHdr->fc.subType));
-   halStatus = halTxFrame( pMac,
-                           pPacket,
-                           (tANI_U16) frameLen,
-                           HAL_TXRX_FRM_802_11_MGMT,
-                           ANI_TXDIR_TODS,
-                           7,//SMAC_SWBD_TX_TID_MGMT_HIGH,
-                           limTxComplete,
-                           pDelBAIndBuffer, txFlag );
-   MTRACE(macTrace(pMac, TRACE_CODE_TX_COMPLETE,
-          psessionEntry->peSessionId,
-          halStatus));
-  if( eHAL_STATUS_SUCCESS != halStatus )
-  {
+    MTRACE(macTrace(pMac, TRACE_CODE_TX_MGMT,
+            psessionEntry->peSessionId,
+            pMacHdr->fc.subType));
+    halStatus = halTxFrame( pMac,
+                            pPacket,
+                            (tANI_U16) frameLen,
+                            HAL_TXRX_FRM_802_11_MGMT,
+                            ANI_TXDIR_TODS,
+                            7,//SMAC_SWBD_TX_TID_MGMT_HIGH,
+                            limTxComplete,
+                            pDelBAIndBuffer, txFlag );
+    MTRACE(macTrace(pMac, TRACE_CODE_TX_COMPLETE,
+           psessionEntry->peSessionId,
+           halStatus));
+    if( eHAL_STATUS_SUCCESS != halStatus )
+    {
     PELOGE(limLog( pMac, LOGE, FL( "halTxFrame FAILED! Status [%d]" ), halStatus );)
     statusCode = eSIR_FAILURE;
     //Pkt will be freed up by the callback
     return statusCode;
-  }
-  else
+    }
+    else
     return eSIR_SUCCESS;
 
     returnAfterError:
 
       // Release buffer, if allocated
-      if( NULL != pDelBAIndBuffer )
-        palPktFree( pMac->hHdd,
-            HAL_TXRX_FRM_802_11_MGMT,
-            (void *) pDelBAIndBuffer,
-            (void *) pPacket );
+    if( NULL != pDelBAIndBuffer )
+      palPktFree( pMac->hHdd,
+          HAL_TXRX_FRM_802_11_MGMT,
+          (void *) pDelBAIndBuffer,
+          (void *) pPacket );
 
-      return statusCode;
+    return statusCode;
 }
 
 #if defined WLAN_FEATURE_VOWIFI

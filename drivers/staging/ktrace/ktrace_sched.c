@@ -86,7 +86,7 @@ static struct ktrace_sched __ks = {
 
 };
 
-static const char const *sched_event_name[KTRACE_SCHED_TYPE_NR] = {
+static const char *sched_event_name[KTRACE_SCHED_TYPE_NR] = {
 	"sam_1",
 	"sam_2",
 	"sam_3",
@@ -487,7 +487,7 @@ int __init ktrace_sched_init(struct dentry *dir, struct ktrace_queue *q)
 	BUILD_BUG_ON(sizeof(sched_event_name) / sizeof(sched_event_name[0])
 			!= KTRACE_SCHED_TYPE_NR);
 
-	memset(sched, sizeof(struct ktrace_sched), 0);
+	memset(sched, 0, sizeof(struct ktrace_sched));
 
 	if (USE_THREAD_TO_UPDATE_PIDS) {
 		sched->thread = kthread_run(ktrace_sched_thread, sched, "ktrace-sched");

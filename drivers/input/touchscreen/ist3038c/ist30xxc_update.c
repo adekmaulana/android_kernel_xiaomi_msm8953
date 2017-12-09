@@ -50,8 +50,8 @@ int ist30xx_isp_read_burst(struct i2c_client *client, u32 addr, u32 *buf32,
 
 	for (i = 0; i < len; i += max_len) {
 		if (remain_len < max_len)
-			max_len = remain_len;
-			ret = ist30xx_read_buf(client, addr, buf32, max_len);
+		max_len = remain_len;
+		ret = ist30xx_read_buf(client, addr, buf32, max_len);
 		if (unlikely(ret)) {
 			tsp_err("Burst fail, addr: %x\n", __func__, addr);
 			return ret;
@@ -74,8 +74,8 @@ int ist30xx_isp_write_burst(struct i2c_client *client, u32 addr, u32 *buf32,
 
 	for (i = 0; i < len; i += max_len) {
 		if (remain_len < max_len)
-			max_len = remain_len;
-			ret = ist30xx_write_buf(client, addr, buf32, max_len);
+		max_len = remain_len;
+		ret = ist30xx_write_buf(client, addr, buf32, max_len);
 		if (unlikely(ret)) {
 			tsp_err("Burst fail, addr: %x\n", addr);
 			return ret;
