@@ -14,4 +14,10 @@ config MACH_XIAOMI_MIDO
 	help
 	  Support for Redmi Note 4 SD Mido
 
+config MACH_XIAOMI_MARKW
+	bool "Markw board"
+	select MACH_XIAOMI_MSM8953
+	help
+	  Support for Redmi 4 Prime Markw
+
 endmenu
