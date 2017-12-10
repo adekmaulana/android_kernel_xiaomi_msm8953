@@ -423,7 +423,12 @@ static ssize_t compatible_all_set(struct device *dev,
 		}
 		devm_free_irq(dev, gpio_to_irq(fpc1020->irq_gpio), fpc1020);
 		fpc1020->compatible_enabled = 0;
+#ifdef CONFIG_MACH_XIAOMI_MARKW
+	}else
+		goto exit;
+#else
 	}
+#endif
 	hw_reset(fpc1020);
 	return count;
 exit:
@@ -593,7 +598,11 @@ static const struct dev_pm_ops fpc1020_pm_ops = {
 #endif
 
 static struct of_device_id fpc1020_of_match[] = {
+#ifdef CONFIG_MACH_XIAOMI_MARKW
+	{ .compatible = "soc:fpc1020", },
+#else
 	{ .compatible = "fpc,fpc1020", },
+#endif
 	{}
 };
 MODULE_DEVICE_TABLE(of, fpc1020_of_match);
