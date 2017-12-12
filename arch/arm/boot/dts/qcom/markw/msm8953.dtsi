@@ -2370,7 +2370,7 @@ blsp2_uart0: uart@7aef000 {
 #include "msm8953-audio.dtsi"
 #include "../msm-gdsc-8916.dtsi"
 #include "../msm8953-camera.dtsi"
-#include "msm8953-mdss.dtsi"
+#include "../msm8953-mdss.dtsi"
 #include "msm8953-mdss-pll.dtsi"
 
 &gdsc_venus {
