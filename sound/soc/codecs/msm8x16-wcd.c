@@ -1185,12 +1185,6 @@ static int __msm8x16_wcd_reg_read(struct snd_soc_codec *codec,
 	pr_debug("%s reg = %x\n", __func__, reg);
 	mutex_lock(&msm8x16_wcd->io_lock);
 	pdata = snd_soc_card_get_drvdata(codec->component.card);
-#ifdef CONFIG_MACH_XIAOMI_MARKW
-	if (pdata == NULL) {
-		mutex_unlock(&msm8x16_wcd->io_lock);
-		return ret;
-	}
-#endif
 	if (MSM8X16_WCD_IS_TOMBAK_REG(reg))
 		ret = msm8x16_wcd_spmi_read(reg, 1, &temp);
 	else if (MSM8X16_WCD_IS_DIGITAL_REG(reg)) {
@@ -1247,12 +1241,6 @@ static int __msm8x16_wcd_reg_write(struct snd_soc_codec *codec,
 
 	mutex_lock(&msm8x16_wcd->io_lock);
 	pdata = snd_soc_card_get_drvdata(codec->component.card);
-#ifdef CONFIG_MACH_XIAOMI_MARKW
-	if (pdata == NULL) {
-		mutex_unlock(&msm8x16_wcd->io_lock);
-		return ret;
-	}
-#endif
 	if (MSM8X16_WCD_IS_TOMBAK_REG(reg))
 		ret = msm8x16_wcd_spmi_write(reg, 1, &val);
 	else if (MSM8X16_WCD_IS_DIGITAL_REG(reg)) {
@@ -4266,7 +4254,9 @@ static int msm8x16_wcd_lo_dac_event(struct snd_soc_dapm_widget *w,
 			MSM8X16_WCD_A_ANALOG_RX_LO_DAC_CTL, 0x08, 0x08);
 		snd_soc_update_bits(codec,
 			MSM8X16_WCD_A_ANALOG_RX_LO_DAC_CTL, 0x40, 0x40);
+#ifndef CONFIG_MACH_XIAOMI_MARKW
 		msleep(5);
+#endif
 		break;
 	case SND_SOC_DAPM_POST_PMU:
 		snd_soc_update_bits(codec,
