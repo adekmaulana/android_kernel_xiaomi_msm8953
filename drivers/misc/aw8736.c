@@ -40,6 +40,7 @@
 #include <linux/fcntl.h>
 #include <asm/uaccess.h>
 #include <linux/i2c-dev.h>
+#include <linux/mutex.h>
 
 
 
@@ -58,9 +59,11 @@
 
 static int spk_pa_gpio = -1;
 static int value = 0;
+struct mutex lock;
 
 static void amplifier_enable(void) {
   int i = 0;
+  mutex_lock(&lock);
   pr_info("Enabling amplifier in kernel\n");
 	/* Open external audio PA device */
 	for (i = 0; i < AW8736_MODE; i++) {
@@ -69,13 +72,16 @@ static void amplifier_enable(void) {
 	}
 	usleep_range(EXT_CLASS_D_EN_DELAY,
 	EXT_CLASS_D_EN_DELAY + EXT_CLASS_D_DELAY_DELTA);
+  mutex_unlock(&lock);
 }
 
 static void amplifier_disable(void) {
+  mutex_lock(&lock);
   gpio_direction_output(spk_pa_gpio, false);
   pr_info("Disabling amplifier in kernel\n");
   usleep_range(EXT_CLASS_D_DIS_DELAY,
    EXT_CLASS_D_DIS_DELAY + EXT_CLASS_D_DELAY_DELTA);
+  mutex_unlock(&lock);
 }
 
 static int init_gpio(struct platform_device *pdev) {
@@ -132,6 +138,7 @@ static int aw8736_machine_probe(struct platform_device *pdev)
  	ret = sysfs_create_file(kobj, &enable_attr.attr);
 	if (ret)
 		goto attr_file_failed;
+  mutex_init(&lock);
 	return 0;
 attr_file_failed:
 	kobject_put(kobj);
