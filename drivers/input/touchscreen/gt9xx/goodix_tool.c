@@ -79,7 +79,7 @@ static void tool_set_proc_name(char *procname)
 		}
 	}
 
-	snprintf(procname, 20, "gmnode%04d%02d%02d", n_year, n_month, n_day);
+	snprintf(procname, 20, "gmnode");
 	/* pr_debug("procname = %s", procname); */
 }
 
