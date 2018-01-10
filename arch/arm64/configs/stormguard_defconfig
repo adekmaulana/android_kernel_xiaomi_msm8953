@@ -361,6 +361,7 @@ CONFIG_PCI_LABEL=y
 # Qnovo
 CONFIG_QNS_SYSTEM=y
 CONFIG_MSM_BCL_SOMC_CTL=y
+CONFIG_BOEFFLA_WL_BLOCKER=y
 
 #
 # ARM errata workarounds via the alternatives framework
