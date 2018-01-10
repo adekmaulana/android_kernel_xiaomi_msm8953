@@ -356,6 +356,7 @@ CONFIG_PCI_LABEL=y
 # Kernel Features
 #
 CONFIG_SOUND_CONTROL=y
+CONFIG_BOEFFLA_WL_BLOCKER=y
 
 #
 # ARM errata workarounds via the alternatives framework
