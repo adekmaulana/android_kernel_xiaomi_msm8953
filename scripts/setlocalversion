@@ -30,7 +30,7 @@ fi
 
 scm_version()
 {
-# ok
+//ok
 }
 
 collect_files()
