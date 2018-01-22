@@ -198,9 +198,6 @@
 		compatible = "wt:boardinfo";
 	};
 };
-	&wled {
-		qcom,cons-sync-write-delay-us = <1000>;
-	};
 
 &pm8953_typec {
 	ss-mux-supply = <&pm8953_l6>;

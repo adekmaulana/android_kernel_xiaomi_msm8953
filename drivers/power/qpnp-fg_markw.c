@@ -1134,7 +1134,8 @@ out:
 static int fg_check_ima_exception(struct fg_chip *chip)
 {
 	int rc = 0, ret = 0;
-	u8 err_sts, exp_sts = 0, hw_sts = 0;
+	u8 err_sts, temp, exp_sts = 0, hw_sts = 0;
+    bool run_err_clr_seq = false;
 
 	rc = fg_read(chip, &err_sts,
 			chip->mem_base + MEM_INTF_IMA_ERR_STS, 1);
@@ -1143,9 +1144,12 @@ static int fg_check_ima_exception(struct fg_chip *chip)
 		return rc;
 	}
 
+<<<<<<< HEAD
 	if (err_sts & (IMA_ADDR_STBL_ERR | IMA_WR_ACS_ERR | IMA_RD_ACS_ERR)) {
 		u8 temp;
 
+=======
+>>>>>>> 8099e3957ec7... fix build
 		fg_read(chip, &exp_sts,
 			chip->mem_base + MEM_INTF_IMA_EXP_STS, 1);
 		fg_read(chip, &hw_sts,

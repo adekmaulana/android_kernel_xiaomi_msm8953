@@ -17,6 +17,7 @@
 #include "markw/msm8953.dtsi"
 #include "msm8953-qrd-wt88553.dtsi"
 #include "markw/msm8953-audio-mtp.dtsi"
+#include "markw/msm-pmi8950.dtsi"
 
 / {
 	model = "Qualcomm Technologies, Inc. MSMTITANIUM QRD WT88553";
@@ -63,6 +64,11 @@
 	qcom,hold-soc-while-full;
 	qcom,thermal-coefficients = [c2 86 bb 50 cf 37];
 };
+
+
+&wled {
+	qcom,cons-sync-write-delay-us = <1000>;
+	};
 
 &i2c_2 {
 	pericom-type-c@1d {
