@@ -42,14 +42,20 @@ struct msm_ois_vreg {
 };
 
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> 8291efb... msm: sensor: Add support for downloading OIS coefficient and framework Add OIS framework and coefficient download in OIS driver.
 struct msm_ois_board_info {
 	char ois_name[MAX_OIS_NAME_SIZE];
 	uint32_t i2c_slaveaddr;
 	struct msm_ois_opcode opcode;
 };
 
+<<<<<<< HEAD
 =======
 >>>>>>> d9c275b... drivers:media:platform:msm:camera_v2: backport camera_v2 for markw. name: camera_v2_markw
+=======
+>>>>>>> 8291efb... msm: sensor: Add support for downloading OIS coefficient and framework Add OIS framework and coefficient download in OIS driver.
 struct msm_ois_ctrl_t {
 	struct i2c_driver *i2c_driver;
 	struct platform_driver *pdriver;
@@ -71,9 +77,13 @@ struct msm_ois_ctrl_t {
 	struct msm_pinctrl_info pinctrl_info;
 	uint8_t cam_pinctrl_status;
 <<<<<<< HEAD
+<<<<<<< HEAD
 	struct msm_ois_board_info *oboard_info;
 =======
 >>>>>>> d9c275b... drivers:media:platform:msm:camera_v2: backport camera_v2 for markw. name: camera_v2_markw
+=======
+	struct msm_ois_board_info *oboard_info;
+>>>>>>> 8291efb... msm: sensor: Add support for downloading OIS coefficient and framework Add OIS framework and coefficient download in OIS driver.
 };
 
 #endif
