@@ -48,10 +48,21 @@
 
 #define DEFAULT_MCLK_RATE 9600000
 
+#ifdef CONFIG_MACH_XIAOMI_MARKW
+#define AW8736_MODE 5
+#endif
+
 #define WCD_MBHC_DEF_RLOADS 5
 #define MAX_WSA_CODEC_NAME_LENGTH 80
 #define MSM_DT_MAX_PROP_SIZE 80
+
+#ifdef CONFIG_MACH_XIAOMI_MARKW
+#define EXT_CLASS_D_EN_DELAY 13000
+#define EXT_CLASS_D_DIS_DELAY 3000
+#define EXT_CLASS_D_DELAY_DELTA 2000
+#else
 #define EXT_PA_MODE  5
+#endif
 
 enum btsco_rates {
 	RATE_8KHZ_ID,
@@ -73,6 +84,10 @@ static atomic_t quat_mi2s_clk_ref;
 static atomic_t quin_mi2s_clk_ref;
 static atomic_t auxpcm_mi2s_clk_ref;
 
+#ifdef CONFIG_MACH_XIAOMI_MARKW
+static int spk_pa_gpio;
+#endif
+
 static int msm8952_enable_dig_cdc_clk(struct snd_soc_codec *codec, int enable,
 					bool dapm);
 static bool msm8952_swap_gnd_mic(struct snd_soc_codec *codec);
@@ -80,7 +95,9 @@ static int msm8952_mclk_event(struct snd_soc_dapm_widget *w,
 			      struct snd_kcontrol *kcontrol, int event);
 static int msm8952_wsa_switch_event(struct snd_soc_dapm_widget *w,
 			      struct snd_kcontrol *kcontrol, int event);
-
+#ifdef CONFIG_MACH_XIAOMI_MARKW
+static struct delayed_work lineout_amp_enable;
+#endif
 /*
  * Android L spec
  * Need to report LINEIN
@@ -94,9 +111,15 @@ static struct wcd_mbhc_config mbhc_cfg = {
 	.swap_gnd_mic = NULL,
 	.hs_ext_micbias = false,
 	.key_code[0] = KEY_MEDIA,
+#ifdef CONFIG_MACH_XIAOMI_MARKW
+	.key_code[1] = KEY_PREVIOUSSONG_NEW,
+	.key_code[2] = KEY_NEXTSONG_NEW,
+	.key_code[3] = KEY_VOICECOMMAND,
+#else
 	.key_code[1] = BTN_1,
 	.key_code[2] = BTN_2,
 	.key_code[3] = 0,
+#endif
 	.key_code[4] = 0,
 	.key_code[5] = 0,
 	.key_code[6] = 0,
@@ -169,6 +192,9 @@ static const char *const btsco_rate_text[] = {"BTSCO_RATE_8KHZ",
 static const char *const proxy_rx_ch_text[] = {"One", "Two", "Three", "Four",
 	"Five", "Six", "Seven", "Eight"};
 static const char *const vi_feed_ch_text[] = {"One", "Two"};
+#ifdef CONFIG_MACH_XIAOMI_MARKW
+static const char *const lineout_text[] = {"DISABLE", "ENABLE", "DUALMODE"};
+#endif
 static char const *mi2s_rx_sample_rate_text[] = {"KHZ_48",
 					"KHZ_96", "KHZ_192"};
 
@@ -257,7 +283,9 @@ int is_ext_spk_gpio_support(struct platform_device *pdev,
 			return -EINVAL;
 		}
 	}
+#ifndef CONFIG_MACH_XIAOMI_MARKW
 	gpio_direction_output(pdata->spk_ext_pa_gpio, 0);
+#endif
 	return 0;
 }
 
@@ -265,7 +293,11 @@ static int enable_spk_ext_pa(struct snd_soc_codec *codec, int enable)
 {
 	struct snd_soc_card *card = codec->component.card;
 	struct msm8916_asoc_mach_data *pdata = snd_soc_card_get_drvdata(card);
+#ifdef CONFIG_MACH_XIAOMI_MARKW
+	int ret;
+#else
 	int pa_mode = EXT_PA_MODE;
+#endif
 	if (!gpio_is_valid(pdata->spk_ext_pa_gpio)) {
 		pr_err("%s: Invalid gpio: %d\n", __func__,
 			pdata->spk_ext_pa_gpio);
@@ -276,6 +308,14 @@ static int enable_spk_ext_pa(struct snd_soc_codec *codec, int enable)
 		enable ? "Enable" : "Disable");
 
 	if (enable) {
+#ifdef CONFIG_MACH_XIAOMI_MARKW
+	ret = msm_gpioset_activate(CLIENT_WCD_INT, "ext_spk_gpio");
+	if (ret) {
+		pr_err("%s: gpio set cannot be de-activated %s\n",
+			__func__, "ext_spk_gpio");
+		return ret;
+	}
+#else
 		while (pa_mode > 0) {
 			gpio_set_value_cansleep(pdata->spk_ext_pa_gpio, 0);
 			udelay(2);
@@ -283,8 +323,17 @@ static int enable_spk_ext_pa(struct snd_soc_codec *codec, int enable)
 			udelay(2);
 			pa_mode--;
 		}
+#endif
 	} else {
 		gpio_set_value_cansleep(pdata->spk_ext_pa_gpio, enable);
+#ifdef CONFIG_MACH_XIAOMI_MARKW
+		ret = msm_gpioset_suspend(CLIENT_WCD_INT, "ext_spk_gpio");		
+		if (ret) {		
+			pr_err("%s: gpio set cannot be de-activated %s\n",		
+					__func__, "ext_spk_gpio");		
+			return ret;		
+		}
+#endif
 	}
 	return 0;
 }
@@ -710,6 +759,68 @@ static int msm8952_enable_dig_cdc_clk(struct snd_soc_codec *codec,
 	return ret;
 }
 
+#ifdef CONFIG_MACH_XIAOMI_MARKW
+static void msm8952_ext_spk_control(u32 enable)
+{
+		int i = 0;
+	if (enable) {
+	/* Open external audio PA device */
+		for (i = 0; i < AW8736_MODE; i++) {
+			gpio_direction_output(spk_pa_gpio, false);
+			gpio_direction_output(spk_pa_gpio, true);
+		}
+		usleep_range(EXT_CLASS_D_EN_DELAY,
+		 EXT_CLASS_D_EN_DELAY + EXT_CLASS_D_DELAY_DELTA);
+	} else {
+		gpio_direction_output(spk_pa_gpio, false);
+		/* time takes disable the external power amplifier */
+		usleep_range(EXT_CLASS_D_DIS_DELAY,
+		 EXT_CLASS_D_DIS_DELAY + EXT_CLASS_D_DELAY_DELTA);
+	}
+	pr_err("%s: %s [hjf]  external speaker 222PAs.\n", __func__,
+	enable ? "Enable" : "Disable");
+}
+static void msm8x16_ext_spk_delayed_enable(struct work_struct *work)
+{
+	int i = 0;
+	/* Open external audio PA device */
+	for (i = 0; i < AW8736_MODE; i++) {
+		gpio_direction_output(spk_pa_gpio, false);
+		gpio_direction_output(spk_pa_gpio, true);
+	}
+	usleep_range(EXT_CLASS_D_DIS_DELAY,
+	EXT_CLASS_D_DIS_DELAY + EXT_CLASS_D_DELAY_DELTA);
+
+	pr_debug("%s: Enable external speaker PAs.\n", __func__);
+}
+
+static int lineout_status_get(struct snd_kcontrol *kcontrol,
+	struct snd_ctl_elem_value *ucontrol)
+{
+	pr_err("%s: [hjf] get222\n", __func__);
+	return 0;
+}
+static int lineout_status_put(struct snd_kcontrol *kcontrol,
+	struct snd_ctl_elem_value *ucontrol)
+{
+	int state = 0;
+	state = ucontrol->value.integer.value[0];
+	pr_err("%s: [hjf]  external speaker PA mode:%d\n", __func__, state);
+	switch (state) {
+	case 1:
+		schedule_delayed_work(&lineout_amp_enable, msecs_to_jiffies(30));
+		break;
+	case 0:
+		msm8952_ext_spk_control(0);
+		break;
+	default:
+		pr_err("%s: [hjf]  Unexpected input value\n", __func__);
+		break;
+	}
+	return 0;
+}
+#endif
+
 static int msm_btsco_rate_get(struct snd_kcontrol *kcontrol,
 				struct snd_ctl_elem_value *ucontrol)
 {
@@ -996,6 +1107,9 @@ static const struct soc_enum msm_snd_enum[] = {
 				vi_feed_ch_text),
 	SOC_ENUM_SINGLE_EXT(ARRAY_SIZE(mi2s_rx_sample_rate_text),
 				mi2s_rx_sample_rate_text),
+#ifdef CONFIG_MACH_XIAOMI_MARKW
+	SOC_ENUM_SINGLE_EXT(ARRAY_SIZE(lineout_text), lineout_text),
+#endif
 };
 
 static const struct snd_kcontrol_new msm_snd_controls[] = {
@@ -1015,6 +1129,10 @@ static const struct snd_kcontrol_new msm_snd_controls[] = {
 			msm_vi_feed_tx_ch_get, msm_vi_feed_tx_ch_put),
 	SOC_ENUM_EXT("MI2S_RX SampleRate", msm_snd_enum[6],
 			mi2s_rx_sample_rate_get, mi2s_rx_sample_rate_put),
+#ifdef CONFIG_MACH_XIAOMI_MARKW
+	SOC_ENUM_EXT("Lineout_1 amp", msm_snd_enum[7],
+			lineout_status_get, lineout_status_put),
+#endif
 };
 
 static int msm8952_mclk_event(struct snd_soc_dapm_widget *w,
@@ -1313,10 +1431,10 @@ static int msm_sec_mi2s_snd_startup(struct snd_pcm_substream *substream)
 	pr_debug("%s(): substream = %s  stream = %d\n", __func__,
 				substream->name, substream->stream);
 
-	if (substream->stream == SNDRV_PCM_STREAM_CAPTURE) {
-		pr_info("%s: Secondary Mi2s does not support capture\n",
-					__func__);
-		return 0;
+	if (substream->stream == SNDRV_PCM_STREAM_CAPTURE) {		
+		pr_info("%s: Secondary Mi2s does not support capture\n",		
+					__func__);		
+		return 0;		
 	}
 	if ((pdata->ext_pa & SEC_MI2S_ID) == SEC_MI2S_ID) {
 		if (pdata->vaddr_gpio_mux_spkr_ctl) {
@@ -1509,6 +1627,7 @@ static void *def_msm8952_wcd_mbhc_cal(void)
 	if (!msm8952_wcd_cal)
 		return NULL;
 
+
 #define S(X, Y) ((WCD_MBHC_CAL_PLUG_TYPE_PTR(msm8952_wcd_cal)->X) = (Y))
 	S(v_hs_max, 1600);
 #undef S
@@ -1533,7 +1652,18 @@ static void *def_msm8952_wcd_mbhc_cal(void)
 	 * 210-290 == Button 2
 	 * 360-680 == Button 3
 	 */
-
+#ifdef CONFIG_MACH_XIAOMI_MARKW
+	btn_low[0] = 25;
+	btn_high[0] = 75;
+	btn_low[1] = 200;
+	btn_high[1] = 225;
+	btn_low[2] = 325;
+	btn_high[2] = 450;
+	btn_low[3] = 500;
+	btn_high[3] = 510;
+	btn_low[4] = 530;
+	btn_high[4] = 540;
+#else
 	btn_low[0] = 73;
 	btn_high[0] = 73;
 	btn_low[1] = 233;
@@ -1544,6 +1674,7 @@ static void *def_msm8952_wcd_mbhc_cal(void)
 	btn_high[3] = 438;
 	btn_low[4] = 438;
 	btn_high[4] = 438;
+#endif
 	return msm8952_wcd_cal;
 }
 
@@ -2252,6 +2383,51 @@ static struct snd_soc_dai_link msm8952_dai[] = {
 		/* this dai link has playback support */
 		.ignore_pmdown_time = 1,
 		.be_id = MSM_FRONTEND_DAI_QCHAT,
+	},
+	{/* hw:x,38 */
+		.name = "MSM8X16 Compress10",
+		.stream_name = "Compress10",
+		.cpu_dai_name	= "MultiMedia17",
+		.platform_name  = "msm-compress-dsp",
+		.dynamic = 1,
+		.dpcm_capture = 1,
+		.trigger = {SND_SOC_DPCM_TRIGGER_POST,
+			 SND_SOC_DPCM_TRIGGER_POST},
+		.codec_dai_name = "snd-soc-dummy-dai",
+		.codec_name = "snd-soc-dummy",
+		.ignore_suspend = 1,
+		.ignore_pmdown_time = 1,
+		.be_id = MSM_FRONTEND_DAI_MULTIMEDIA17,
+	},
+	{/* hw:x,39 */
+		.name = "MSM8X16 Compress11",
+		.stream_name = "Compress11",
+		.cpu_dai_name	= "MultiMedia18",
+		.platform_name  = "msm-compress-dsp",
+		.dynamic = 1,
+		.dpcm_capture = 1,
+		.trigger = {SND_SOC_DPCM_TRIGGER_POST,
+			 SND_SOC_DPCM_TRIGGER_POST},
+		.codec_dai_name = "snd-soc-dummy-dai",
+		.codec_name = "snd-soc-dummy",
+		.ignore_suspend = 1,
+		.ignore_pmdown_time = 1,
+		.be_id = MSM_FRONTEND_DAI_MULTIMEDIA18,
+	},
+	{/* hw:x,40 */
+		.name = "MSM8X16 Compress12",
+		.stream_name = "Compress12",
+		.cpu_dai_name	= "MultiMedia19",
+		.platform_name  = "msm-compress-dsp",
+		.dynamic = 1,
+		.dpcm_capture = 1,
+		.trigger = {SND_SOC_DPCM_TRIGGER_POST,
+			 SND_SOC_DPCM_TRIGGER_POST},
+		.codec_dai_name = "snd-soc-dummy-dai",
+		.codec_name = "snd-soc-dummy",
+		.ignore_suspend = 1,
+		.ignore_pmdown_time = 1,
+		.be_id = MSM_FRONTEND_DAI_MULTIMEDIA19,
 	},
 	/* Backend I2S DAI Links */
 	{
@@ -2978,7 +3154,18 @@ parse_mclk_freq:
 		id = DEFAULT_MCLK_RATE;
 	}
 	pdata->mclk_freq = id;
-
+#ifdef CONFIG_MACH_XIAOMI_MARKW
+	spk_pa_gpio = of_get_named_gpio(pdev->dev.of_node, "ext-spk-amp-gpio", 0);
+	if (spk_pa_gpio < 0) {
+		dev_err(&pdev->dev,
+		"%s: error! spk_pa_gpio is :%d\n", __func__, spk_pa_gpio);
+	} else {
+		if (gpio_request_one(spk_pa_gpio, GPIOF_DIR_OUT, "spk_enable")) {
+			pr_err("%s: request spk_pa_gpio  fail!\n", __func__);
+		}
+	}
+	pr_err("%s: [hjf] request spk_pa_gpio is %d!\n", __func__, spk_pa_gpio);
+#endif
 	/*reading the gpio configurations from dtsi file*/
 	ret = msm_gpioset_initialize(CLIENT_WCD_INT, &pdev->dev);
 	if (ret < 0) {
@@ -3151,6 +3338,9 @@ parse_mclk_freq:
 		goto err;
 	/* initialize timer */
 	INIT_DELAYED_WORK(&pdata->disable_mclk_work, msm8952_disable_mclk);
+#ifdef CONFIG_MACH_XIAOMI_MARKW
+	INIT_DELAYED_WORK(&lineout_amp_enable, msm8x16_ext_spk_delayed_enable);
+#endif
 	mutex_init(&pdata->cdc_mclk_mutex);
 	atomic_set(&pdata->mclk_rsc_ref, 0);
 	if (card->aux_dev) {
@@ -3197,6 +3387,9 @@ err:
 		}
 	}
 err1:
+#ifdef CONFIG_MACH_XIAOMI_MARKW
+	snd_soc_card_set_drvdata(card, NULL);
+#endif
 	devm_kfree(&pdev->dev, pdata);
 	return ret;
 }
