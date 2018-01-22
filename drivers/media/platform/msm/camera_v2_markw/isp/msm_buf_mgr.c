@@ -1,8 +1,4 @@
 /* Copyright (c) 2013-2016, The Linux Foundation. All rights reserved.
-<<<<<<< HEAD
-=======
- * Copyright (C) 2017 XiaoMi, Inc.
->>>>>>> d9c275b... drivers:media:platform:msm:camera_v2: backport camera_v2 for markw. name: camera_v2_markw
  *
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License version 2 and
@@ -66,21 +62,13 @@ static int msm_buf_check_head_sanity(struct msm_isp_bufq *bufq)
 	}
 
 	if (prev->next != &bufq->head) {
-<<<<<<< HEAD
 		pr_err("%s: Error! head prev->next is %pK should be %pK\n",
-=======
-		pr_err("%s: Error! head prev->next is %p should be %p\n",
->>>>>>> d9c275b... drivers:media:platform:msm:camera_v2: backport camera_v2 for markw. name: camera_v2_markw
 			__func__, prev->next, &bufq->head);
 		return -EINVAL;
 	}
 
 	if (next->prev != &bufq->head) {
-<<<<<<< HEAD
 		pr_err("%s: Error! head next->prev is %pK should be %pK\n",
-=======
-		pr_err("%s: Error! head next->prev is %p should be %p\n",
->>>>>>> d9c275b... drivers:media:platform:msm:camera_v2: backport camera_v2 for markw. name: camera_v2_markw
 			__func__, next->prev, &bufq->head);
 		return -EINVAL;
 	}
@@ -240,11 +228,7 @@ static void msm_isp_unprepare_v4l2_buf(
 	struct msm_isp_bufq *bufq = NULL;
 
 	if (!buf_mgr || !buf_info) {
-<<<<<<< HEAD
 		pr_err("%s: NULL ptr %pK %pK\n", __func__,
-=======
-		pr_err("%s: NULL ptr %p %p\n", __func__,
->>>>>>> d9c275b... drivers:media:platform:msm:camera_v2: backport camera_v2 for markw. name: camera_v2_markw
 			buf_mgr, buf_info);
 		return;
 	}
@@ -271,11 +255,7 @@ static int msm_isp_map_buf(struct msm_isp_buf_mgr *buf_mgr,
 	int ret;
 
 	if (!buf_mgr || !mapped_info) {
-<<<<<<< HEAD
 		pr_err_ratelimited("%s: %d] NULL ptr buf_mgr %pK mapped_info %pK\n",
-=======
-		pr_err_ratelimited("%s: %d] NULL ptr buf_mgr %p mapped_info %p\n",
->>>>>>> d9c275b... drivers:media:platform:msm:camera_v2: backport camera_v2 for markw. name: camera_v2_markw
 			__func__, __LINE__, buf_mgr, mapped_info);
 		return -EINVAL;
 	}

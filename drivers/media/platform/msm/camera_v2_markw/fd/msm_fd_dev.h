@@ -22,11 +22,8 @@
 #include <linux/msm_ion.h>
 #include "cam_soc_api.h"
 #include "cam_hw_ops.h"
-<<<<<<< HEAD
 #include "msm_cpp.h"
 
-=======
->>>>>>> d9c275b... drivers:media:platform:msm:camera_v2: backport camera_v2 for markw. name: camera_v2_markw
 /* Maximum number of result buffers */
 #define MSM_FD_MAX_RESULT_BUFS 5
 /* Max number of clocks defined in device tree */
@@ -218,34 +215,20 @@ enum msm_fd_mem_resources {
  * @work_queue: Pointer to FD device IRQ bottom half workqueue.
  * @work: IRQ bottom half work struct.
  * @hw_halt_completion: Completes when face detection hw halt completes.
-<<<<<<< HEAD
  * @recovery_mode: Indicates if FD is in recovery mode
-=======
->>>>>>> d9c275b... drivers:media:platform:msm:camera_v2: backport camera_v2 for markw. name: camera_v2_markw
  */
 struct msm_fd_device {
 	u32 hw_revision;
 
 	struct mutex lock;
 	spinlock_t slock;
-<<<<<<< HEAD
 	struct mutex recovery_lock;
-=======
->>>>>>> d9c275b... drivers:media:platform:msm:camera_v2: backport camera_v2 for markw. name: camera_v2_markw
 	int ref_count;
 
 	int irq_num;
 	void __iomem *iomem_base[MSM_FD_IOMEM_LAST];
 	struct msm_cam_clk_info *clk_info;
-<<<<<<< HEAD
-<<<<<<< HEAD
 	struct msm_cam_regulator *vdd_info;
-=======
-	struct regulator **vdd;
->>>>>>> d9c275b... drivers:media:platform:msm:camera_v2: backport camera_v2 for markw. name: camera_v2_markw
-=======
-	struct msm_cam_regulator *vdd_info;
->>>>>>> cfc12b8... msm: camera: Change API to populate regulator name Some of the camera modules need to know the regulator names to enable based on the use case, Hence change the regulator API to populate regulator names as well.
 	int num_reg;
 	struct resource *irq;
 
@@ -268,11 +251,8 @@ struct msm_fd_device {
 	struct workqueue_struct *work_queue;
 	struct work_struct work;
 	struct completion hw_halt_completion;
-<<<<<<< HEAD
 	int recovery_mode;
 	uint32_t clk_rate_idx;
-=======
->>>>>>> d9c275b... drivers:media:platform:msm:camera_v2: backport camera_v2 for markw. name: camera_v2_markw
 };
 
 #endif /* __MSM_FD_DEV_H__ */

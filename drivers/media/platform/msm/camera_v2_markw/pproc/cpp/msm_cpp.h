@@ -22,10 +22,7 @@
 #include "msm_sd.h"
 #include "cam_soc_api.h"
 #include "cam_hw_ops.h"
-<<<<<<< HEAD
 #include <media/msmb_pproc.h>
-=======
->>>>>>> d9c275b... drivers:media:platform:msm:camera_v2: backport camera_v2 for markw. name: camera_v2_markw
 
 /* hw version info:
   31:28  Major version
@@ -98,7 +95,6 @@
 #define MSM_CPP_TX_FIFO_LEVEL		16
 #define MSM_CPP_RX_FIFO_LEVEL		512
 
-<<<<<<< HEAD
 enum cpp_vbif_error {
 	CPP_VBIF_ERROR_HANG,
 	CPP_VBIF_ERROR_MAX,
@@ -115,8 +111,6 @@ struct msm_cpp_vbif_data {
 	void *dev[VBIF_CLIENT_MAX];
 };
 
-=======
->>>>>>> d9c275b... drivers:media:platform:msm:camera_v2: backport camera_v2 for markw. name: camera_v2_markw
 struct cpp_subscribe_info {
 	struct v4l2_fh *vfh;
 	uint32_t active;
@@ -233,15 +227,7 @@ struct cpp_device {
 	struct clk **cpp_clk;
 	struct msm_cam_clk_info *clk_info;
 	size_t num_clks;
-<<<<<<< HEAD
-<<<<<<< HEAD
 	struct msm_cam_regulator *cpp_vdd;
-=======
-	struct regulator **cpp_vdd;
->>>>>>> d9c275b... drivers:media:platform:msm:camera_v2: backport camera_v2 for markw. name: camera_v2_markw
-=======
-	struct msm_cam_regulator *cpp_vdd;
->>>>>>> cfc12b8... msm: camera: Change API to populate regulator name Some of the camera modules need to know the regulator names to enable based on the use case, Hence change the regulator API to populate regulator names as well.
 	int num_reg;
 	struct mutex mutex;
 	enum cpp_state state;
@@ -291,10 +277,7 @@ struct cpp_device {
 	uint32_t bus_idx;
 	uint32_t bus_master_flag;
 	struct msm_cpp_payload_params payload_params;
-<<<<<<< HEAD
 	struct msm_cpp_vbif_data *vbif_data;
-=======
->>>>>>> d9c275b... drivers:media:platform:msm:camera_v2: backport camera_v2 for markw. name: camera_v2_markw
 };
 
 int msm_cpp_set_micro_clk(struct cpp_device *cpp_dev);
@@ -303,11 +286,8 @@ int msm_cpp_get_clock_index(struct cpp_device *cpp_dev, const char *clk_name);
 long msm_cpp_set_core_clk(struct cpp_device *cpp_dev, long rate, int idx);
 void msm_cpp_fetch_dt_params(struct cpp_device *cpp_dev);
 int msm_cpp_read_payload_params_from_dt(struct cpp_device *cpp_dev);
-<<<<<<< HEAD
 void msm_cpp_vbif_register_error_handler(void *dev,
 	enum cpp_vbif_client client,
 	int (*client_vbif_error_handler)(void *, uint32_t));
-=======
->>>>>>> d9c275b... drivers:media:platform:msm:camera_v2: backport camera_v2 for markw. name: camera_v2_markw
 
 #endif /* __MSM_CPP_H__ */

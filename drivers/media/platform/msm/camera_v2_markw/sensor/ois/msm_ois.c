@@ -13,14 +13,7 @@
 #define pr_fmt(fmt) "%s:%d " fmt, __func__, __LINE__
 
 #include <linux/module.h>
-<<<<<<< HEAD
-<<<<<<< HEAD
 #include <linux/firmware.h>
-=======
->>>>>>> d9c275b... drivers:media:platform:msm:camera_v2: backport camera_v2 for markw. name: camera_v2_markw
-=======
-#include <linux/firmware.h>
->>>>>>> 8291efb... msm: sensor: Add support for downloading OIS coefficient and framework Add OIS framework and coefficient download in OIS driver.
 #include "msm_sd.h"
 #include "msm_ois.h"
 #include "msm_cci.h"
@@ -40,10 +33,6 @@ static int32_t msm_ois_power_down(struct msm_ois_ctrl_t *o_ctrl);
 
 static struct i2c_driver msm_ois_i2c_driver;
 
-<<<<<<< HEAD
-<<<<<<< HEAD
-=======
->>>>>>> 8291efb... msm: sensor: Add support for downloading OIS coefficient and framework Add OIS framework and coefficient download in OIS driver.
 static int32_t msm_ois_download(struct msm_ois_ctrl_t *o_ctrl)
 {
 	uint16_t bytes_in_tx = 0;
@@ -162,11 +151,6 @@ static int32_t msm_ois_data_config(struct msm_ois_ctrl_t *o_ctrl,
 	return rc;
 }
 
-<<<<<<< HEAD
-=======
->>>>>>> d9c275b... drivers:media:platform:msm:camera_v2: backport camera_v2 for markw. name: camera_v2_markw
-=======
->>>>>>> 8291efb... msm: sensor: Add support for downloading OIS coefficient and framework Add OIS framework and coefficient download in OIS driver.
 static int32_t msm_ois_write_settings(struct msm_ois_ctrl_t *o_ctrl,
 	uint16_t size, struct reg_settings_ois_t *settings)
 {
@@ -505,10 +489,6 @@ static int32_t msm_ois_config(struct msm_ois_ctrl_t *o_ctrl,
 	return rc;
 }
 
-<<<<<<< HEAD
-<<<<<<< HEAD
-=======
->>>>>>> 8291efb... msm: sensor: Add support for downloading OIS coefficient and framework Add OIS framework and coefficient download in OIS driver.
 static int32_t msm_ois_config_download(struct msm_ois_ctrl_t *o_ctrl,
 	void __user *argp)
 {
@@ -542,11 +522,6 @@ static int32_t msm_ois_config_download(struct msm_ois_ctrl_t *o_ctrl,
 	return rc;
 }
 
-<<<<<<< HEAD
-=======
->>>>>>> d9c275b... drivers:media:platform:msm:camera_v2: backport camera_v2 for markw. name: camera_v2_markw
-=======
->>>>>>> 8291efb... msm: sensor: Add support for downloading OIS coefficient and framework Add OIS framework and coefficient download in OIS driver.
 static int32_t msm_ois_get_subdev_id(struct msm_ois_ctrl_t *o_ctrl,
 	void *arg)
 {
@@ -625,26 +600,14 @@ static long msm_ois_subdev_ioctl(struct v4l2_subdev *sd,
 	struct msm_ois_ctrl_t *o_ctrl = v4l2_get_subdevdata(sd);
 	void __user *argp = (void __user *)arg;
 	CDBG("Enter\n");
-<<<<<<< HEAD
 	CDBG("%s:%d o_ctrl %pK argp %pK\n", __func__, __LINE__, o_ctrl, argp);
-=======
-	CDBG("%s:%d o_ctrl %p argp %p\n", __func__, __LINE__, o_ctrl, argp);
->>>>>>> d9c275b... drivers:media:platform:msm:camera_v2: backport camera_v2 for markw. name: camera_v2_markw
 	switch (cmd) {
 	case VIDIOC_MSM_SENSOR_GET_SUBDEV_ID:
 		return msm_ois_get_subdev_id(o_ctrl, argp);
 	case VIDIOC_MSM_OIS_CFG:
 		return msm_ois_config(o_ctrl, argp);
-<<<<<<< HEAD
-<<<<<<< HEAD
 	case VIDIOC_MSM_OIS_CFG_DOWNLOAD:
 		return msm_ois_config_download(o_ctrl, argp);
-=======
->>>>>>> d9c275b... drivers:media:platform:msm:camera_v2: backport camera_v2 for markw. name: camera_v2_markw
-=======
-	case VIDIOC_MSM_OIS_CFG_DOWNLOAD:
-		return msm_ois_config_download(o_ctrl, argp);
->>>>>>> 8291efb... msm: sensor: Add support for downloading OIS coefficient and framework Add OIS framework and coefficient download in OIS driver.
 	case MSM_SD_SHUTDOWN:
 		if (!o_ctrl->i2c_client.i2c_func_tbl) {
 			pr_err("o_ctrl->i2c_client.i2c_func_tbl NULL\n");
@@ -744,11 +707,7 @@ static int32_t msm_ois_i2c_probe(struct i2c_client *client,
 		goto probe_failure;
 	}
 
-<<<<<<< HEAD
 	CDBG("client = 0x%pK\n",  client);
-=======
-	CDBG("client = 0x%p\n",  client);
->>>>>>> d9c275b... drivers:media:platform:msm:camera_v2: backport camera_v2 for markw. name: camera_v2_markw
 
 	rc = of_property_read_u32(client->dev.of_node, "cell-index",
 		&ois_ctrl_t->subdev_id);
@@ -891,10 +850,6 @@ static int32_t msm_ois_platform_probe(struct platform_device *pdev)
 		pr_err("%s:%d failed no memory\n", __func__, __LINE__);
 		return -ENOMEM;
 	}
-<<<<<<< HEAD
-<<<<<<< HEAD
-=======
->>>>>>> 8291efb... msm: sensor: Add support for downloading OIS coefficient and framework Add OIS framework and coefficient download in OIS driver.
 
 	msm_ois_t->oboard_info = kzalloc(sizeof(
 		struct msm_ois_board_info), GFP_KERNEL);
@@ -903,48 +858,20 @@ static int32_t msm_ois_platform_probe(struct platform_device *pdev)
 		return -ENOMEM;
 	}
 
-<<<<<<< HEAD
-=======
->>>>>>> d9c275b... drivers:media:platform:msm:camera_v2: backport camera_v2 for markw. name: camera_v2_markw
 	rc = of_property_read_u32((&pdev->dev)->of_node, "cell-index",
 		&pdev->id);
 	CDBG("cell-index %d, rc %d\n", pdev->id, rc);
 	if (rc < 0) {
-<<<<<<< HEAD
 		pr_err("failed rc %d\n", rc);
 		goto release_memory;
-=======
-		kfree(msm_ois_t);
-		pr_err("failed rc %d\n", rc);
-		return rc;
->>>>>>> d9c275b... drivers:media:platform:msm:camera_v2: backport camera_v2 for markw. name: camera_v2_markw
-=======
-	rc = of_property_read_u32((&pdev->dev)->of_node, "cell-index",
-		&pdev->id);
-	CDBG("cell-index %d, rc %d\n", pdev->id, rc);
-	if (rc < 0) {;
-		pr_err("failed rc %d\n", rc);
-		goto release_memory;
->>>>>>> 8291efb... msm: sensor: Add support for downloading OIS coefficient and framework Add OIS framework and coefficient download in OIS driver.
 	}
 
 	rc = of_property_read_u32((&pdev->dev)->of_node, "qcom,cci-master",
 		&msm_ois_t->cci_master);
 	CDBG("qcom,cci-master %d, rc %d\n", msm_ois_t->cci_master, rc);
 	if (rc < 0 || msm_ois_t->cci_master >= MASTER_MAX) {
-<<<<<<< HEAD
-<<<<<<< HEAD
 		pr_err("failed rc %d\n", rc);
 		goto release_memory;
-=======
-		kfree(msm_ois_t);
-		pr_err("failed rc %d\n", rc);
-		return rc;
->>>>>>> d9c275b... drivers:media:platform:msm:camera_v2: backport camera_v2 for markw. name: camera_v2_markw
-=======
-		pr_err("failed rc %d\n", rc);
-		goto release_memory;
->>>>>>> 8291efb... msm: sensor: Add support for downloading OIS coefficient and framework Add OIS framework and coefficient download in OIS driver.
 	}
 
 	if (of_find_property((&pdev->dev)->of_node,
@@ -953,13 +880,6 @@ static int32_t msm_ois_platform_probe(struct platform_device *pdev)
 		rc = msm_camera_get_dt_vreg_data((&pdev->dev)->of_node,
 			&vreg_cfg->cam_vreg, &vreg_cfg->num_vreg);
 		if (rc < 0) {
-<<<<<<< HEAD
-<<<<<<< HEAD
-=======
-			kfree(msm_ois_t);
->>>>>>> d9c275b... drivers:media:platform:msm:camera_v2: backport camera_v2 for markw. name: camera_v2_markw
-=======
->>>>>>> 8291efb... msm: sensor: Add support for downloading OIS coefficient and framework Add OIS framework and coefficient download in OIS driver.
 			pr_err("failed rc %d\n", rc);
 			return rc;
 		}
@@ -992,19 +912,8 @@ static int32_t msm_ois_platform_probe(struct platform_device *pdev)
 		struct msm_camera_cci_client), GFP_KERNEL);
 	if (!msm_ois_t->i2c_client.cci_client) {
 		kfree(msm_ois_t->vreg_cfg.cam_vreg);
-<<<<<<< HEAD
-<<<<<<< HEAD
 		rc = -ENOMEM;
 		goto release_memory;
-=======
-		kfree(msm_ois_t);
-		pr_err("failed no memory\n");
-		return -ENOMEM;
->>>>>>> d9c275b... drivers:media:platform:msm:camera_v2: backport camera_v2 for markw. name: camera_v2_markw
-=======
-		rc = -ENOMEM;
-		goto release_memory;
->>>>>>> 8291efb... msm: sensor: Add support for downloading OIS coefficient and framework Add OIS framework and coefficient download in OIS driver.
 	}
 
 	cci_client = msm_ois_t->i2c_client.cci_client;
@@ -1033,19 +942,10 @@ static int32_t msm_ois_platform_probe(struct platform_device *pdev)
 
 	CDBG("Exit\n");
 	return rc;
-<<<<<<< HEAD
-<<<<<<< HEAD
-=======
->>>>>>> 8291efb... msm: sensor: Add support for downloading OIS coefficient and framework Add OIS framework and coefficient download in OIS driver.
 release_memory:
 	kfree(msm_ois_t->oboard_info);
 	kfree(msm_ois_t);
 	return rc;
-<<<<<<< HEAD
-=======
->>>>>>> d9c275b... drivers:media:platform:msm:camera_v2: backport camera_v2 for markw. name: camera_v2_markw
-=======
->>>>>>> 8291efb... msm: sensor: Add support for downloading OIS coefficient and framework Add OIS framework and coefficient download in OIS driver.
 }
 
 static const struct of_device_id msm_ois_i2c_dt_match[] = {

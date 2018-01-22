@@ -40,11 +40,7 @@ struct msm_cam_bus_pscale_data g_cv[CAM_BUS_CLIENT_MAX];
 
 
 /* Get all clocks from DT */
-<<<<<<< HEAD
 static int msm_camera_get_clk_info_internal(struct device *dev,
-=======
-int msm_camera_get_clk_info(struct platform_device *pdev,
->>>>>>> d9c275b... drivers:media:platform:msm:camera_v2: backport camera_v2 for markw. name: camera_v2_markw
 			struct msm_cam_clk_info **clk_info,
 			struct clk ***clk_ptr,
 			size_t *num_clk)
@@ -56,14 +52,7 @@ int msm_camera_get_clk_info(struct platform_device *pdev,
 	bool clock_cntl_support = false;
 	struct device_node *of_node;
 
-<<<<<<< HEAD
 	of_node = dev->of_node;
-=======
-	if (!pdev || !clk_info || !num_clk)
-		return -EINVAL;
-
-	of_node = pdev->dev.of_node;
->>>>>>> d9c275b... drivers:media:platform:msm:camera_v2: backport camera_v2 for markw. name: camera_v2_markw
 
 	cnt = of_property_count_strings(of_node, "clock-names");
 	if (cnt <= 0) {
@@ -101,31 +90,19 @@ int msm_camera_get_clk_info(struct platform_device *pdev,
 
 	*num_clk = cnt;
 
-<<<<<<< HEAD
 	*clk_info = devm_kcalloc(dev, cnt,
-=======
-	*clk_info = devm_kcalloc(&pdev->dev, cnt,
->>>>>>> d9c275b... drivers:media:platform:msm:camera_v2: backport camera_v2 for markw. name: camera_v2_markw
 				sizeof(struct msm_cam_clk_info), GFP_KERNEL);
 	if (!*clk_info)
 		return -ENOMEM;
 
-<<<<<<< HEAD
 	*clk_ptr = devm_kcalloc(dev, cnt, sizeof(struct clk *),
-=======
-	*clk_ptr = devm_kcalloc(&pdev->dev, cnt, sizeof(struct clk *),
->>>>>>> d9c275b... drivers:media:platform:msm:camera_v2: backport camera_v2 for markw. name: camera_v2_markw
 				GFP_KERNEL);
 	if (!*clk_ptr) {
 		rc = -ENOMEM;
 		goto err1;
 	}
 
-<<<<<<< HEAD
 	rates = devm_kcalloc(dev, cnt, sizeof(long), GFP_KERNEL);
-=======
-	rates = devm_kcalloc(&pdev->dev, cnt, sizeof(long), GFP_KERNEL);
->>>>>>> d9c275b... drivers:media:platform:msm:camera_v2: backport camera_v2 for markw. name: camera_v2_markw
 	if (!rates) {
 		rc = -ENOMEM;
 		goto err2;
@@ -180,31 +157,19 @@ int msm_camera_get_clk_info(struct platform_device *pdev,
 			i, (*clk_info)[i].clk_rate);
 
 		(*clk_ptr)[i] =
-<<<<<<< HEAD
 			devm_clk_get(dev, (*clk_info)[i].clk_name);
-=======
-			devm_clk_get(&pdev->dev, (*clk_info)[i].clk_name);
->>>>>>> d9c275b... drivers:media:platform:msm:camera_v2: backport camera_v2 for markw. name: camera_v2_markw
 		if (IS_ERR((*clk_ptr)[i])) {
 			rc = PTR_ERR((*clk_ptr)[i]);
 			goto err4;
 		}
-<<<<<<< HEAD
 		CDBG("clk ptr[%d] :%pK\n", i, (*clk_ptr)[i]);
 	}
 
 	devm_kfree(dev, rates);
-=======
-		CDBG("clk ptr[%d] :%p\n", i, (*clk_ptr)[i]);
-	}
-
-	devm_kfree(&pdev->dev, rates);
->>>>>>> d9c275b... drivers:media:platform:msm:camera_v2: backport camera_v2 for markw. name: camera_v2_markw
 	return rc;
 
 err4:
 	for (--i; i >= 0; i--)
-<<<<<<< HEAD
 		devm_clk_put(dev, (*clk_ptr)[i]);
 err3:
 	devm_kfree(dev, rates);
@@ -244,15 +209,6 @@ int msm_camera_get_clk_info(struct platform_device *pdev,
 
 	rc = msm_camera_get_clk_info_internal(&pdev->dev,
 			clk_info, clk_ptr, num_clk);
-=======
-		devm_clk_put(&pdev->dev, (*clk_ptr)[i]);
-err3:
-	devm_kfree(&pdev->dev, rates);
-err2:
-	devm_kfree(&pdev->dev, *clk_ptr);
-err1:
-	devm_kfree(&pdev->dev, *clk_info);
->>>>>>> d9c275b... drivers:media:platform:msm:camera_v2: backport camera_v2 for markw. name: camera_v2_markw
 	return rc;
 }
 EXPORT_SYMBOL(msm_camera_get_clk_info);
@@ -362,11 +318,7 @@ int msm_camera_get_clk_info_and_rates(
 			rc = PTR_ERR(clks[i]);
 			goto err5;
 		}
-<<<<<<< HEAD
 		CDBG("clk ptr[%d] :%pK\n", i, clks[i]);
-=======
-		CDBG("clk ptr[%d] :%p\n", i, clks[i]);
->>>>>>> d9c275b... drivers:media:platform:msm:camera_v2: backport camera_v2 for markw. name: camera_v2_markw
 	}
 	*pclk_info = clk_info;
 	*pclks = clks;
@@ -482,11 +434,7 @@ long msm_camera_clk_set_rate(struct device *dev,
 	if (!dev || !clk || (clk_rate < 0))
 		return -EINVAL;
 
-<<<<<<< HEAD
 	CDBG("clk : %pK, enable : %ld\n", clk, clk_rate);
-=======
-	CDBG("clk : %p, enable : %ld\n", clk, clk_rate);
->>>>>>> d9c275b... drivers:media:platform:msm:camera_v2: backport camera_v2 for markw. name: camera_v2_markw
 
 	if (clk_rate > 0) {
 		rate = clk_round_rate(clk, clk_rate);
@@ -507,11 +455,7 @@ long msm_camera_clk_set_rate(struct device *dev,
 EXPORT_SYMBOL(msm_camera_clk_set_rate);
 
 /* release memory allocated for clocks */
-<<<<<<< HEAD
 static int msm_camera_put_clk_info_internal(struct device *dev,
-=======
-int msm_camera_put_clk_info(struct platform_device *pdev,
->>>>>>> d9c275b... drivers:media:platform:msm:camera_v2: backport camera_v2 for markw. name: camera_v2_markw
 				struct msm_cam_clk_info **clk_info,
 				struct clk ***clk_ptr, int cnt)
 {
@@ -519,26 +463,16 @@ int msm_camera_put_clk_info(struct platform_device *pdev,
 
 	for (i = cnt - 1; i >= 0; i--) {
 		if (clk_ptr[i] != NULL)
-<<<<<<< HEAD
 			devm_clk_put(dev, (*clk_ptr)[i]);
 
 		CDBG("clk ptr[%d] :%pK\n", i, (*clk_ptr)[i]);
 	}
 	devm_kfree(dev, *clk_info);
 	devm_kfree(dev, *clk_ptr);
-=======
-			devm_clk_put(&pdev->dev, (*clk_ptr)[i]);
-
-		CDBG("clk ptr[%d] :%p\n", i, (*clk_ptr)[i]);
-	}
-	devm_kfree(&pdev->dev, *clk_info);
-	devm_kfree(&pdev->dev, *clk_ptr);
->>>>>>> d9c275b... drivers:media:platform:msm:camera_v2: backport camera_v2 for markw. name: camera_v2_markw
 	*clk_info = NULL;
 	*clk_ptr = NULL;
 	return 0;
 }
-<<<<<<< HEAD
 
 /* release memory allocated for clocks for i2c devices */
 int msm_camera_i2c_dev_put_clk_info(struct device *dev,
@@ -569,8 +503,6 @@ int msm_camera_put_clk_info(struct platform_device *pdev,
 			clk_info, clk_ptr, cnt);
 	return rc;
 }
-=======
->>>>>>> d9c275b... drivers:media:platform:msm:camera_v2: backport camera_v2 for markw. name: camera_v2_markw
 EXPORT_SYMBOL(msm_camera_put_clk_info);
 
 int msm_camera_put_clk_info_and_rates(struct platform_device *pdev,
@@ -587,11 +519,7 @@ int msm_camera_put_clk_info_and_rates(struct platform_device *pdev,
 	for (i = cnt - 1; i >= 0; i--) {
 		if (clk_ptr[i] != NULL)
 			devm_clk_put(&pdev->dev, (*clk_ptr)[i]);
-<<<<<<< HEAD
 		CDBG("clk ptr[%d] :%pK\n", i, (*clk_ptr)[i]);
-=======
-		CDBG("clk ptr[%d] :%p\n", i, (*clk_ptr)[i]);
->>>>>>> d9c275b... drivers:media:platform:msm:camera_v2: backport camera_v2 for markw. name: camera_v2_markw
 	}
 	devm_kfree(&pdev->dev, *clk_info);
 	devm_kfree(&pdev->dev, *clk_ptr);
@@ -604,39 +532,16 @@ EXPORT_SYMBOL(msm_camera_put_clk_info_and_rates);
 
 /* Get regulators from DT */
 int msm_camera_get_regulator_info(struct platform_device *pdev,
-<<<<<<< HEAD
-<<<<<<< HEAD
 				struct msm_cam_regulator **vdd_info,
-=======
-				struct regulator ***vdd,
->>>>>>> d9c275b... drivers:media:platform:msm:camera_v2: backport camera_v2 for markw. name: camera_v2_markw
-=======
-				struct msm_cam_regulator **vdd_info,
->>>>>>> cfc12b8... msm: camera: Change API to populate regulator name Some of the camera modules need to know the regulator names to enable based on the use case, Hence change the regulator API to populate regulator names as well.
 				int *num_reg)
 {
 	uint32_t cnt;
 	int i, rc;
 	struct device_node *of_node;
-<<<<<<< HEAD
-<<<<<<< HEAD
 	char prop_name[32];
 	struct msm_cam_regulator *tmp_reg;
 
 	if (!pdev || !vdd_info || !num_reg)
-=======
-	const char *name;
-=======
->>>>>>> cfc12b8... msm: camera: Change API to populate regulator name Some of the camera modules need to know the regulator names to enable based on the use case, Hence change the regulator API to populate regulator names as well.
-	char prop_name[32];
-	struct msm_cam_regulator *tmp_reg;
-
-<<<<<<< HEAD
-	if (!pdev || !vdd || !num_reg)
->>>>>>> d9c275b... drivers:media:platform:msm:camera_v2: backport camera_v2 for markw. name: camera_v2_markw
-=======
-	if (!pdev || !vdd_info || !num_reg)
->>>>>>> cfc12b8... msm: camera: Change API to populate regulator name Some of the camera modules need to know the regulator names to enable based on the use case, Hence change the regulator API to populate regulator names as well.
 		return -EINVAL;
 
 	of_node = pdev->dev.of_node;
@@ -653,43 +558,20 @@ int msm_camera_get_regulator_info(struct platform_device *pdev,
 		return -EINVAL;
 	}
 
-<<<<<<< HEAD
-<<<<<<< HEAD
 	tmp_reg = devm_kcalloc(&pdev->dev, cnt,
 				sizeof(struct msm_cam_regulator), GFP_KERNEL);
 	if (!tmp_reg)
-=======
-	*num_reg = cnt;
-	(*vdd) = devm_kcalloc(&pdev->dev, cnt, sizeof(struct regulator *),
-				GFP_KERNEL);
-	if (!*vdd)
->>>>>>> d9c275b... drivers:media:platform:msm:camera_v2: backport camera_v2 for markw. name: camera_v2_markw
-=======
-	tmp_reg = devm_kcalloc(&pdev->dev, cnt,
-				sizeof(struct msm_cam_regulator), GFP_KERNEL);
-	if (!tmp_reg)
->>>>>>> cfc12b8... msm: camera: Change API to populate regulator name Some of the camera modules need to know the regulator names to enable based on the use case, Hence change the regulator API to populate regulator names as well.
 		return -ENOMEM;
 
 	for (i = 0; i < cnt; i++) {
 		rc = of_property_read_string_index(of_node,
-<<<<<<< HEAD
-<<<<<<< HEAD
 			"qcom,vdd-names", i, &tmp_reg[i].name);
-=======
-			"qcom,vdd-names", i, &name);
->>>>>>> d9c275b... drivers:media:platform:msm:camera_v2: backport camera_v2 for markw. name: camera_v2_markw
-=======
-			"qcom,vdd-names", i, &tmp_reg[i].name);
->>>>>>> cfc12b8... msm: camera: Change API to populate regulator name Some of the camera modules need to know the regulator names to enable based on the use case, Hence change the regulator API to populate regulator names as well.
 		if (rc < 0) {
 			pr_err("Fail to fetch regulators: %d\n", i);
 			rc = -EINVAL;
 			goto err1;
 		}
 
-<<<<<<< HEAD
-<<<<<<< HEAD
 		CDBG("regulator-names[%d] = %s\n", i, tmp_reg[i].name);
 
 		snprintf(prop_name, 32, "%s-supply", tmp_reg[i].name);
@@ -698,31 +580,11 @@ int msm_camera_get_regulator_info(struct platform_device *pdev,
 			tmp_reg[i].vdd =
 				devm_regulator_get(&pdev->dev, tmp_reg[i].name);
 			if (IS_ERR(tmp_reg[i].vdd)) {
-=======
-		CDBG("regulator-names[%d] = %s\n", i, name);
-=======
-		CDBG("regulator-names[%d] = %s\n", i, tmp_reg[i].name);
->>>>>>> cfc12b8... msm: camera: Change API to populate regulator name Some of the camera modules need to know the regulator names to enable based on the use case, Hence change the regulator API to populate regulator names as well.
-
-		snprintf(prop_name, 32, "%s-supply", tmp_reg[i].name);
-
-		if (of_get_property(of_node, prop_name, NULL)) {
-<<<<<<< HEAD
-			(*vdd)[i] = devm_regulator_get(&pdev->dev, name);
-			if (IS_ERR((*vdd)[i])) {
->>>>>>> d9c275b... drivers:media:platform:msm:camera_v2: backport camera_v2 for markw. name: camera_v2_markw
-=======
-			tmp_reg[i].vdd =
-				devm_regulator_get(&pdev->dev, tmp_reg[i].name);
-			if (IS_ERR(tmp_reg[i].vdd)) {
->>>>>>> cfc12b8... msm: camera: Change API to populate regulator name Some of the camera modules need to know the regulator names to enable based on the use case, Hence change the regulator API to populate regulator names as well.
 				rc = -EINVAL;
 				pr_err("Fail to get regulator :%d\n", i);
 				goto err1;
 			}
 		} else {
-<<<<<<< HEAD
-<<<<<<< HEAD
 			pr_err("Regulator phandle not found :%s\n",
 				tmp_reg[i].name);
 			rc = -EINVAL;
@@ -734,62 +596,23 @@ int msm_camera_get_regulator_info(struct platform_device *pdev,
 	*num_reg = cnt;
 	*vdd_info = tmp_reg;
 
-=======
-			pr_err("Regulator phandle not found :%s\n", name);
-=======
-			pr_err("Regulator phandle not found :%s\n",
-				tmp_reg[i].name);
-			rc = -EINVAL;
->>>>>>> cfc12b8... msm: camera: Change API to populate regulator name Some of the camera modules need to know the regulator names to enable based on the use case, Hence change the regulator API to populate regulator names as well.
-			goto err1;
-		}
-		CDBG("vdd ptr[%d] :%p\n", i, tmp_reg[i].vdd);
-	}
-
-<<<<<<< HEAD
->>>>>>> d9c275b... drivers:media:platform:msm:camera_v2: backport camera_v2 for markw. name: camera_v2_markw
-=======
-	*num_reg = cnt;
-	*vdd_info = tmp_reg;
-
->>>>>>> cfc12b8... msm: camera: Change API to populate regulator name Some of the camera modules need to know the regulator names to enable based on the use case, Hence change the regulator API to populate regulator names as well.
 	return 0;
 
 err1:
 	for (--i; i >= 0; i--)
-<<<<<<< HEAD
-<<<<<<< HEAD
 		devm_regulator_put(tmp_reg[i].vdd);
 	devm_kfree(&pdev->dev, tmp_reg);
-=======
-		devm_regulator_put((*vdd)[i]);
-	devm_kfree(&pdev->dev, *vdd);
->>>>>>> d9c275b... drivers:media:platform:msm:camera_v2: backport camera_v2 for markw. name: camera_v2_markw
-=======
-		devm_regulator_put(tmp_reg[i].vdd);
-	devm_kfree(&pdev->dev, tmp_reg);
->>>>>>> cfc12b8... msm: camera: Change API to populate regulator name Some of the camera modules need to know the regulator names to enable based on the use case, Hence change the regulator API to populate regulator names as well.
 	return rc;
 }
 EXPORT_SYMBOL(msm_camera_get_regulator_info);
 
 
 /* Enable/Disable regulators */
-<<<<<<< HEAD
-<<<<<<< HEAD
 int msm_camera_regulator_enable(struct msm_cam_regulator *vdd_info,
-=======
-int msm_camera_regulator_enable(struct regulator **vdd,
->>>>>>> d9c275b... drivers:media:platform:msm:camera_v2: backport camera_v2 for markw. name: camera_v2_markw
-=======
-int msm_camera_regulator_enable(struct msm_cam_regulator *vdd_info,
->>>>>>> cfc12b8... msm: camera: Change API to populate regulator name Some of the camera modules need to know the regulator names to enable based on the use case, Hence change the regulator API to populate regulator names as well.
 				int cnt, int enable)
 {
 	int i;
 	int rc;
-<<<<<<< HEAD
-<<<<<<< HEAD
 	struct msm_cam_regulator *tmp = vdd_info;
 
 	if (!tmp) {
@@ -816,57 +639,14 @@ int msm_camera_regulator_enable(struct msm_cam_regulator *vdd_info,
 			}
 		}
 		tmp++;
-=======
-=======
-	struct msm_cam_regulator *tmp = vdd_info;
->>>>>>> cfc12b8... msm: camera: Change API to populate regulator name Some of the camera modules need to know the regulator names to enable based on the use case, Hence change the regulator API to populate regulator names as well.
-
-	if (!tmp) {
-		pr_err("Invalid params");
-		return -EINVAL;
-	}
-	CDBG("cnt : %d\n", cnt);
-
-			if (tmp && !IS_ERR_OR_NULL(tmp->vdd)) {
-			CDBG("name : %s, enable : %d\n", tmp->name, enable);
-			if (enable) {
-				rc = regulator_enable(tmp->vdd);
-				if (rc < 0) {
-					pr_err("regulator enable failed %d\n",
-						i);
-					goto error;
-				}
-			} else {
-				rc = regulator_disable(tmp->vdd);
-				if (rc < 0)
-					pr_err("regulator disable failed %d\n",
-						i);
-			}
-		}
-<<<<<<< HEAD
->>>>>>> d9c275b... drivers:media:platform:msm:camera_v2: backport camera_v2 for markw. name: camera_v2_markw
-=======
-		tmp++;
->>>>>>> cfc12b8... msm: camera: Change API to populate regulator name Some of the camera modules need to know the regulator names to enable based on the use case, Hence change the regulator API to populate regulator names as well.
 	}
 
 	return 0;
 error:
 	for (--i; i > 0; i--) {
-<<<<<<< HEAD
-<<<<<<< HEAD
 		--tmp;
 		if (!IS_ERR_OR_NULL(tmp->vdd))
 			regulator_disable(tmp->vdd);
-=======
-		if (!IS_ERR_OR_NULL(vdd[i]))
-			regulator_disable(vdd[i]);
->>>>>>> d9c275b... drivers:media:platform:msm:camera_v2: backport camera_v2 for markw. name: camera_v2_markw
-=======
-		--tmp;
-		if (!IS_ERR_OR_NULL(tmp->vdd))
-			regulator_disable(tmp->vdd);
->>>>>>> cfc12b8... msm: camera: Change API to populate regulator name Some of the camera modules need to know the regulator names to enable based on the use case, Hence change the regulator API to populate regulator names as well.
 	}
 	return rc;
 }
@@ -874,35 +654,16 @@ EXPORT_SYMBOL(msm_camera_regulator_enable);
 
 /* Put regulators regulators */
 void msm_camera_put_regulators(struct platform_device *pdev,
-<<<<<<< HEAD
-<<<<<<< HEAD
 	struct msm_cam_regulator **vdd_info, int cnt)
 {
 	int i;
 
 	if (!vdd_info || !*vdd_info) {
-=======
-							struct regulator ***vdd,
-							int cnt)
-{
-	int i;
-
-	if (!*vdd) {
->>>>>>> d9c275b... drivers:media:platform:msm:camera_v2: backport camera_v2 for markw. name: camera_v2_markw
-=======
-	struct msm_cam_regulator **vdd_info, int cnt)
-{
-	int i;
-
-	if (!vdd_info || !*vdd_info) {
->>>>>>> cfc12b8... msm: camera: Change API to populate regulator name Some of the camera modules need to know the regulator names to enable based on the use case, Hence change the regulator API to populate regulator names as well.
 		pr_err("Invalid params\n");
 		return;
 	}
 
 	for (i = cnt - 1; i >= 0; i--) {
-<<<<<<< HEAD
-<<<<<<< HEAD
 		if (vdd_info[i] && !IS_ERR_OR_NULL(vdd_info[i]->vdd))
 			devm_regulator_put(vdd_info[i]->vdd);
 			CDBG("vdd ptr[%d] :%pK\n", i, vdd_info[i]->vdd);
@@ -910,24 +671,6 @@ void msm_camera_put_regulators(struct platform_device *pdev,
 
 	devm_kfree(&pdev->dev, *vdd_info);
 	*vdd_info = NULL;
-=======
-		if (!IS_ERR_OR_NULL((*vdd)[i]))
-			devm_regulator_put((*vdd)[i]);
-			CDBG("vdd ptr[%d] :%p\n", i, (*vdd)[i]);
-	}
-
-	devm_kfree(&pdev->dev, *vdd);
-	*vdd = NULL;
->>>>>>> d9c275b... drivers:media:platform:msm:camera_v2: backport camera_v2 for markw. name: camera_v2_markw
-=======
-		if (vdd_info[i] && !IS_ERR_OR_NULL(vdd_info[i]->vdd))
-			devm_regulator_put(vdd_info[i]->vdd);
-			CDBG("vdd ptr[%d] :%p\n", i, vdd_info[i]->vdd);
-	}
-
-	devm_kfree(&pdev->dev, *vdd_info);
-	*vdd_info = NULL;
->>>>>>> cfc12b8... msm: camera: Change API to populate regulator name Some of the camera modules need to know the regulator names to enable based on the use case, Hence change the regulator API to populate regulator names as well.
 }
 EXPORT_SYMBOL(msm_camera_put_regulators);
 
@@ -962,11 +705,7 @@ int msm_camera_register_irq(struct platform_device *pdev,
 		rc = -EINVAL;
 	}
 
-<<<<<<< HEAD
 	CDBG("Registered irq for %s[resource - %pK]\n", irq_name, irq);
-=======
-	CDBG("Registered irq for %s[resource - %p]\n", irq_name, irq);
->>>>>>> d9c275b... drivers:media:platform:msm:camera_v2: backport camera_v2 for markw. name: camera_v2_markw
 
 	return rc;
 }
@@ -975,28 +714,11 @@ EXPORT_SYMBOL(msm_camera_register_irq);
 int msm_camera_register_threaded_irq(struct platform_device *pdev,
 			struct resource *irq, irq_handler_t handler_fn,
 			irq_handler_t thread_fn, unsigned long irqflags,
-<<<<<<< HEAD
-<<<<<<< HEAD
 			const char *irq_name, void *dev_id)
 {
 	int rc = 0;
 
 	if (!pdev || !irq || !irq_name || !dev_id) {
-=======
-			char *irq_name, void *dev_id)
-{
-	int rc = 0;
-
-	if (!pdev || !irq || !handler_fn || !thread_fn ||
-		!irq_name || !dev_id) {
->>>>>>> d9c275b... drivers:media:platform:msm:camera_v2: backport camera_v2 for markw. name: camera_v2_markw
-=======
-			const char *irq_name, void *dev_id)
-{
-	int rc = 0;
-
-	if (!pdev || !irq || !irq_name || !dev_id) {
->>>>>>> cfc12b8... msm: camera: Change API to populate regulator name Some of the camera modules need to know the regulator names to enable based on the use case, Hence change the regulator API to populate regulator names as well.
 		pr_err("Invalid params\n");
 		return -EINVAL;
 	}
@@ -1008,11 +730,7 @@ int msm_camera_register_threaded_irq(struct platform_device *pdev,
 		rc = -EINVAL;
 	}
 
-<<<<<<< HEAD
 	CDBG("Registered irq for %s[resource - %pK]\n", irq_name, irq);
-=======
-	CDBG("Registered irq for %s[resource - %p]\n", irq_name, irq);
->>>>>>> d9c275b... drivers:media:platform:msm:camera_v2: backport camera_v2 for markw. name: camera_v2_markw
 
 	return rc;
 }
@@ -1044,11 +762,7 @@ int msm_camera_unregister_irq(struct platform_device *pdev,
 		return -EINVAL;
 	}
 
-<<<<<<< HEAD
 	CDBG("Un Registering irq for [resource - %pK]\n", irq);
-=======
-	CDBG("Un Registering irq for [resource - %p]\n", irq);
->>>>>>> d9c275b... drivers:media:platform:msm:camera_v2: backport camera_v2 for markw. name: camera_v2_markw
 	devm_free_irq(&pdev->dev, irq->start, dev_id);
 
 	return 0;
@@ -1075,11 +789,7 @@ void __iomem *msm_camera_get_reg_base(struct platform_device *pdev,
 	}
 
 	if (reserve_mem) {
-<<<<<<< HEAD
 		CDBG("device:%pK, mem : %pK, size : %d\n",
-=======
-		CDBG("device:%p, mem : %p, size : %d\n",
->>>>>>> d9c275b... drivers:media:platform:msm:camera_v2: backport camera_v2 for markw. name: camera_v2_markw
 			&pdev->dev, mem, (int)resource_size(mem));
 		if (!devm_request_mem_region(&pdev->dev, mem->start,
 			resource_size(mem),
@@ -1098,11 +808,7 @@ void __iomem *msm_camera_get_reg_base(struct platform_device *pdev,
 		return NULL;
 	}
 
-<<<<<<< HEAD
 	CDBG("base : %pK\n", base);
-=======
-	CDBG("base : %p\n", base);
->>>>>>> d9c275b... drivers:media:platform:msm:camera_v2: backport camera_v2 for markw. name: camera_v2_markw
 	return base;
 }
 EXPORT_SYMBOL(msm_camera_get_reg_base);
@@ -1146,11 +852,7 @@ int msm_camera_put_reg_base(struct platform_device *pdev,
 		pr_err("err: mem resource %s not found\n", device_name);
 		return -EINVAL;
 	}
-<<<<<<< HEAD
 	CDBG("mem : %pK, size : %d\n", mem, (int)resource_size(mem));
-=======
-	CDBG("mem : %p, size : %d\n", mem, (int)resource_size(mem));
->>>>>>> d9c275b... drivers:media:platform:msm:camera_v2: backport camera_v2 for markw. name: camera_v2_markw
 
 	devm_iounmap(&pdev->dev, base);
 	if (reserve_mem)

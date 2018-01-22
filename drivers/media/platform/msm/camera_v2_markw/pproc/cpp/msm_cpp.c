@@ -83,10 +83,7 @@
 	if (IS_BATCH_BUFFER_ON_PREVIEW(new_frame)) \
 		iden = swap_iden; \
 }
-<<<<<<< HEAD
 static struct msm_cpp_vbif_data cpp_vbif;
-=======
->>>>>>> d9c275b... drivers:media:platform:msm:camera_v2: backport camera_v2 for markw. name: camera_v2_markw
 static int msm_cpp_buffer_ops(struct cpp_device *cpp_dev,
 	uint32_t buff_mgr_ops, struct msm_buf_mngr_info *buff_mgr_info);
 static int msm_cpp_send_frame_to_hardware(struct cpp_device *cpp_dev,
@@ -145,7 +142,6 @@ struct msm_cpp_timer_t {
 struct msm_cpp_timer_t cpp_timer;
 static void msm_cpp_set_vbif_reg_values(struct cpp_device *cpp_dev);
 
-<<<<<<< HEAD
 
 void msm_cpp_vbif_register_error_handler(void *dev,
 	enum cpp_vbif_client client,
@@ -166,8 +162,6 @@ void msm_cpp_vbif_register_error_handler(void *dev,
 		cpp_vbif.err_handler[client] = NULL;
 	}
 }
-=======
->>>>>>> d9c275b... drivers:media:platform:msm:camera_v2: backport camera_v2 for markw. name: camera_v2_markw
 static int msm_cpp_init_bandwidth_mgr(struct cpp_device *cpp_dev)
 {
 	int rc = 0;
@@ -1055,7 +1049,6 @@ end:
 	return rc;
 }
 
-<<<<<<< HEAD
 int cpp_vbif_error_handler(void *dev, uint32_t vbif_error)
 {
 	struct cpp_device *cpp_dev = NULL;
@@ -1082,8 +1075,6 @@ int cpp_vbif_error_handler(void *dev, uint32_t vbif_error)
 	return 0;
 }
 
-=======
->>>>>>> d9c275b... drivers:media:platform:msm:camera_v2: backport camera_v2 for markw. name: camera_v2_markw
 static int cpp_open_node(struct v4l2_subdev *sd, struct v4l2_subdev_fh *fh)
 {
 	int rc;
@@ -1092,21 +1083,13 @@ static int cpp_open_node(struct v4l2_subdev *sd, struct v4l2_subdev_fh *fh)
 	CPP_DBG("E\n");
 
 	if (!sd || !fh) {
-<<<<<<< HEAD
 		pr_err("Wrong input parameters sd %pK fh %pK!",
-=======
-		pr_err("Wrong input parameters sd %p fh %p!",
->>>>>>> d9c275b... drivers:media:platform:msm:camera_v2: backport camera_v2 for markw. name: camera_v2_markw
 			sd, fh);
 		return -EINVAL;
 	}
 	cpp_dev = v4l2_get_subdevdata(sd);
 	if (!cpp_dev) {
-<<<<<<< HEAD
 		pr_err("failed: cpp_dev %pK\n", cpp_dev);
-=======
-		pr_err("failed: cpp_dev %p\n", cpp_dev);
->>>>>>> d9c275b... drivers:media:platform:msm:camera_v2: backport camera_v2 for markw. name: camera_v2_markw
 		return -EINVAL;
 	}
 	mutex_lock(&cpp_dev->mutex);
@@ -1129,11 +1112,7 @@ static int cpp_open_node(struct v4l2_subdev *sd, struct v4l2_subdev_fh *fh)
 		return -ENODEV;
 	}
 
-<<<<<<< HEAD
 	CPP_DBG("open %d %pK\n", i, &fh->vfh);
-=======
-	CPP_DBG("open %d %p\n", i, &fh->vfh);
->>>>>>> d9c275b... drivers:media:platform:msm:camera_v2: backport camera_v2 for markw. name: camera_v2_markw
 	cpp_dev->cpp_open_cnt++;
 	if (cpp_dev->cpp_open_cnt == 1) {
 		rc = cpp_init_hardware(cpp_dev);
@@ -1156,13 +1135,10 @@ static int cpp_open_node(struct v4l2_subdev *sd, struct v4l2_subdev_fh *fh)
 		}
 		cpp_dev->state = CPP_STATE_IDLE;
 	}
-<<<<<<< HEAD
 
 	msm_cpp_vbif_register_error_handler(cpp_dev,
 		VBIF_CLIENT_CPP, cpp_vbif_error_handler);
 
-=======
->>>>>>> d9c275b... drivers:media:platform:msm:camera_v2: backport camera_v2 for markw. name: camera_v2_markw
 	mutex_unlock(&cpp_dev->mutex);
 	return 0;
 }
@@ -1182,11 +1158,7 @@ static int cpp_close_node(struct v4l2_subdev *sd, struct v4l2_subdev_fh *fh)
 	cpp_dev =  v4l2_get_subdevdata(sd);
 
 	if (!cpp_dev) {
-<<<<<<< HEAD
 		pr_err("failed: cpp_dev %pK\n", cpp_dev);
-=======
-		pr_err("failed: cpp_dev %p\n", cpp_dev);
->>>>>>> d9c275b... drivers:media:platform:msm:camera_v2: backport camera_v2 for markw. name: camera_v2_markw
 		return -EINVAL;
 	}
 
@@ -1260,12 +1232,9 @@ static int cpp_close_node(struct v4l2_subdev *sd, struct v4l2_subdev_fh *fh)
 		cpp_dev->state = CPP_STATE_OFF;
 	}
 
-<<<<<<< HEAD
 	/* unregister vbif error handler */
 	msm_cpp_vbif_register_error_handler(cpp_dev,
 		VBIF_CLIENT_CPP, NULL);
-=======
->>>>>>> d9c275b... drivers:media:platform:msm:camera_v2: backport camera_v2 for markw. name: camera_v2_markw
 	mutex_unlock(&cpp_dev->mutex);
 	return 0;
 }
@@ -1477,11 +1446,7 @@ static void msm_cpp_do_timeout_work(struct work_struct *work)
 	mutex_lock(&cpp_dev->mutex);
 
 	if (!work || (cpp_timer.data.cpp_dev->state != CPP_STATE_ACTIVE)) {
-<<<<<<< HEAD
 		pr_err("Invalid work:%pK or state:%d\n", work,
-=======
-		pr_err("Invalid work:%p or state:%d\n", work,
->>>>>>> d9c275b... drivers:media:platform:msm:camera_v2: backport camera_v2 for markw. name: camera_v2_markw
 			cpp_timer.data.cpp_dev->state);
 		/* Do not flush queue here as it is not a fatal error */
 		goto end;
@@ -1505,7 +1470,6 @@ static void msm_cpp_do_timeout_work(struct work_struct *work)
 		goto end;
 	}
 
-<<<<<<< HEAD
 	pr_err("%s: handle vbif hang...\n", __func__);
 	for (i = 0; i < VBIF_CLIENT_MAX; i++) {
 		if (cpp_dev->vbif_data->err_handler[i] == NULL)
@@ -1515,8 +1479,6 @@ static void msm_cpp_do_timeout_work(struct work_struct *work)
 			cpp_dev->vbif_data->dev[i], CPP_VBIF_ERROR_HANG);
 	}
 
-=======
->>>>>>> d9c275b... drivers:media:platform:msm:camera_v2: backport camera_v2 for markw. name: camera_v2_markw
 	pr_debug("Reloading firmware %d\n", queue_len);
 	rc = cpp_load_fw(cpp_timer.data.cpp_dev,
 		cpp_timer.data.cpp_dev->fw_name_bin);
@@ -2548,11 +2510,7 @@ static int msm_cpp_copy_from_ioctl_ptr(void *dst_ptr,
 {
 	int ret;
 	if ((ioctl_ptr->ioctl_ptr == NULL) || (ioctl_ptr->len == 0)) {
-<<<<<<< HEAD
 		pr_err("%s: Wrong ioctl_ptr %pK / len %zu\n", __func__,
-=======
-		pr_err("%s: Wrong ioctl_ptr %p / len %zu\n", __func__,
->>>>>>> d9c275b... drivers:media:platform:msm:camera_v2: backport camera_v2 for markw. name: camera_v2_markw
 			ioctl_ptr, ioctl_ptr->len);
 		return -EINVAL;
 	}
@@ -2575,11 +2533,7 @@ static int msm_cpp_copy_from_ioctl_ptr(void *dst_ptr,
 {
 	int ret;
 	if ((ioctl_ptr->ioctl_ptr == NULL) || (ioctl_ptr->len == 0)) {
-<<<<<<< HEAD
 		pr_err("%s: Wrong ioctl_ptr %pK / len %zu\n", __func__,
-=======
-		pr_err("%s: Wrong ioctl_ptr %p / len %zu\n", __func__,
->>>>>>> d9c275b... drivers:media:platform:msm:camera_v2: backport camera_v2 for markw. name: camera_v2_markw
 			ioctl_ptr, ioctl_ptr->len);
 		return -EINVAL;
 	}
@@ -2648,30 +2602,19 @@ static int msm_cpp_validate_input(unsigned int cmd, void *arg,
 {
 	switch (cmd) {
 	case MSM_SD_SHUTDOWN:
-<<<<<<< HEAD
 	case MSM_SD_NOTIFY_FREEZE:
 	case MSM_SD_UNNOTIFY_FREEZE:
 		break;
 	default: {
 		if (ioctl_ptr == NULL) {
 			pr_err("Wrong ioctl_ptr %pK\n", ioctl_ptr);
-=======
-		break;
-	default: {
-		if (ioctl_ptr == NULL) {
-			pr_err("Wrong ioctl_ptr %p\n", ioctl_ptr);
->>>>>>> d9c275b... drivers:media:platform:msm:camera_v2: backport camera_v2 for markw. name: camera_v2_markw
 			return -EINVAL;
 		}
 
 		*ioctl_ptr = arg;
 		if ((*ioctl_ptr == NULL) ||
 			((*ioctl_ptr)->ioctl_ptr == NULL)) {
-<<<<<<< HEAD
 			pr_err("Wrong arg %pK\n", arg);
-=======
-			pr_err("Wrong arg %p\n", arg);
->>>>>>> d9c275b... drivers:media:platform:msm:camera_v2: backport camera_v2 for markw. name: camera_v2_markw
 			return -EINVAL;
 		}
 		break;
@@ -2688,11 +2631,7 @@ long msm_cpp_subdev_ioctl(struct v4l2_subdev *sd,
 	int rc = 0;
 
 	if (sd == NULL) {
-<<<<<<< HEAD
 		pr_err("sd %pK\n", sd);
-=======
-		pr_err("sd %p\n", sd);
->>>>>>> d9c275b... drivers:media:platform:msm:camera_v2: backport camera_v2 for markw. name: camera_v2_markw
 		return -EINVAL;
 	}
 	cpp_dev = v4l2_get_subdevdata(sd);
@@ -2768,11 +2707,7 @@ long msm_cpp_subdev_ioctl(struct v4l2_subdev *sd,
 				&cpp_dev->pdev->dev);
 			if (rc) {
 				dev_err(&cpp_dev->pdev->dev,
-<<<<<<< HEAD
 					"Fail to loc blob %s dev %pK, rc:%d\n",
-=======
-					"Fail to loc blob %s dev %p, rc:%d\n",
->>>>>>> d9c275b... drivers:media:platform:msm:camera_v2: backport camera_v2 for markw. name: camera_v2_markw
 					cpp_dev->fw_name_bin,
 					&cpp_dev->pdev->dev, rc);
 				kfree(cpp_dev->fw_name_bin);
@@ -3235,23 +3170,15 @@ static long msm_cpp_subdev_do_ioctl(
 	struct v4l2_fh *vfh = NULL;
 
 	if ((arg == NULL) || (file == NULL)) {
-<<<<<<< HEAD
 		pr_err("Invalid input parameters arg %pK, file %pK\n",
 			arg, file);
-=======
-		pr_err("Invalid input parameters arg %p, file %p\n", arg, file);
->>>>>>> d9c275b... drivers:media:platform:msm:camera_v2: backport camera_v2 for markw. name: camera_v2_markw
 		return -EINVAL;
 	}
 	vdev = video_devdata(file);
 	sd = vdev_to_v4l2_subdev(vdev);
 
 	if (sd == NULL) {
-<<<<<<< HEAD
 		pr_err("Invalid input parameter sd %pK\n", sd);
-=======
-		pr_err("Invalid input parameter sd %p\n", sd);
->>>>>>> d9c275b... drivers:media:platform:msm:camera_v2: backport camera_v2 for markw. name: camera_v2_markw
 		return -EINVAL;
 	}
 	vfh = file->private_data;
@@ -3525,11 +3452,7 @@ static long msm_cpp_subdev_fops_compat_ioctl(struct file *file,
 	}
 	cpp_dev = v4l2_get_subdevdata(sd);
 	if (!vdev || !cpp_dev) {
-<<<<<<< HEAD
 		pr_err("Invalid vdev %pK or cpp_dev %pK structures!",
-=======
-		pr_err("Invalid vdev %p or cpp_dev %p structures!",
->>>>>>> d9c275b... drivers:media:platform:msm:camera_v2: backport camera_v2 for markw. name: camera_v2_markw
 			vdev, cpp_dev);
 		return -EINVAL;
 	}
@@ -3974,11 +3897,8 @@ static int cpp_probe(struct platform_device *pdev)
 	spin_lock_init(&cpp_timer.data.processed_frame_lock);
 
 	cpp_dev->pdev = pdev;
-<<<<<<< HEAD
 	memset(&cpp_vbif, 0, sizeof(struct msm_cpp_vbif_data));
 	cpp_dev->vbif_data = &cpp_vbif;
-=======
->>>>>>> d9c275b... drivers:media:platform:msm:camera_v2: backport camera_v2 for markw. name: camera_v2_markw
 
 	cpp_dev->camss_cpp_base =
 		msm_camera_get_reg_base(pdev, "camss_cpp", true);
@@ -4042,11 +3962,7 @@ static int cpp_probe(struct platform_device *pdev)
 	if (cpp_dev->bus_master_flag)
 		rc = msm_cpp_init_bandwidth_mgr(cpp_dev);
 	else
-<<<<<<< HEAD
 		rc = msm_isp_init_bandwidth_mgr(NULL, ISP_CPP);
-=======
-		rc = msm_isp_init_bandwidth_mgr(ISP_CPP);
->>>>>>> d9c275b... drivers:media:platform:msm:camera_v2: backport camera_v2 for markw. name: camera_v2_markw
 	if (rc < 0) {
 		pr_err("%s: Bandwidth registration Failed!\n", __func__);
 		goto cpp_probe_init_error;

@@ -348,11 +348,7 @@ static int32_t msm_flash_i2c_release(
 	int32_t rc = 0;
 
 	if (!(&flash_ctrl->power_info) || !(&flash_ctrl->flash_i2c_client)) {
-<<<<<<< HEAD
 		pr_err("%s:%d failed: %pK %pK\n",
-=======
-		pr_err("%s:%d failed: %p %p\n",
->>>>>>> d9c275b... drivers:media:platform:msm:camera_v2: backport camera_v2 for markw. name: camera_v2_markw
 			__func__, __LINE__, &flash_ctrl->power_info,
 			&flash_ctrl->flash_i2c_client);
 		return -EINVAL;

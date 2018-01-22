@@ -1,9 +1,4 @@
-<<<<<<< HEAD
 /* Copyright (c) 2013-2016, The Linux Foundation. All rights reserved.
-=======
-/* Copyright (c) 2013-2015, The Linux Foundation. All rights reserved.
- * Copyright (C) 2017 XiaoMi, Inc.
->>>>>>> d9c275b... drivers:media:platform:msm:camera_v2: backport camera_v2 for markw. name: camera_v2_markw
  *
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License version 2 and
@@ -65,19 +60,6 @@ static struct msm_cam_clk_info msm_vfe32_2_clk_info[] = {
 	{"csi_vfe_clk", -1},
 };
 
-<<<<<<< HEAD
-static uint32_t msm_vfe32_ub_reg_offset(struct vfe_device *vfe_dev, int idx)
-{
-	return (VFE32_WM_BASE(idx) + 0xC);
-}
-
-static uint32_t msm_vfe32_get_ub_size(struct vfe_device *vfe_dev)
-{
-	return MSM_ISP32_TOTAL_WM_UB;
-}
-
-=======
->>>>>>> d9c275b... drivers:media:platform:msm:camera_v2: backport camera_v2 for markw. name: camera_v2_markw
 static int32_t msm_vfe32_init_qos_parms(struct vfe_device *vfe_dev,
 				struct msm_vfe_hw_init_parms *qos_parms,
 				struct msm_vfe_hw_init_parms *ds_parms)
@@ -1106,8 +1088,6 @@ static void msm_vfe32_axi_clear_wm_xbar_reg(
 	msm_camera_io_w(xbar_reg_cfg, vfe_dev->vfe_base + VFE32_XBAR_BASE(wm));
 }
 
-<<<<<<< HEAD
-=======
 static void msm_vfe32_cfg_axi_ub_equal_default(struct vfe_device *vfe_dev)
 {
 	int i;
@@ -1177,7 +1157,6 @@ static void msm_vfe32_cfg_axi_ub(struct vfe_device *vfe_dev)
 		msm_vfe32_cfg_axi_ub_equal_default(vfe_dev);
 }
 
->>>>>>> d9c275b... drivers:media:platform:msm:camera_v2: backport camera_v2 for markw. name: camera_v2_markw
 static void msm_vfe32_update_ping_pong_addr(void __iomem *vfe_base,
 	uint8_t wm_idx, uint32_t pingpong_bit, dma_addr_t paddr,
 	int32_t buf_size)
@@ -1510,22 +1489,13 @@ struct msm_vfe_hardware_info vfe32_hw_info = {
 			.clear_wm_reg = msm_vfe32_axi_clear_wm_reg,
 			.cfg_wm_xbar_reg = msm_vfe32_axi_cfg_wm_xbar_reg,
 			.clear_wm_xbar_reg = msm_vfe32_axi_clear_wm_xbar_reg,
-<<<<<<< HEAD
-			.cfg_ub = msm_vfe47_cfg_axi_ub,
-=======
 			.cfg_ub = msm_vfe32_cfg_axi_ub,
->>>>>>> d9c275b... drivers:media:platform:msm:camera_v2: backport camera_v2 for markw. name: camera_v2_markw
 			.update_ping_pong_addr =
 				msm_vfe32_update_ping_pong_addr,
 			.get_comp_mask = msm_vfe32_get_comp_mask,
 			.get_wm_mask = msm_vfe32_get_wm_mask,
 			.get_pingpong_status = msm_vfe32_get_pingpong_status,
 			.halt = msm_vfe32_axi_halt,
-<<<<<<< HEAD
-			.ub_reg_offset = msm_vfe32_ub_reg_offset,
-			.get_ub_size = msm_vfe32_get_ub_size,
-=======
->>>>>>> d9c275b... drivers:media:platform:msm:camera_v2: backport camera_v2 for markw. name: camera_v2_markw
 		},
 		.core_ops = {
 			.reg_update = msm_vfe32_reg_update,
@@ -1544,10 +1514,7 @@ struct msm_vfe_hardware_info vfe32_hw_info = {
 			.get_overflow_mask = msm_vfe32_get_overflow_mask,
 			.is_module_cfg_lock_needed =
 				msm_vfe32_is_module_cfg_lock_needed,
-<<<<<<< HEAD
 			.ahb_clk_cfg = NULL,
-=======
->>>>>>> d9c275b... drivers:media:platform:msm:camera_v2: backport camera_v2 for markw. name: camera_v2_markw
 		},
 		.stats_ops = {
 			.get_stats_idx = msm_vfe32_get_stats_idx,
@@ -1565,10 +1532,7 @@ struct msm_vfe_hardware_info vfe32_hw_info = {
 			.get_wm_mask = msm_vfe32_stats_get_wm_mask,
 			.get_frame_id = msm_vfe32_stats_get_frame_id,
 			.get_pingpong_status = msm_vfe32_get_pingpong_status,
-<<<<<<< HEAD
 			.enable_stats_wm = NULL,
-=======
->>>>>>> d9c275b... drivers:media:platform:msm:camera_v2: backport camera_v2 for markw. name: camera_v2_markw
 		},
 	},
 	.dmi_reg_offset = 0x5A0,

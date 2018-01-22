@@ -669,11 +669,7 @@ int32_t msm_fd_hw_set_dt_parms_by_name(struct msm_fd_device *fd,
 				dt_reg_settings[i + MSM_FD_REG_ADDR_OFFSET_IDX],
 				dt_reg_settings[i + MSM_FD_REG_VALUE_IDX] &
 				dt_reg_settings[i + MSM_FD_REG_MASK_IDX]);
-<<<<<<< HEAD
 			pr_debug("%s:%d] %pK %08x\n", __func__, __LINE__,
-=======
-			pr_debug("%s:%d] %p %08x\n", __func__, __LINE__,
->>>>>>> d9c275b... drivers:media:platform:msm:camera_v2: backport camera_v2 for markw. name: camera_v2_markw
 				fd->iomem_base[base_idx] +
 				dt_reg_settings[i + MSM_FD_REG_ADDR_OFFSET_IDX],
 				dt_reg_settings[i + MSM_FD_REG_VALUE_IDX] &
@@ -826,7 +822,6 @@ static int msm_fd_hw_set_clock_rate_idx(struct msm_fd_device *fd,
 
 	return 0;
 }
-<<<<<<< HEAD
 
 /**
  * msm_fd_hw_update_settings() - API to set clock rate and bus settings
@@ -866,8 +861,6 @@ end:
 	return ret;
 }
 
-=======
->>>>>>> d9c275b... drivers:media:platform:msm:camera_v2: backport camera_v2 for markw. name: camera_v2_markw
 /*
  * msm_fd_hw_get - Get fd hw for performing any hw operation.
  * @fd: Pointer to fd device.
@@ -884,17 +877,8 @@ int msm_fd_hw_get(struct msm_fd_device *fd, unsigned int clock_rate_idx)
 
 	if (fd->ref_count == 0) {
 		ret =
-<<<<<<< HEAD
-<<<<<<< HEAD
 			msm_camera_regulator_enable(fd->vdd_info,
 				fd->num_reg, true);
-=======
-			msm_camera_regulator_enable(fd->vdd, fd->num_reg, true);
->>>>>>> d9c275b... drivers:media:platform:msm:camera_v2: backport camera_v2 for markw. name: camera_v2_markw
-=======
-			msm_camera_regulator_enable(fd->vdd_info,
-				fd->num_reg, true);
->>>>>>> cfc12b8... msm: camera: Change API to populate regulator name Some of the camera modules need to know the regulator names to enable based on the use case, Hence change the regulator API to populate regulator names as well.
 		if (ret < 0) {
 			dev_err(fd->dev, "Fail to enable vdd\n");
 			goto error;
@@ -923,11 +907,8 @@ int msm_fd_hw_get(struct msm_fd_device *fd, unsigned int clock_rate_idx)
 		ret = msm_fd_hw_set_dt_parms(fd);
 		if (ret < 0)
 			goto error_set_dt;
-<<<<<<< HEAD
 
 		fd->clk_rate_idx = clock_rate_idx;
-=======
->>>>>>> d9c275b... drivers:media:platform:msm:camera_v2: backport camera_v2 for markw. name: camera_v2_markw
 	}
 
 	fd->ref_count++;
@@ -942,15 +923,7 @@ error_set_dt:
 		fd->clk, fd->clk_num, false);
 error_clocks:
 error_bus_request:
-<<<<<<< HEAD
-<<<<<<< HEAD
 	msm_camera_regulator_enable(fd->vdd_info, fd->num_reg, false);
-=======
-	msm_camera_regulator_enable(fd->vdd, fd->num_reg, false);
->>>>>>> d9c275b... drivers:media:platform:msm:camera_v2: backport camera_v2 for markw. name: camera_v2_markw
-=======
-	msm_camera_regulator_enable(fd->vdd_info, fd->num_reg, false);
->>>>>>> cfc12b8... msm: camera: Change API to populate regulator name Some of the camera modules need to know the regulator names to enable based on the use case, Hence change the regulator API to populate regulator names as well.
 error:
 	mutex_unlock(&fd->lock);
 	return ret;
@@ -978,15 +951,7 @@ void msm_fd_hw_put(struct msm_fd_device *fd)
 		msm_fd_hw_bus_request(fd, 0);
 		msm_camera_clk_enable(&fd->pdev->dev, fd->clk_info,
 				fd->clk, fd->clk_num, false);
-<<<<<<< HEAD
-<<<<<<< HEAD
 		msm_camera_regulator_enable(fd->vdd_info, fd->num_reg, false);
-=======
-		msm_camera_regulator_enable(fd->vdd, fd->num_reg, false);
->>>>>>> d9c275b... drivers:media:platform:msm:camera_v2: backport camera_v2 for markw. name: camera_v2_markw
-=======
-		msm_camera_regulator_enable(fd->vdd_info, fd->num_reg, false);
->>>>>>> cfc12b8... msm: camera: Change API to populate regulator name Some of the camera modules need to know the regulator names to enable based on the use case, Hence change the regulator API to populate regulator names as well.
 	}
 	mutex_unlock(&fd->lock);
 }
@@ -1134,11 +1099,8 @@ static int msm_fd_hw_enable(struct msm_fd_device *fd,
 	msm_fd_hw_set_direction_angle(fd, buffer->settings.direction_index,
 		buffer->settings.angle_index);
 	msm_fd_hw_run(fd);
-<<<<<<< HEAD
 	if (fd->recovery_mode)
 		dev_err(fd->dev, "Scheduled buffer in recovery mode\n");
-=======
->>>>>>> d9c275b... drivers:media:platform:msm:camera_v2: backport camera_v2 for markw. name: camera_v2_markw
 	return 1;
 }
 
@@ -1307,11 +1269,8 @@ int msm_fd_hw_schedule_and_start(struct msm_fd_device *fd)
 
 	spin_unlock(&fd->slock);
 
-<<<<<<< HEAD
 	msm_fd_hw_update_settings(fd, buf);
 
-=======
->>>>>>> d9c275b... drivers:media:platform:msm:camera_v2: backport camera_v2 for markw. name: camera_v2_markw
 	return 0;
 }
 
@@ -1345,7 +1304,6 @@ int msm_fd_hw_schedule_next_buffer(struct msm_fd_device *fd)
 		}
 	} else {
 		fd->state = MSM_FD_DEVICE_IDLE;
-<<<<<<< HEAD
 		if (fd->recovery_mode)
 			dev_err(fd->dev, "No Buffer in recovery mode.Device Idle\n");
 	}
@@ -1353,10 +1311,5 @@ int msm_fd_hw_schedule_next_buffer(struct msm_fd_device *fd)
 
 	msm_fd_hw_update_settings(fd, buf);
 
-=======
-	}
-	spin_unlock(&fd->slock);
-
->>>>>>> d9c275b... drivers:media:platform:msm:camera_v2: backport camera_v2 for markw. name: camera_v2_markw
 	return 0;
 }

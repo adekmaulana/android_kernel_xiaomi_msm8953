@@ -1,8 +1,4 @@
-<<<<<<< HEAD
 /* Copyright (c) 2013-2016, The Linux Foundation. All rights reserved.
-=======
-/* Copyright (c) 2013-2015, The Linux Foundation. All rights reserved.
->>>>>>> d9c275b... drivers:media:platform:msm:camera_v2: backport camera_v2 for markw. name: camera_v2_markw
  *
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License version 2 and
@@ -51,15 +47,7 @@ struct ispif_intf_cmd {
 struct ispif_device {
 	struct platform_device *pdev;
 	struct msm_sd_subdev msm_sd;
-<<<<<<< HEAD
 	struct resource *irq;
-=======
-	struct resource *mem;
-	struct resource *clk_mux_mem;
-	struct resource *irq;
-	struct resource *io;
-	struct resource *clk_mux_io;
->>>>>>> d9c275b... drivers:media:platform:msm:camera_v2: backport camera_v2 for markw. name: camera_v2_markw
 	void __iomem *base;
 	void __iomem *clk_mux_base;
 	struct mutex mutex;
@@ -71,15 +59,10 @@ struct ispif_device {
 	struct ispif_intf_cmd applied_intf_cmd[VFE_MAX];
 	enum msm_ispif_state_t ispif_state;
 	struct msm_ispif_vfe_info vfe_info;
-<<<<<<< HEAD
 	struct clk **ahb_clk;
 	struct msm_cam_clk_info *ahb_clk_info;
 	struct clk **clks;
 	struct msm_cam_clk_info *clk_info;
-=======
-	struct clk *ahb_clk[ISPIF_CLK_INFO_MAX];
-	struct clk *clk[ISPIF_CLK_INFO_MAX];
->>>>>>> d9c275b... drivers:media:platform:msm:camera_v2: backport camera_v2 for markw. name: camera_v2_markw
 	struct completion reset_complete[VFE_MAX];
 	atomic_t reset_trig[VFE_MAX];
 	uint32_t hw_num_isps;

@@ -1,8 +1,4 @@
-<<<<<<< HEAD
 /* Copyright (c) 2013-2014, 2016, The Linux Foundation. All rights reserved.
-=======
-/* Copyright (c) 2013-2014, The Linux Foundation. All rights reserved.
->>>>>>> d9c275b... drivers:media:platform:msm:camera_v2: backport camera_v2 for markw. name: camera_v2_markw
  *
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License version 2 and
@@ -17,7 +13,6 @@
 #ifndef __MSM_ISP47_H__
 #define __MSM_ISP47_H__
 
-<<<<<<< HEAD
 #define VFE47_NUM_STATS_COMP 2
 #define VFE47_NUM_STATS_TYPE 9
 /* composite mask order */
@@ -102,11 +97,10 @@ void msm_vfe47_axi_clear_wm_xbar_reg(
 	struct vfe_device *vfe_dev,
 	struct msm_vfe_axi_stream *stream_info, uint8_t plane_idx);
 void msm_vfe47_cfg_axi_ub_equal_default(
-	struct vfe_device *vfe_dev, enum msm_vfe_input_src frame_src);
+	struct vfe_device *vfe_dev);
 void msm_vfe47_cfg_axi_ub_equal_slicing(
 	struct vfe_device *vfe_dev);
-void msm_vfe47_cfg_axi_ub(struct vfe_device *vfe_dev,
-	enum msm_vfe_input_src frame_src);
+void msm_vfe47_cfg_axi_ub(struct vfe_device *vfe_dev);
 void msm_vfe47_read_wm_ping_pong_addr(
 	struct vfe_device *vfe_dev);
 void msm_vfe47_update_ping_pong_addr(
@@ -201,7 +195,4 @@ int msm_vfe47_update_bandwidth(
 void msm_vfe47_config_irq(struct vfe_device *vfe_dev,
 		uint32_t irq0_mask, uint32_t irq1_mask,
 		enum msm_isp_irq_operation oper);
-=======
-extern struct msm_vfe_hardware_info vfe47_hw_info;
->>>>>>> d9c275b... drivers:media:platform:msm:camera_v2: backport camera_v2 for markw. name: camera_v2_markw
 #endif /* __MSM_ISP47_H__ */

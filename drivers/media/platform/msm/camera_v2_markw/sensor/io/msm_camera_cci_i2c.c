@@ -28,12 +28,8 @@ int32_t msm_camera_cci_i2c_read(struct msm_camera_i2c_client *client,
 	struct msm_camera_cci_ctrl cci_ctrl;
 
 	if ((client->addr_type != MSM_CAMERA_I2C_BYTE_ADDR
-<<<<<<< HEAD
 		&& client->addr_type != MSM_CAMERA_I2C_WORD_ADDR
 		&& client->addr_type != MSM_CAMERA_I2C_3B_ADDR)
-=======
-		&& client->addr_type != MSM_CAMERA_I2C_WORD_ADDR)
->>>>>>> d9c275b... drivers:media:platform:msm:camera_v2: backport camera_v2 for markw. name: camera_v2_markw
 		|| (data_type != MSM_CAMERA_I2C_BYTE_DATA
 		&& data_type != MSM_CAMERA_I2C_WORD_DATA))
 		return rc;
@@ -69,12 +65,8 @@ int32_t msm_camera_cci_i2c_read_seq(struct msm_camera_i2c_client *client,
 	struct msm_camera_cci_ctrl cci_ctrl;
 
 	if ((client->addr_type != MSM_CAMERA_I2C_BYTE_ADDR
-<<<<<<< HEAD
 		&& client->addr_type != MSM_CAMERA_I2C_WORD_ADDR
 		&& client->addr_type != MSM_CAMERA_I2C_3B_ADDR)
-=======
-		&& client->addr_type != MSM_CAMERA_I2C_WORD_ADDR)
->>>>>>> d9c275b... drivers:media:platform:msm:camera_v2: backport camera_v2 for markw. name: camera_v2_markw
 		|| num_byte == 0)
 		return rc;
 

@@ -583,11 +583,7 @@ static int32_t msm_actuator_move_focus(
 	if ((a_ctrl->region_size <= 0) ||
 		(a_ctrl->region_size > MAX_ACTUATOR_REGION) ||
 		(!move_params->ringing_params)) {
-<<<<<<< HEAD
 		pr_err("Invalid-region size = %d, ringing_params = %pK\n",
-=======
-		pr_err("Invalid-region size = %d, ringing_params = %p\n",
->>>>>>> d9c275b... drivers:media:platform:msm:camera_v2: backport camera_v2 for markw. name: camera_v2_markw
 		a_ctrl->region_size, move_params->ringing_params);
 		return -EFAULT;
 	}
@@ -707,11 +703,7 @@ static int32_t msm_actuator_bivcm_move_focus(
 	if ((a_ctrl->region_size <= 0) ||
 		(a_ctrl->region_size > MAX_ACTUATOR_REGION) ||
 		(!move_params->ringing_params)) {
-<<<<<<< HEAD
 		pr_err("Invalid-region size = %d, ringing_params = %pK\n",
-=======
-		pr_err("Invalid-region size = %d, ringing_params = %p\n",
->>>>>>> d9c275b... drivers:media:platform:msm:camera_v2: backport camera_v2 for markw. name: camera_v2_markw
 		a_ctrl->region_size, move_params->ringing_params);
 		return -EFAULT;
 	}
@@ -1173,10 +1165,7 @@ static int32_t msm_actuator_set_position(
 	}
 
 	a_ctrl->i2c_tbl_index = 0;
-<<<<<<< HEAD
 	hw_params = set_pos->hw_params;
-=======
->>>>>>> d9c275b... drivers:media:platform:msm:camera_v2: backport camera_v2 for markw. name: camera_v2_markw
 	for (index = 0; index < set_pos->number_of_steps; index++) {
 		next_lens_position = set_pos->pos[index];
 		delay = set_pos->delay[index];
@@ -1551,11 +1540,7 @@ static long msm_actuator_subdev_ioctl(struct v4l2_subdev *sd,
 	struct msm_actuator_ctrl_t *a_ctrl = v4l2_get_subdevdata(sd);
 	void __user *argp = (void __user *)arg;
 	CDBG("Enter\n");
-<<<<<<< HEAD
 	CDBG("%s:%d a_ctrl %pK argp %pK\n", __func__, __LINE__, a_ctrl, argp);
-=======
-	CDBG("%s:%d a_ctrl %p argp %p\n", __func__, __LINE__, a_ctrl, argp);
->>>>>>> d9c275b... drivers:media:platform:msm:camera_v2: backport camera_v2 for markw. name: camera_v2_markw
 	switch (cmd) {
 	case VIDIOC_MSM_SENSOR_GET_SUBDEV_ID:
 		return msm_actuator_get_subdev_id(a_ctrl, argp);
@@ -1816,11 +1801,7 @@ static int32_t msm_actuator_i2c_probe(struct i2c_client *client,
 		goto probe_failure;
 	}
 
-<<<<<<< HEAD
 	CDBG("client = 0x%pK\n",  client);
-=======
-	CDBG("client = 0x%p\n",  client);
->>>>>>> d9c275b... drivers:media:platform:msm:camera_v2: backport camera_v2 for markw. name: camera_v2_markw
 
 	rc = of_property_read_u32(client->dev.of_node, "cell-index",
 		&act_ctrl_t->subdev_id);

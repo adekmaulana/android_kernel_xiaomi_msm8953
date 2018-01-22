@@ -28,10 +28,7 @@
 #include "msm_sd.h"
 #include "msm_camera_io_util.h"
 #include "cam_hw_ops.h"
-<<<<<<< HEAD
 #include "cam_soc_api.h"
-=======
->>>>>>> d9c275b... drivers:media:platform:msm:camera_v2: backport camera_v2 for markw. name: camera_v2_markw
 
 #ifdef CONFIG_MSM_ISPIF_V1
 #include "msm_ispif_hwreg_v1.h"
@@ -61,18 +58,11 @@
 
 static int msm_ispif_clk_ahb_enable(struct ispif_device *ispif, int enable);
 static int ispif_close_node(struct v4l2_subdev *sd, struct v4l2_subdev_fh *fh);
-<<<<<<< HEAD
 static long msm_ispif_subdev_ioctl_unlocked(struct v4l2_subdev *sd,
 	unsigned int cmd, void *arg);
 
 int msm_ispif_get_clk_info(struct ispif_device *ispif_dev,
 	struct platform_device *pdev);
-=======
-int msm_ispif_get_clk_info(struct ispif_device *ispif_dev,
-	struct platform_device *pdev,
-	struct msm_cam_clk_info *ahb_clk_info,
-	struct msm_cam_clk_info *clk_info);
->>>>>>> d9c275b... drivers:media:platform:msm:camera_v2: backport camera_v2 for markw. name: camera_v2_markw
 
 static void msm_ispif_io_dump_reg(struct ispif_device *ispif)
 {
@@ -108,7 +98,6 @@ static struct msm_cam_clk_info ispif_8626_reset_clk_info[] = {
 	{"camss_csi_vfe_clk", NO_SET_RATE},
 };
 
-<<<<<<< HEAD
 #ifdef CONFIG_COMPAT
 struct ispif_cfg_data_ext_32 {
 	enum ispif_cfg_type_t cfg_type;
@@ -292,11 +281,6 @@ static long msm_ispif_subdev_ioctl(struct v4l2_subdev *sd,
 	return msm_ispif_subdev_ioctl_unlocked(sd, cmd, arg);
 }
 #endif
-=======
-static struct msm_cam_clk_info ispif_ahb_clk_info[ISPIF_CLK_INFO_MAX];
-static struct msm_cam_clk_info ispif_clk_info[ISPIF_CLK_INFO_MAX];
-
->>>>>>> d9c275b... drivers:media:platform:msm:camera_v2: backport camera_v2 for markw. name: camera_v2_markw
 static void msm_ispif_put_regulator(struct ispif_device *ispif_dev)
 {
 	int i;
@@ -429,22 +413,13 @@ static int msm_ispif_reset_hw(struct ispif_device *ispif)
 	if (rc < 0)
 		return rc;
 
-<<<<<<< HEAD
 	rc = msm_camera_clk_enable(&ispif->pdev->dev,
 		ispif->clk_info, ispif->clks,
-=======
-	rc = msm_cam_clk_enable(&ispif->pdev->dev,
-		ispif_clk_info, ispif->clk,
->>>>>>> d9c275b... drivers:media:platform:msm:camera_v2: backport camera_v2 for markw. name: camera_v2_markw
 		ispif->num_clk, 1);
 	if (rc < 0) {
 		pr_err("%s: cannot enable clock, error = %d\n",
 			__func__, rc);
-<<<<<<< HEAD
 		rc = msm_camera_clk_enable(&ispif->pdev->dev,
-=======
-		rc = msm_cam_clk_enable(&ispif->pdev->dev,
->>>>>>> d9c275b... drivers:media:platform:msm:camera_v2: backport camera_v2 for markw. name: camera_v2_markw
 			ispif_8626_reset_clk_info, reset_clk1,
 			ARRAY_SIZE(ispif_8626_reset_clk_info), 1);
 		if (rc < 0) {
@@ -491,22 +466,13 @@ static int msm_ispif_reset_hw(struct ispif_device *ispif)
 
 clk_disable:
 	if (ispif->clk_idx == 1) {
-<<<<<<< HEAD
 		rc = rc ? rc : msm_camera_clk_enable(&ispif->pdev->dev,
 			ispif->clk_info, ispif->clks,
-=======
-		rc = rc ? rc : msm_cam_clk_enable(&ispif->pdev->dev,
-			ispif_clk_info, ispif->clk,
->>>>>>> d9c275b... drivers:media:platform:msm:camera_v2: backport camera_v2 for markw. name: camera_v2_markw
 			ispif->num_clk, 0);
 	}
 
 	if (ispif->clk_idx == 2) {
-<<<<<<< HEAD
 		rc = rc ? rc :  msm_camera_clk_enable(&ispif->pdev->dev,
-=======
-		rc = rc ? rc :  msm_cam_clk_enable(&ispif->pdev->dev,
->>>>>>> d9c275b... drivers:media:platform:msm:camera_v2: backport camera_v2 for markw. name: camera_v2_markw
 			ispif_8626_reset_clk_info, reset_clk1,
 			ARRAY_SIZE(ispif_8626_reset_clk_info), 0);
 	}
@@ -518,7 +484,6 @@ reg_disable:
 }
 
 int msm_ispif_get_clk_info(struct ispif_device *ispif_dev,
-<<<<<<< HEAD
 	struct platform_device *pdev)
 {
 	uint32_t num_ahb_clk = 0, non_ahb_clk = 0;
@@ -527,23 +492,10 @@ int msm_ispif_get_clk_info(struct ispif_device *ispif_dev,
 	int j;
 	struct clk **clks, **temp_clks;
 	struct msm_cam_clk_info *clk_info, *temp_clk_info;
-=======
-	struct platform_device *pdev,
-	struct msm_cam_clk_info *ahb_clk_info,
-	struct msm_cam_clk_info *clk_info)
-{
-	uint32_t count, num_ahb_clk = 0, non_ahb_clk = 0;
-	int i, rc;
-	uint32_t rates[ISPIF_CLK_INFO_MAX];
-	const char *clk_ctl = NULL;
-	const char *clk_name = NULL;
-	struct msm_cam_clk_info *clk_temp;
->>>>>>> d9c275b... drivers:media:platform:msm:camera_v2: backport camera_v2 for markw. name: camera_v2_markw
 
 	struct device_node *of_node;
 	of_node = pdev->dev.of_node;
 
-<<<<<<< HEAD
 	rc = msm_camera_get_clk_info(pdev, &clk_info,
 			&clks, &num_clks);
 
@@ -602,74 +554,6 @@ int msm_ispif_get_clk_info(struct ispif_device *ispif_dev,
 alloc_fail:
 	msm_camera_put_clk_info(pdev, &clk_info, &clks, num_clks);
 	return rc;
-=======
-	count = of_property_count_strings(of_node, "clock-names");
-
-	CDBG("count = %d\n", count);
-	if (count == 0) {
-		pr_err("no clocks found in device tree, count=%d", count);
-		return 0;
-	}
-
-	if (count > ISPIF_CLK_INFO_MAX) {
-		pr_err("invalid count=%d, max is %d\n", count,
-			ISPIF_CLK_INFO_MAX);
-		return -EINVAL;
-	}
-
-	rc = of_property_read_u32_array(of_node, "qcom,clock-rates",
-		rates, count);
-	if (rc < 0) {
-		pr_err("%s failed %d\n", __func__, __LINE__);
-		return rc;
-	}
-
-	for (i = 0; i < count; i++) {
-		rc = of_property_read_string_index(of_node, "clock-names",
-				i, &clk_name);
-		if (rc < 0) {
-			pr_err("%s reading clock-name failed index %d\n",
-				__func__, i);
-			return rc;
-		}
-
-		rc = of_property_read_string_index(of_node,
-			"qcom,clock-control", i, &clk_ctl);
-		if (rc < 0) {
-			pr_err("%s reading clock-control failed index %d\n",
-				__func__, i);
-			return rc;
-		}
-
-		if (strnstr(clk_name, "ahb", strlen(clk_name))) {
-			clk_temp = &ahb_clk_info[num_ahb_clk];
-			num_ahb_clk++;
-		} else {
-			clk_temp = &clk_info[non_ahb_clk];
-			non_ahb_clk++;
-		}
-
-		clk_temp->clk_name = clk_name;
-		if (!strcmp(clk_ctl, "NO_SET_RATE"))
-			clk_temp->clk_rate = NO_SET_RATE;
-		else if (!strcmp(clk_ctl, "INIT_RATE"))
-			clk_temp->clk_rate = INIT_RATE;
-		else if (!strcmp(clk_ctl, "SET_RATE"))
-			clk_temp->clk_rate = rates[i];
-		else {
-			pr_err("%s: error: clock control has invalid value\n",
-				 __func__);
-			return -EBUSY;
-		}
-
-		CDBG("%s: clock-name= %s, clk_rate = %ld clock-control = %s\n",
-			__func__, clk_temp->clk_name, clk_temp->clk_rate,
-			clk_ctl);
-	}
-	ispif_dev->num_ahb_clk = num_ahb_clk;
-	ispif_dev->num_clk = non_ahb_clk;
-	return 0;
->>>>>>> d9c275b... drivers:media:platform:msm:camera_v2: backport camera_v2 for markw. name: camera_v2_markw
 }
 
 static int msm_ispif_clk_ahb_enable(struct ispif_device *ispif, int enable)
@@ -677,11 +561,7 @@ static int msm_ispif_clk_ahb_enable(struct ispif_device *ispif, int enable)
 	int rc = 0;
 
 	rc = msm_cam_clk_enable(&ispif->pdev->dev,
-<<<<<<< HEAD
 		ispif->ahb_clk_info, ispif->ahb_clk,
-=======
-		ispif_ahb_clk_info, ispif->ahb_clk,
->>>>>>> d9c275b... drivers:media:platform:msm:camera_v2: backport camera_v2 for markw. name: camera_v2_markw
 		ispif->num_ahb_clk, enable);
 	if (rc < 0) {
 		pr_err("%s: cannot enable clock, error = %d",
@@ -955,10 +835,6 @@ static uint16_t msm_ispif_get_cids_mask_from_cfg(
 {
 	int i;
 	uint16_t cids_mask = 0;
-<<<<<<< HEAD
-=======
-
->>>>>>> d9c275b... drivers:media:platform:msm:camera_v2: backport camera_v2 for markw. name: camera_v2_markw
 	BUG_ON(!entry);
 
 	for (i = 0; i < entry->num_cids; i++)
@@ -966,24 +842,15 @@ static uint16_t msm_ispif_get_cids_mask_from_cfg(
 
 	return cids_mask;
 }
-<<<<<<< HEAD
 static int msm_ispif_config(struct ispif_device *ispif,
 	void *data)
-=======
-
-static int msm_ispif_config(struct ispif_device *ispif,
-	struct msm_ispif_param_data *params)
->>>>>>> d9c275b... drivers:media:platform:msm:camera_v2: backport camera_v2 for markw. name: camera_v2_markw
 {
 	int rc = 0, i = 0;
 	uint16_t cid_mask;
 	enum msm_ispif_intftype intftype;
 	enum msm_ispif_vfe_intf vfe_intf;
-<<<<<<< HEAD
 	struct msm_ispif_param_data *params =
 		(struct msm_ispif_param_data *)data;
-=======
->>>>>>> d9c275b... drivers:media:platform:msm:camera_v2: backport camera_v2 for markw. name: camera_v2_markw
 
 	BUG_ON(!ispif);
 	BUG_ON(!params);
@@ -1034,11 +901,7 @@ static int msm_ispif_config(struct ispif_device *ispif,
 		}
 
 		if (ispif->csid_version >= CSID_VERSION_V30)
-<<<<<<< HEAD
 			msm_ispif_select_clk_mux(ispif, intftype,
-=======
-				msm_ispif_select_clk_mux(ispif, intftype,
->>>>>>> d9c275b... drivers:media:platform:msm:camera_v2: backport camera_v2 for markw. name: camera_v2_markw
 				params->entries[i].csid, vfe_intf);
 
 		rc = msm_ispif_validate_intf_status(ispif, intftype, vfe_intf);
@@ -1206,7 +1069,6 @@ static int msm_ispif_start_frame_boundary(struct ispif_device *ispif,
 static int msm_ispif_restart_frame_boundary(struct ispif_device *ispif,
 	struct msm_ispif_param_data *params)
 {
-<<<<<<< HEAD
 	int rc = 0;
 
 	rc = msm_ispif_reset_hw(ispif);
@@ -1222,144 +1084,6 @@ static int msm_ispif_restart_frame_boundary(struct ispif_device *ispif,
 	else
 		pr_info("ISPIF restart Failed\n");
 
-=======
-	int rc = 0, i;
-	long timeout = 0;
-	uint16_t cid_mask;
-	enum msm_ispif_intftype intftype;
-	enum msm_ispif_vfe_intf vfe_intf;
-	uint32_t vfe_mask = 0;
-	uint32_t intf_addr;
-
-	if (ispif->ispif_state != ISPIF_POWER_UP) {
-		pr_err("%s: ispif invalid state %d\n", __func__,
-			ispif->ispif_state);
-		rc = -EPERM;
-		return rc;
-	}
-	if (params->num > MAX_PARAM_ENTRIES) {
-		pr_err("%s: invalid param entries %d\n", __func__,
-			params->num);
-		rc = -EINVAL;
-		return rc;
-	}
-
-	for (i = 0; i < params->num; i++) {
-		vfe_intf = params->entries[i].vfe_intf;
-		if (vfe_intf >= VFE_MAX) {
-			pr_err("%s: %d invalid i %d vfe_intf %d\n", __func__,
-				__LINE__, i, vfe_intf);
-			return -EINVAL;
-		}
-		vfe_mask |= (1 << vfe_intf);
-	}
-
-	/* Turn ON regulators before enabling the clocks*/
-	rc = msm_ispif_set_regulators(ispif->vfe_vdd,
-					ispif->vfe_vdd_count, 1);
-	if (rc < 0)
-		return -EFAULT;
-
-	rc = msm_cam_clk_enable(&ispif->pdev->dev,
-		ispif_clk_info, ispif->clk,
-		ispif->num_clk, 1);
-	if (rc < 0)
-		goto disable_regulator;
-
-	if (vfe_mask & (1 << VFE0)) {
-		atomic_set(&ispif->reset_trig[VFE0], 1);
-		/* initiate reset of ISPIF */
-		msm_camera_io_w(ISPIF_RST_CMD_MASK_RESTART,
-				ispif->base + ISPIF_RST_CMD_ADDR);
-		timeout = wait_for_completion_timeout(
-			&ispif->reset_complete[VFE0], msecs_to_jiffies(500));
-		if (timeout <= 0) {
-			pr_err("%s: VFE0 reset wait timeout\n", __func__);
-			rc = -ETIMEDOUT;
-			goto disable_clk;
-		}
-	}
-
-	if (ispif->hw_num_isps > 1  && (vfe_mask & (1 << VFE1))) {
-		atomic_set(&ispif->reset_trig[VFE1], 1);
-		msm_camera_io_w(ISPIF_RST_CMD_1_MASK_RESTART,
-			ispif->base + ISPIF_RST_CMD_1_ADDR);
-		timeout = wait_for_completion_timeout(
-				&ispif->reset_complete[VFE1],
-				msecs_to_jiffies(500));
-		if (timeout <= 0) {
-			pr_err("%s: VFE1 reset wait timeout\n", __func__);
-			rc = -ETIMEDOUT;
-			goto disable_clk;
-		}
-	}
-
-	pr_info("%s: ISPIF reset hw done, Restarting", __func__);
-	rc = msm_cam_clk_enable(&ispif->pdev->dev,
-		ispif_clk_info, ispif->clk,
-		ispif->num_clk, 0);
-	if (rc < 0)
-		goto disable_regulator;
-
-	/* Turn OFF regulators after disabling clocks */
-	rc = msm_ispif_set_regulators(ispif->vfe_vdd, ispif->vfe_vdd_count, 0);
-	if (rc < 0)
-		goto end;
-
-	for (i = 0; i < params->num; i++) {
-		intftype = params->entries[i].intftype;
-		vfe_intf = params->entries[i].vfe_intf;
-
-		switch (params->entries[0].intftype) {
-		case PIX0:
-			intf_addr = ISPIF_VFE_m_PIX_INTF_n_STATUS(vfe_intf, 0);
-			break;
-		case RDI0:
-			intf_addr = ISPIF_VFE_m_RDI_INTF_n_STATUS(vfe_intf, 0);
-			break;
-		case PIX1:
-			intf_addr = ISPIF_VFE_m_PIX_INTF_n_STATUS(vfe_intf, 1);
-			break;
-		case RDI1:
-			intf_addr = ISPIF_VFE_m_RDI_INTF_n_STATUS(vfe_intf, 1);
-			break;
-		case RDI2:
-			intf_addr = ISPIF_VFE_m_RDI_INTF_n_STATUS(vfe_intf, 2);
-			break;
-		default:
-			pr_err("%s: invalid intftype=%d\n", __func__,
-			params->entries[i].intftype);
-			rc = -EPERM;
-			goto end;
-		}
-
-		msm_ispif_intf_cmd(ispif,
-			ISPIF_INTF_CMD_ENABLE_FRAME_BOUNDARY, params);
-	}
-
-	for (i = 0; i < params->num; i++) {
-		intftype = params->entries[i].intftype;
-
-		vfe_intf = params->entries[i].vfe_intf;
-
-
-		cid_mask = msm_ispif_get_cids_mask_from_cfg(
-			&params->entries[i]);
-
-		msm_ispif_enable_intf_cids(ispif, intftype,
-			cid_mask, vfe_intf, 1);
-	}
-	return rc;
-
-disable_clk:
-	msm_cam_clk_enable(&ispif->pdev->dev,
-		ispif_clk_info, ispif->clk,
-		ispif->num_clk, 0);
-disable_regulator:
-	/* Turn OFF regulators */
-	msm_ispif_set_regulators(ispif->vfe_vdd, ispif->vfe_vdd_count, 0);
-end:
->>>>>>> d9c275b... drivers:media:platform:msm:camera_v2: backport camera_v2 for markw. name: camera_v2_markw
 	return rc;
 }
 
@@ -1435,11 +1159,7 @@ static int msm_ispif_stop_frame_boundary(struct ispif_device *ispif,
 					ISPIF_TIMEOUT_SLEEP_US,
 					ISPIF_TIMEOUT_ALL_US);
 		if (rc < 0)
-<<<<<<< HEAD
 			pr_err("ISPIF stop frame boundary timeout\n");
-=======
-			goto end;
->>>>>>> d9c275b... drivers:media:platform:msm:camera_v2: backport camera_v2 for markw. name: camera_v2_markw
 
 		/* disable CIDs in CID_MASK register */
 		msm_ispif_enable_intf_cids(ispif, params->entries[i].intftype,
@@ -1623,11 +1343,7 @@ static int msm_ispif_set_vfe_info(struct ispif_device *ispif,
 {
 	if (!vfe_info || (vfe_info->num_vfe == 0) ||
 		(vfe_info->num_vfe > ispif->hw_num_isps)) {
-<<<<<<< HEAD
 		pr_err("Invalid VFE info: %pK %d\n", vfe_info,
-=======
-		pr_err("Invalid VFE info: %p %d\n", vfe_info,
->>>>>>> d9c275b... drivers:media:platform:msm:camera_v2: backport camera_v2 for markw. name: camera_v2_markw
 			   (vfe_info ? vfe_info->num_vfe : 0));
 		return -EINVAL;
 	}
@@ -1660,53 +1376,18 @@ static int msm_ispif_init(struct ispif_device *ispif,
 
 	ispif->csid_version = csid_version;
 
-<<<<<<< HEAD
 	if (ispif->csid_version >= CSID_VERSION_V30 && !ispif->clk_mux_base) {
 		ispif->clk_mux_base = msm_camera_get_reg_base(ispif->pdev,
 							"csi_clk_mux", 1);
 		if (!ispif->clk_mux_base)
 			return -ENOMEM;
-=======
-	if (ispif->csid_version >= CSID_VERSION_V30) {
-		if (!ispif->clk_mux_mem || !ispif->clk_mux_io) {
-			pr_err("%s csi clk mux mem %p io %p\n", __func__,
-				ispif->clk_mux_mem, ispif->clk_mux_io);
-			rc = -ENOMEM;
-			return rc;
-		}
-		ispif->clk_mux_base = ioremap(ispif->clk_mux_mem->start,
-			resource_size(ispif->clk_mux_mem));
-		if (!ispif->clk_mux_base) {
-			pr_err("%s: clk_mux_mem ioremap failed\n", __func__);
-			rc = -ENOMEM;
-			return rc;
-		}
-	}
-
-	ispif->base = ioremap(ispif->mem->start,
-		resource_size(ispif->mem));
-	if (!ispif->base) {
-		rc = -ENOMEM;
-		pr_err("%s: nomem\n", __func__);
-		goto end;
-	}
-	rc = request_irq(ispif->irq->start, msm_io_ispif_irq,
-		IRQF_TRIGGER_RISING, "ispif", ispif);
-	if (rc) {
-		pr_err("%s: request_irq error = %d\n", __func__, rc);
-		goto error_irq;
->>>>>>> d9c275b... drivers:media:platform:msm:camera_v2: backport camera_v2 for markw. name: camera_v2_markw
 	}
 
 	rc = cam_config_ahb_clk(NULL, 0,
 			CAM_AHB_CLIENT_ISPIF, CAM_AHB_SVS_VOTE);
 	if (rc < 0) {
 		pr_err("%s: failed to vote for AHB\n", __func__);
-<<<<<<< HEAD
 		return rc;
-=======
-		goto ahb_vote_fail;
->>>>>>> d9c275b... drivers:media:platform:msm:camera_v2: backport camera_v2 for markw. name: camera_v2_markw
 	}
 
 	rc = msm_ispif_reset_hw(ispif);
@@ -1714,32 +1395,15 @@ static int msm_ispif_init(struct ispif_device *ispif,
 		goto error_ahb;
 
 	rc = msm_ispif_reset(ispif);
-<<<<<<< HEAD
 	if (rc)
 		goto error_ahb;
 	ispif->ispif_state = ISPIF_POWER_UP;
 	return 0;
-=======
-	if (rc == 0) {
-		ispif->ispif_state = ISPIF_POWER_UP;
-		CDBG("%s: power up done\n", __func__);
-		goto end;
-	}
->>>>>>> d9c275b... drivers:media:platform:msm:camera_v2: backport camera_v2 for markw. name: camera_v2_markw
 
 error_ahb:
 	if (cam_config_ahb_clk(NULL, 0, CAM_AHB_CLIENT_ISPIF,
 		CAM_AHB_SUSPEND_VOTE) < 0)
 		pr_err("%s: failed to remove vote for AHB\n", __func__);
-<<<<<<< HEAD
-=======
-ahb_vote_fail:
-	free_irq(ispif->irq->start, ispif);
-error_irq:
-	iounmap(ispif->base);
-
-end:
->>>>>>> d9c275b... drivers:media:platform:msm:camera_v2: backport camera_v2 for markw. name: camera_v2_markw
 	return rc;
 }
 
@@ -1747,34 +1411,10 @@ static void msm_ispif_release(struct ispif_device *ispif)
 {
 	BUG_ON(!ispif);
 
-<<<<<<< HEAD
 	msm_ispif_reset(ispif);
 	msm_ispif_reset_hw(ispif);
 
 	msm_camera_enable_irq(ispif->irq, 0);
-=======
-	if (!ispif->base) {
-		pr_err("%s: ispif base is NULL\n", __func__);
-		return;
-	}
-
-	if (ispif->ispif_state != ISPIF_POWER_UP) {
-		pr_err("%s: ispif invalid state %d\n", __func__,
-			ispif->ispif_state);
-		return;
-	}
-
-	/* make sure no streaming going on */
-	msm_ispif_reset(ispif);
-	msm_ispif_reset_hw(ispif);
-
-	disable_irq(ispif->irq->start);
-	free_irq(ispif->irq->start, ispif);
-
-	iounmap(ispif->base);
-
-	iounmap(ispif->clk_mux_base);
->>>>>>> d9c275b... drivers:media:platform:msm:camera_v2: backport camera_v2 for markw. name: camera_v2_markw
 
 	ispif->ispif_state = ISPIF_POWER_DOWN;
 
@@ -1824,12 +1464,8 @@ static long msm_ispif_cmd(struct v4l2_subdev *sd, void *arg)
 		msm_ispif_io_dump_reg(ispif);
 		break;
 	case ISPIF_RELEASE:
-<<<<<<< HEAD
 		msm_ispif_reset(ispif);
 		msm_ispif_reset_hw(ispif);
-=======
-		msm_ispif_release(ispif);
->>>>>>> d9c275b... drivers:media:platform:msm:camera_v2: backport camera_v2 for markw. name: camera_v2_markw
 		break;
 	case ISPIF_SET_VFE_INFO:
 		rc = msm_ispif_set_vfe_info(ispif, &pcdata->vfe_info);
@@ -1844,11 +1480,7 @@ static long msm_ispif_cmd(struct v4l2_subdev *sd, void *arg)
 }
 static struct v4l2_file_operations msm_ispif_v4l2_subdev_fops;
 
-<<<<<<< HEAD
 static long msm_ispif_subdev_ioctl_unlocked(struct v4l2_subdev *sd,
-=======
-static long msm_ispif_subdev_ioctl(struct v4l2_subdev *sd,
->>>>>>> d9c275b... drivers:media:platform:msm:camera_v2: backport camera_v2 for markw. name: camera_v2_markw
 	unsigned int cmd, void *arg)
 {
 	struct ispif_device *ispif =
@@ -1857,11 +1489,8 @@ static long msm_ispif_subdev_ioctl(struct v4l2_subdev *sd,
 	switch (cmd) {
 	case VIDIOC_MSM_ISPIF_CFG:
 		return msm_ispif_cmd(sd, arg);
-<<<<<<< HEAD
 	case VIDIOC_MSM_ISPIF_CFG_EXT:
 		return msm_ispif_cmd_ext(sd, arg);
-=======
->>>>>>> d9c275b... drivers:media:platform:msm:camera_v2: backport camera_v2 for markw. name: camera_v2_markw
 	case MSM_SD_NOTIFY_FREEZE: {
 		ispif->ispif_sof_debug = 0;
 		ispif->ispif_rdi0_debug = 0;
@@ -1906,7 +1535,6 @@ static int ispif_open_node(struct v4l2_subdev *sd, struct v4l2_subdev_fh *fh)
 					ispif->ispif_vdd_count, 1);
 		if (rc)
 			goto unlock;
-<<<<<<< HEAD
 
 		rc = msm_ispif_clk_ahb_enable(ispif, 1);
 		if (rc)
@@ -1923,17 +1551,6 @@ ahb_clk_enable_fail:
 	msm_ispif_set_regulators(ispif->ispif_vdd, ispif->ispif_vdd_count, 0);
 irq_enable_fail:
 	msm_ispif_clk_ahb_enable(ispif, 0);
-=======
-		rc = msm_ispif_clk_ahb_enable(ispif, 1);
-		if (rc) {
-			msm_ispif_set_regulators(ispif->ispif_vdd,
-					ispif->ispif_vdd_count, 0);
-			goto unlock;
-		}
-	}
-	/* mem remap is done in init when the clock is on */
-	ispif->open_cnt++;
->>>>>>> d9c275b... drivers:media:platform:msm:camera_v2: backport camera_v2 for markw. name: camera_v2_markw
 unlock:
 	mutex_unlock(&ispif->mutex);
 	return rc;
@@ -2005,7 +1622,6 @@ static int ispif_probe(struct platform_device *pdev)
 
 	rc = msm_ispif_get_regulator_info(ispif, pdev);
 	if (rc < 0)
-<<<<<<< HEAD
 		goto regulator_fail;
 
 	rc = msm_ispif_get_clk_info(ispif, pdev);
@@ -2035,48 +1651,6 @@ static int ispif_probe(struct platform_device *pdev)
 	rc = msm_camera_enable_irq(ispif->irq, 0);
 	if (rc)
 		goto sd_reg_fail;
-=======
-		return -EFAULT;
-
-	rc = msm_ispif_get_clk_info(ispif, pdev,
-		ispif_ahb_clk_info, ispif_clk_info);
-	if (rc < 0) {
-		pr_err("%s: msm_isp_get_clk_info() failed", __func__);
-			return -EFAULT;
-	}
-	mutex_init(&ispif->mutex);
-	ispif->mem = platform_get_resource_byname(pdev,
-		IORESOURCE_MEM, "ispif");
-	if (!ispif->mem) {
-		pr_err("%s: no mem resource?\n", __func__);
-		rc = -ENODEV;
-		goto error;
-	}
-	ispif->irq = platform_get_resource_byname(pdev,
-		IORESOURCE_IRQ, "ispif");
-	if (!ispif->irq) {
-		pr_err("%s: no irq resource?\n", __func__);
-		rc = -ENODEV;
-		goto error;
-	}
-	ispif->io = request_mem_region(ispif->mem->start,
-		resource_size(ispif->mem), pdev->name);
-	if (!ispif->io) {
-		pr_err("%s: no valid mem region\n", __func__);
-		rc = -EBUSY;
-		goto error;
-	}
-	ispif->clk_mux_mem = platform_get_resource_byname(pdev,
-		IORESOURCE_MEM, "csi_clk_mux");
-	if (ispif->clk_mux_mem) {
-		ispif->clk_mux_io = request_mem_region(
-			ispif->clk_mux_mem->start,
-			resource_size(ispif->clk_mux_mem),
-			ispif->clk_mux_mem->name);
-		if (!ispif->clk_mux_io)
-			pr_err("%s: no valid csi_mux region\n", __func__);
-	}
->>>>>>> d9c275b... drivers:media:platform:msm:camera_v2: backport camera_v2 for markw. name: camera_v2_markw
 
 	ispif->pdev = pdev;
 
@@ -2098,11 +1672,7 @@ static int ispif_probe(struct platform_device *pdev)
 	rc = msm_sd_register(&ispif->msm_sd);
 	if (rc) {
 		pr_err("%s: msm_sd_register error = %d\n", __func__, rc);
-<<<<<<< HEAD
 		goto sd_reg_fail;
-=======
-		goto error;
->>>>>>> d9c275b... drivers:media:platform:msm:camera_v2: backport camera_v2 for markw. name: camera_v2_markw
 	}
 	msm_cam_copy_v4l2_subdev_fops(&msm_ispif_v4l2_subdev_fops);
 	msm_ispif_v4l2_subdev_fops.unlocked_ioctl =
@@ -2119,7 +1689,6 @@ static int ispif_probe(struct platform_device *pdev)
 	atomic_set(&ispif->reset_trig[VFE1], 0);
 	return 0;
 
-<<<<<<< HEAD
 sd_reg_fail:
 	msm_camera_unregister_irq(pdev, ispif->irq, ispif);
 get_irq_fail:
@@ -2131,10 +1700,6 @@ reg_base_fail:
 get_clk_fail:
 	msm_ispif_put_regulator(ispif);
 regulator_fail:
-=======
-error:
-	msm_ispif_put_regulator(ispif);
->>>>>>> d9c275b... drivers:media:platform:msm:camera_v2: backport camera_v2 for markw. name: camera_v2_markw
 	mutex_destroy(&ispif->mutex);
 	kfree(ispif);
 	return rc;

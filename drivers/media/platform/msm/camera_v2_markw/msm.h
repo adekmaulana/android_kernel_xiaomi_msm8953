@@ -1,8 +1,4 @@
-<<<<<<< HEAD
 /* Copyright (c) 2012-2016, The Linux Foundation. All rights reserved.
-=======
-/* Copyright (c) 2012-2015, The Linux Foundation. All rights reserved.
->>>>>>> d9c275b... drivers:media:platform:msm:camera_v2: backport camera_v2 for markw. name: camera_v2_markw
  *
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License version 2 and
@@ -44,16 +40,8 @@
 #define CAMERA_DISABLE_PC_LATENCY 100
 #define CAMERA_ENABLE_PC_LATENCY PM_QOS_DEFAULT_VALUE
 
-<<<<<<< HEAD
-<<<<<<< HEAD
 extern bool is_daemon_status;
 
-=======
->>>>>>> d9c275b... drivers:media:platform:msm:camera_v2: backport camera_v2 for markw. name: camera_v2_markw
-=======
-extern bool is_daemon_status;
-
->>>>>>> 351a429... MARKW:msm:camera: Enable/Disable camera daemon
 struct msm_video_device {
 	struct video_device *vdev;
 	atomic_t opened;
@@ -124,25 +112,12 @@ struct msm_session {
 	struct mutex close_lock;
 };
 
-<<<<<<< HEAD
-<<<<<<< HEAD
-=======
->>>>>>> 351a429... MARKW:msm:camera: Enable/Disable camera daemon
 static inline bool msm_is_daemon_present(void)
 {
 	return is_daemon_status;
 }
-<<<<<<< HEAD
 
 void msm_pm_qos_update_request(int val);
-=======
-void msm_pm_qos_update_request(int val);
-
->>>>>>> d9c275b... drivers:media:platform:msm:camera_v2: backport camera_v2 for markw. name: camera_v2_markw
-=======
-
-void msm_pm_qos_update_request(int val);
->>>>>>> 351a429... MARKW:msm:camera: Enable/Disable camera daemon
 int msm_post_event(struct v4l2_event *event, int timeout);
 int  msm_create_session(unsigned int session, struct video_device *vdev);
 int msm_destroy_session(unsigned int session_id);
@@ -158,12 +133,9 @@ struct vb2_queue *msm_get_stream_vb2q(unsigned int session_id,
 	unsigned int stream_id);
 struct msm_stream *msm_get_stream_from_vb2q(struct vb2_queue *q);
 struct msm_session *msm_session_find(unsigned int session_id);
-<<<<<<< HEAD
 #ifdef CONFIG_COMPAT
 long msm_copy_camera_private_ioctl_args(unsigned long arg,
 	struct msm_camera_private_ioctl_arg *k_ioctl,
 	void __user **tmp_compat_ioctl_ptr);
 #endif
-=======
->>>>>>> d9c275b... drivers:media:platform:msm:camera_v2: backport camera_v2 for markw. name: camera_v2_markw
 #endif /*_MSM_H */

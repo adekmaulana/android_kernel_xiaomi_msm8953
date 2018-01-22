@@ -228,7 +228,6 @@ end:
 	return vb2_buf;
 }
 
-<<<<<<< HEAD
 static struct vb2_buffer *msm_vb2_get_buf_by_idx(int session_id,
 	unsigned int stream_id, uint32_t index)
 {
@@ -264,8 +263,6 @@ end:
 	return vb2_buf;
 }
 
-=======
->>>>>>> d9c275b... drivers:media:platform:msm:camera_v2: backport camera_v2 for markw. name: camera_v2_markw
 static int msm_vb2_put_buf(struct vb2_buffer *vb, int session_id,
 				unsigned int stream_id)
 {
@@ -286,11 +283,7 @@ static int msm_vb2_put_buf(struct vb2_buffer *vb, int session_id,
 				break;
 		}
 		if (WARN_ON(vb2_buf != vb)) {
-<<<<<<< HEAD
 			pr_err("VB buffer is INVALID vb=%pK, ses_id=%d, str_id=%d\n",
-=======
-			pr_err("VB buffer is INVALID vb=%p, ses_id=%d, str_id=%d\n",
->>>>>>> d9c275b... drivers:media:platform:msm:camera_v2: backport camera_v2 for markw. name: camera_v2_markw
 					vb, session_id, stream_id);
 			spin_unlock_irqrestore(&stream->stream_lock, flags);
 			return -EINVAL;
@@ -332,11 +325,7 @@ static int msm_vb2_buf_done(struct vb2_buffer *vb, int session_id,
 				break;
 		}
 		if (WARN_ON(vb2_buf != vb)) {
-<<<<<<< HEAD
 			pr_err("VB buffer is INVALID ses_id=%d, str_id=%d, vb=%pK\n",
-=======
-			pr_err("VB buffer is INVALID ses_id=%d, str_id=%d, vb=%p\n",
->>>>>>> d9c275b... drivers:media:platform:msm:camera_v2: backport camera_v2 for markw. name: camera_v2_markw
 				    session_id, stream_id, vb);
 			spin_unlock_irqrestore(&stream->stream_lock, flags);
 			return -EINVAL;
@@ -362,7 +351,6 @@ static int msm_vb2_buf_done(struct vb2_buffer *vb, int session_id,
 	return rc;
 }
 
-<<<<<<< HEAD
 long msm_vb2_return_buf_by_idx(int session_id, unsigned int stream_id,
 				uint32_t index)
 {
@@ -404,8 +392,6 @@ end:
 }
 EXPORT_SYMBOL(msm_vb2_return_buf_by_idx);
 
-=======
->>>>>>> d9c275b... drivers:media:platform:msm:camera_v2: backport camera_v2 for markw. name: camera_v2_markw
 static int msm_vb2_flush_buf(int session_id, unsigned int stream_id)
 {
 	unsigned long flags;
@@ -436,18 +422,11 @@ int msm_vb2_request_cb(struct msm_sd_req_vb2_q *req)
 	}
 
 	req->get_buf = msm_vb2_get_buf;
-<<<<<<< HEAD
 	req->get_buf_by_idx = msm_vb2_get_buf_by_idx;
-=======
->>>>>>> d9c275b... drivers:media:platform:msm:camera_v2: backport camera_v2 for markw. name: camera_v2_markw
 	req->get_vb2_queue = msm_vb2_get_queue;
 	req->put_buf = msm_vb2_put_buf;
 	req->buf_done = msm_vb2_buf_done;
 	req->flush_buf = msm_vb2_flush_buf;
-<<<<<<< HEAD
-=======
-
->>>>>>> d9c275b... drivers:media:platform:msm:camera_v2: backport camera_v2 for markw. name: camera_v2_markw
 	return 0;
 }
 

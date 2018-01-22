@@ -9,16 +9,8 @@
  * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
  * GNU General Public License for more details.
  */
-<<<<<<< HEAD
-<<<<<<< HEAD
 #ifndef _CAM_HW_OPS_H_
 #define _CAM_HW_OPS_H_
-=======
->>>>>>> d9c275b... drivers:media:platform:msm:camera_v2: backport camera_v2 for markw. name: camera_v2_markw
-=======
-#ifndef _CAM_HW_OPS_H_
-#define _CAM_HW_OPS_H_
->>>>>>> cfc12b8... msm: camera: Change API to populate regulator name Some of the camera modules need to know the regulator names to enable based on the use case, Hence change the regulator API to populate regulator names as well.
 
 enum cam_ahb_clk_vote {
 	/* need to update the voting requests
@@ -47,11 +39,4 @@ enum cam_ahb_clk_client {
 int cam_config_ahb_clk(struct device *dev, unsigned long freq,
 	enum cam_ahb_clk_client id, enum cam_ahb_clk_vote vote);
 int cam_ahb_clk_init(struct platform_device *pdev);
-<<<<<<< HEAD
-<<<<<<< HEAD
 #endif
-=======
->>>>>>> d9c275b... drivers:media:platform:msm:camera_v2: backport camera_v2 for markw. name: camera_v2_markw
-=======
-#endif /* _CAM_HW_OPS_H_ */
->>>>>>> cfc12b8... msm: camera: Change API to populate regulator name Some of the camera modules need to know the regulator names to enable based on the use case, Hence change the regulator API to populate regulator names as well.
