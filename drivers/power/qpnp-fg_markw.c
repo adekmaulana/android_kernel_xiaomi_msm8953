@@ -1140,7 +1140,7 @@ out:
 static int fg_check_ima_exception(struct fg_chip *chip, bool check_hw_sts)
 {
 	int rc = 0, ret = 0;
-	u8 err_sts, exp_sts = 0, hw_sts = 0;
+	u8 err_sts, temp, exp_sts = 0, hw_sts = 0;
     bool run_err_clr_seq = false;
 
 	rc = fg_read(chip, &err_sts,
@@ -1149,8 +1149,6 @@ static int fg_check_ima_exception(struct fg_chip *chip, bool check_hw_sts)
 		pr_err("failed to read beat count rc=%d\n", rc);
 		return rc;
 	}
-
-		u8 temp;
 
 		fg_read(chip, &exp_sts,
 			chip->mem_base + MEM_INTF_IMA_EXP_STS, 1);
