@@ -93,11 +93,17 @@ static int camera_v4l2_querycap(struct file *filep, void *fh,
 	struct v4l2_event event;
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	if (msm_is_daemon_present() == false)
 		return 0;
 
 =======
 >>>>>>> d9c275b... drivers:media:platform:msm:camera_v2: backport camera_v2 for markw. name: camera_v2_markw
+=======
+	if (msm_is_daemon_present() == false)
+		return 0;
+
+>>>>>>> 351a429... MARKW:msm:camera: Enable/Disable camera daemon
 	/* can use cap->driver to make differentiation */
 	camera_pack_event(filep, MSM_CAMERA_GET_PARM,
 		MSM_CAMERA_PRIV_QUERY_CAP, -1, &event);
@@ -118,11 +124,17 @@ static int camera_v4l2_s_crop(struct file *filep, void *fh,
 	struct v4l2_event event;
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	if (msm_is_daemon_present() == false)
 		return 0;
 
 =======
 >>>>>>> d9c275b... drivers:media:platform:msm:camera_v2: backport camera_v2 for markw. name: camera_v2_markw
+=======
+	if (msm_is_daemon_present() == false)
+		return 0;
+
+>>>>>>> 351a429... MARKW:msm:camera: Enable/Disable camera daemon
 	if (crop->type == V4L2_BUF_TYPE_VIDEO_CAPTURE_MPLANE) {
 
 		camera_pack_event(filep, MSM_CAMERA_SET_PARM,
@@ -145,11 +157,17 @@ static int camera_v4l2_g_crop(struct file *filep, void *fh,
 	struct v4l2_event event;
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	if (msm_is_daemon_present() == false)
 		return 0;
 
 =======
 >>>>>>> d9c275b... drivers:media:platform:msm:camera_v2: backport camera_v2 for markw. name: camera_v2_markw
+=======
+	if (msm_is_daemon_present() == false)
+		return 0;
+
+>>>>>>> 351a429... MARKW:msm:camera: Enable/Disable camera daemon
 	if (crop->type == V4L2_BUF_TYPE_VIDEO_CAPTURE_MPLANE) {
 		camera_pack_event(filep, MSM_CAMERA_GET_PARM,
 			MSM_CAMERA_PRIV_G_CROP, -1, &event);
@@ -171,11 +189,17 @@ static int camera_v4l2_queryctrl(struct file *filep, void *fh,
 	struct v4l2_event event;
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	if (msm_is_daemon_present() == false)
 		return 0;
 
 =======
 >>>>>>> d9c275b... drivers:media:platform:msm:camera_v2: backport camera_v2 for markw. name: camera_v2_markw
+=======
+	if (msm_is_daemon_present() == false)
+		return 0;
+
+>>>>>>> 351a429... MARKW:msm:camera: Enable/Disable camera daemon
 	if (ctrl->type == V4L2_CTRL_TYPE_MENU) {
 
 		camera_pack_event(filep, MSM_CAMERA_GET_PARM,
@@ -306,12 +330,18 @@ static int camera_v4l2_streamon(struct file *filep, void *fh,
 	rc = vb2_streamon(&sp->vb2_q, buf_type);
 	mutex_unlock(&sp->lock);
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> 351a429... MARKW:msm:camera: Enable/Disable camera daemon
 
 	if (msm_is_daemon_present() == false)
 		return 0;
 
+<<<<<<< HEAD
 =======
 >>>>>>> d9c275b... drivers:media:platform:msm:camera_v2: backport camera_v2 for markw. name: camera_v2_markw
+=======
+>>>>>>> 351a429... MARKW:msm:camera: Enable/Disable camera daemon
 	camera_pack_event(filep, MSM_CAMERA_SET_PARM,
 		MSM_CAMERA_PRIV_STREAM_ON, -1, &event);
 
@@ -328,6 +358,7 @@ static int camera_v4l2_streamoff(struct file *filep, void *fh,
 {
 	struct v4l2_event event;
 <<<<<<< HEAD
+<<<<<<< HEAD
 	int rc = 0;
 	struct camera_v4l2_private *sp = fh_to_private(fh);
 
@@ -342,17 +373,25 @@ static int camera_v4l2_streamoff(struct file *filep, void *fh,
 	}
 =======
 	int rc;
+=======
+	int rc = 0;
+>>>>>>> 351a429... MARKW:msm:camera: Enable/Disable camera daemon
 	struct camera_v4l2_private *sp = fh_to_private(fh);
 
-	camera_pack_event(filep, MSM_CAMERA_SET_PARM,
-		MSM_CAMERA_PRIV_STREAM_OFF, -1, &event);
+	if (msm_is_daemon_present() != false) {
+		camera_pack_event(filep, MSM_CAMERA_SET_PARM,
+			MSM_CAMERA_PRIV_STREAM_OFF, -1, &event);
 
-	rc = msm_post_event(&event, MSM_POST_EVT_TIMEOUT);
-	if (rc < 0)
-		return rc;
-
+<<<<<<< HEAD
 	rc = camera_check_event_status(&event);
 >>>>>>> d9c275b... drivers:media:platform:msm:camera_v2: backport camera_v2 for markw. name: camera_v2_markw
+=======
+		rc = msm_post_event(&event, MSM_POST_EVT_TIMEOUT);
+		if (rc < 0)
+			return rc;
+		rc = camera_check_event_status(&event);
+	}
+>>>>>>> 351a429... MARKW:msm:camera: Enable/Disable camera daemon
 	mutex_lock(&sp->lock);
 	vb2_streamoff(&sp->vb2_q, buf_type);
 	mutex_unlock(&sp->lock);
@@ -365,11 +404,17 @@ static int camera_v4l2_g_fmt_vid_cap_mplane(struct file *filep, void *fh,
 	int rc = -EINVAL;
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	if (msm_is_daemon_present() == false)
 		return 0;
 
 =======
 >>>>>>> d9c275b... drivers:media:platform:msm:camera_v2: backport camera_v2 for markw. name: camera_v2_markw
+=======
+	if (msm_is_daemon_present() == false)
+		return 0;
+
+>>>>>>> 351a429... MARKW:msm:camera: Enable/Disable camera daemon
 	if (pfmt->type == V4L2_BUF_TYPE_VIDEO_CAPTURE_MPLANE) {
 		struct v4l2_event event;
 
@@ -415,6 +460,7 @@ static int camera_v4l2_s_fmt_vid_cap_mplane(struct file *filep, void *fh,
 					user_fmt->plane_sizes[i]);
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 		if (msm_is_daemon_present() != false) {
 			camera_pack_event(filep, MSM_CAMERA_SET_PARM,
 				MSM_CAMERA_PRIV_S_FMT, -1, &event);
@@ -434,20 +480,35 @@ static int camera_v4l2_s_fmt_vid_cap_mplane(struct file *filep, void *fh,
 		rc = msm_post_event(&event, MSM_POST_EVT_TIMEOUT);
 		if (rc < 0)
 			return rc;
+=======
+		if (msm_is_daemon_present() != false) {
+			camera_pack_event(filep, MSM_CAMERA_SET_PARM,
+				MSM_CAMERA_PRIV_S_FMT, -1, &event);
+>>>>>>> 351a429... MARKW:msm:camera: Enable/Disable camera daemon
 
-		rc = camera_check_event_status(&event);
-		if (rc < 0)
-			return rc;
+			rc = msm_post_event(&event, MSM_POST_EVT_TIMEOUT);
+			if (rc < 0)
+				return rc;
 
+<<<<<<< HEAD
 >>>>>>> d9c275b... drivers:media:platform:msm:camera_v2: backport camera_v2 for markw. name: camera_v2_markw
+=======
+			rc = camera_check_event_status(&event);
+			if (rc < 0)
+				return rc;
+		}
+>>>>>>> 351a429... MARKW:msm:camera: Enable/Disable camera daemon
 		sp->is_vb2_valid = 1;
 	}
 
 	return rc;
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 
 >>>>>>> d9c275b... drivers:media:platform:msm:camera_v2: backport camera_v2 for markw. name: camera_v2_markw
+=======
+>>>>>>> 351a429... MARKW:msm:camera: Enable/Disable camera daemon
 }
 
 static int camera_v4l2_try_fmt_vid_cap_mplane(struct file *filep, void *fh,
@@ -482,10 +543,14 @@ static int camera_v4l2_s_parm(struct file *filep, void *fh,
 		return rc;
 
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> 351a429... MARKW:msm:camera: Enable/Disable camera daemon
 	if (msm_is_daemon_present() != false) {
 		rc = msm_post_event(&event, MSM_POST_EVT_TIMEOUT);
 		if (rc < 0)
 			goto error;
+<<<<<<< HEAD
 
 		rc = camera_check_event_status(&event);
 		if (rc < 0)
@@ -501,6 +566,13 @@ static int camera_v4l2_s_parm(struct file *filep, void *fh,
 		goto error;
 
 >>>>>>> d9c275b... drivers:media:platform:msm:camera_v2: backport camera_v2 for markw. name: camera_v2_markw
+=======
+
+		rc = camera_check_event_status(&event);
+		if (rc < 0)
+			goto error;
+	}
+>>>>>>> 351a429... MARKW:msm:camera: Enable/Disable camera daemon
 	/* use stream_id as stream index */
 	parm->parm.capture.extendedmode = sp->stream_id;
 	sp->stream_created = true;
@@ -729,6 +801,9 @@ static int camera_v4l2_open(struct file *filep)
 		}
 
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> 351a429... MARKW:msm:camera: Enable/Disable camera daemon
 		if (msm_is_daemon_present() != false) {
 			camera_pack_event(filep, MSM_CAMERA_NEW_SESSION,
 				0, -1, &event);
@@ -738,6 +813,7 @@ static int camera_v4l2_open(struct file *filep)
 					__func__, rc);
 				goto post_fail;
 			}
+<<<<<<< HEAD
 
 			rc = camera_check_event_status(&event);
 			if (rc < 0)
@@ -758,6 +834,12 @@ static int camera_v4l2_open(struct file *filep)
 					__func__, __LINE__, rc);
 			goto post_fail;
 >>>>>>> d9c275b... drivers:media:platform:msm:camera_v2: backport camera_v2 for markw. name: camera_v2_markw
+=======
+
+			rc = camera_check_event_status(&event);
+			if (rc < 0)
+				goto post_fail;
+>>>>>>> 351a429... MARKW:msm:camera: Enable/Disable camera daemon
 		}
 		/* Enable power collapse latency */
 		msm_pm_qos_update_request(CAMERA_ENABLE_PC_LATENCY);
@@ -809,9 +891,12 @@ static unsigned int camera_v4l2_poll(struct file *filep,
 static int camera_v4l2_close(struct file *filep)
 {
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 	int rc = 0;
 >>>>>>> d9c275b... drivers:media:platform:msm:camera_v2: backport camera_v2 for markw. name: camera_v2_markw
+=======
+>>>>>>> 351a429... MARKW:msm:camera: Enable/Disable camera daemon
 	struct v4l2_event event;
 	struct msm_video_device *pvdev = video_drvdata(filep);
 	struct camera_v4l2_private *sp = fh_to_private(filep->private_data);
@@ -829,14 +914,19 @@ static int camera_v4l2_close(struct file *filep)
 	atomic_set(&pvdev->opened, opn_idx);
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	if (msm_is_daemon_present() != false && sp->stream_created == true) {
 =======
 	if (sp->stream_created == true) {
 >>>>>>> d9c275b... drivers:media:platform:msm:camera_v2: backport camera_v2 for markw. name: camera_v2_markw
+=======
+	if (msm_is_daemon_present() != false && sp->stream_created == true) {
+>>>>>>> 351a429... MARKW:msm:camera: Enable/Disable camera daemon
 		pr_debug("%s: close stream_id=%d\n", __func__, sp->stream_id);
 		camera_pack_event(filep, MSM_CAMERA_SET_PARM,
 			MSM_CAMERA_PRIV_DEL_STREAM, -1, &event);
 		msm_post_event(&event, MSM_POST_EVT_TIMEOUT);
+<<<<<<< HEAD
 <<<<<<< HEAD
 	}
 
@@ -851,13 +941,23 @@ static int camera_v4l2_close(struct file *filep)
 		}
 =======
 		sp->stream_created = false;
+=======
+>>>>>>> 351a429... MARKW:msm:camera: Enable/Disable camera daemon
 	}
 
-	if (atomic_read(&pvdev->opened) == 0) {
-		camera_pack_event(filep, MSM_CAMERA_DEL_SESSION, 0, -1, &event);
-		msm_post_event(&event, MSM_POST_EVT_TIMEOUT);
+	if (sp->stream_created == true)
+		sp->stream_created = false;
 
+<<<<<<< HEAD
 >>>>>>> d9c275b... drivers:media:platform:msm:camera_v2: backport camera_v2 for markw. name: camera_v2_markw
+=======
+	if (atomic_read(&pvdev->opened) == 0) {
+		if (msm_is_daemon_present() != false) {
+			camera_pack_event(filep, MSM_CAMERA_DEL_SESSION,
+				0, -1, &event);
+			msm_post_event(&event, MSM_POST_EVT_TIMEOUT);
+		}
+>>>>>>> 351a429... MARKW:msm:camera: Enable/Disable camera daemon
 		msm_delete_command_ack_q(pvdev->vdev->num, 0);
 		msm_delete_stream(pvdev->vdev->num, sp->stream_id);
 		mutex_unlock(&session->close_lock);
@@ -879,6 +979,9 @@ static int camera_v4l2_close(struct file *filep)
 	camera_v4l2_fh_release(filep);
 
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> 351a429... MARKW:msm:camera: Enable/Disable camera daemon
 	return 0;
 }
 

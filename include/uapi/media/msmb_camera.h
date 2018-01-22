@@ -23,10 +23,8 @@
 #define MSM_CAM_V4L2_IOCTL_NOTIFY_DEBUG \
 	_IOW('V', BASE_VIDIOC_PRIVATE + 34, struct msm_v4l2_event_data)
 
-#ifndef CONFIG_MACH_XIAOMI_MARKW
 #define MSM_CAM_V4L2_IOCTL_DAEMON_DISABLED \
 	_IOW('V', BASE_VIDIOC_PRIVATE + 35, struct msm_v4l2_event_data)
-#endif
 
 #define QCAMERA_DEVICE_GROUP_ID	1
 #define QCAMERA_VNODE_GROUP_ID	2

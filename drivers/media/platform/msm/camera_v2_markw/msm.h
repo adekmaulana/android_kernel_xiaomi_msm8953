@@ -45,10 +45,15 @@
 #define CAMERA_ENABLE_PC_LATENCY PM_QOS_DEFAULT_VALUE
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 extern bool is_daemon_status;
 
 =======
 >>>>>>> d9c275b... drivers:media:platform:msm:camera_v2: backport camera_v2 for markw. name: camera_v2_markw
+=======
+extern bool is_daemon_status;
+
+>>>>>>> 351a429... MARKW:msm:camera: Enable/Disable camera daemon
 struct msm_video_device {
 	struct video_device *vdev;
 	atomic_t opened;
@@ -120,16 +125,24 @@ struct msm_session {
 };
 
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> 351a429... MARKW:msm:camera: Enable/Disable camera daemon
 static inline bool msm_is_daemon_present(void)
 {
 	return is_daemon_status;
 }
+<<<<<<< HEAD
 
 void msm_pm_qos_update_request(int val);
 =======
 void msm_pm_qos_update_request(int val);
 
 >>>>>>> d9c275b... drivers:media:platform:msm:camera_v2: backport camera_v2 for markw. name: camera_v2_markw
+=======
+
+void msm_pm_qos_update_request(int val);
+>>>>>>> 351a429... MARKW:msm:camera: Enable/Disable camera daemon
 int msm_post_event(struct v4l2_event *event, int timeout);
 int  msm_create_session(unsigned int session, struct video_device *vdev);
 int msm_destroy_session(unsigned int session_id);
