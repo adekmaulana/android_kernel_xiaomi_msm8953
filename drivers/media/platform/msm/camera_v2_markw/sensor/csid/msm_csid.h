@@ -21,8 +21,11 @@
 #include "msm_sd.h"
 #include "cam_soc_api.h"
 
+<<<<<<< HEAD
 #define CSID_SOF_DEBUG_COUNT                      3
 
+=======
+>>>>>>> d9c275b... drivers:media:platform:msm:camera_v2: backport camera_v2 for markw. name: camera_v2_markw
 enum csiphy_lane_assign {
 	PHY_LANE_D0,
 	PHY_LANE_CLK,
@@ -114,7 +117,10 @@ struct csid_device {
 	struct msm_camera_csid_params  current_csid_params;
 	uint32_t csid_sof_debug;
 	uint32_t csid_lane_cnt;
+<<<<<<< HEAD
 	uint32_t csid_sof_debug_count;
+=======
+>>>>>>> d9c275b... drivers:media:platform:msm:camera_v2: backport camera_v2 for markw. name: camera_v2_markw
 };
 
 #define VIDIOC_MSM_CSID_RELEASE \

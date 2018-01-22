@@ -67,7 +67,11 @@ struct msm_jpeg_device {
 	struct msm_cam_clk_info *jpeg_clk_info;
 	size_t num_clk;
 	int num_reg;
+<<<<<<< HEAD
 	struct msm_cam_regulator *jpeg_vdd;
+=======
+	struct regulator **jpeg_vdd;
+>>>>>>> d9c275b... drivers:media:platform:msm:camera_v2: backport camera_v2 for markw. name: camera_v2_markw
 	uint32_t hw_version;
 
 	struct device *device;

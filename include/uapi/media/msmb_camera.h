@@ -23,8 +23,10 @@
 #define MSM_CAM_V4L2_IOCTL_NOTIFY_DEBUG \
 	_IOW('V', BASE_VIDIOC_PRIVATE + 34, struct msm_v4l2_event_data)
 
+#ifndef CONFIG_MACH_XIAOMI_MARKW
 #define MSM_CAM_V4L2_IOCTL_DAEMON_DISABLED \
 	_IOW('V', BASE_VIDIOC_PRIVATE + 35, struct msm_v4l2_event_data)
+#endif
 
 #define QCAMERA_DEVICE_GROUP_ID	1
 #define QCAMERA_VNODE_GROUP_ID	2
@@ -208,6 +210,7 @@ struct msm_camera_user_buf_cont_t {
 	unsigned int buf_idx[MSM_CAMERA_MAX_USER_BUFF_CNT];
 };
 
+#ifndef CONFIG_MACH_XIAOMI_MARKW
 struct msm_camera_return_buf {
 	__u32 index;
 	__u32 reserved;
@@ -226,6 +229,6 @@ struct msm_camera_private_ioctl_arg {
 
 #define VIDIOC_MSM_CAMERA_PRIVATE_IOCTL_CMD \
 	_IOWR('V', BASE_VIDIOC_PRIVATE, struct msm_camera_private_ioctl_arg)
-
+#endif
 #endif
 

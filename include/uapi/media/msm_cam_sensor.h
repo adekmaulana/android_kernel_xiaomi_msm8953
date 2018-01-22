@@ -35,7 +35,9 @@
 #define MAX_REGULATOR 5
 
 #define MSM_V4L2_PIX_FMT_META v4l2_fourcc('M', 'E', 'T', 'A') /* META */
+#ifndef CONFIG_MACH_XIAOMI_MARKW
 #define MSM_V4L2_PIX_FMT_META10 v4l2_fourcc('M', 'E', '1', '0') /* META10 */
+#endif
 #define MSM_V4L2_PIX_FMT_SBGGR14 v4l2_fourcc('B', 'G', '1', '4')
 	/* 14  BGBG.. GRGR.. */
 #define MSM_V4L2_PIX_FMT_SGBRG14 v4l2_fourcc('G', 'B', '1', '4')
@@ -306,7 +308,11 @@ struct msm_eeprom_cfg_data {
 	enum eeprom_cfg_type_t cfgtype;
 	uint8_t is_supported;
 	union {
+#ifndef CONFIG_MACH_XIAOMI_MARKW
 		char eeprom_name[MAX_EEPROM_NAME];
+#else
+		char eeprom_name[MAX_SENSOR_NAME];
+#endif
 		struct eeprom_get_t get_data;
 		struct eeprom_read_t read_data;
 		struct eeprom_write_t write_data;
@@ -359,12 +365,14 @@ enum msm_actuator_cfg_type_t {
 	CFG_ACTUATOR_INIT,
 };
 
+#ifndef CONFIG_MACH_XIAOMI_MARKW
 struct msm_ois_opcode {
 	uint32_t prog;
 	uint32_t coeff;
 	uint32_t pheripheral;
 	uint32_t memory;
 };
+#endif
 
 enum msm_ois_cfg_type_t {
 	CFG_OIS_INIT,
@@ -374,10 +382,12 @@ enum msm_ois_cfg_type_t {
 	CFG_OIS_I2C_WRITE_SEQ_TABLE,
 };
 
+#ifndef CONFIG_MACH_XIAOMI_MARKW
 enum msm_ois_cfg_download_type_t {
 	CFG_OIS_DOWNLOAD,
 	CFG_OIS_DATA_CONFIG,
 };
+#endif
 
 enum msm_ois_i2c_operation {
 	MSM_OIS_WRITE = 0,
@@ -477,11 +487,14 @@ enum af_camera_name {
 	ACTUATOR_WEB_CAM_2,
 };
 
+#ifndef CONFIG_MACH_XIAOMI_MARKW
 struct msm_ois_slave_info {
 	char ois_name[MAX_OIS_NAME_SIZE];
 	uint32_t i2c_addr;
 	struct msm_ois_opcode opcode;
 };
+#endif
+
 struct msm_ois_cfg_data {
 	int cfgtype;
 	union {
@@ -490,10 +503,12 @@ struct msm_ois_cfg_data {
 	} cfg;
 };
 
+#ifndef CONFIG_MACH_XIAOMI_MARKW
 struct msm_ois_cfg_download_data {
 	int cfgtype;
 	struct msm_ois_slave_info slave_info;
 };
+#endif
 
 struct msm_actuator_set_position_t {
 	uint16_t number_of_steps;
@@ -599,10 +614,10 @@ struct sensor_init_cfg_data {
 #define VIDIOC_MSM_FLASH_CFG \
 	_IOWR('V', BASE_VIDIOC_PRIVATE + 13, struct msm_flash_cfg_data_t)
 
+#ifndef CONFIG_MACH_XIAOMI_MARKW
 #define VIDIOC_MSM_OIS_CFG_DOWNLOAD \
 	_IOWR('V', BASE_VIDIOC_PRIVATE + 14, struct msm_ois_cfg_download_data)
 
-#ifndef CONFIG_MACH_XIAOMI_MARKW
 #define VIDIOC_MSM_IR_LED_CFG \
 	_IOWR('V', BASE_VIDIOC_PRIVATE + 15, struct msm_ir_led_cfg_data_t)
 

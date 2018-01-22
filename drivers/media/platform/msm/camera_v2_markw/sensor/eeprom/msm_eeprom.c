@@ -562,6 +562,10 @@ static int eeprom_init_config(struct msm_eeprom_ctrl_t *e_ctrl,
 	rc = eeprom_parse_memory_map(e_ctrl, memory_map_arr);
 	if (rc < 0) {
 		pr_err("%s::%d memory map parse failed\n", __func__, __LINE__);
+<<<<<<< HEAD
+=======
+		goto free_mem;
+>>>>>>> d9c275b... drivers:media:platform:msm:camera_v2: backport camera_v2 for markw. name: camera_v2_markw
 	}
 
 	rc = msm_camera_power_down(power_info, e_ctrl->eeprom_device_type,
@@ -569,6 +573,10 @@ static int eeprom_init_config(struct msm_eeprom_ctrl_t *e_ctrl,
 	if (rc < 0) {
 		pr_err("%s:%d Power down failed rc %d\n",
 			__func__, __LINE__, rc);
+<<<<<<< HEAD
+=======
+		goto free_mem;
+>>>>>>> d9c275b... drivers:media:platform:msm:camera_v2: backport camera_v2 for markw. name: camera_v2_markw
 	}
 
 free_mem:
@@ -694,7 +702,11 @@ static long msm_eeprom_subdev_ioctl(struct v4l2_subdev *sd,
 	struct msm_eeprom_ctrl_t *e_ctrl = v4l2_get_subdevdata(sd);
 	void __user *argp = (void __user *)arg;
 	CDBG("%s E\n", __func__);
+<<<<<<< HEAD
 	CDBG("%s:%d a_ctrl %pK argp %pK\n", __func__, __LINE__, e_ctrl, argp);
+=======
+	CDBG("%s:%d a_ctrl %p argp %p\n", __func__, __LINE__, e_ctrl, argp);
+>>>>>>> d9c275b... drivers:media:platform:msm:camera_v2: backport camera_v2 for markw. name: camera_v2_markw
 	switch (cmd) {
 	case VIDIOC_MSM_SENSOR_GET_SUBDEV_ID:
 		return msm_eeprom_get_subdev_id(e_ctrl, argp);
@@ -793,7 +805,11 @@ static int msm_eeprom_i2c_probe(struct i2c_client *client,
 	}
 	e_ctrl->eeprom_v4l2_subdev_ops = &msm_eeprom_subdev_ops;
 	e_ctrl->eeprom_mutex = &msm_eeprom_mutex;
+<<<<<<< HEAD
 	CDBG("%s client = 0x%pK\n", __func__, client);
+=======
+	CDBG("%s client = 0x%p\n", __func__, client);
+>>>>>>> d9c275b... drivers:media:platform:msm:camera_v2: backport camera_v2 for markw. name: camera_v2_markw
 	e_ctrl->eboard_info = (struct msm_eeprom_board_info *)(id->driver_data);
 	if (!e_ctrl->eboard_info) {
 		pr_err("%s:%d board info NULL\n", __func__, __LINE__);
@@ -815,8 +831,12 @@ static int msm_eeprom_i2c_probe(struct i2c_client *client,
 			e_ctrl->eboard_info->i2c_slaveaddr;
 
 	/*Get clocks information*/
+<<<<<<< HEAD
 	rc = msm_camera_i2c_dev_get_clk_info(
 		&e_ctrl->i2c_client.client->dev,
+=======
+	rc = msm_camera_get_clk_info(e_ctrl->pdev,
+>>>>>>> d9c275b... drivers:media:platform:msm:camera_v2: backport camera_v2 for markw. name: camera_v2_markw
 		&e_ctrl->eboard_info->power_info.clk_info,
 		&e_ctrl->eboard_info->power_info.clk_ptr,
 		&e_ctrl->eboard_info->power_info.clk_info_size);
@@ -867,7 +887,11 @@ static int msm_eeprom_i2c_remove(struct i2c_client *client)
 		return 0;
 	}
 
+<<<<<<< HEAD
 	msm_camera_i2c_dev_put_clk_info(&e_ctrl->i2c_client.client->dev,
+=======
+	msm_camera_put_clk_info(e_ctrl->pdev,
+>>>>>>> d9c275b... drivers:media:platform:msm:camera_v2: backport camera_v2 for markw. name: camera_v2_markw
 		&e_ctrl->eboard_info->power_info.clk_info,
 		&e_ctrl->eboard_info->power_info.clk_ptr,
 		e_ctrl->eboard_info->power_info.clk_info_size);
@@ -1122,8 +1146,12 @@ static int msm_eeprom_spi_setup(struct spi_device *spi)
 	power_info->dev = &spi->dev;
 
 	/*Get clocks information*/
+<<<<<<< HEAD
 	rc = msm_camera_i2c_dev_get_clk_info(
 		&spi->dev,
+=======
+	rc = msm_camera_get_clk_info(e_ctrl->pdev,
+>>>>>>> d9c275b... drivers:media:platform:msm:camera_v2: backport camera_v2 for markw. name: camera_v2_markw
 		&power_info->clk_info,
 		&power_info->clk_ptr,
 		&power_info->clk_info_size);
@@ -1209,11 +1237,14 @@ power_down:
 	msm_camera_power_down(power_info, e_ctrl->eeprom_device_type,
 		&e_ctrl->i2c_client);
 caldata_free:
+<<<<<<< HEAD
 	msm_camera_i2c_dev_put_clk_info(
 		&e_ctrl->i2c_client.spi_client->spi_master->dev,
 		&e_ctrl->eboard_info->power_info.clk_info,
 		&e_ctrl->eboard_info->power_info.clk_ptr,
 		e_ctrl->eboard_info->power_info.clk_info_size);
+=======
+>>>>>>> d9c275b... drivers:media:platform:msm:camera_v2: backport camera_v2 for markw. name: camera_v2_markw
 	kfree(e_ctrl->cal_data.mapdata);
 	kfree(e_ctrl->cal_data.map);
 board_free:
@@ -1264,8 +1295,12 @@ static int msm_eeprom_spi_remove(struct spi_device *sdev)
 		pr_err("%s: eboard_info is NULL\n", __func__);
 		return 0;
 	}
+<<<<<<< HEAD
 	msm_camera_i2c_dev_put_clk_info(
 		&e_ctrl->i2c_client.spi_client->spi_master->dev,
+=======
+	msm_camera_put_clk_info(e_ctrl->pdev,
+>>>>>>> d9c275b... drivers:media:platform:msm:camera_v2: backport camera_v2 for markw. name: camera_v2_markw
 		&e_ctrl->eboard_info->power_info.clk_info,
 		&e_ctrl->eboard_info->power_info.clk_ptr,
 		e_ctrl->eboard_info->power_info.clk_info_size);
@@ -1531,7 +1566,11 @@ static long msm_eeprom_subdev_ioctl32(struct v4l2_subdev *sd,
 	void __user *argp = (void __user *)arg;
 
 	CDBG("%s E\n", __func__);
+<<<<<<< HEAD
 	CDBG("%s:%d a_ctrl %pK argp %pK\n", __func__, __LINE__, e_ctrl, argp);
+=======
+	CDBG("%s:%d a_ctrl %p argp %p\n", __func__, __LINE__, e_ctrl, argp);
+>>>>>>> d9c275b... drivers:media:platform:msm:camera_v2: backport camera_v2 for markw. name: camera_v2_markw
 	switch (cmd) {
 	case VIDIOC_MSM_SENSOR_GET_SUBDEV_ID:
 		return msm_eeprom_get_subdev_id(e_ctrl, argp);

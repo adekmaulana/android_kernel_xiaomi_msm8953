@@ -90,7 +90,11 @@ struct msm_camera_cci_gpio_cfg {
 };
 
 struct msm_camera_cci_i2c_read_cfg {
+<<<<<<< HEAD
 	uint32_t addr;
+=======
+	uint16_t addr;
+>>>>>>> d9c275b... drivers:media:platform:msm:camera_v2: backport camera_v2 for markw. name: camera_v2_markw
 	enum msm_camera_i2c_reg_addr_type addr_type;
 	uint8_t *data;
 	uint16_t num_byte;

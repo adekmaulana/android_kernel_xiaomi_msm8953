@@ -1,4 +1,8 @@
+<<<<<<< HEAD
 /* Copyright (c) 2013-2016, The Linux Foundation. All rights reserved.
+=======
+/* Copyright (c) 2013-2015, The Linux Foundation. All rights reserved.
+>>>>>>> d9c275b... drivers:media:platform:msm:camera_v2: backport camera_v2 for markw. name: camera_v2_markw
  *
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License version 2 and
@@ -29,7 +33,10 @@
 #include "msm_isp_axi_util.h"
 #include "msm_isp_stats_util.h"
 #include "msm_sd.h"
+<<<<<<< HEAD
 #include "msm_isp48.h"
+=======
+>>>>>>> d9c275b... drivers:media:platform:msm:camera_v2: backport camera_v2 for markw. name: camera_v2_markw
 #include "msm_isp47.h"
 #include "msm_isp46.h"
 #include "msm_isp44.h"
@@ -331,6 +338,7 @@ void msm_isp_update_req_history(uint32_t client, uint64_t ab,
 	spin_unlock(&req_history_lock);
 }
 
+<<<<<<< HEAD
 void msm_isp_update_last_overflow_ab_ib(struct vfe_device *vfe_dev)
 {
 	spin_lock(&req_history_lock);
@@ -342,6 +350,8 @@ void msm_isp_update_last_overflow_ab_ib(struct vfe_device *vfe_dev)
 }
 
 
+=======
+>>>>>>> d9c275b... drivers:media:platform:msm:camera_v2: backport camera_v2 for markw. name: camera_v2_markw
 #ifdef CONFIG_COMPAT
 static long msm_isp_dqevent(struct file *file, struct v4l2_fh *vfh, void *arg)
 {
@@ -593,7 +603,12 @@ int vfe_hw_probe(struct platform_device *pdev)
 
 	vfe_dev->pdev = pdev;
 
+<<<<<<< HEAD
 	rc = vfe_dev->hw_info->vfe_ops.platform_ops.get_platform_data(vfe_dev);
+=======
+
+	rc = vfe_dev->hw_info->vfe_ops.core_ops.get_platform_data(vfe_dev);
+>>>>>>> d9c275b... drivers:media:platform:msm:camera_v2: backport camera_v2 for markw. name: camera_v2_markw
 	if (rc < 0) {
 		pr_err("%s: failed to get platform resources\n", __func__);
 		rc = -ENOMEM;

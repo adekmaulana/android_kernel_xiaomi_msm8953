@@ -73,6 +73,7 @@ enum msm_ispif_csid {
 	CSID_MAX
 };
 
+#ifndef CONFIG_MACH_XIAOMI_MARKW
 enum msm_ispif_pixel_odd_even {
 	PIX_EVEN,
 	PIX_ODD
@@ -89,7 +90,9 @@ struct msm_ispif_pack_cfg {
 	int pixel_swap_en;
 	enum msm_ispif_pixel_odd_even even_odd_sel;
 	enum msm_ispif_pixel_pack_mode pack_mode;
+
 };
+#endif
 
 struct msm_ispif_params_entry {
 	enum msm_ispif_vfe_intf vfe_intf;
@@ -102,11 +105,13 @@ struct msm_ispif_params_entry {
 	uint16_t crop_end_pixel;
 };
 
+#ifndef CONFIG_MACH_XIAOMI_MARKW
 struct msm_ispif_param_data_ext {
 	uint32_t num;
 	struct msm_ispif_params_entry entries[MAX_PARAM_ENTRIES];
 	struct msm_ispif_pack_cfg pack_cfg[CID_MAX];
 };
+#endif
 
 struct msm_ispif_param_data {
 	uint32_t num;
@@ -136,7 +141,9 @@ enum ispif_cfg_type_t {
 	ISPIF_RELEASE,
 	ISPIF_ENABLE_REG_DUMP,
 	ISPIF_SET_VFE_INFO,
+#ifndef CONFIG_MACH_XIAOMI_MARKW
 	ISPIF_CFG2,
+#endif
 };
 
 struct ispif_cfg_data {
@@ -149,6 +156,7 @@ struct ispif_cfg_data {
 	};
 };
 
+#ifndef CONFIG_MACH_XIAOMI_MARKW
 struct ispif_cfg_data_ext {
 	enum ispif_cfg_type_t cfg_type;
 	void __user *data;
@@ -156,12 +164,15 @@ struct ispif_cfg_data_ext {
 };
 
 #define ISPIF_RDI_PACK_MODE_SUPPORT 1
+#endif
 
 #define VIDIOC_MSM_ISPIF_CFG \
 	_IOWR('V', BASE_VIDIOC_PRIVATE, struct ispif_cfg_data)
 
+#ifndef CONFIG_MACH_XIAOMI_MARKW
 #define VIDIOC_MSM_ISPIF_CFG_EXT \
 	_IOWR('V', BASE_VIDIOC_PRIVATE+1, struct ispif_cfg_data_ext)
+#endif
 
 #endif
 

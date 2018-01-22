@@ -334,7 +334,11 @@ struct msm_jpegdma_device {
 	void __iomem *iomem_base[MSM_JPEGDMA_IOMEM_LAST];
 
 	struct resource *irq;
+<<<<<<< HEAD
 	struct msm_cam_regulator *dma_vdd;
+=======
+	struct regulator **vdd;
+>>>>>>> d9c275b... drivers:media:platform:msm:camera_v2: backport camera_v2 for markw. name: camera_v2_markw
 	int num_reg;
 
 	struct clk **clk;

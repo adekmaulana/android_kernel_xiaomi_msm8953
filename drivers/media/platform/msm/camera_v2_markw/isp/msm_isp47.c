@@ -15,6 +15,10 @@
 #include <linux/ratelimit.h>
 
 
+<<<<<<< HEAD
+=======
+#include "msm_isp47.h"
+>>>>>>> d9c275b... drivers:media:platform:msm:camera_v2: backport camera_v2 for markw. name: camera_v2_markw
 #include "msm_isp_util.h"
 #include "msm_isp_axi_util.h"
 #include "msm_isp_stats_util.h"
@@ -22,9 +26,12 @@
 #include "msm.h"
 #include "msm_camera_io_util.h"
 #include "cam_hw_ops.h"
+<<<<<<< HEAD
 #include "msm_isp47.h"
 #include "cam_soc_api.h"
 #include "msm_isp48.h"
+=======
+>>>>>>> d9c275b... drivers:media:platform:msm:camera_v2: backport camera_v2 for markw. name: camera_v2_markw
 
 #undef CDBG
 #define CDBG(fmt, args...) pr_debug(fmt, ##args)
@@ -47,6 +54,7 @@
 #define VFE47_PING_PONG_BASE(wm, ping_pong) \
 	(VFE47_WM_BASE(wm) + 0x4 * (1 + (((~ping_pong) & 0x1) * 2)))
 #define SHIFT_BF_SCALE_BIT 1
+<<<<<<< HEAD
 
 #define VFE47_BUS_RD_CGC_OVERRIDE_BIT 16
 
@@ -58,6 +66,24 @@
 #define UB_CFG_POLICY MSM_WM_UB_CFG_DEFAULT
 #endif
 
+=======
+#define VFE47_NUM_STATS_COMP 2
+
+#define VFE47_BUS_RD_CGC_OVERRIDE_BIT 16
+
+/*composite mask order*/
+#define STATS_COMP_IDX_HDR_BE    0
+#define STATS_COMP_IDX_BG        1
+#define STATS_COMP_IDX_BF        2
+#define STATS_COMP_IDX_HDR_BHIST 3
+#define STATS_COMP_IDX_RS        4
+#define STATS_COMP_IDX_CS        5
+#define STATS_COMP_IDX_IHIST     6
+#define STATS_COMP_IDX_BHIST     7
+#define STATS_COMP_IDX_AEC_BG    8
+#define VFE47_VBIF_CLK_OFFSET    0x4
+
+>>>>>>> d9c275b... drivers:media:platform:msm:camera_v2: backport camera_v2 for markw. name: camera_v2_markw
 static uint32_t stats_base_addr[] = {
 	0x1D4, /* HDR_BE */
 	0x254, /* BG(AWB_BG) */
@@ -93,12 +119,17 @@ static uint8_t stats_irq_map_comp_mask[] = {
 	23, /* BHIST (SKIN_BHIST) */
 	15, /* AEC_BG */
 };
+<<<<<<< HEAD
+=======
+#define VFE47_NUM_STATS_TYPE 9
+>>>>>>> d9c275b... drivers:media:platform:msm:camera_v2: backport camera_v2 for markw. name: camera_v2_markw
 #define VFE47_STATS_BASE(idx) (stats_base_addr[idx])
 #define VFE47_STATS_PING_PONG_BASE(idx, ping_pong) \
 	(VFE47_STATS_BASE(idx) + 0x4 * \
 	(~(ping_pong >> (stats_pingpong_offset_map[idx])) & 0x1) * 2)
 
 #define VFE47_SRC_CLK_DTSI_IDX 5
+<<<<<<< HEAD
 #define HANDLE_TO_IDX(handle) (handle & 0xFF)
 
 static struct msm_bus_vectors msm_isp_init_vectors[] = {
@@ -187,6 +218,39 @@ void msm_vfe47_config_irq(struct vfe_device *vfe_dev,
 				vfe_dev->vfe_base + 0x5C);
 	msm_camera_io_w_mb(vfe_dev->irq1_mask,
 				vfe_dev->vfe_base + 0x60);
+=======
+
+static struct msm_cam_clk_info msm_vfe47_clk_info[VFE_CLK_INFO_MAX];
+
+static void msm_vfe47_config_irq(struct vfe_device *vfe_dev,
+		uint32_t irq0_mask, uint32_t irq1_mask,
+		enum msm_isp_irq_operation oper)
+{
+	uint32_t val;
+
+	switch (oper) {
+	case MSM_ISP_IRQ_ENABLE:
+		val = msm_camera_io_r(vfe_dev->vfe_base + 0x5C);
+		val |= irq0_mask;
+		msm_camera_io_w_mb(val, vfe_dev->vfe_base + 0x5C);
+		val = msm_camera_io_r(vfe_dev->vfe_base + 0x60);
+		val |= irq1_mask;
+		msm_camera_io_w_mb(val, vfe_dev->vfe_base + 0x60);
+		break;
+	case MSM_ISP_IRQ_DISABLE:
+		val = msm_camera_io_r(vfe_dev->vfe_base + 0x5C);
+		val &= ~irq0_mask;
+		msm_camera_io_w_mb(val, vfe_dev->vfe_base + 0x5C);
+		val = msm_camera_io_r(vfe_dev->vfe_base + 0x60);
+		val &= ~irq1_mask;
+		msm_camera_io_w_mb(val, vfe_dev->vfe_base + 0x60);
+		break;
+	case MSM_ISP_IRQ_SET:
+		msm_camera_io_w_mb(irq0_mask, vfe_dev->vfe_base + 0x5C);
+		msm_camera_io_w_mb(irq1_mask, vfe_dev->vfe_base + 0x60);
+		break;
+	}
+>>>>>>> d9c275b... drivers:media:platform:msm:camera_v2: backport camera_v2 for markw. name: camera_v2_markw
 }
 
 static int32_t msm_vfe47_init_dt_parms(struct vfe_device *vfe_dev,
@@ -252,6 +316,7 @@ static int32_t msm_vfe47_init_dt_parms(struct vfe_device *vfe_dev,
 	return 0;
 }
 
+<<<<<<< HEAD
 static enum cam_ahb_clk_vote msm_isp47_get_cam_clk_vote(
 	 enum msm_vfe_ahb_clk_vote vote)
 {
@@ -290,6 +355,9 @@ static int msm_isp47_ahb_clk_cfg(struct vfe_device *vfe_dev,
 }
 
 int msm_vfe47_init_hardware(struct vfe_device *vfe_dev)
+=======
+static int msm_vfe47_init_hardware(struct vfe_device *vfe_dev)
+>>>>>>> d9c275b... drivers:media:platform:msm:camera_v2: backport camera_v2 for markw. name: camera_v2_markw
 {
 	int rc = -1;
 	enum cam_ahb_clk_client id;
@@ -299,6 +367,7 @@ int msm_vfe47_init_hardware(struct vfe_device *vfe_dev)
 	else
 		id = CAM_AHB_CLIENT_VFE1;
 
+<<<<<<< HEAD
 	rc = vfe_dev->hw_info->vfe_ops.platform_ops.enable_regulators(
 								vfe_dev, 1);
 	if (rc)
@@ -309,11 +378,14 @@ int msm_vfe47_init_hardware(struct vfe_device *vfe_dev)
 	if (rc)
 		goto clk_enable_failed;
 
+=======
+>>>>>>> d9c275b... drivers:media:platform:msm:camera_v2: backport camera_v2 for markw. name: camera_v2_markw
 	rc = cam_config_ahb_clk(NULL, 0, id, CAM_AHB_SVS_VOTE);
 	if (rc < 0) {
 		pr_err("%s: failed to vote for AHB\n", __func__);
 		goto ahb_vote_fail;
 	}
+<<<<<<< HEAD
 	vfe_dev->ahb_vote = CAM_AHB_SVS_VOTE;
 
 	vfe_dev->common_data->dual_vfe_res->vfe_base[vfe_dev->pdev->id] =
@@ -345,12 +417,164 @@ enable_regulators_failed:
 }
 
 void msm_vfe47_release_hardware(struct vfe_device *vfe_dev)
+=======
+
+	rc = msm_isp_init_bandwidth_mgr(ISP_VFE0 + vfe_dev->pdev->id);
+	if (rc < 0) {
+		pr_err("%s: Bandwidth registration Failed!\n", __func__);
+		goto bus_scale_register_failed;
+	}
+
+	if (!vfe_dev->fs_vfe) {
+		vfe_dev->fs_vfe = regulator_get(&vfe_dev->pdev->dev, "vdd");
+		if (IS_ERR(vfe_dev->fs_vfe)) {
+			pr_err("%s: Regulator vfe get failed %ld\n", __func__,
+			PTR_ERR(vfe_dev->fs_vfe));
+			rc = -ENODEV;
+			goto bus_scale_register_failed;
+		}
+	}
+
+	if (!vfe_dev->fs_camss) {
+		vfe_dev->fs_camss = regulator_get(&vfe_dev->pdev->dev,
+			"camss-vdd");
+		if (IS_ERR(vfe_dev->fs_camss)) {
+			pr_err("%s: Regulator camss get failed %ld\n", __func__,
+				PTR_ERR(vfe_dev->fs_camss));
+			rc = -ENODEV;
+			goto camss_vdd_regulator_failed;
+		}
+	}
+
+	if (!vfe_dev->fs_mmagic_camss) {
+		vfe_dev->fs_mmagic_camss = regulator_get(&vfe_dev->pdev->dev,
+			"mmagic-vdd");
+		if (IS_ERR(vfe_dev->fs_mmagic_camss)) {
+			pr_err("%s: Regulator mmagic get failed %ld\n",
+				__func__, PTR_ERR(vfe_dev->fs_mmagic_camss));
+			rc = -ENODEV;
+			goto mmagic_vdd_regulator_failed;
+		}
+	}
+
+
+	if (vfe_dev->fs_mmagic_camss) {
+		rc = regulator_enable(vfe_dev->fs_mmagic_camss);
+		if (rc) {
+			pr_err("%s: Regulator enable mmagic camss failed\n",
+				__func__);
+			goto fs_mmagic_failed;
+		}
+	}
+
+	if (vfe_dev->fs_camss) {
+		rc = regulator_enable(vfe_dev->fs_camss);
+		if (rc) {
+			pr_err("%s: Regulator enable camss failed\n", __func__);
+			goto fs_camss_failed;
+		}
+	}
+
+	if (vfe_dev->fs_vfe) {
+		rc = regulator_enable(vfe_dev->fs_vfe);
+		if (rc) {
+			pr_err("%s: Regulator enable failed\n", __func__);
+			goto fs_vfe_failed;
+		}
+	}
+
+	rc = msm_isp_get_clk_info(vfe_dev, vfe_dev->pdev, msm_vfe47_clk_info);
+	if (rc < 0) {
+		pr_err("msm_isp_get_clk_info() failed\n");
+		goto clk_enable_failed;
+	}
+	if (vfe_dev->num_clk <= 0) {
+		pr_err("%s: Invalid num of clock\n", __func__);
+		goto clk_enable_failed;
+	} else {
+		vfe_dev->vfe_clk =
+			kzalloc(sizeof(struct clk *) * vfe_dev->num_clk,
+			GFP_KERNEL);
+		if (!vfe_dev->vfe_clk) {
+			pr_err("%s:%d No memory\n", __func__, __LINE__);
+			return -ENOMEM;
+		}
+	}
+	rc = msm_cam_clk_enable(&vfe_dev->pdev->dev, msm_vfe47_clk_info,
+		vfe_dev->vfe_clk, vfe_dev->num_clk, 1);
+	if (rc < 0)
+		goto clk_enable_failed;
+
+	vfe_dev->vfe_base = ioremap(vfe_dev->vfe_mem->start,
+		resource_size(vfe_dev->vfe_mem));
+	if (!vfe_dev->vfe_base) {
+		rc = -ENOMEM;
+		pr_err("%s: vfe ioremap failed\n", __func__);
+		goto vfe_remap_failed;
+	}
+	vfe_dev->common_data->dual_vfe_res->vfe_base[vfe_dev->pdev->id] =
+		vfe_dev->vfe_base;
+
+	vfe_dev->vfe_vbif_base = ioremap(vfe_dev->vfe_vbif_mem->start,
+		resource_size(vfe_dev->vfe_vbif_mem));
+	if (!vfe_dev->vfe_vbif_base) {
+		rc = -ENOMEM;
+		pr_err("%s: vfe ioremap failed\n", __func__);
+		goto vbif_remap_failed;
+	}
+
+	rc = request_irq(vfe_dev->vfe_irq->start, msm_isp_process_irq,
+		IRQF_TRIGGER_RISING, "vfe", vfe_dev);
+	if (rc < 0) {
+		pr_err("%s: irq request failed\n", __func__);
+		goto irq_req_failed;
+	}
+	return rc;
+irq_req_failed:
+	iounmap(vfe_dev->vfe_vbif_base);
+	vfe_dev->vfe_vbif_base = NULL;
+vbif_remap_failed:
+	iounmap(vfe_dev->vfe_base);
+	vfe_dev->vfe_base = NULL;
+vfe_remap_failed:
+	msm_cam_clk_enable(&vfe_dev->pdev->dev, msm_vfe47_clk_info,
+		vfe_dev->vfe_clk, vfe_dev->num_clk, 0);
+clk_enable_failed:
+	if (vfe_dev->fs_vfe)
+		regulator_disable(vfe_dev->fs_vfe);
+	kfree(vfe_dev->vfe_clk);
+fs_vfe_failed:
+	if (vfe_dev->fs_camss)
+		regulator_disable(vfe_dev->fs_camss);
+fs_camss_failed:
+	if (vfe_dev->fs_mmagic_camss)
+		regulator_disable(vfe_dev->fs_mmagic_camss);
+fs_mmagic_failed:
+	regulator_put(vfe_dev->fs_mmagic_camss);
+	vfe_dev->fs_mmagic_camss = NULL;
+mmagic_vdd_regulator_failed:
+	regulator_put(vfe_dev->fs_camss);
+	vfe_dev->fs_camss = NULL;
+camss_vdd_regulator_failed:
+	regulator_put(vfe_dev->fs_vfe);
+	vfe_dev->fs_vfe = NULL;
+	msm_isp_deinit_bandwidth_mgr(ISP_VFE0 + vfe_dev->pdev->id);
+bus_scale_register_failed:
+	if (cam_config_ahb_clk(NULL, 0, id, CAM_AHB_SUSPEND_VOTE) < 0)
+		pr_err("%s: failed to remove vote for AHB\n", __func__);
+ahb_vote_fail:
+	return rc;
+}
+
+static void msm_vfe47_release_hardware(struct vfe_device *vfe_dev)
+>>>>>>> d9c275b... drivers:media:platform:msm:camera_v2: backport camera_v2 for markw. name: camera_v2_markw
 {
 	enum cam_ahb_clk_client id;
 
 	/* when closing node, disable all irq */
 	vfe_dev->irq0_mask = 0;
 	vfe_dev->irq1_mask = 0;
+<<<<<<< HEAD
 	vfe_dev->hw_info->vfe_ops.irq_ops.config_irq(vfe_dev,
 				vfe_dev->irq0_mask, vfe_dev->irq1_mask,
 				MSM_ISP_IRQ_SET);
@@ -361,6 +585,39 @@ void msm_vfe47_release_hardware(struct vfe_device *vfe_dev)
 	vfe_dev->common_data->dual_vfe_res->vfe_base[vfe_dev->pdev->id] = NULL;
 
 	msm_isp_update_bandwidth(ISP_VFE0 + vfe_dev->pdev->id, 0, 0);
+=======
+	msm_vfe47_config_irq(vfe_dev, vfe_dev->irq0_mask, vfe_dev->irq1_mask,
+				MSM_ISP_IRQ_SET);
+
+	disable_irq(vfe_dev->vfe_irq->start);
+	free_irq(vfe_dev->vfe_irq->start, vfe_dev);
+	tasklet_kill(&vfe_dev->vfe_tasklet);
+	msm_isp_flush_tasklet(vfe_dev);
+	iounmap(vfe_dev->vfe_vbif_base);
+	vfe_dev->vfe_vbif_base = NULL;
+	vfe_dev->common_data->dual_vfe_res->vfe_base[vfe_dev->pdev->id] = NULL;
+	msm_cam_clk_enable(&vfe_dev->pdev->dev, msm_vfe47_clk_info,
+		vfe_dev->vfe_clk, vfe_dev->num_clk, 0);
+	iounmap(vfe_dev->vfe_base);
+	vfe_dev->vfe_base = NULL;
+	kfree(vfe_dev->vfe_clk);
+	if (vfe_dev->fs_vfe) {
+		regulator_disable(vfe_dev->fs_vfe);
+		regulator_put(vfe_dev->fs_vfe);
+		vfe_dev->fs_vfe = NULL;
+	}
+	if (vfe_dev->fs_camss) {
+		regulator_disable(vfe_dev->fs_camss);
+		regulator_put(vfe_dev->fs_camss);
+		vfe_dev->fs_camss = NULL;
+	}
+	if (vfe_dev->fs_mmagic_camss) {
+		regulator_disable(vfe_dev->fs_mmagic_camss);
+		regulator_put(vfe_dev->fs_mmagic_camss);
+		vfe_dev->fs_mmagic_camss = NULL;
+	}
+	msm_isp_deinit_bandwidth_mgr(ISP_VFE0 + vfe_dev->pdev->id);
+>>>>>>> d9c275b... drivers:media:platform:msm:camera_v2: backport camera_v2 for markw. name: camera_v2_markw
 
 	if (vfe_dev->pdev->id == 0)
 		id = CAM_AHB_CLIENT_VFE0;
@@ -369,6 +626,7 @@ void msm_vfe47_release_hardware(struct vfe_device *vfe_dev)
 
 	if (cam_config_ahb_clk(NULL, 0, id, CAM_AHB_SUSPEND_VOTE) < 0)
 		pr_err("%s: failed to vote for AHB\n", __func__);
+<<<<<<< HEAD
 
 	vfe_dev->ahb_vote = CAM_AHB_SUSPEND_VOTE;
 
@@ -378,6 +636,11 @@ void msm_vfe47_release_hardware(struct vfe_device *vfe_dev)
 }
 
 void msm_vfe47_init_hardware_reg(struct vfe_device *vfe_dev)
+=======
+}
+
+static void msm_vfe47_init_hardware_reg(struct vfe_device *vfe_dev)
+>>>>>>> d9c275b... drivers:media:platform:msm:camera_v2: backport camera_v2 for markw. name: camera_v2_markw
 {
 	struct msm_vfe_hw_init_parms qos_parms;
 	struct msm_vfe_hw_init_parms vbif_parms;
@@ -405,6 +668,7 @@ void msm_vfe47_init_hardware_reg(struct vfe_device *vfe_dev)
 	/* BUS_CFG */
 	msm_camera_io_w(0x00000101, vfe_dev->vfe_base + 0x84);
 	/* IRQ_MASK/CLEAR */
+<<<<<<< HEAD
 	msm_vfe47_config_irq(vfe_dev, 0x810000E0, 0xFFFFFF7E,
 				MSM_ISP_IRQ_ENABLE);
 	msm_camera_io_w(0xFFFFFFFF, vfe_dev->vfe_base + 0x64);
@@ -415,13 +679,32 @@ void msm_vfe47_init_hardware_reg(struct vfe_device *vfe_dev)
 void msm_vfe47_clear_status_reg(struct vfe_device *vfe_dev)
 {
 	msm_vfe47_config_irq(vfe_dev, 0x80000000, 0x0,
+=======
+	vfe_dev->irq0_mask = 0xE00000F3;
+	vfe_dev->irq1_mask = 0xFFFFFFFF;
+	msm_vfe47_config_irq(vfe_dev, vfe_dev->irq0_mask, vfe_dev->irq1_mask,
+				MSM_ISP_IRQ_SET);
+	msm_camera_io_w(0xFFFFFFFF, vfe_dev->vfe_base + 0x64);
+	msm_camera_io_w_mb(0xFFFFFFFF, vfe_dev->vfe_base + 0x68);
+}
+
+static void msm_vfe47_clear_status_reg(struct vfe_device *vfe_dev)
+{
+	vfe_dev->irq0_mask = 0x80000000;
+	vfe_dev->irq1_mask = 0x0;
+	msm_vfe47_config_irq(vfe_dev, vfe_dev->irq0_mask, vfe_dev->irq1_mask,
+>>>>>>> d9c275b... drivers:media:platform:msm:camera_v2: backport camera_v2 for markw. name: camera_v2_markw
 				MSM_ISP_IRQ_SET);
 	msm_camera_io_w(0xFFFFFFFF, vfe_dev->vfe_base + 0x64);
 	msm_camera_io_w_mb(0xFFFFFFFF, vfe_dev->vfe_base + 0x68);
 	msm_camera_io_w_mb(0x1, vfe_dev->vfe_base + 0x58);
 }
 
+<<<<<<< HEAD
 void msm_vfe47_process_reset_irq(struct vfe_device *vfe_dev,
+=======
+static void msm_vfe47_process_reset_irq(struct vfe_device *vfe_dev,
+>>>>>>> d9c275b... drivers:media:platform:msm:camera_v2: backport camera_v2 for markw. name: camera_v2_markw
 	uint32_t irq_status0, uint32_t irq_status1)
 {
 	if (irq_status0 & (1 << 31)) {
@@ -430,7 +713,11 @@ void msm_vfe47_process_reset_irq(struct vfe_device *vfe_dev,
 	}
 }
 
+<<<<<<< HEAD
 void msm_vfe47_process_halt_irq(struct vfe_device *vfe_dev,
+=======
+static void msm_vfe47_process_halt_irq(struct vfe_device *vfe_dev,
+>>>>>>> d9c275b... drivers:media:platform:msm:camera_v2: backport camera_v2 for markw. name: camera_v2_markw
 	uint32_t irq_status0, uint32_t irq_status1)
 {
 	uint32_t val = 0;
@@ -445,7 +732,11 @@ void msm_vfe47_process_halt_irq(struct vfe_device *vfe_dev,
 	msm_camera_io_w(val, vfe_dev->vfe_vbif_base + VFE47_VBIF_CLK_OFFSET);
 }
 
+<<<<<<< HEAD
 void msm_vfe47_process_input_irq(struct vfe_device *vfe_dev,
+=======
+static void msm_vfe47_process_input_irq(struct vfe_device *vfe_dev,
+>>>>>>> d9c275b... drivers:media:platform:msm:camera_v2: backport camera_v2 for markw. name: camera_v2_markw
 	uint32_t irq_status0, uint32_t irq_status1,
 	struct msm_isp_timestamp *ts)
 {
@@ -453,9 +744,13 @@ void msm_vfe47_process_input_irq(struct vfe_device *vfe_dev,
 		return;
 
 	if (irq_status0 & (1 << 0)) {
+<<<<<<< HEAD
 		ISP_DBG("vfe %d: SOF IRQ, frame id %d\n",
 			vfe_dev->pdev->id,
 			vfe_dev->axi_data.src_info[VFE_PIX_0].frame_id);
+=======
+		ISP_DBG("%s: SOF IRQ\n", __func__);
+>>>>>>> d9c275b... drivers:media:platform:msm:camera_v2: backport camera_v2 for markw. name: camera_v2_markw
 		msm_isp_increment_frame_id(vfe_dev, VFE_PIX_0, ts);
 	}
 
@@ -470,7 +765,11 @@ void msm_vfe47_process_input_irq(struct vfe_device *vfe_dev,
 		ISP_DBG("%s: EOF IRQ\n", __func__);
 }
 
+<<<<<<< HEAD
 void msm_vfe47_process_violation_status(
+=======
+static void msm_vfe47_process_violation_status(
+>>>>>>> d9c275b... drivers:media:platform:msm:camera_v2: backport camera_v2 for markw. name: camera_v2_markw
 	struct vfe_device *vfe_dev)
 {
 	uint32_t violation_status = vfe_dev->error_info.violation_status;
@@ -485,7 +784,11 @@ void msm_vfe47_process_violation_status(
 		violation_status);
 }
 
+<<<<<<< HEAD
 void msm_vfe47_process_error_status(struct vfe_device *vfe_dev)
+=======
+static void msm_vfe47_process_error_status(struct vfe_device *vfe_dev)
+>>>>>>> d9c275b... drivers:media:platform:msm:camera_v2: backport camera_v2 for markw. name: camera_v2_markw
 {
 	uint32_t error_status1 = vfe_dev->error_info.error_mask1;
 
@@ -493,10 +796,14 @@ void msm_vfe47_process_error_status(struct vfe_device *vfe_dev)
 		pr_err("%s: camif error status: 0x%x\n",
 			__func__, vfe_dev->error_info.camif_status);
 		/* dump camif registers on camif error */
+<<<<<<< HEAD
 		msm_camera_io_dump(vfe_dev->vfe_base + 0x478, 0x3C, 1);
 		/* testgen */
 		if (TESTGEN == vfe_dev->axi_data.src_info[VFE_PIX_0].input_mux)
 			msm_camera_io_dump(vfe_dev->vfe_base + 0xC58, 0x28, 1);
+=======
+		msm_camera_io_dump(vfe_dev->vfe_base + 0x478, 0x34, 1);
+>>>>>>> d9c275b... drivers:media:platform:msm:camera_v2: backport camera_v2 for markw. name: camera_v2_markw
 	}
 	if (error_status1 & (1 << 1))
 		pr_err("%s: stats bhist overwrite\n", __func__);
@@ -549,7 +856,11 @@ void msm_vfe47_process_error_status(struct vfe_device *vfe_dev)
 		pr_err("%s: status dsp error\n", __func__);
 }
 
+<<<<<<< HEAD
 void msm_vfe47_read_irq_status(struct vfe_device *vfe_dev,
+=======
+static void msm_vfe47_read_irq_status(struct vfe_device *vfe_dev,
+>>>>>>> d9c275b... drivers:media:platform:msm:camera_v2: backport camera_v2 for markw. name: camera_v2_markw
 	uint32_t *irq_status0, uint32_t *irq_status1)
 {
 	*irq_status0 = msm_camera_io_r(vfe_dev->vfe_base + 0x6C);
@@ -565,6 +876,10 @@ void msm_vfe47_read_irq_status(struct vfe_device *vfe_dev,
 		vfe_dev->error_info.camif_status =
 		msm_camera_io_r(vfe_dev->vfe_base + 0x4A4);
 		/* mask off camif error after first occurrance */
+<<<<<<< HEAD
+=======
+		vfe_dev->irq1_mask &= ~(1 << 0);
+>>>>>>> d9c275b... drivers:media:platform:msm:camera_v2: backport camera_v2 for markw. name: camera_v2_markw
 		msm_vfe47_config_irq(vfe_dev, 0, (1 << 0), MSM_ISP_IRQ_DISABLE);
 	}
 
@@ -574,7 +889,11 @@ void msm_vfe47_read_irq_status(struct vfe_device *vfe_dev,
 
 }
 
+<<<<<<< HEAD
 void msm_vfe47_process_reg_update(struct vfe_device *vfe_dev,
+=======
+static void msm_vfe47_process_reg_update(struct vfe_device *vfe_dev,
+>>>>>>> d9c275b... drivers:media:platform:msm:camera_v2: backport camera_v2 for markw. name: camera_v2_markw
 	uint32_t irq_status0, uint32_t irq_status1,
 	struct msm_isp_timestamp *ts)
 {
@@ -595,6 +914,11 @@ void msm_vfe47_process_reg_update(struct vfe_device *vfe_dev,
 				(uint32_t)BIT(i));
 			switch (i) {
 			case VFE_PIX_0:
+<<<<<<< HEAD
+=======
+				msm_isp_save_framedrop_values(vfe_dev,
+					VFE_PIX_0);
+>>>>>>> d9c275b... drivers:media:platform:msm:camera_v2: backport camera_v2 for markw. name: camera_v2_markw
 				msm_isp_notify(vfe_dev, ISP_EVENT_REG_UPDATE,
 					VFE_PIX_0, ts);
 				if (atomic_read(
@@ -609,6 +933,10 @@ void msm_vfe47_process_reg_update(struct vfe_device *vfe_dev,
 			case VFE_RAW_1:
 			case VFE_RAW_2:
 				msm_isp_increment_frame_id(vfe_dev, i, ts);
+<<<<<<< HEAD
+=======
+				msm_isp_save_framedrop_values(vfe_dev, i);
+>>>>>>> d9c275b... drivers:media:platform:msm:camera_v2: backport camera_v2 for markw. name: camera_v2_markw
 				msm_isp_notify(vfe_dev, ISP_EVENT_SOF, i, ts);
 				msm_isp_update_framedrop_reg(vfe_dev, i);
 				/*
@@ -624,7 +952,10 @@ void msm_vfe47_process_reg_update(struct vfe_device *vfe_dev,
 			}
 			if (vfe_dev->axi_data.stream_update[i])
 				msm_isp_axi_stream_update(vfe_dev, i);
+<<<<<<< HEAD
 			msm_isp_save_framedrop_values(vfe_dev, i);
+=======
+>>>>>>> d9c275b... drivers:media:platform:msm:camera_v2: backport camera_v2 for markw. name: camera_v2_markw
 			if (atomic_read(&vfe_dev->axi_data.axi_cfg_update[i])) {
 				msm_isp_axi_cfg_update(vfe_dev, i);
 				if (atomic_read(
@@ -645,7 +976,11 @@ void msm_vfe47_process_reg_update(struct vfe_device *vfe_dev,
 	spin_unlock_irqrestore(&vfe_dev->reg_update_lock, flags);
 }
 
+<<<<<<< HEAD
 void msm_vfe47_process_epoch_irq(struct vfe_device *vfe_dev,
+=======
+static void msm_vfe47_process_epoch_irq(struct vfe_device *vfe_dev,
+>>>>>>> d9c275b... drivers:media:platform:msm:camera_v2: backport camera_v2 for markw. name: camera_v2_markw
 	uint32_t irq_status0, uint32_t irq_status1,
 	struct msm_isp_timestamp *ts)
 {
@@ -669,6 +1004,7 @@ void msm_vfe47_process_epoch_irq(struct vfe_device *vfe_dev,
 	}
 }
 
+<<<<<<< HEAD
 void msm_isp47_process_eof_irq(struct vfe_device *vfe_dev,
  	uint32_t irq_status0)
 {
@@ -677,6 +1013,9 @@ void msm_isp47_process_eof_irq(struct vfe_device *vfe_dev,
 }
 
 void msm_vfe47_reg_update(struct vfe_device *vfe_dev,
+=======
+static void msm_vfe47_reg_update(struct vfe_device *vfe_dev,
+>>>>>>> d9c275b... drivers:media:platform:msm:camera_v2: backport camera_v2 for markw. name: camera_v2_markw
 	enum msm_vfe_input_src frame_src)
 {
 	uint32_t update_mask = 0;
@@ -707,8 +1046,13 @@ void msm_vfe47_reg_update(struct vfe_device *vfe_dev,
 	if ((vfe_dev->is_split && vfe_dev->pdev->id == ISP_VFE1) &&
 		((frame_src == VFE_PIX_0) || (frame_src == VFE_SRC_MAX))) {
 		msm_camera_io_w_mb(update_mask,
+<<<<<<< HEAD
 			vfe_dev->common_data->dual_vfe_res->
 			vfe_base[ISP_VFE0] + 0x4AC);
+=======
+			vfe_dev->common_data->dual_vfe_res->vfe_base[ISP_VFE0]
+			+ 0x4AC);
+>>>>>>> d9c275b... drivers:media:platform:msm:camera_v2: backport camera_v2 for markw. name: camera_v2_markw
 		msm_camera_io_w_mb(update_mask,
 			vfe_dev->vfe_base + 0x4AC);
 	} else if (!vfe_dev->is_split ||
@@ -721,11 +1065,18 @@ void msm_vfe47_reg_update(struct vfe_device *vfe_dev,
 	spin_unlock_irqrestore(&vfe_dev->reg_update_lock, flags);
 }
 
+<<<<<<< HEAD
 long msm_vfe47_reset_hardware(struct vfe_device *vfe_dev,
 	uint32_t first_start, uint32_t blocking_call)
 {
 	long rc = 0;
 	uint32_t reset;
+=======
+static long msm_vfe47_reset_hardware(struct vfe_device *vfe_dev,
+	uint32_t first_start, uint32_t blocking_call)
+{
+	long rc = 0;
+>>>>>>> d9c275b... drivers:media:platform:msm:camera_v2: backport camera_v2 for markw. name: camera_v2_markw
 
 	init_completion(&vfe_dev->reset_complete);
 
@@ -733,6 +1084,7 @@ long msm_vfe47_reset_hardware(struct vfe_device *vfe_dev,
 		vfe_dev->reset_pending = 1;
 
 	if (first_start) {
+<<<<<<< HEAD
 		if (msm_vfe_is_vfe48(vfe_dev))
 			reset = 0x3F7;
 		else
@@ -744,6 +1096,11 @@ long msm_vfe47_reset_hardware(struct vfe_device *vfe_dev,
 		else
 			reset = 0x3EF;
 		msm_camera_io_w_mb(reset, vfe_dev->vfe_base + 0x18);
+=======
+		msm_camera_io_w_mb(0x3FF, vfe_dev->vfe_base + 0x18);
+	} else {
+		msm_camera_io_w_mb(0x3EF, vfe_dev->vfe_base + 0x18);
+>>>>>>> d9c275b... drivers:media:platform:msm:camera_v2: backport camera_v2 for markw. name: camera_v2_markw
 		msm_camera_io_w(0x7FFFFFFF, vfe_dev->vfe_base + 0x64);
 		msm_camera_io_w(0xFFFFFEFF, vfe_dev->vfe_base + 0x68);
 		msm_camera_io_w(0x1, vfe_dev->vfe_base + 0x58);
@@ -764,13 +1121,21 @@ long msm_vfe47_reset_hardware(struct vfe_device *vfe_dev,
 	return rc;
 }
 
+<<<<<<< HEAD
 void msm_vfe47_axi_reload_wm(struct vfe_device *vfe_dev,
+=======
+static void msm_vfe47_axi_reload_wm(struct vfe_device *vfe_dev,
+>>>>>>> d9c275b... drivers:media:platform:msm:camera_v2: backport camera_v2 for markw. name: camera_v2_markw
 	void __iomem *vfe_base, uint32_t reload_mask)
 {
 	msm_camera_io_w_mb(reload_mask, vfe_base + 0x80);
 }
 
+<<<<<<< HEAD
 void msm_vfe47_axi_update_cgc_override(struct vfe_device *vfe_dev,
+=======
+static void msm_vfe47_axi_update_cgc_override(struct vfe_device *vfe_dev,
+>>>>>>> d9c275b... drivers:media:platform:msm:camera_v2: backport camera_v2 for markw. name: camera_v2_markw
 	uint8_t wm_idx, uint8_t enable)
 {
 	uint32_t val;
@@ -798,7 +1163,11 @@ static void msm_vfe47_axi_enable_wm(void __iomem *vfe_base,
 		vfe_base + VFE47_WM_BASE(wm_idx));
 }
 
+<<<<<<< HEAD
 void msm_vfe47_axi_cfg_comp_mask(struct vfe_device *vfe_dev,
+=======
+static void msm_vfe47_axi_cfg_comp_mask(struct vfe_device *vfe_dev,
+>>>>>>> d9c275b... drivers:media:platform:msm:camera_v2: backport camera_v2 for markw. name: camera_v2_markw
 	struct msm_vfe_axi_stream *stream_info)
 {
 	struct msm_vfe_axi_shared_data *axi_data = &vfe_dev->axi_data;
@@ -811,11 +1180,20 @@ void msm_vfe47_axi_cfg_comp_mask(struct vfe_device *vfe_dev,
 		stream_composite_mask << (comp_mask_index * 8));
 	msm_camera_io_w(comp_mask, vfe_dev->vfe_base + 0x74);
 
+<<<<<<< HEAD
 	msm_vfe47_config_irq(vfe_dev, 1 << (comp_mask_index + 25), 0,
 				MSM_ISP_IRQ_ENABLE);
 }
 
 void msm_vfe47_axi_clear_comp_mask(struct vfe_device *vfe_dev,
+=======
+	vfe_dev->irq0_mask |= 1 << (comp_mask_index + 25);
+	msm_vfe47_config_irq(vfe_dev, vfe_dev->irq0_mask, vfe_dev->irq1_mask,
+				MSM_ISP_IRQ_SET);
+}
+
+static void msm_vfe47_axi_clear_comp_mask(struct vfe_device *vfe_dev,
+>>>>>>> d9c275b... drivers:media:platform:msm:camera_v2: backport camera_v2 for markw. name: camera_v2_markw
 	struct msm_vfe_axi_stream *stream_info)
 {
 	uint32_t comp_mask, comp_mask_index = stream_info->comp_mask_index;
@@ -824,6 +1202,7 @@ void msm_vfe47_axi_clear_comp_mask(struct vfe_device *vfe_dev,
 	comp_mask &= ~(0x7F << (comp_mask_index * 8));
 	msm_camera_io_w(comp_mask, vfe_dev->vfe_base + 0x74);
 
+<<<<<<< HEAD
 	msm_vfe47_config_irq(vfe_dev, (1 << (comp_mask_index + 25)), 0,
 				MSM_ISP_IRQ_DISABLE);
 }
@@ -843,6 +1222,30 @@ void msm_vfe47_axi_clear_wm_irq_mask(struct vfe_device *vfe_dev,
 }
 
 void msm_vfe47_cfg_framedrop(void __iomem *vfe_base,
+=======
+	vfe_dev->irq0_mask &= ~(1 << (comp_mask_index + 25));
+	msm_vfe47_config_irq(vfe_dev, vfe_dev->irq0_mask, vfe_dev->irq1_mask,
+				MSM_ISP_IRQ_SET);
+}
+
+static void msm_vfe47_axi_cfg_wm_irq_mask(struct vfe_device *vfe_dev,
+	struct msm_vfe_axi_stream *stream_info)
+{
+	vfe_dev->irq0_mask |= 1 << (stream_info->wm[0] + 8);
+	msm_vfe47_config_irq(vfe_dev, vfe_dev->irq0_mask, vfe_dev->irq1_mask,
+				MSM_ISP_IRQ_SET);
+}
+
+static void msm_vfe47_axi_clear_wm_irq_mask(struct vfe_device *vfe_dev,
+	struct msm_vfe_axi_stream *stream_info)
+{
+	vfe_dev->irq0_mask &= ~(1 << (stream_info->wm[0] + 8));
+	msm_vfe47_config_irq(vfe_dev, vfe_dev->irq0_mask, vfe_dev->irq1_mask,
+				MSM_ISP_IRQ_SET);
+}
+
+static void msm_vfe47_cfg_framedrop(void __iomem *vfe_base,
+>>>>>>> d9c275b... drivers:media:platform:msm:camera_v2: backport camera_v2 for markw. name: camera_v2_markw
 	struct msm_vfe_axi_stream *stream_info, uint32_t framedrop_pattern,
 	uint32_t framedrop_period)
 {
@@ -859,7 +1262,11 @@ void msm_vfe47_cfg_framedrop(void __iomem *vfe_base,
 	}
 }
 
+<<<<<<< HEAD
 void msm_vfe47_clear_framedrop(struct vfe_device *vfe_dev,
+=======
+static void msm_vfe47_clear_framedrop(struct vfe_device *vfe_dev,
+>>>>>>> d9c275b... drivers:media:platform:msm:camera_v2: backport camera_v2 for markw. name: camera_v2_markw
 	struct msm_vfe_axi_stream *stream_info)
 {
 	uint32_t i;
@@ -927,8 +1334,12 @@ static int32_t msm_vfe47_convert_io_fmt_to_reg(
 
 	return rc;
 }
+<<<<<<< HEAD
 
 int32_t msm_vfe47_cfg_io_format(struct vfe_device *vfe_dev,
+=======
+static int32_t msm_vfe47_cfg_io_format(struct vfe_device *vfe_dev,
+>>>>>>> d9c275b... drivers:media:platform:msm:camera_v2: backport camera_v2 for markw. name: camera_v2_markw
 	enum msm_vfe_axi_stream_src stream_src, uint32_t io_format)
 {
 	int rc = 0;
@@ -951,7 +1362,11 @@ int32_t msm_vfe47_cfg_io_format(struct vfe_device *vfe_dev,
 			pr_err("%s: convert_bpp_to_reg err! in_bpp %d rc %d\n",
 				__func__, read_bpp, rc);
 			return rc;
+<<<<<<< HEAD
 		}
+=======
+	}
+>>>>>>> d9c275b... drivers:media:platform:msm:camera_v2: backport camera_v2 for markw. name: camera_v2_markw
 
 		read_pack_fmt = msm_isp_get_pack_format(
 			vfe_dev->axi_data.src_info[VFE_PIX_0].input_format);
@@ -1006,7 +1421,11 @@ int32_t msm_vfe47_cfg_io_format(struct vfe_device *vfe_dev,
 	return 0;
 }
 
+<<<<<<< HEAD
 int msm_vfe47_start_fetch_engine(struct vfe_device *vfe_dev,
+=======
+static int msm_vfe47_start_fetch_engine(struct vfe_device *vfe_dev,
+>>>>>>> d9c275b... drivers:media:platform:msm:camera_v2: backport camera_v2 for markw. name: camera_v2_markw
 	void *arg)
 {
 	int rc = 0;
@@ -1038,7 +1457,11 @@ int msm_vfe47_start_fetch_engine(struct vfe_device *vfe_dev,
 		rc = vfe_dev->buf_mgr->ops->get_buf_by_index(
 			vfe_dev->buf_mgr, bufq_handle, fe_cfg->buf_idx, &buf);
 		if (rc < 0 || !buf) {
+<<<<<<< HEAD
 			pr_err("%s: No fetch buffer rc= %d buf= %pK\n",
+=======
+			pr_err("%s: No fetch buffer rc= %d buf= %p\n",
+>>>>>>> d9c275b... drivers:media:platform:msm:camera_v2: backport camera_v2 for markw. name: camera_v2_markw
 				__func__, rc, buf);
 			return -EINVAL;
 		}
@@ -1066,6 +1489,7 @@ int msm_vfe47_start_fetch_engine(struct vfe_device *vfe_dev,
 	return 0;
 }
 
+<<<<<<< HEAD
 int msm_vfe47_start_fetch_engine_multi_pass(struct vfe_device *vfe_dev,
 	void *arg)
 {
@@ -1124,6 +1548,9 @@ int msm_vfe47_start_fetch_engine_multi_pass(struct vfe_device *vfe_dev,
 	return 0;
 }
 void msm_vfe47_cfg_fetch_engine(struct vfe_device *vfe_dev,
+=======
+static void msm_vfe47_cfg_fetch_engine(struct vfe_device *vfe_dev,
+>>>>>>> d9c275b... drivers:media:platform:msm:camera_v2: backport camera_v2 for markw. name: camera_v2_markw
 	struct msm_vfe_pix_cfg *pix_cfg)
 {
 	uint32_t x_size_word, temp;
@@ -1144,14 +1571,22 @@ void msm_vfe47_cfg_fetch_engine(struct vfe_device *vfe_dev,
 		temp |= (1 << 1);
 		msm_camera_io_w(temp, vfe_dev->vfe_base + 0x84);
 
+<<<<<<< HEAD
 		msm_vfe47_config_irq(vfe_dev, (1 << 24), 0,
 				MSM_ISP_IRQ_ENABLE);
+=======
+		vfe_dev->irq0_mask &= 0xFEFFFFFF;
+		vfe_dev->irq0_mask |= (1 << 24);
+		msm_vfe47_config_irq(vfe_dev, vfe_dev->irq0_mask,
+				vfe_dev->irq1_mask, MSM_ISP_IRQ_SET);
+>>>>>>> d9c275b... drivers:media:platform:msm:camera_v2: backport camera_v2 for markw. name: camera_v2_markw
 
 		temp = fe_cfg->fetch_height - 1;
 		msm_camera_io_w(temp & 0x3FFF, vfe_dev->vfe_base + 0x308);
 
 		x_size_word = msm_isp_cal_word_per_line(
 			vfe_dev->axi_data.src_info[VFE_PIX_0].input_format,
+<<<<<<< HEAD
 			fe_cfg->buf_width);
 		msm_camera_io_w((x_size_word - 1) << 16,
 			vfe_dev->vfe_base + 0x30c);
@@ -1159,6 +1594,12 @@ void msm_vfe47_cfg_fetch_engine(struct vfe_device *vfe_dev,
 		x_size_word = msm_isp_cal_word_per_line(
 			vfe_dev->axi_data.src_info[VFE_PIX_0].input_format,
 			fe_cfg->fetch_width);
+=======
+			fe_cfg->fetch_width);
+		msm_camera_io_w((x_size_word - 1) << 16,
+			vfe_dev->vfe_base + 0x30c);
+
+>>>>>>> d9c275b... drivers:media:platform:msm:camera_v2: backport camera_v2 for markw. name: camera_v2_markw
 		msm_camera_io_w(x_size_word << 16 |
 			(temp & 0x3FFF) << 2 | VFE47_FETCH_BURST_LEN,
 			vfe_dev->vfe_base + 0x310);
@@ -1183,7 +1624,11 @@ void msm_vfe47_cfg_fetch_engine(struct vfe_device *vfe_dev,
 	}
 }
 
+<<<<<<< HEAD
 void msm_vfe47_cfg_testgen(struct vfe_device *vfe_dev,
+=======
+static void msm_vfe47_cfg_testgen(struct vfe_device *vfe_dev,
+>>>>>>> d9c275b... drivers:media:platform:msm:camera_v2: backport camera_v2 for markw. name: camera_v2_markw
 	struct msm_vfe_testgen_cfg *testgen_cfg)
 {
 	uint32_t temp;
@@ -1289,7 +1734,11 @@ void msm_vfe47_cfg_testgen(struct vfe_device *vfe_dev,
 	return;
 }
 
+<<<<<<< HEAD
 void msm_vfe47_cfg_camif(struct vfe_device *vfe_dev,
+=======
+static void msm_vfe47_cfg_camif(struct vfe_device *vfe_dev,
+>>>>>>> d9c275b... drivers:media:platform:msm:camera_v2: backport camera_v2 for markw. name: camera_v2_markw
 	struct msm_vfe_pix_cfg *pix_cfg)
 {
 	uint16_t first_pixel, last_pixel, first_line, last_line;
@@ -1355,6 +1804,7 @@ void msm_vfe47_cfg_camif(struct vfe_device *vfe_dev,
 		msm_camera_io_w(0xFFFFFFFF, vfe_dev->vfe_base + 0x49C);
 	}
 
+<<<<<<< HEAD
 	if (subsample_cfg->first_pixel ||
 		subsample_cfg->last_pixel ||
 		subsample_cfg->first_line ||
@@ -1397,12 +1847,18 @@ void msm_vfe47_cfg_camif(struct vfe_device *vfe_dev,
 	}
 	msm_camera_io_w(val, vfe_dev->vfe_base + 0x88);
 
+=======
+>>>>>>> d9c275b... drivers:media:platform:msm:camera_v2: backport camera_v2 for markw. name: camera_v2_markw
 	val = msm_camera_io_r(vfe_dev->vfe_base + 0x46C);
 	val |= camif_cfg->camif_input;
 	msm_camera_io_w(val, vfe_dev->vfe_base + 0x46C);
 }
 
+<<<<<<< HEAD
 void msm_vfe47_cfg_input_mux(struct vfe_device *vfe_dev,
+=======
+static void msm_vfe47_cfg_input_mux(struct vfe_device *vfe_dev,
+>>>>>>> d9c275b... drivers:media:platform:msm:camera_v2: backport camera_v2 for markw. name: camera_v2_markw
 	struct msm_vfe_pix_cfg *pix_cfg)
 {
 	uint32_t core_cfg = 0;
@@ -1442,7 +1898,11 @@ void msm_vfe47_cfg_input_mux(struct vfe_device *vfe_dev,
 	return;
 }
 
+<<<<<<< HEAD
 void msm_vfe47_configure_hvx(struct vfe_device *vfe_dev,
+=======
+static void msm_vfe47_configure_hvx(struct vfe_device *vfe_dev,
+>>>>>>> d9c275b... drivers:media:platform:msm:camera_v2: backport camera_v2 for markw. name: camera_v2_markw
 	uint8_t is_stream_on)
 {
 	uint32_t val;
@@ -1463,7 +1923,11 @@ void msm_vfe47_configure_hvx(struct vfe_device *vfe_dev,
 	}
 }
 
+<<<<<<< HEAD
 void msm_vfe47_update_camif_state(struct vfe_device *vfe_dev,
+=======
+static void msm_vfe47_update_camif_state(struct vfe_device *vfe_dev,
+>>>>>>> d9c275b... drivers:media:platform:msm:camera_v2: backport camera_v2 for markw. name: camera_v2_markw
 	enum msm_isp_camif_update_state update_state)
 {
 	uint32_t val;
@@ -1474,17 +1938,26 @@ void msm_vfe47_update_camif_state(struct vfe_device *vfe_dev,
 
 	val = msm_camera_io_r(vfe_dev->vfe_base + 0x47C);
 	if (update_state == ENABLE_CAMIF) {
+<<<<<<< HEAD
 		msm_camera_io_w(0x0, vfe_dev->vfe_base + 0x64);
 		msm_camera_io_w(0x81, vfe_dev->vfe_base + 0x68);
 		msm_camera_io_w(0x1, vfe_dev->vfe_base + 0x58);
 		msm_vfe47_config_irq(vfe_dev, 0x17, 0x81,
 					MSM_ISP_IRQ_ENABLE);
+=======
+		vfe_dev->irq0_mask |= 0xF5;
+		msm_vfe47_config_irq(vfe_dev, vfe_dev->irq0_mask,
+					vfe_dev->irq1_mask, MSM_ISP_IRQ_SET);
+>>>>>>> d9c275b... drivers:media:platform:msm:camera_v2: backport camera_v2 for markw. name: camera_v2_markw
 
 		if ((vfe_dev->hvx_cmd > HVX_DISABLE) &&
 			(vfe_dev->hvx_cmd <= HVX_ROUND_TRIP))
 			msm_vfe47_configure_hvx(vfe_dev, 1);
+<<<<<<< HEAD
 		else
 			msm_vfe47_configure_hvx(vfe_dev, 0);
+=======
+>>>>>>> d9c275b... drivers:media:platform:msm:camera_v2: backport camera_v2 for markw. name: camera_v2_markw
 
 		bus_en =
 			((vfe_dev->axi_data.
@@ -1506,9 +1979,14 @@ void msm_vfe47_update_camif_state(struct vfe_device *vfe_dev,
 			msm_camera_io_w(1, vfe_dev->vfe_base + 0xC58);
 	} else if (update_state == DISABLE_CAMIF ||
 		update_state == DISABLE_CAMIF_IMMEDIATELY) {
+<<<<<<< HEAD
 		/* turn off camif violation and error irqs */
 		msm_vfe47_config_irq(vfe_dev, 0, 0x81,
 					MSM_ISP_IRQ_DISABLE);
+=======
+		/* turn off all irq before camif disable */
+		msm_vfe47_config_irq(vfe_dev, 0, 0, MSM_ISP_IRQ_SET);
+>>>>>>> d9c275b... drivers:media:platform:msm:camera_v2: backport camera_v2 for markw. name: camera_v2_markw
 		val = msm_camera_io_r(vfe_dev->vfe_base + 0x464);
 		/* disable danger signal */
 		msm_camera_io_w_mb(val & ~(1 << 8), vfe_dev->vfe_base + 0x464);
@@ -1522,10 +2000,27 @@ void msm_vfe47_update_camif_state(struct vfe_device *vfe_dev,
 		if ((vfe_dev->hvx_cmd > HVX_DISABLE) &&
 			(vfe_dev->hvx_cmd <= HVX_ROUND_TRIP))
 			msm_vfe47_configure_hvx(vfe_dev, 0);
+<<<<<<< HEAD
 	}
 }
 
 void msm_vfe47_cfg_rdi_reg(
+=======
+		/*
+		 * restore the irq that were disabled for camif stop and clear
+		 * the camif error interrupts if generated during that period
+		 */
+		msm_camera_io_w(0, vfe_dev->vfe_base + 0x64);
+		msm_camera_io_w(1 << 0, vfe_dev->vfe_base + 0x68);
+		msm_camera_io_w_mb(1, vfe_dev->vfe_base + 0x58);
+		msm_vfe47_config_irq(vfe_dev, vfe_dev->irq0_mask,
+					vfe_dev->irq1_mask, MSM_ISP_IRQ_SET);
+
+	}
+}
+
+static void msm_vfe47_cfg_rdi_reg(
+>>>>>>> d9c275b... drivers:media:platform:msm:camera_v2: backport camera_v2 for markw. name: camera_v2_markw
 	struct vfe_device *vfe_dev, struct msm_vfe_rdi_cfg *rdi_cfg,
 	enum msm_vfe_input_src input_src)
 {
@@ -1540,7 +2035,11 @@ void msm_vfe47_cfg_rdi_reg(
 		rdi_reg_cfg, vfe_dev->vfe_base + VFE47_RDI_BASE(rdi));
 }
 
+<<<<<<< HEAD
 void msm_vfe47_axi_cfg_wm_reg(
+=======
+static void msm_vfe47_axi_cfg_wm_reg(
+>>>>>>> d9c275b... drivers:media:platform:msm:camera_v2: backport camera_v2 for markw. name: camera_v2_markw
 	struct vfe_device *vfe_dev,
 	struct msm_vfe_axi_stream *stream_info,
 	uint8_t plane_idx)
@@ -1576,7 +2075,11 @@ void msm_vfe47_axi_cfg_wm_reg(
 		vfe_dev->vfe_base + wm_base + 0x28);
 }
 
+<<<<<<< HEAD
 void msm_vfe47_axi_clear_wm_reg(
+=======
+static void msm_vfe47_axi_clear_wm_reg(
+>>>>>>> d9c275b... drivers:media:platform:msm:camera_v2: backport camera_v2 for markw. name: camera_v2_markw
 	struct vfe_device *vfe_dev,
 	struct msm_vfe_axi_stream *stream_info, uint8_t plane_idx)
 {
@@ -1593,7 +2096,11 @@ void msm_vfe47_axi_clear_wm_reg(
 	msm_camera_io_w(val, vfe_dev->vfe_base + wm_base + 0x28);
 }
 
+<<<<<<< HEAD
 void msm_vfe47_axi_cfg_wm_xbar_reg(
+=======
+static void msm_vfe47_axi_cfg_wm_xbar_reg(
+>>>>>>> d9c275b... drivers:media:platform:msm:camera_v2: backport camera_v2 for markw. name: camera_v2_markw
 	struct vfe_device *vfe_dev,
 	struct msm_vfe_axi_stream *stream_info,
 	uint8_t plane_idx)
@@ -1658,7 +2165,11 @@ void msm_vfe47_axi_cfg_wm_xbar_reg(
 		vfe_dev->vfe_base + VFE47_XBAR_BASE(wm));
 }
 
+<<<<<<< HEAD
 void msm_vfe47_axi_clear_wm_xbar_reg(
+=======
+static void msm_vfe47_axi_clear_wm_xbar_reg(
+>>>>>>> d9c275b... drivers:media:platform:msm:camera_v2: backport camera_v2 for markw. name: camera_v2_markw
 	struct vfe_device *vfe_dev,
 	struct msm_vfe_axi_stream *stream_info, uint8_t plane_idx)
 {
@@ -1673,8 +2184,13 @@ void msm_vfe47_axi_clear_wm_xbar_reg(
 }
 
 
+<<<<<<< HEAD
 void msm_vfe47_cfg_axi_ub_equal_default(
 	struct vfe_device *vfe_dev, enum msm_vfe_input_src frame_src)
+=======
+static void msm_vfe47_cfg_axi_ub_equal_default(
+	struct vfe_device *vfe_dev)
+>>>>>>> d9c275b... drivers:media:platform:msm:camera_v2: backport camera_v2 for markw. name: camera_v2_markw
 {
 	int i;
 	uint32_t ub_offset = 0;
@@ -1685,6 +2201,7 @@ void msm_vfe47_cfg_axi_ub_equal_default(
 	uint32_t prop_size = 0;
 	uint32_t wm_ub_size;
 	uint64_t delta;
+<<<<<<< HEAD
 	uint32_t rdi_ub_offset;
 	int plane;
 	struct msm_vfe_axi_stream *stream_info;
@@ -1754,12 +2271,48 @@ void msm_vfe47_cfg_axi_ub_equal_default(
 }
 
 void msm_vfe47_cfg_axi_ub_equal_slicing(
+=======
+
+	for (i = 0; i < axi_data->hw_info->num_wm; i++) {
+		if (axi_data->free_wm[i] > 0) {
+			num_used_wms++;
+			total_image_size += axi_data->wm_image_size[i];
+		}
+	}
+	if (vfe_dev->pdev->id == ISP_VFE0) {
+		prop_size = MSM_ISP47_TOTAL_IMAGE_UB_VFE0 -
+		axi_data->hw_info->min_wm_ub * num_used_wms;
+	} else if (vfe_dev->pdev->id == ISP_VFE1) {
+		prop_size = MSM_ISP47_TOTAL_IMAGE_UB_VFE1 -
+		axi_data->hw_info->min_wm_ub * num_used_wms;
+	} else {
+		pr_err("%s: incorrect VFE device\n", __func__);
+	}
+	for (i = 0; i < axi_data->hw_info->num_wm; i++) {
+		if (axi_data->free_wm[i]) {
+			delta = (uint64_t)axi_data->wm_image_size[i] *
+					(uint64_t)prop_size;
+			do_div(delta, total_image_size);
+			wm_ub_size = axi_data->hw_info->min_wm_ub +
+					(uint32_t)delta;
+			msm_camera_io_w(ub_offset << 16 | (wm_ub_size - 1),
+				vfe_dev->vfe_base + VFE47_WM_BASE(i) + 0x18);
+			ub_offset += wm_ub_size;
+		} else
+			msm_camera_io_w(0,
+				vfe_dev->vfe_base + VFE47_WM_BASE(i) + 0x18);
+	}
+}
+
+static void msm_vfe47_cfg_axi_ub_equal_slicing(
+>>>>>>> d9c275b... drivers:media:platform:msm:camera_v2: backport camera_v2 for markw. name: camera_v2_markw
 	struct vfe_device *vfe_dev)
 {
 	int i;
 	uint32_t ub_offset = 0;
 	struct msm_vfe_axi_shared_data *axi_data = &vfe_dev->axi_data;
 	uint32_t ub_equal_slice = 0;
+<<<<<<< HEAD
 
 	ub_equal_slice = vfe_dev->hw_info->vfe_ops.axi_ops.
 				get_ub_size(vfe_dev) /
@@ -1769,12 +2322,30 @@ void msm_vfe47_cfg_axi_ub_equal_slicing(
 			vfe_dev->vfe_base +
 			vfe_dev->hw_info->vfe_ops.axi_ops.
 				ub_reg_offset(vfe_dev, i));
+=======
+	if (vfe_dev->pdev->id == ISP_VFE0) {
+		ub_equal_slice = MSM_ISP47_TOTAL_IMAGE_UB_VFE0 /
+		axi_data->hw_info->num_wm;
+	} else if (vfe_dev->pdev->id == ISP_VFE1) {
+		ub_equal_slice = MSM_ISP47_TOTAL_IMAGE_UB_VFE1 /
+		axi_data->hw_info->num_wm;
+	} else {
+		pr_err("%s: incorrect VFE device\n ", __func__);
+	}
+	for (i = 0; i < axi_data->hw_info->num_wm; i++) {
+		msm_camera_io_w(ub_offset << 16 | (ub_equal_slice - 1),
+			vfe_dev->vfe_base + VFE47_WM_BASE(i) + 0x18);
+>>>>>>> d9c275b... drivers:media:platform:msm:camera_v2: backport camera_v2 for markw. name: camera_v2_markw
 		ub_offset += ub_equal_slice;
 	}
 }
 
+<<<<<<< HEAD
 void msm_vfe47_cfg_axi_ub(struct vfe_device *vfe_dev,
 	enum msm_vfe_input_src frame_src)
+=======
+static void msm_vfe47_cfg_axi_ub(struct vfe_device *vfe_dev)
+>>>>>>> d9c275b... drivers:media:platform:msm:camera_v2: backport camera_v2 for markw. name: camera_v2_markw
 {
 	struct msm_vfe_axi_shared_data *axi_data = &vfe_dev->axi_data;
 
@@ -1782,17 +2353,28 @@ void msm_vfe47_cfg_axi_ub(struct vfe_device *vfe_dev,
 	if (axi_data->wm_ub_cfg_policy == MSM_WM_UB_EQUAL_SLICING)
 		msm_vfe47_cfg_axi_ub_equal_slicing(vfe_dev);
 	else
+<<<<<<< HEAD
 		msm_vfe47_cfg_axi_ub_equal_default(vfe_dev, frame_src);
 }
 
 void msm_vfe47_read_wm_ping_pong_addr(
+=======
+		msm_vfe47_cfg_axi_ub_equal_default(vfe_dev);
+}
+
+static void msm_vfe47_read_wm_ping_pong_addr(
+>>>>>>> d9c275b... drivers:media:platform:msm:camera_v2: backport camera_v2 for markw. name: camera_v2_markw
 	struct vfe_device *vfe_dev)
 {
 	msm_camera_io_dump(vfe_dev->vfe_base +
 		(VFE47_WM_BASE(0) & 0xFFFFFFF0), 0x200, 1);
 }
 
+<<<<<<< HEAD
 void msm_vfe47_update_ping_pong_addr(
+=======
+static void msm_vfe47_update_ping_pong_addr(
+>>>>>>> d9c275b... drivers:media:platform:msm:camera_v2: backport camera_v2 for markw. name: camera_v2_markw
 	void __iomem *vfe_base,
 	uint8_t wm_idx, uint32_t pingpong_bit, dma_addr_t paddr,
 	int32_t buf_size)
@@ -1812,12 +2394,16 @@ void msm_vfe47_update_ping_pong_addr(
 
 }
 
+<<<<<<< HEAD
 static void msm_vfe47_set_halt_restart_mask(struct vfe_device *vfe_dev)
 {
 	msm_vfe47_config_irq(vfe_dev, BIT(31), BIT(8), MSM_ISP_IRQ_SET);
 }
 
 int msm_vfe47_axi_halt(struct vfe_device *vfe_dev,
+=======
+static int msm_vfe47_axi_halt(struct vfe_device *vfe_dev,
+>>>>>>> d9c275b... drivers:media:platform:msm:camera_v2: backport camera_v2 for markw. name: camera_v2_markw
 	uint32_t blocking)
 {
 	int rc = 0;
@@ -1829,7 +2415,12 @@ int msm_vfe47_axi_halt(struct vfe_device *vfe_dev,
 	msm_camera_io_w(val, vfe_dev->vfe_vbif_base + VFE47_VBIF_CLK_OFFSET);
 
 	/* Keep only halt and reset mask */
+<<<<<<< HEAD
 	msm_vfe47_set_halt_restart_mask(vfe_dev);
+=======
+	msm_vfe47_config_irq(vfe_dev, (1 << 31), (1 << 8),
+				MSM_ISP_IRQ_SET);
+>>>>>>> d9c275b... drivers:media:platform:msm:camera_v2: backport camera_v2 for markw. name: camera_v2_markw
 
 	/*Clear IRQ Status0, only leave reset irq mask*/
 	msm_camera_io_w(0x7FFFFFFF, vfe_dev->vfe_base + 0x64);
@@ -1888,9 +2479,17 @@ int msm_vfe47_axi_halt(struct vfe_device *vfe_dev,
 	return rc;
 }
 
+<<<<<<< HEAD
 int msm_vfe47_axi_restart(struct vfe_device *vfe_dev,
 	uint32_t blocking, uint32_t enable_camif)
 {
+=======
+static int msm_vfe47_axi_restart(struct vfe_device *vfe_dev,
+	uint32_t blocking, uint32_t enable_camif)
+{
+	msm_vfe47_config_irq(vfe_dev, vfe_dev->irq0_mask, vfe_dev->irq1_mask,
+				MSM_ISP_IRQ_SET);
+>>>>>>> d9c275b... drivers:media:platform:msm:camera_v2: backport camera_v2 for markw. name: camera_v2_markw
 	msm_camera_io_w(0x7FFFFFFF, vfe_dev->vfe_base + 0x64);
 	msm_camera_io_w(0xFFFFFEFF, vfe_dev->vfe_base + 0x68);
 	msm_camera_io_w(0x1, vfe_dev->vfe_base + 0x58);
@@ -1898,6 +2497,7 @@ int msm_vfe47_axi_restart(struct vfe_device *vfe_dev,
 	/* Start AXI */
 	msm_camera_io_w(0x0, vfe_dev->vfe_base + 0x400);
 
+<<<<<<< HEAD
 	memset(&vfe_dev->error_info, 0, sizeof(vfe_dev->error_info));
 	atomic_set(&vfe_dev->error_info.overflow_state, NO_OVERFLOW);
 
@@ -1907,6 +2507,12 @@ int msm_vfe47_axi_restart(struct vfe_device *vfe_dev,
 
 	vfe_dev->hw_info->vfe_ops.core_ops.reg_update(vfe_dev, VFE_SRC_MAX);
 
+=======
+	vfe_dev->hw_info->vfe_ops.core_ops.reg_update(vfe_dev, VFE_SRC_MAX);
+	memset(&vfe_dev->error_info, 0, sizeof(vfe_dev->error_info));
+	atomic_set(&vfe_dev->error_info.overflow_state, NO_OVERFLOW);
+
+>>>>>>> d9c275b... drivers:media:platform:msm:camera_v2: backport camera_v2 for markw. name: camera_v2_markw
 	if (enable_camif) {
 		vfe_dev->hw_info->vfe_ops.core_ops.
 		update_camif_state(vfe_dev, ENABLE_CAMIF);
@@ -1915,25 +2521,41 @@ int msm_vfe47_axi_restart(struct vfe_device *vfe_dev,
 	return 0;
 }
 
+<<<<<<< HEAD
 uint32_t msm_vfe47_get_wm_mask(
+=======
+static uint32_t msm_vfe47_get_wm_mask(
+>>>>>>> d9c275b... drivers:media:platform:msm:camera_v2: backport camera_v2 for markw. name: camera_v2_markw
 	uint32_t irq_status0, uint32_t irq_status1)
 {
 	return (irq_status0 >> 8) & 0x7F;
 }
 
+<<<<<<< HEAD
 uint32_t msm_vfe47_get_comp_mask(
+=======
+static uint32_t msm_vfe47_get_comp_mask(
+>>>>>>> d9c275b... drivers:media:platform:msm:camera_v2: backport camera_v2 for markw. name: camera_v2_markw
 	uint32_t irq_status0, uint32_t irq_status1)
 {
 	return (irq_status0 >> 25) & 0xF;
 }
 
+<<<<<<< HEAD
 uint32_t msm_vfe47_get_pingpong_status(
+=======
+static uint32_t msm_vfe47_get_pingpong_status(
+>>>>>>> d9c275b... drivers:media:platform:msm:camera_v2: backport camera_v2 for markw. name: camera_v2_markw
 	struct vfe_device *vfe_dev)
 {
 	return msm_camera_io_r(vfe_dev->vfe_base + 0x338);
 }
 
+<<<<<<< HEAD
 int msm_vfe47_get_stats_idx(enum msm_isp_stats_type stats_type)
+=======
+static int msm_vfe47_get_stats_idx(enum msm_isp_stats_type stats_type)
+>>>>>>> d9c275b... drivers:media:platform:msm:camera_v2: backport camera_v2 for markw. name: camera_v2_markw
 {
 	/*idx use for composite, need to map to irq status*/
 	switch (stats_type) {
@@ -1961,13 +2583,21 @@ int msm_vfe47_get_stats_idx(enum msm_isp_stats_type stats_type)
 	}
 }
 
+<<<<<<< HEAD
 int msm_vfe47_stats_check_streams(
+=======
+static int msm_vfe47_stats_check_streams(
+>>>>>>> d9c275b... drivers:media:platform:msm:camera_v2: backport camera_v2 for markw. name: camera_v2_markw
 	struct msm_vfe_stats_stream *stream_info)
 {
 	return 0;
 }
 
+<<<<<<< HEAD
 void msm_vfe47_stats_cfg_comp_mask(
+=======
+static void msm_vfe47_stats_cfg_comp_mask(
+>>>>>>> d9c275b... drivers:media:platform:msm:camera_v2: backport camera_v2 for markw. name: camera_v2_markw
 	struct vfe_device *vfe_dev, uint32_t stats_mask,
 	uint8_t request_comp_index, uint8_t enable)
 {
@@ -2003,8 +2633,11 @@ void msm_vfe47_stats_cfg_comp_mask(
 		comp_mask_reg |= stats_mask << (request_comp_index * 16);
 		atomic_set(stats_comp_mask, stats_mask |
 				atomic_read(stats_comp_mask));
+<<<<<<< HEAD
 		msm_vfe47_config_irq(vfe_dev, 1 << (29 + request_comp_index),
 				0, MSM_ISP_IRQ_ENABLE);
+=======
+>>>>>>> d9c275b... drivers:media:platform:msm:camera_v2: backport camera_v2 for markw. name: camera_v2_markw
 	} else {
 		if (!(atomic_read(stats_comp_mask) & stats_mask))
 			return;
@@ -2012,8 +2645,11 @@ void msm_vfe47_stats_cfg_comp_mask(
 		atomic_set(stats_comp_mask,
 				~stats_mask & atomic_read(stats_comp_mask));
 		comp_mask_reg &= ~(stats_mask << (request_comp_index * 16));
+<<<<<<< HEAD
 		msm_vfe47_config_irq(vfe_dev, 1 << (29 + request_comp_index),
 				0, MSM_ISP_IRQ_DISABLE);
+=======
+>>>>>>> d9c275b... drivers:media:platform:msm:camera_v2: backport camera_v2 for markw. name: camera_v2_markw
 	}
 
 	msm_camera_io_w(comp_mask_reg, vfe_dev->vfe_base + 0x78);
@@ -2026,6 +2662,7 @@ void msm_vfe47_stats_cfg_comp_mask(
 	return;
 }
 
+<<<<<<< HEAD
 void msm_vfe47_stats_cfg_wm_irq_mask(
 	struct vfe_device *vfe_dev,
 	struct msm_vfe_stats_stream *stream_info)
@@ -2058,14 +2695,64 @@ void msm_vfe47_stats_cfg_wm_irq_mask(
 		break;
 	case STATS_COMP_IDX_BHIST:
 		msm_vfe47_config_irq(vfe_dev, 1 << 23, 0, MSM_ISP_IRQ_ENABLE);
+=======
+static void msm_vfe47_stats_cfg_wm_irq_mask(
+	struct vfe_device *vfe_dev,
+	struct msm_vfe_stats_stream *stream_info)
+{
+	uint32_t irq_mask;
+	uint32_t irq_mask_1;
+
+	irq_mask = vfe_dev->irq0_mask;
+	irq_mask_1 = vfe_dev->irq1_mask;
+
+	switch (STATS_IDX(stream_info->stream_handle)) {
+	case STATS_COMP_IDX_AEC_BG:
+		irq_mask |= 1 << 15;
+		break;
+	case STATS_COMP_IDX_HDR_BE:
+		irq_mask |= 1 << 16;
+		break;
+	case STATS_COMP_IDX_BG:
+		irq_mask |= 1 << 17;
+		break;
+	case STATS_COMP_IDX_BF:
+		irq_mask |= 1 << 18;
+		irq_mask_1 |= 1 << 26;
+		break;
+	case STATS_COMP_IDX_HDR_BHIST:
+		irq_mask |= 1 << 19;
+		break;
+	case STATS_COMP_IDX_RS:
+		irq_mask |= 1 << 20;
+		break;
+	case STATS_COMP_IDX_CS:
+		irq_mask |= 1 << 21;
+		break;
+	case STATS_COMP_IDX_IHIST:
+		irq_mask |= 1 << 22;
+		break;
+	case STATS_COMP_IDX_BHIST:
+		irq_mask |= 1 << 23;
+>>>>>>> d9c275b... drivers:media:platform:msm:camera_v2: backport camera_v2 for markw. name: camera_v2_markw
 		break;
 	default:
 		pr_err("%s: Invalid stats idx %d\n", __func__,
 			STATS_IDX(stream_info->stream_handle));
 	}
+<<<<<<< HEAD
 }
 
 void msm_vfe47_stats_clear_wm_irq_mask(
+=======
+
+	msm_vfe47_config_irq(vfe_dev, irq_mask, irq_mask_1, MSM_ISP_IRQ_SET);
+	vfe_dev->irq0_mask = irq_mask;
+	vfe_dev->irq1_mask = irq_mask_1;
+}
+
+static void msm_vfe47_stats_clear_wm_irq_mask(
+>>>>>>> d9c275b... drivers:media:platform:msm:camera_v2: backport camera_v2 for markw. name: camera_v2_markw
 	struct vfe_device *vfe_dev,
 	struct msm_vfe_stats_stream *stream_info)
 {
@@ -2076,6 +2763,7 @@ void msm_vfe47_stats_clear_wm_irq_mask(
 
 	switch (STATS_IDX(stream_info->stream_handle)) {
 	case STATS_COMP_IDX_AEC_BG:
+<<<<<<< HEAD
 		msm_vfe47_config_irq(vfe_dev, 1 << 15, 0, MSM_ISP_IRQ_DISABLE);
 		break;
 	case STATS_COMP_IDX_HDR_BE:
@@ -2102,14 +2790,52 @@ void msm_vfe47_stats_clear_wm_irq_mask(
 		break;
 	case STATS_COMP_IDX_BHIST:
 		msm_vfe47_config_irq(vfe_dev, 1 << 23, 0, MSM_ISP_IRQ_DISABLE);
+=======
+		irq_mask &= ~(1 << 15);
+		break;
+	case STATS_COMP_IDX_HDR_BE:
+		irq_mask &= ~(1 << 16);
+		break;
+	case STATS_COMP_IDX_BG:
+		irq_mask &= ~(1 << 17);
+		break;
+	case STATS_COMP_IDX_BF:
+		irq_mask &= ~(1 << 18);
+		irq_mask_1 &= ~(1 << 26);
+		break;
+	case STATS_COMP_IDX_HDR_BHIST:
+		irq_mask &= ~(1 << 19);
+		break;
+	case STATS_COMP_IDX_RS:
+		irq_mask &= ~(1 << 20);
+		break;
+	case STATS_COMP_IDX_CS:
+		irq_mask &= ~(1 << 21);
+		break;
+	case STATS_COMP_IDX_IHIST:
+		irq_mask &= ~(1 << 22);
+		break;
+	case STATS_COMP_IDX_BHIST:
+		irq_mask &= ~(1 << 23);
+>>>>>>> d9c275b... drivers:media:platform:msm:camera_v2: backport camera_v2 for markw. name: camera_v2_markw
 		break;
 	default:
 		pr_err("%s: Invalid stats idx %d\n", __func__,
 			STATS_IDX(stream_info->stream_handle));
 	}
+<<<<<<< HEAD
 }
 
 void msm_vfe47_stats_cfg_wm_reg(
+=======
+
+	msm_vfe47_config_irq(vfe_dev, irq_mask, irq_mask_1, MSM_ISP_IRQ_SET);
+	vfe_dev->irq0_mask = irq_mask;
+	vfe_dev->irq1_mask = irq_mask_1;
+}
+
+static void msm_vfe47_stats_cfg_wm_reg(
+>>>>>>> d9c275b... drivers:media:platform:msm:camera_v2: backport camera_v2 for markw. name: camera_v2_markw
 	struct vfe_device *vfe_dev,
 	struct msm_vfe_stats_stream *stream_info)
 {
@@ -2127,7 +2853,11 @@ void msm_vfe47_stats_cfg_wm_reg(
 		vfe_dev->vfe_base + stats_base + 0x1C);
 }
 
+<<<<<<< HEAD
 void msm_vfe47_stats_clear_wm_reg(
+=======
+static void msm_vfe47_stats_clear_wm_reg(
+>>>>>>> d9c275b... drivers:media:platform:msm:camera_v2: backport camera_v2 for markw. name: camera_v2_markw
 	struct vfe_device *vfe_dev,
 	struct msm_vfe_stats_stream *stream_info)
 {
@@ -2143,7 +2873,11 @@ void msm_vfe47_stats_clear_wm_reg(
 	msm_camera_io_w(val, vfe_dev->vfe_base + stats_base + 0x1C);
 }
 
+<<<<<<< HEAD
 void msm_vfe47_stats_cfg_ub(struct vfe_device *vfe_dev)
+=======
+static void msm_vfe47_stats_cfg_ub(struct vfe_device *vfe_dev)
+>>>>>>> d9c275b... drivers:media:platform:msm:camera_v2: backport camera_v2 for markw. name: camera_v2_markw
 {
 	int i;
 	uint32_t ub_offset = 0;
@@ -2173,7 +2907,11 @@ void msm_vfe47_stats_cfg_ub(struct vfe_device *vfe_dev)
 	}
 }
 
+<<<<<<< HEAD
 void msm_vfe47_stats_update_cgc_override(struct vfe_device *vfe_dev,
+=======
+static void msm_vfe47_stats_update_cgc_override(struct vfe_device *vfe_dev,
+>>>>>>> d9c275b... drivers:media:platform:msm:camera_v2: backport camera_v2 for markw. name: camera_v2_markw
 	uint32_t stats_mask, uint8_t enable)
 {
 	int i;
@@ -2225,13 +2963,21 @@ void msm_vfe47_stats_update_cgc_override(struct vfe_device *vfe_dev,
 	msm_camera_io_w(module_cfg, vfe_dev->vfe_base + 0x30);
 }
 
+<<<<<<< HEAD
 bool msm_vfe47_is_module_cfg_lock_needed(
+=======
+static bool msm_vfe47_is_module_cfg_lock_needed(
+>>>>>>> d9c275b... drivers:media:platform:msm:camera_v2: backport camera_v2 for markw. name: camera_v2_markw
 	uint32_t reg_offset)
 {
 	return false;
 }
 
+<<<<<<< HEAD
 void msm_vfe47_stats_enable_module(struct vfe_device *vfe_dev,
+=======
+static void msm_vfe47_stats_enable_module(struct vfe_device *vfe_dev,
+>>>>>>> d9c275b... drivers:media:platform:msm:camera_v2: backport camera_v2 for markw. name: camera_v2_markw
 	uint32_t stats_mask, uint8_t enable)
 {
 	int i;
@@ -2282,6 +3028,7 @@ void msm_vfe47_stats_enable_module(struct vfe_device *vfe_dev,
 		module_cfg &= ~module_cfg_mask;
 
 	msm_camera_io_w(module_cfg, vfe_dev->vfe_base + 0x44);
+<<<<<<< HEAD
 	/* enable wm if needed */
 	if (vfe_dev->hw_info->vfe_ops.stats_ops.enable_stats_wm)
 		vfe_dev->hw_info->vfe_ops.stats_ops.enable_stats_wm(vfe_dev,
@@ -2289,6 +3036,21 @@ void msm_vfe47_stats_enable_module(struct vfe_device *vfe_dev,
 }
 
 void msm_vfe47_stats_update_ping_pong_addr(
+=======
+
+/* need to move to userspace
+	uint32_t stats_cfg;
+	stats_cfg = msm_camera_io_r(vfe_dev->vfe_base + 0x9B8);
+	if (enable)
+		stats_cfg |= stats_cfg_mask;
+	else
+		stats_cfg &= ~stats_cfg_mask;
+	msm_camera_io_w(stats_cfg, vfe_dev->vfe_base + 0x9B8);
+*/
+}
+
+static void msm_vfe47_stats_update_ping_pong_addr(
+>>>>>>> d9c275b... drivers:media:platform:msm:camera_v2: backport camera_v2 for markw. name: camera_v2_markw
 	void __iomem *vfe_base, struct msm_vfe_stats_stream *stream_info,
 	uint32_t pingpong_status, dma_addr_t paddr)
 {
@@ -2299,7 +3061,11 @@ void msm_vfe47_stats_update_ping_pong_addr(
 		VFE47_STATS_PING_PONG_BASE(stats_idx, pingpong_status));
 }
 
+<<<<<<< HEAD
 uint32_t msm_vfe47_stats_get_wm_mask(
+=======
+static uint32_t msm_vfe47_stats_get_wm_mask(
+>>>>>>> d9c275b... drivers:media:platform:msm:camera_v2: backport camera_v2 for markw. name: camera_v2_markw
 	uint32_t irq_status0, uint32_t irq_status1)
 {
 	/* TODO: define  bf early done irq in status_0 and
@@ -2322,18 +3088,27 @@ uint32_t msm_vfe47_stats_get_wm_mask(
 	return comp_mapped_irq_mask;
 }
 
+<<<<<<< HEAD
 uint32_t msm_vfe47_stats_get_comp_mask(
+=======
+static uint32_t msm_vfe47_stats_get_comp_mask(
+>>>>>>> d9c275b... drivers:media:platform:msm:camera_v2: backport camera_v2 for markw. name: camera_v2_markw
 	uint32_t irq_status0, uint32_t irq_status1)
 {
 	return (irq_status0 >> 29) & 0x3;
 }
 
+<<<<<<< HEAD
 uint32_t msm_vfe47_stats_get_frame_id(
+=======
+static uint32_t msm_vfe47_stats_get_frame_id(
+>>>>>>> d9c275b... drivers:media:platform:msm:camera_v2: backport camera_v2 for markw. name: camera_v2_markw
 	struct vfe_device *vfe_dev)
 {
 	return vfe_dev->axi_data.src_info[VFE_PIX_0].frame_id;
 }
 
+<<<<<<< HEAD
 void msm_vfe47_deinit_bandwidth_mgr(
 		struct msm_isp_bandwidth_mgr *isp_bandwidth_mgr)
 {
@@ -2651,31 +3426,83 @@ vbif_base_fail:
 }
 
 void msm_vfe47_get_error_mask(
+=======
+static int msm_vfe47_get_platform_data(struct vfe_device *vfe_dev)
+{
+	int rc = 0;
+
+	vfe_dev->vfe_mem = platform_get_resource_byname(vfe_dev->pdev,
+		IORESOURCE_MEM, "vfe");
+	if (!vfe_dev->vfe_mem) {
+		pr_err("%s: no mem resource?\n", __func__);
+		rc = -ENODEV;
+		goto vfe_no_resource;
+	}
+
+	vfe_dev->vfe_vbif_mem = platform_get_resource_byname(
+		vfe_dev->pdev,
+		IORESOURCE_MEM, "vfe_vbif");
+	if (!vfe_dev->vfe_vbif_mem) {
+		pr_err("%s: no mem resource?\n", __func__);
+		rc = -ENODEV;
+		goto vfe_no_resource;
+	}
+
+	vfe_dev->vfe_irq = platform_get_resource_byname(vfe_dev->pdev,
+		IORESOURCE_IRQ, "vfe");
+	if (!vfe_dev->vfe_irq) {
+		pr_err("%s: no irq resource?\n", __func__);
+		rc = -ENODEV;
+		goto vfe_no_resource;
+	}
+
+vfe_no_resource:
+	return rc;
+}
+
+static void msm_vfe47_get_error_mask(
+>>>>>>> d9c275b... drivers:media:platform:msm:camera_v2: backport camera_v2 for markw. name: camera_v2_markw
 	uint32_t *error_mask0, uint32_t *error_mask1)
 {
 	*error_mask0 = 0x00000000;
 	*error_mask1 = 0x0BFFFEFF;
 }
 
+<<<<<<< HEAD
 void msm_vfe47_get_overflow_mask(uint32_t *overflow_mask)
+=======
+static void msm_vfe47_get_overflow_mask(uint32_t *overflow_mask)
+>>>>>>> d9c275b... drivers:media:platform:msm:camera_v2: backport camera_v2 for markw. name: camera_v2_markw
 {
 	*overflow_mask = 0x09FFFE7E;
 }
 
+<<<<<<< HEAD
 void msm_vfe47_get_rdi_wm_mask(struct vfe_device *vfe_dev,
+=======
+static void msm_vfe47_get_rdi_wm_mask(struct vfe_device *vfe_dev,
+>>>>>>> d9c275b... drivers:media:platform:msm:camera_v2: backport camera_v2 for markw. name: camera_v2_markw
 	uint32_t *rdi_wm_mask)
 {
 	*rdi_wm_mask = vfe_dev->axi_data.rdi_wm_mask;
 }
 
+<<<<<<< HEAD
 void msm_vfe47_get_irq_mask(struct vfe_device *vfe_dev,
+=======
+static void msm_vfe47_get_irq_mask(struct vfe_device *vfe_dev,
+>>>>>>> d9c275b... drivers:media:platform:msm:camera_v2: backport camera_v2 for markw. name: camera_v2_markw
 	uint32_t *irq0_mask, uint32_t *irq1_mask)
 {
 	*irq0_mask = vfe_dev->irq0_mask;
 	*irq1_mask = vfe_dev->irq1_mask;
 }
 
+<<<<<<< HEAD
 void msm_vfe47_get_halt_restart_mask(uint32_t *irq0_mask,
+=======
+static void msm_vfe47_get_halt_restart_mask(uint32_t *irq0_mask,
+>>>>>>> d9c275b... drivers:media:platform:msm:camera_v2: backport camera_v2 for markw. name: camera_v2_markw
 	uint32_t *irq1_mask)
 {
 	*irq0_mask = BIT(31);
@@ -2721,8 +3548,11 @@ struct msm_vfe_hardware_info vfe47_hw_info = {
 			.process_axi_irq = msm_isp_process_axi_irq,
 			.process_stats_irq = msm_isp_process_stats_irq,
 			.process_epoch_irq = msm_vfe47_process_epoch_irq,
+<<<<<<< HEAD
 			.config_irq = msm_vfe47_config_irq,
 			.process_eof_irq = msm_isp47_process_eof_irq,
+=======
+>>>>>>> d9c275b... drivers:media:platform:msm:camera_v2: backport camera_v2 for markw. name: camera_v2_markw
 		},
 		.axi_ops = {
 			.reload_wm = msm_vfe47_axi_reload_wm,
@@ -2750,8 +3580,11 @@ struct msm_vfe_hardware_info vfe47_hw_info = {
 			.restart = msm_vfe47_axi_restart,
 			.update_cgc_override =
 				msm_vfe47_axi_update_cgc_override,
+<<<<<<< HEAD
 			.ub_reg_offset = msm_vfe47_ub_reg_offset,
 			.get_ub_size = msm_vfe47_get_ub_size,
+=======
+>>>>>>> d9c275b... drivers:media:platform:msm:camera_v2: backport camera_v2 for markw. name: camera_v2_markw
 		},
 		.core_ops = {
 			.reg_update = msm_vfe47_reg_update,
@@ -2764,6 +3597,10 @@ struct msm_vfe_hardware_info vfe47_hw_info = {
 			.init_hw_reg = msm_vfe47_init_hardware_reg,
 			.clear_status_reg = msm_vfe47_clear_status_reg,
 			.release_hw = msm_vfe47_release_hardware,
+<<<<<<< HEAD
+=======
+			.get_platform_data = msm_vfe47_get_platform_data,
+>>>>>>> d9c275b... drivers:media:platform:msm:camera_v2: backport camera_v2 for markw. name: camera_v2_markw
 			.get_error_mask = msm_vfe47_get_error_mask,
 			.get_overflow_mask = msm_vfe47_get_overflow_mask,
 			.get_rdi_wm_mask = msm_vfe47_get_rdi_wm_mask,
@@ -2773,11 +3610,14 @@ struct msm_vfe_hardware_info vfe47_hw_info = {
 			.process_error_status = msm_vfe47_process_error_status,
 			.is_module_cfg_lock_needed =
 				msm_vfe47_is_module_cfg_lock_needed,
+<<<<<<< HEAD
 			.ahb_clk_cfg = msm_isp47_ahb_clk_cfg,
 			.set_halt_restart_mask =
 				msm_vfe47_set_halt_restart_mask,
 			.start_fetch_eng_multi_pass =
 				msm_vfe47_start_fetch_engine_multi_pass,
+=======
+>>>>>>> d9c275b... drivers:media:platform:msm:camera_v2: backport camera_v2 for markw. name: camera_v2_markw
 		},
 		.stats_ops = {
 			.get_stats_idx = msm_vfe47_get_stats_idx,
@@ -2797,6 +3637,7 @@ struct msm_vfe_hardware_info vfe47_hw_info = {
 			.get_pingpong_status = msm_vfe47_get_pingpong_status,
 			.update_cgc_override =
 				msm_vfe47_stats_update_cgc_override,
+<<<<<<< HEAD
 			.enable_stats_wm = NULL,
 		},
 		.platform_ops = {
@@ -2814,11 +3655,17 @@ struct msm_vfe_hardware_info vfe47_hw_info = {
 			.deinit_bw_mgr = msm_vfe47_deinit_bandwidth_mgr,
 			.update_bw = msm_vfe47_update_bandwidth,
 		}
+=======
+		},
+>>>>>>> d9c275b... drivers:media:platform:msm:camera_v2: backport camera_v2 for markw. name: camera_v2_markw
 	},
 	.dmi_reg_offset = 0xC2C,
 	.axi_hw_info = &msm_vfe47_axi_hw_info,
 	.stats_hw_info = &msm_vfe47_stats_hw_info,
+<<<<<<< HEAD
 	.regulator_names = {"vdd", "camss-vdd", "mmagic-vdd"},
+=======
+>>>>>>> d9c275b... drivers:media:platform:msm:camera_v2: backport camera_v2 for markw. name: camera_v2_markw
 };
 EXPORT_SYMBOL(vfe47_hw_info);
 

@@ -41,12 +41,15 @@ struct msm_ois_vreg {
 	int num_vreg;
 };
 
+<<<<<<< HEAD
 struct msm_ois_board_info {
 	char ois_name[MAX_OIS_NAME_SIZE];
 	uint32_t i2c_slaveaddr;
 	struct msm_ois_opcode opcode;
 };
 
+=======
+>>>>>>> d9c275b... drivers:media:platform:msm:camera_v2: backport camera_v2 for markw. name: camera_v2_markw
 struct msm_ois_ctrl_t {
 	struct i2c_driver *i2c_driver;
 	struct platform_driver *pdriver;
@@ -67,7 +70,10 @@ struct msm_ois_ctrl_t {
 	struct msm_camera_gpio_conf *gconf;
 	struct msm_pinctrl_info pinctrl_info;
 	uint8_t cam_pinctrl_status;
+<<<<<<< HEAD
 	struct msm_ois_board_info *oboard_info;
+=======
+>>>>>>> d9c275b... drivers:media:platform:msm:camera_v2: backport camera_v2 for markw. name: camera_v2_markw
 };
 
 #endif

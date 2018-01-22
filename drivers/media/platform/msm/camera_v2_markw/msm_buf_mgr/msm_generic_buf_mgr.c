@@ -48,7 +48,10 @@ static int32_t msm_buf_mngr_hdl_cont_get_buf(struct msm_buf_mngr_device *dev,
 	}
 	return 0;
 }
+<<<<<<< HEAD
 
+=======
+>>>>>>> d9c275b... drivers:media:platform:msm:camera_v2: backport camera_v2 for markw. name: camera_v2_markw
 static int32_t msm_buf_mngr_get_buf(struct msm_buf_mngr_device *dev,
 	void __user *argp)
 {
@@ -92,6 +95,7 @@ static int32_t msm_buf_mngr_get_buf(struct msm_buf_mngr_device *dev,
 	return rc;
 }
 
+<<<<<<< HEAD
 static int32_t msm_buf_mngr_get_buf_by_idx(struct msm_buf_mngr_device *dev,
 	void *argp)
 {
@@ -139,6 +143,8 @@ static int32_t msm_buf_mngr_get_buf_by_idx(struct msm_buf_mngr_device *dev,
 	return rc;
 }
 
+=======
+>>>>>>> d9c275b... drivers:media:platform:msm:camera_v2: backport camera_v2 for markw. name: camera_v2_markw
 static int32_t msm_buf_mngr_buf_done(struct msm_buf_mngr_device *buf_mngr_dev,
 	struct msm_buf_mngr_info *buf_info)
 {
@@ -458,6 +464,7 @@ static int msm_generic_buf_mngr_close(struct v4l2_subdev *sd,
 	return rc;
 }
 
+<<<<<<< HEAD
 int msm_cam_buf_mgr_ops(unsigned int cmd, void *argp)
 {
 	int rc = 0;
@@ -519,6 +526,8 @@ int msm_cam_buf_mgr_register_ops(struct msm_cam_buf_mgr_req_ops *cb_struct)
 	return 0;
 }
 
+=======
+>>>>>>> d9c275b... drivers:media:platform:msm:camera_v2: backport camera_v2 for markw. name: camera_v2_markw
 static long msm_buf_mngr_subdev_ioctl(struct v4l2_subdev *sd,
 	unsigned int cmd, void *arg)
 {
@@ -531,6 +540,7 @@ static long msm_buf_mngr_subdev_ioctl(struct v4l2_subdev *sd,
 		rc = -ENOMEM;
 		return rc;
 	}
+<<<<<<< HEAD
 	switch (cmd) {
 	case VIDIOC_MSM_BUF_MNGR_IOCTL_CMD: {
 		struct msm_camera_private_ioctl_arg k_ioctl, *ptr;
@@ -569,6 +579,18 @@ static long msm_buf_mngr_subdev_ioctl(struct v4l2_subdev *sd,
 	case VIDIOC_MSM_BUF_MNGR_BUF_DONE:
 	case VIDIOC_MSM_BUF_MNGR_PUT_BUF:
 		rc = msm_cam_buf_mgr_ops(cmd, argp);
+=======
+
+	switch (cmd) {
+	case VIDIOC_MSM_BUF_MNGR_GET_BUF:
+		rc = msm_buf_mngr_get_buf(buf_mngr_dev, argp);
+		break;
+	case VIDIOC_MSM_BUF_MNGR_BUF_DONE:
+		rc = msm_buf_mngr_buf_done(buf_mngr_dev, argp);
+		break;
+	case VIDIOC_MSM_BUF_MNGR_PUT_BUF:
+		rc = msm_buf_mngr_put_buf(buf_mngr_dev, argp);
+>>>>>>> d9c275b... drivers:media:platform:msm:camera_v2: backport camera_v2 for markw. name: camera_v2_markw
 		break;
 	case VIDIOC_MSM_BUF_MNGR_INIT:
 		rc = msm_generic_buf_mngr_open(sd, NULL);
@@ -596,6 +618,7 @@ static long msm_buf_mngr_subdev_ioctl(struct v4l2_subdev *sd,
 }
 
 #ifdef CONFIG_COMPAT
+<<<<<<< HEAD
 static long msm_camera_buf_mgr_fetch_buf_info(
 		struct msm_buf_mngr_info32_t *buf_info32,
 		struct msm_buf_mngr_info *buf_info, unsigned long arg)
@@ -697,6 +720,8 @@ static long msm_camera_buf_mgr_internal_compat_ioctl(struct file *file,
 	return 0;
 }
 
+=======
+>>>>>>> d9c275b... drivers:media:platform:msm:camera_v2: backport camera_v2 for markw. name: camera_v2_markw
 static long msm_bmgr_subdev_fops_compat_ioctl(struct file *file,
 		unsigned int cmd, unsigned long arg)
 {
@@ -704,6 +729,11 @@ static long msm_bmgr_subdev_fops_compat_ioctl(struct file *file,
 	struct v4l2_subdev *sd = vdev_to_v4l2_subdev(vdev);
 	int32_t rc = 0;
 
+<<<<<<< HEAD
+=======
+	void __user *up = (void __user *)arg;
+
+>>>>>>> d9c275b... drivers:media:platform:msm:camera_v2: backport camera_v2 for markw. name: camera_v2_markw
 	/* Convert 32 bit IOCTL ID's to 64 bit IOCTL ID's
 	 * except VIDIOC_MSM_CPP_CFG32, which needs special
 	 * processing
@@ -719,14 +749,23 @@ static long msm_bmgr_subdev_fops_compat_ioctl(struct file *file,
 		cmd = VIDIOC_MSM_BUF_MNGR_PUT_BUF;
 		break;
 	case VIDIOC_MSM_BUF_MNGR_CONT_CMD:
+<<<<<<< HEAD
+=======
+		cmd = VIDIOC_MSM_BUF_MNGR_CONT_CMD;
+>>>>>>> d9c275b... drivers:media:platform:msm:camera_v2: backport camera_v2 for markw. name: camera_v2_markw
 		break;
 	case VIDIOC_MSM_BUF_MNGR_FLUSH32:
 		cmd = VIDIOC_MSM_BUF_MNGR_FLUSH;
 		break;
+<<<<<<< HEAD
 	case VIDIOC_MSM_BUF_MNGR_IOCTL_CMD:
 		break;
 	default:
 		pr_debug("unsupported compat type\n");
+=======
+	default:
+		pr_debug("%s : unsupported compat type", __func__);
+>>>>>>> d9c275b... drivers:media:platform:msm:camera_v2: backport camera_v2 for markw. name: camera_v2_markw
 		return -ENOIOCTLCMD;
 	}
 
@@ -738,6 +777,7 @@ static long msm_bmgr_subdev_fops_compat_ioctl(struct file *file,
 		struct msm_buf_mngr_info32_t buf_info32;
 		struct msm_buf_mngr_info buf_info;
 
+<<<<<<< HEAD
 		rc = msm_camera_buf_mgr_fetch_buf_info(&buf_info32, &buf_info,
 			arg);
 		if (rc < 0) {
@@ -763,26 +803,82 @@ static long msm_bmgr_subdev_fops_compat_ioctl(struct file *file,
 			pr_debug("Subdev cmd %d fail\n", cmd);
 			return rc;
 		}
+=======
+		if (copy_from_user(&buf_info32, (void __user *)up,
+					sizeof(struct msm_buf_mngr_info32_t)))
+			return -EFAULT;
+
+		buf_info.session_id = buf_info32.session_id;
+		buf_info.stream_id = buf_info32.stream_id;
+		buf_info.frame_id = buf_info32.frame_id;
+		buf_info.index = buf_info32.index;
+		buf_info.timestamp.tv_sec = (long) buf_info32.timestamp.tv_sec;
+		buf_info.timestamp.tv_usec = (long) buf_info32.
+						timestamp.tv_usec;
+		buf_info.reserved = buf_info32.reserved;
+		buf_info.type = buf_info32.type;
+
+		rc = v4l2_subdev_call(sd, core, ioctl, cmd, &buf_info);
+		if (rc < 0) {
+			pr_debug("%s : Subdev cmd %d fail", __func__, cmd);
+			return rc;
+		}
+
+		buf_info32.session_id = buf_info.session_id;
+		buf_info32.stream_id = buf_info.stream_id;
+		buf_info32.index = buf_info.index;
+		buf_info32.timestamp.tv_sec = (int32_t) buf_info.
+							timestamp.tv_sec;
+		buf_info32.timestamp.tv_usec = (int32_t) buf_info.timestamp.
+							tv_usec;
+		buf_info32.reserved = buf_info.reserved;
+		buf_info32.type = buf_info.type;
+		buf_info32.user_buf.buf_cnt = buf_info.user_buf.buf_cnt;
+		memcpy(&buf_info32.user_buf.buf_idx,
+			&buf_info.user_buf.buf_idx,
+			sizeof(buf_info.user_buf.buf_idx));
+		if (copy_to_user((void __user *)up, &buf_info32,
+				sizeof(struct msm_buf_mngr_info32_t)))
+			return -EFAULT;
+>>>>>>> d9c275b... drivers:media:platform:msm:camera_v2: backport camera_v2 for markw. name: camera_v2_markw
 		}
 		break;
 	case VIDIOC_MSM_BUF_MNGR_CONT_CMD: {
 		struct msm_buf_mngr_main_cont_info cont_cmd;
 
+<<<<<<< HEAD
 		if (copy_from_user(&cont_cmd, (void __user *)arg,
+=======
+		if (copy_from_user(&cont_cmd, (void __user *)up,
+>>>>>>> d9c275b... drivers:media:platform:msm:camera_v2: backport camera_v2 for markw. name: camera_v2_markw
 			sizeof(struct msm_buf_mngr_main_cont_info)))
 			return -EFAULT;
 		rc = v4l2_subdev_call(sd, core, ioctl, cmd, &cont_cmd);
 		if (rc < 0) {
+<<<<<<< HEAD
 			pr_debug("Subdev cmd %d fail\n", cmd);
+=======
+			pr_debug("%s : Subdev cmd %d fail", __func__, cmd);
+>>>>>>> d9c275b... drivers:media:platform:msm:camera_v2: backport camera_v2 for markw. name: camera_v2_markw
 			return rc;
 		}
 		}
 		break;
 	default:
+<<<<<<< HEAD
 		pr_debug("unsupported compat type\n");
 		return -ENOIOCTLCMD;
 		break;
 	}
+=======
+		pr_debug("%s : unsupported compat type", __func__);
+		return -ENOIOCTLCMD;
+		break;
+	}
+
+
+
+>>>>>>> d9c275b... drivers:media:platform:msm:camera_v2: backport camera_v2 for markw. name: camera_v2_markw
 	return 0;
 }
 #endif
