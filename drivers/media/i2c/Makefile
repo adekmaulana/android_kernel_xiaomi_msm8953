@@ -28,10 +28,17 @@ obj-$(CONFIG_VIDEO_ADV7343) += adv7343.o
 obj-$(CONFIG_VIDEO_ADV7393) += adv7393.o
 obj-$(CONFIG_VIDEO_ADV7604) += adv7604.o
 obj-$(CONFIG_VIDEO_ADV7842) += adv7842.o
+ifeq ($(CONFIG_MACH_XIAOMI_MARKW),y)
+ccflags-y += -Idrivers/media/platform/msm/camera_v2_markw
+ccflags-y += -Idrivers/media/platform/msm/camera_v2_markw/common
+ccflags-y += -Idrivers/media/platform/msm/camera_v2_markw/sensor/io
+ccflags-y += -Idrivers/media/platform/msm/camera_v2_markw/sensor/cci
+else
 ccflags-y += -Idrivers/media/platform/msm/camera_v2
 ccflags-y += -Idrivers/media/platform/msm/camera_v2/common
 ccflags-y += -Idrivers/media/platform/msm/camera_v2/sensor/io
 ccflags-y += -Idrivers/media/platform/msm/camera_v2/sensor/cci
+endif
 obj-$(CONFIG_VIDEO_ADV7481) += adv7481.o
 obj-$(CONFIG_VIDEO_AD9389B) += ad9389b.o
 obj-$(CONFIG_VIDEO_ADV7511) += adv7511.o

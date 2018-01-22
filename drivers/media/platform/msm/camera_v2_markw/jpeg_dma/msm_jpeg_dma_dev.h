@@ -335,10 +335,14 @@ struct msm_jpegdma_device {
 
 	struct resource *irq;
 <<<<<<< HEAD
+<<<<<<< HEAD
 	struct msm_cam_regulator *dma_vdd;
 =======
 	struct regulator **vdd;
 >>>>>>> d9c275b... drivers:media:platform:msm:camera_v2: backport camera_v2 for markw. name: camera_v2_markw
+=======
+	struct msm_cam_regulator *dma_vdd;
+>>>>>>> cfc12b8... msm: camera: Change API to populate regulator name Some of the camera modules need to know the regulator names to enable based on the use case, Hence change the regulator API to populate regulator names as well.
 	int num_reg;
 
 	struct clk **clk;

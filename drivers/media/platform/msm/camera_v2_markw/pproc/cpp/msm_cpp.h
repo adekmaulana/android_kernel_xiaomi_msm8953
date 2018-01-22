@@ -234,10 +234,14 @@ struct cpp_device {
 	struct msm_cam_clk_info *clk_info;
 	size_t num_clks;
 <<<<<<< HEAD
+<<<<<<< HEAD
 	struct msm_cam_regulator *cpp_vdd;
 =======
 	struct regulator **cpp_vdd;
 >>>>>>> d9c275b... drivers:media:platform:msm:camera_v2: backport camera_v2 for markw. name: camera_v2_markw
+=======
+	struct msm_cam_regulator *cpp_vdd;
+>>>>>>> cfc12b8... msm: camera: Change API to populate regulator name Some of the camera modules need to know the regulator names to enable based on the use case, Hence change the regulator API to populate regulator names as well.
 	int num_reg;
 	struct mutex mutex;
 	enum cpp_state state;

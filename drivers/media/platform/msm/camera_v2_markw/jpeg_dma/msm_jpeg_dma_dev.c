@@ -1204,10 +1204,14 @@ static int jpegdma_probe(struct platform_device *pdev)
 
 	/* get all the regulators */
 <<<<<<< HEAD
+<<<<<<< HEAD
 	ret = msm_camera_get_regulator_info(pdev, &jpegdma->dma_vdd,
 =======
 	ret = msm_camera_get_regulator_info(pdev, &jpegdma->vdd,
 >>>>>>> d9c275b... drivers:media:platform:msm:camera_v2: backport camera_v2 for markw. name: camera_v2_markw
+=======
+	ret = msm_camera_get_regulator_info(pdev, &jpegdma->dma_vdd,
+>>>>>>> cfc12b8... msm: camera: Change API to populate regulator name Some of the camera modules need to know the regulator names to enable based on the use case, Hence change the regulator API to populate regulator names as well.
 		&jpegdma->num_reg);
 	if (ret < 0)
 		goto error_get_regulators;
@@ -1315,10 +1319,14 @@ error_qos_get:
 		&jpegdma->clk, jpegdma->num_clk);
 error_get_clocks:
 <<<<<<< HEAD
+<<<<<<< HEAD
 	msm_camera_put_regulators(pdev, &jpegdma->dma_vdd,
 =======
 	msm_camera_put_regulators(pdev, &jpegdma->vdd,
 >>>>>>> d9c275b... drivers:media:platform:msm:camera_v2: backport camera_v2 for markw. name: camera_v2_markw
+=======
+	msm_camera_put_regulators(pdev, &jpegdma->dma_vdd,
+>>>>>>> cfc12b8... msm: camera: Change API to populate regulator name Some of the camera modules need to know the regulator names to enable based on the use case, Hence change the regulator API to populate regulator names as well.
 		jpegdma->num_reg);
 error_get_regulators:
 	msm_jpegdma_hw_release_mem_resources(jpegdma);
@@ -1347,10 +1355,14 @@ static int jpegdma_device_remove(struct platform_device *pdev)
 	msm_camera_unregister_bus_client(dma->bus_client);
 	/* release all the regulators */
 <<<<<<< HEAD
+<<<<<<< HEAD
 	msm_camera_put_regulators(dma->pdev, &dma->dma_vdd,
 =======
 	msm_camera_put_regulators(dma->pdev, &dma->vdd,
 >>>>>>> d9c275b... drivers:media:platform:msm:camera_v2: backport camera_v2 for markw. name: camera_v2_markw
+=======
+	msm_camera_put_regulators(dma->pdev, &dma->dma_vdd,
+>>>>>>> cfc12b8... msm: camera: Change API to populate regulator name Some of the camera modules need to know the regulator names to enable based on the use case, Hence change the regulator API to populate regulator names as well.
 		dma->num_reg);
 	/* release all the clocks */
 	msm_camera_put_clk_info(dma->pdev, &dma->jpeg_clk_info,

@@ -1327,10 +1327,14 @@ static int fd_probe(struct platform_device *pdev)
 	}
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	ret = msm_camera_get_regulator_info(pdev, &fd->vdd_info,
 =======
 	ret = msm_camera_get_regulator_info(pdev, &fd->vdd,
 >>>>>>> d9c275b... drivers:media:platform:msm:camera_v2: backport camera_v2 for markw. name: camera_v2_markw
+=======
+	ret = msm_camera_get_regulator_info(pdev, &fd->vdd_info,
+>>>>>>> cfc12b8... msm: camera: Change API to populate regulator name Some of the camera modules need to know the regulator names to enable based on the use case, Hence change the regulator API to populate regulator names as well.
 		&fd->num_reg);
 	if (ret < 0) {
 		dev_err(&pdev->dev, "Fail to get regulators\n");
@@ -1405,10 +1409,14 @@ error_get_bus:
 		&fd->clk, &fd->clk_rates, fd->clk_rates_num, fd->clk_num);
 error_get_clocks:
 <<<<<<< HEAD
+<<<<<<< HEAD
 	msm_camera_put_regulators(pdev, &fd->vdd_info, fd->num_reg);
 =======
 	msm_camera_put_regulators(pdev, &fd->vdd, fd->num_reg);
 >>>>>>> d9c275b... drivers:media:platform:msm:camera_v2: backport camera_v2 for markw. name: camera_v2_markw
+=======
+	msm_camera_put_regulators(pdev, &fd->vdd_info, fd->num_reg);
+>>>>>>> cfc12b8... msm: camera: Change API to populate regulator name Some of the camera modules need to know the regulator names to enable based on the use case, Hence change the regulator API to populate regulator names as well.
 error_get_regulator:
 	msm_fd_hw_release_mem_resources(fd);
 error_mem_resources:
@@ -1436,10 +1444,14 @@ static int fd_device_remove(struct platform_device *pdev)
 	msm_camera_put_clk_info_and_rates(pdev, &fd->clk_info,
 		&fd->clk, &fd->clk_rates, fd->clk_rates_num, fd->clk_num);
 <<<<<<< HEAD
+<<<<<<< HEAD
 	msm_camera_put_regulators(pdev, &fd->vdd_info, fd->num_reg);
 =======
 	msm_camera_put_regulators(pdev, &fd->vdd, fd->num_reg);
 >>>>>>> d9c275b... drivers:media:platform:msm:camera_v2: backport camera_v2 for markw. name: camera_v2_markw
+=======
+	msm_camera_put_regulators(pdev, &fd->vdd_info, fd->num_reg);
+>>>>>>> cfc12b8... msm: camera: Change API to populate regulator name Some of the camera modules need to know the regulator names to enable based on the use case, Hence change the regulator API to populate regulator names as well.
 	msm_fd_hw_release_mem_resources(fd);
 	kfree(fd);
 

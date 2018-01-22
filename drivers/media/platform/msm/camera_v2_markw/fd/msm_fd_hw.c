@@ -885,11 +885,16 @@ int msm_fd_hw_get(struct msm_fd_device *fd, unsigned int clock_rate_idx)
 	if (fd->ref_count == 0) {
 		ret =
 <<<<<<< HEAD
+<<<<<<< HEAD
 			msm_camera_regulator_enable(fd->vdd_info,
 				fd->num_reg, true);
 =======
 			msm_camera_regulator_enable(fd->vdd, fd->num_reg, true);
 >>>>>>> d9c275b... drivers:media:platform:msm:camera_v2: backport camera_v2 for markw. name: camera_v2_markw
+=======
+			msm_camera_regulator_enable(fd->vdd_info,
+				fd->num_reg, true);
+>>>>>>> cfc12b8... msm: camera: Change API to populate regulator name Some of the camera modules need to know the regulator names to enable based on the use case, Hence change the regulator API to populate regulator names as well.
 		if (ret < 0) {
 			dev_err(fd->dev, "Fail to enable vdd\n");
 			goto error;
@@ -938,10 +943,14 @@ error_set_dt:
 error_clocks:
 error_bus_request:
 <<<<<<< HEAD
+<<<<<<< HEAD
 	msm_camera_regulator_enable(fd->vdd_info, fd->num_reg, false);
 =======
 	msm_camera_regulator_enable(fd->vdd, fd->num_reg, false);
 >>>>>>> d9c275b... drivers:media:platform:msm:camera_v2: backport camera_v2 for markw. name: camera_v2_markw
+=======
+	msm_camera_regulator_enable(fd->vdd_info, fd->num_reg, false);
+>>>>>>> cfc12b8... msm: camera: Change API to populate regulator name Some of the camera modules need to know the regulator names to enable based on the use case, Hence change the regulator API to populate regulator names as well.
 error:
 	mutex_unlock(&fd->lock);
 	return ret;
@@ -970,10 +979,14 @@ void msm_fd_hw_put(struct msm_fd_device *fd)
 		msm_camera_clk_enable(&fd->pdev->dev, fd->clk_info,
 				fd->clk, fd->clk_num, false);
 <<<<<<< HEAD
+<<<<<<< HEAD
 		msm_camera_regulator_enable(fd->vdd_info, fd->num_reg, false);
 =======
 		msm_camera_regulator_enable(fd->vdd, fd->num_reg, false);
 >>>>>>> d9c275b... drivers:media:platform:msm:camera_v2: backport camera_v2 for markw. name: camera_v2_markw
+=======
+		msm_camera_regulator_enable(fd->vdd_info, fd->num_reg, false);
+>>>>>>> cfc12b8... msm: camera: Change API to populate regulator name Some of the camera modules need to know the regulator names to enable based on the use case, Hence change the regulator API to populate regulator names as well.
 	}
 	mutex_unlock(&fd->lock);
 }

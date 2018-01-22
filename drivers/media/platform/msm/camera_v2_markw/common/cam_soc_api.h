@@ -35,13 +35,19 @@ enum cam_bus_client {
 };
 
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> cfc12b8... msm: camera: Change API to populate regulator name Some of the camera modules need to know the regulator names to enable based on the use case, Hence change the regulator API to populate regulator names as well.
 struct msm_cam_regulator {
 	const char *name;
 	struct regulator *vdd;
 };
 
+<<<<<<< HEAD
 =======
 >>>>>>> d9c275b... drivers:media:platform:msm:camera_v2: backport camera_v2 for markw. name: camera_v2_markw
+=======
+>>>>>>> cfc12b8... msm: camera: Change API to populate regulator name Some of the camera modules need to know the regulator names to enable based on the use case, Hence change the regulator API to populate regulator names as well.
 /**
  * @brief      : Gets clock information from dtsi
  *
@@ -213,10 +219,14 @@ long msm_camera_clk_set_rate(struct device *dev,
  *
  * @param pdev   : platform device to get regulator information
 <<<<<<< HEAD
+<<<<<<< HEAD
  * @param vdd_info: Pointer to populate the regulator names
 =======
  * @param vdd: Pointer to populate the regulator names
 >>>>>>> d9c275b... drivers:media:platform:msm:camera_v2: backport camera_v2 for markw. name: camera_v2_markw
+=======
+ * @param vdd_info: Pointer to populate the regulator names
+>>>>>>> cfc12b8... msm: camera: Change API to populate regulator name Some of the camera modules need to know the regulator names to enable based on the use case, Hence change the regulator API to populate regulator names as well.
  * @param num_reg: Pointer to populate the number of regulators
  *                 extracted from dtsi
  *
@@ -224,10 +234,14 @@ long msm_camera_clk_set_rate(struct device *dev,
  */
 int msm_camera_get_regulator_info(struct platform_device *pdev,
 <<<<<<< HEAD
+<<<<<<< HEAD
 		struct msm_cam_regulator **vdd_info, int *num_reg);
 =======
 		struct regulator ***vddd, int *num_reg);
 >>>>>>> d9c275b... drivers:media:platform:msm:camera_v2: backport camera_v2 for markw. name: camera_v2_markw
+=======
+		struct msm_cam_regulator **vdd_info, int *num_reg);
+>>>>>>> cfc12b8... msm: camera: Change API to populate regulator name Some of the camera modules need to know the regulator names to enable based on the use case, Hence change the regulator API to populate regulator names as well.
 /**
  * @brief      : Enable/Disable the regultors
  *
@@ -235,10 +249,14 @@ int msm_camera_get_regulator_info(struct platform_device *pdev,
  * platform device
  *
 <<<<<<< HEAD
+<<<<<<< HEAD
  * @param vdd_info: Pointer to list of regulators
 =======
  * @param vdd: Pointer to list of regulators
 >>>>>>> d9c275b... drivers:media:platform:msm:camera_v2: backport camera_v2 for markw. name: camera_v2_markw
+=======
+ * @param vdd_info: Pointer to list of regulators
+>>>>>>> cfc12b8... msm: camera: Change API to populate regulator name Some of the camera modules need to know the regulator names to enable based on the use case, Hence change the regulator API to populate regulator names as well.
  * @param cnt: Number of regulators to enable/disable
  * @param enable: Flags specifies either enable/disable
  *
@@ -246,10 +264,14 @@ int msm_camera_get_regulator_info(struct platform_device *pdev,
  */
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 int msm_camera_regulator_enable(struct msm_cam_regulator *vdd_info,
 =======
 int msm_camera_regulator_enable(struct regulator **vdd,
 >>>>>>> d9c275b... drivers:media:platform:msm:camera_v2: backport camera_v2 for markw. name: camera_v2_markw
+=======
+int msm_camera_regulator_enable(struct msm_cam_regulator *vdd_info,
+>>>>>>> cfc12b8... msm: camera: Change API to populate regulator name Some of the camera modules need to know the regulator names to enable based on the use case, Hence change the regulator API to populate regulator names as well.
 				int cnt, int enable);
 
 /**
@@ -259,20 +281,28 @@ int msm_camera_regulator_enable(struct regulator **vdd,
  *
  * @param pdev: Pointer to platform device
 <<<<<<< HEAD
+<<<<<<< HEAD
  * @param vdd_info: Pointer to list of regulators
 =======
  * @param vdd: Pointer to list of regulators
 >>>>>>> d9c275b... drivers:media:platform:msm:camera_v2: backport camera_v2 for markw. name: camera_v2_markw
+=======
+ * @param vdd_info: Pointer to list of regulators
+>>>>>>> cfc12b8... msm: camera: Change API to populate regulator name Some of the camera modules need to know the regulator names to enable based on the use case, Hence change the regulator API to populate regulator names as well.
  * @param cnt: Number of regulators to release
  */
 
 void msm_camera_put_regulators(struct platform_device *pdev,
+<<<<<<< HEAD
 <<<<<<< HEAD
 	struct msm_cam_regulator **vdd_info, int cnt);
 =======
 							struct regulator ***vdd,
 							int cnt);
 >>>>>>> d9c275b... drivers:media:platform:msm:camera_v2: backport camera_v2 for markw. name: camera_v2_markw
+=======
+	struct msm_cam_regulator **vdd_info, int cnt);
+>>>>>>> cfc12b8... msm: camera: Change API to populate regulator name Some of the camera modules need to know the regulator names to enable based on the use case, Hence change the regulator API to populate regulator names as well.
 /**
  * @brief      : Get the IRQ resource
  *
@@ -331,10 +361,14 @@ int msm_camera_register_threaded_irq(struct platform_device *pdev,
 						irq_handler_t thread_fn,
 						unsigned long irqflags,
 <<<<<<< HEAD
+<<<<<<< HEAD
 						const char *irq_name,
 =======
 						char *irq_name,
 >>>>>>> d9c275b... drivers:media:platform:msm:camera_v2: backport camera_v2 for markw. name: camera_v2_markw
+=======
+						const char *irq_name,
+>>>>>>> cfc12b8... msm: camera: Change API to populate regulator name Some of the camera modules need to know the regulator names to enable based on the use case, Hence change the regulator API to populate regulator names as well.
 						void *dev);
 
 /**
