@@ -277,3 +277,14 @@
 		status = "okay";
 	};
 };
+
+&firmware {
+	android {
+		fstab {
+			/delete-node/ vendor;
+			system {
+				dev = "/dev/block/platform/soc/7864900.sdhci/by-name/system";
+			};
+		};
+	};
+};
