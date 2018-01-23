@@ -31,6 +31,13 @@ config AD525X_DPOT
 	  This driver can also be built as a module.  If so, the module
 	  will be called ad525x_dpot.
 
+
+config AW8736
+	tristate "support aw8636 on markw"
+	depends on I2C
+	help
+	  Say Y here if you have a markw power amplifier.
+		
 config AD525X_DPOT_I2C
 	tristate "support I2C bus connection"
 	depends on AD525X_DPOT && I2C
