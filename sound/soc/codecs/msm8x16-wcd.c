@@ -3931,10 +3931,6 @@ static int msm8x16_wcd_codec_config_compander(struct snd_soc_codec *codec,
 	switch (msm8x16_wcd->comp_enabled[interp_n]) {
 	case COMPANDER_1:
 		if (SND_SOC_DAPM_EVENT_ON(event)) {
-			if (get_codec_version(msm8x16_wcd) >= DIANGU)
-				snd_soc_update_bits(codec,
-					MSM8X16_WCD_A_ANALOG_RX_COM_BIAS_DAC,
-					0x08, 0x08);
 			/* Enable Compander Clock */
 			snd_soc_update_bits(codec,
 				MSM8X16_WCD_A_CDC_COMP0_B2_CTL, 0x0F, 0x09);
@@ -5532,16 +5528,9 @@ static int msm8x16_wcd_device_down(struct snd_soc_codec *codec)
 	struct msm8x16_wcd_priv *msm8x16_wcd_priv =
 		snd_soc_codec_get_drvdata(codec);
 	int i;
-	unsigned int tx_1_en;
-	unsigned int tx_2_en;
 
 	pdata = snd_soc_card_get_drvdata(codec->component.card);
 	dev_dbg(codec->dev, "%s: device down!\n", __func__);
-
-	tx_1_en = msm8x16_wcd_read(codec, MSM8X16_WCD_A_ANALOG_TX_1_EN);
-	tx_2_en = msm8x16_wcd_read(codec, MSM8X16_WCD_A_ANALOG_TX_2_EN);
-	tx_1_en = tx_1_en & 0x7f;
-	tx_2_en = tx_2_en & 0x7f;
 	msm8x16_wcd_write(codec,
 		MSM8X16_WCD_A_ANALOG_TX_1_EN, 0x3);
 	msm8x16_wcd_write(codec,
