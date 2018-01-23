@@ -1053,6 +1053,7 @@ CONFIG_HAVE_BPF_JIT=y
 #
 # Device Drivers
 #
+CONFIG_STATE_NOTIFIER=y
 
 #
 # Generic Driver Options
