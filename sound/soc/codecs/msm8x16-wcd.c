@@ -5145,8 +5145,8 @@ static const struct snd_soc_dapm_widget msm8x16_wcd_dapm_widgets[] = {
 			SND_SOC_DAPM_PRE_PMD | SND_SOC_DAPM_POST_PMD),
 
 	SND_SOC_DAPM_PGA_E("LINEOUT PA", MSM8X16_WCD_A_ANALOG_RX_LO_EN_CTL,
-			5, 0 , NULL, 0, msm8x16_wcd_codec_enable_lo_pa,
-			SND_SOC_DAPM_POST_PMU | SND_SOC_DAPM_POST_PMD),
+			6, 0 , NULL, 0, msm8x16_wcd_codec_enable_lo_pa,
+			SND_SOC_DAPM_POST_PMU | SND_SOC_DAPM_PRE_PMD),
 
 	SND_SOC_DAPM_SUPPLY("VDD_SPKDRV", SND_SOC_NOPM, 0, 0,
 			    msm89xx_wcd_codec_enable_vdd_spkr,
