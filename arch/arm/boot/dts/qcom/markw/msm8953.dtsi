@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2015-2017, The Linux Foundation. All rights reserved.
+ * Copyright (c) 2015-2016, The Linux Foundation. All rights reserved.
  *
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License version 2 and
@@ -24,24 +24,6 @@
 
 	chosen {
 		bootargs = "sched_enable_hmp=1 sched_enable_power_aware=1";
-	};
-
-firmware: firmware {
-		android {
-			compatible = "android,firmware";
-			fstab {
-				compatible = "android,fstab";
-				system {
-					compatible = "android,system";
-					dev = "/dev/block/platform/soc/7824900.sdhci/by-name/system";
-					type = "ext4";
-					mnt_flags = "ro,barrier=1,discard";
-					fsmgr_flags = "wait";
-					status = "ok";
-				};
-
-			};
-		};
 	};
 
 	reserved-memory {
@@ -117,14 +99,6 @@ firmware: firmware {
 			alloc-ranges = <0x0 0x80000000 0x0 0x10000000>;
 			alignment = <0 0x400000>;
 			size = <0 0x800000>;
-		};
-
-		pstore_reserve_mem: pstore_reserve_mem_region@0 {
-			linux,reserve-contiguous-region;
-			linux,reserve-region;
-			linux,remove-completely;
-			reg = <0x0 0x9ff00000 0x0 0x00100000>;
-			label = "pstore_reserve_mem";
 		};
 	};
 
@@ -313,10 +287,8 @@ firmware: firmware {
 		reg-names = "tsens_physical", "tsens_eeprom_physical";
 		interrupts = <0 184 0>, <0 314 0>;
 		interrupt-names = "tsens-upper-lower", "tsens-critical";
-		qcom,client-id = <1 2 3 4 5 6 7 8 9 10 11 12 13 14 15>;
-		qcom,sensor-id = <1 2 3 4 5 6 7 8 9 10 11 12 13 14 15>;
-		qcom,sensors = <15>;
-		qcom,slope = <3200 3200 3200 3200 3200 3200 3200 3200
+		qcom,sensors = <16>;
+		qcom,slope = <3200 3200 3200 3200 3200 3200 3200 3200 3200
 					3200 3200 3200 3200 3200 3200 3200>;
 		qcom,valid-status-check;
 	};
@@ -583,8 +555,8 @@ firmware: firmware {
 	qcom,msm-core@a0000 {
 		compatible = "qcom,apss-core-ea";
 		reg = <0xa0000 0x1000>;
-		qcom,low-hyst-temp = <100>;
-		qcom,high-hyst-temp = <100>;
+		qcom,low-hyst-temp = <10>;
+		qcom,high-hyst-temp = <5>;
 
 		ea0: ea0 {
 			sensor = <&sensor_information9>;
@@ -662,42 +634,6 @@ firmware: firmware {
 		qcom,msm-bus,vectors-KBps =
 				<86 512 0 0>,
 				<86 512 500 800>;
-		status = "disabled";
-	};
-
-blsp2_uart0: uart@7aef000 {
-		compatible = "qcom,msm-hsuart-v14";
-		reg = <0x7aef000 0x200>,
-			<0x7ac4000 0x1f000>;
-		reg-names = "core_mem", "bam_mem";
-
-		interrupt-names = "core_irq", "bam_irq", "wakeup_irq";
-		#address-cells = <0>;
-		interrupt-parent = <&blsp2_uart0>;
-		interrupts = <0 1 2>;
-		#interrupt-cells = <1>;
-		interrupt-map-mask = <0xffffffff>;
-		interrupt-map = <0 &intc 0 306 0
-				1 &intc 0 239 0
-				2 &tlmm 17 0>;
-
-		qcom,inject-rx-on-wakeup;
-		qcom,rx-char-to-inject = <0xFD>;
-		qcom,master-id = <84>;
-		clock-names = "core_clk", "iface_clk";
-		clocks = <&clock_gcc clk_gcc_blsp2_uart1_apps_clk>,
-			<&clock_gcc clk_gcc_blsp2_ahb_clk>;
-		pinctrl-names = "sleep", "default";
-		pinctrl-0 = <&blsp2_uart0_sleep>;
-		pinctrl-1 = <&blsp2_uart0_active>;
-		qcom,bam-tx-ep-pipe-index = <0>;
-		qcom,bam-rx-ep-pipe-index = <1>;
-		qcom,msm-bus,name = "blsp2_uart0";
-		qcom,msm-bus,num-cases = <2>;
-		qcom,msm-bus,num-paths = <1>;
-		qcom,msm-bus,vectors-KBps =
-				<84 512 0 0>,
-				<84 512 500 800>;
 		status = "disabled";
 	};
 
@@ -875,9 +811,8 @@ blsp2_uart0: uart@7aef000 {
 
 	clock_gcc_mdss: qcom,gcc-mdss@1800000 {
 		compatible = "qcom,gcc-mdss-8953";
-		reg = <0x1800000 0x80000>,
-			<0x00a4124 0x08>;
-		reg-names = "cc_base", "efuse";
+		reg = <0x1800000 0x80000>;
+		reg-names = "cc_base";
 		clock-names = "pclk0_src", "pclk1_src",
 				"byte0_src", "byte1_src";
 		clocks = <&mdss_dsi0_pll clk_dsi0pll_pixel_clk_mux>,
@@ -1697,6 +1632,7 @@ blsp2_uart0: uart@7aef000 {
 		qcom,msm-bus,num-cases = <4>;
 		qcom,msm-bus,num-paths = <1>;
 		qcom,support-bus-scaling;
+		qcom,appsbl-qseecom-support;
 		qcom,msm-bus,vectors-KBps =
 			<55 512 0 0>,
 			<55 512 0 0>,
@@ -2097,13 +2033,13 @@ blsp2_uart0: uart@7aef000 {
 		interrupt-names = "hs_phy_irq", "ss_phy_irq", "pwr_event_irq";
 
 		USB3_GDSC-supply = <&gdsc_usb30>;
+		vbus_dwc3-supply = <&smbcharger_charger_otg>;
 		qcom,usb-dbm = <&dbm_1p5>;
 		qcom,msm-bus,name = "usb3";
-		qcom,msm-bus,num-cases = <3>;
+		qcom,msm-bus,num-cases = <2>;
 		qcom,msm-bus,num-paths = <1>;
 		qcom,msm-bus,vectors-KBps =
 					<61 512 0 0>,
-					<61 512 240000 800000>,
 					<61 512 240000 800000>;
 
 		qcom,dwc-usb3-msm-tx-fifo-size = <21288>;
@@ -2200,10 +2136,12 @@ blsp2_uart0: uart@7aef000 {
 	qusb_phy: qusb@79000 {
 		compatible = "qcom,qusb2phy";
 		reg = <0x079000 0x180>,
+			<0x070f8800 0x400>,
 			<0x01841030 0x4>,
 			<0x0193f044 0x4>,
 			<0x0193f020 0x4>;
 		reg-names = "qusb_phy_base",
+			"qscratch_base",
 			"ref_clk_addr",
 			"tcsr_phy_clk_scheme_sel",
 			"tcsr_phy_level_shift_keeper";
@@ -2333,7 +2271,7 @@ blsp2_uart0: uart@7aef000 {
 					0x974 0x8d8 0x8dc 0x804 0x800
 					0x808>;
 		vdd-supply = <&pm8953_l3>;
-		core-supply = <&pm8953_l7>;
+		vdda18-supply = <&pm8953_l7>;
 		qcom,vdd-voltage-level = <0 925000 925000>;
 		qcom,vbus-valid-override;
 
@@ -2348,6 +2286,11 @@ blsp2_uart0: uart@7aef000 {
 		clock-names = "aux_clk", "pipe_clk", "cfg_ahb_clk", "phy_reset",
 			      "phy_phy_reset", "ref_clk_src", "ref_clk";
 
+	};
+
+	usb_audio_qmi_dev {
+		compatible = "qcom,usb-audio-qmi-dev";
+		qcom,usb-audio-intr-num = <2>;
 	};
 
 	dbm_1p5: dbm@70f8000 {
@@ -2366,6 +2309,7 @@ blsp2_uart0: uart@7aef000 {
 #include "../msm-pm8953-rpm-regulator.dtsi"
 #include "msm-pm8953.dtsi"
 #include "msm8953-regulator.dtsi"
+#include "msm-pmi8950.dtsi"
 #include "msm-audio.dtsi"
 #include "msm8953-audio.dtsi"
 #include "../msm-gdsc-8916.dtsi"
