@@ -57,12 +57,11 @@ obj-$(CONFIG_LEDS_QPNP_WLED)		+= leds-qpnp-wled.o
 obj-$(CONFIG_LEDS_SYSCON)		+= leds-syscon.o
 obj-$(CONFIG_LEDS_VERSATILE)		+= leds-versatile.o
 obj-$(CONFIG_LEDS_MENF21BMC)		+= leds-menf21bmc.o
-ifeq ($(CONFIG_MACH_XIAOMI_MARKW),y)
-obj-$(CONFIG_LEDS_AW2013)		+= leds-aw2013_markw.o
-obj-$(CONFIG_LEDS_GPIO)			+= leds-gpio_markw.o
-obj-$(CONFIG_LEDS_QPNP_FLASH)		+= leds-qpnp-flash.o
-else
 obj-$(CONFIG_LEDS_AW2013)		+= leds-aw2013.o
+ifeq ($(CONFIG_MACH_XIAOMI_MARKW),y)
+obj-$(CONFIG_LEDS_GPIO)			+= leds-gpio_markw.o
+obj-$(CONFIG_LEDS_QPNP_FLASH)		+= leds-qpnp-flash_markw.o
+else
 obj-$(CONFIG_LEDS_GPIO)			+= leds-gpio.o
 obj-$(CONFIG_LEDS_QPNP_FLASH)		+= leds-qpnp-flash.o
 endif
