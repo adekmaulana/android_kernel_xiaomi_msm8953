@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2015-2017, The Linux Foundation. All rights reserved.
+ * Copyright (c) 2015-2016, The Linux Foundation. All rights reserved.
  *
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License version 2 and
@@ -232,11 +232,6 @@
 			qcom,msm-dai-q6-dev-id = <240>;
 		};
 
-		afe_loopback_tx: qcom,msm-dai-q6-afe-loopback-tx {
-			compatible = "qcom,msm-dai-q6-dev";
-			qcom,msm-dai-q6-dev-id = <24577>;
-		};
-
 		incall_record_rx: qcom,msm-dai-q6-incall-record-rx {
 			compatible = "qcom,msm-dai-q6-dev";
 			qcom,msm-dai-q6-dev-id = <32771>;
@@ -304,7 +299,10 @@
 		reg-names = "avtimer_lsb_addr", "avtimer_msb_addr";
 		qcom,clk-div = <27>;
 	};
-
+	audio_amplifier {
+		compatible = "aw,aw8736";
+		ext-spk-amp-gpio = <&tlmm 96 0>;
+	};
 	int_codec: sound {
 		compatible = "qcom,msm8952-audio-codec";
 		qcom,model = "msm8953-snd-card-mtp";
