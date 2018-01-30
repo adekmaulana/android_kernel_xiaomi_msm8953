@@ -6,3 +6,7 @@
 	path = build/toolchain/gcc-linaro
 	url = https://github.com/adekmaulana/aarch64-linux-android
 	branch = snapshot-7.2-2018.01
+[submodule "build/scripts"]
+	path = build/scripts
+	url = https://github.com/adekmaulana/build_scripts
+	branch = master
