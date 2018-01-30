@@ -48,6 +48,11 @@ Module.symvers
 /Module.markers
 
 #
+# Sub-modules directory
+#
+/build/*
+
+#
 # Debian directory (make deb-pkg)
 #
 /debian/
