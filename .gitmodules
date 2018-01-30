@@ -1,0 +1,4 @@
+[submodule "build/anykernel/custom"]
+	path = build/anykernel/custom
+	url = https://github.com/adekmaulana/AnyKernel2
+	branch = zip/AOSP-LOS
