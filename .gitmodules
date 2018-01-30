@@ -2,3 +2,7 @@
 	path = build/anykernel/custom
 	url = https://github.com/adekmaulana/AnyKernel2
 	branch = zip/AOSP-LOS
+[submodule "build/toolchain/gcc-linaro"]
+	path = build/toolchain/gcc-linaro
+	url = https://github.com/adekmaulana/aarch64-linux-android
+	branch = snapshot-7.2-2018.01
