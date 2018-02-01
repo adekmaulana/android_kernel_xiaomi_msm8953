@@ -1,0 +1,39 @@
+#!/usr/bin/env bash
+#
+# Scripts to update latest submodules git
+#
+# Copyright (C) 2018 Adek Maulana
+#
+# This program is free software: you can redistribute it and/or modify
+# it under the terms of the GNU General Public License as published by
+# the Free Software Foundation, either version 3 of the License, or
+# (at your option) any later version.
+#
+# This program is distributed in the hope that it will be useful,
+# but WITHOUT ANY WARRANTY; without even the implied warranty of
+# MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+# GNU General Public License for more details.
+#
+# You should have received a copy of the GNU General Public License
+# along with this program.  If not, see <http://www.gnu.org/licenses/>
+
+APP_PATH=/home/adek/kernel/stormguard
+
+BRANCH=$(git branch | grep \* | cut -d ' ' -f2);
+
+echo "Working in: '$APP_PATH' branch '$BRANCH'"
+cd $APP_PATH
+
+git submodule sync
+git submodule init
+git submodule update
+git submodule foreach "(git pull --ff origin) || true"
+
+for i in $(git submodule foreach --quiet 'echo $path')
+do
+  echo "Adding $i to root repo"
+  git add "$i"
+done
+
+git commit -m "Updated $BRANCH branch of deployment repo to point to latest head of submodules"
+git push origin $BRANCH
