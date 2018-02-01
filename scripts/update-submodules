@@ -35,5 +35,5 @@ do
   git add "$i"
 done
 
-git commit -m "Updated $BRANCH branch of deployment repo to point to latest head of submodules"
+git commit -m "Updated remote branch of deployment repo to point latest submodules"
 git push origin $BRANCH
