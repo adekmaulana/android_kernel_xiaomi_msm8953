@@ -421,17 +421,6 @@ cleanup:
 	return -ENOMEM;
 }
 
-static void zswap_cpu_dstmem_destroy(void)
-{
-	unsigned long cpu;
-
-	cpu_notifier_register_begin();
-	for_each_online_cpu(cpu)
-		__zswap_cpu_dstmem_notifier(CPU_UP_CANCELED, cpu);
-	__unregister_cpu_notifier(&zswap_dstmem_notifier);
-	cpu_notifier_register_done();
-}
-
 static int __zswap_cpu_comp_notifier(struct zswap_pool *pool,
 				     unsigned long action, unsigned long cpu)
 {
