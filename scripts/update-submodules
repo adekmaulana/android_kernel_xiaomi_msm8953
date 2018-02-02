@@ -21,19 +21,52 @@ APP_PATH=/home/adek/kernel/stormguard
 
 BRANCH=$(git branch | grep \* | cut -d ' ' -f2);
 
+SB_1="$APP_PATH"/build/scripts
+SB_2="$APP_PATH"/build/anykernel/miui
+SB_3="$APP_PATH"/build/toolchain/gcc-linaro
+
 echo "Working in: '$APP_PATH' branch '$BRANCH'"
-cd $APP_PATH
 
 git submodule sync
 git submodule init
 git submodule update
-git submodule foreach "(git pull --ff origin) || true"
 
-for i in $(git submodule foreach --quiet 'echo $path')
+echo ""
+
+cd $SB_1
+branch=$(git branch | grep \* | cut -d ' ' -f2);
+git checkout $branch && git pull --ff origin $branch || true
+for i in $(echo $SB_1)
 do
   echo "Adding $i to root repo"
   git add "$i"
 done
+
+echo ""
+
+cd $SB_2
+branch=$(git branch | grep \* | cut -d ' ' -f2);
+git checkout $branch && git pull --ff origin $branch || true
+for i in $(echo $SB_2)
+do
+  echo "Adding $i to root repo"
+  git add "$i"
+done
+
+echo ""
+
+cd $SB_3
+branch=$(git branch | grep \* | cut -d ' ' -f2);
+git checkout $branch && git pull --ff origin $branch || true
+for i in $(echo $SB_3)
+do
+  echo "Adding $i to root repo"
+  git add "$i"
+done
+
+echo ""
+
+cd $APP_PATH
 
 git commit -m "Updated remote branch of deployment repo to point latest submodules"
 git push origin $BRANCH
