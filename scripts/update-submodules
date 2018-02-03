@@ -38,6 +38,7 @@ branch=$(git branch | grep \* | cut -d ' ' -f2);
 git checkout $branch && git pull --ff origin $branch || true
 for i in $(echo $SB_1)
 do
+  cd $APP_PATH
   echo "Adding $i to root repo"
   git add "$i"
 done
@@ -49,6 +50,7 @@ branch=$(git branch | grep \* | cut -d ' ' -f2);
 git checkout $branch && git pull --ff origin $branch || true
 for i in $(echo $SB_2)
 do
+  cd $APP_PATH
   echo "Adding $i to root repo"
   git add "$i"
 done
@@ -60,13 +62,12 @@ branch=$(git branch | grep \* | cut -d ' ' -f2);
 git checkout $branch && git pull --ff origin $branch || true
 for i in $(echo $SB_3)
 do
+  cd $APP_PATH
   echo "Adding $i to root repo"
   git add "$i"
 done
 
 echo ""
-
-cd $APP_PATH
 
 git commit -m "Updated remote branch of deployment repo to point latest submodules"
 git push origin $BRANCH
