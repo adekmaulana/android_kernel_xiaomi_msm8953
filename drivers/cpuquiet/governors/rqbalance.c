@@ -79,8 +79,8 @@ typedef enum {
 #define USERSPACE_LOW_POWER	1
 
 #define CLUSTER_LITTLE		0
-#define CLUSTER_BIG		1
-#define MAX_CLUSTERS		2
+#define CLUSTER_BIG		4
+#define MAX_CLUSTERS		7
 
 struct idle_info {
 	u64 idle_last;
