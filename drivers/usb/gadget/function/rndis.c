@@ -1369,4 +1369,3 @@ void rndis_exit(void)
 	}
 #endif
 }
-
