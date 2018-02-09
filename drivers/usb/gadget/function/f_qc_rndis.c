@@ -1303,9 +1303,10 @@ rndis_qc_bind_config_vendor(struct usb_configuration *c, u8 ethaddr[ETH_ALEN],
 			rndis_ipa_cleanup(rndis_ipa_params.private);
 		goto fail;
 	}
-	c->cdev->gadget->bam2bam_func_enabled = true;
 
 	_rndis_qc = rndis;
+
+	c->cdev->gadget->bam2bam_func_enabled = true;
 
 	return 0;
 
@@ -1335,7 +1336,6 @@ static int rndis_qc_open_dev(struct inode *ip, struct file *fp)
 	}
 
 	fp->private_data = _rndis_qc;
-
 fail:
 	spin_unlock_irqrestore(&rndis_lock, flags);
 
@@ -1348,7 +1348,6 @@ fail:
 static int rndis_qc_release_dev(struct inode *ip, struct file *fp)
 {
 	unsigned long flags;
-
 	pr_info("Close rndis QC file\n");
 
 	spin_lock_irqsave(&rndis_lock, flags);
@@ -1360,7 +1359,6 @@ static int rndis_qc_release_dev(struct inode *ip, struct file *fp)
 	}
 	rndis_qc_unlock(&_rndis_qc->open_excl);
 	spin_unlock_irqrestore(&rndis_lock, flags);
-
 	return 0;
 }
 
@@ -1368,7 +1366,7 @@ static long rndis_qc_ioctl(struct file *fp, unsigned cmd, unsigned long arg)
 {
 	u8 qc_max_pkt_per_xfer = 0;
 	u32 qc_max_pkt_size = 0;
-  	int ret = 0;
+	int ret = 0;
 	unsigned long flags;
 
 	spin_lock_irqsave(&rndis_lock, flags);
