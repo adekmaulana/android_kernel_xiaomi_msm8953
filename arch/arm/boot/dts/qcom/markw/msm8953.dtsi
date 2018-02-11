@@ -577,8 +577,6 @@
 		qcom,bcl-framework-interface;
 		qcom,bcl-freq-control-list = <&CPU0 &CPU1 &CPU2 &CPU3
 						&CPU4 &CPU5 &CPU6 &CPU7>;
-		qcom,bcl-hotplug-list = <&CPU6 &CPU7>;
-		qcom,bcl-soc-hotplug-list = <&CPU4 &CPU5 &CPU6 &CPU7>;
 		qcom,ibat-monitor {
 			qcom,low-threshold-uamp = <3400000>;
 			qcom,high-threshold-uamp = <4200000>;
@@ -907,7 +905,7 @@
 		qcom,num-clusters = <2>;
 		qcom,speed0-bin-v0-cl =
 					         <0  0>,
-					 <400457000  1>,
+					 <307000000  1>,
 					 <652800000  2>,
 					 <806400000  3>,
 					<1036800000  4>,
@@ -936,7 +934,7 @@
 
 		qcom,speed2-bin-v0-cl =
 										<0  0>,
-						<400457000  1>,
+						<307000000  1>,
 						<652800000  2>,
 						<806400000  3>,
 					 <1036800000  4>,
@@ -965,7 +963,7 @@
 					 <883200000  12>;
 		qcom,speed7-bin-v0-cl =
 									<0  0>,
-					<400457000  1>,
+					<307000000  1>,
 					<652800000  2>,
 					<806400000  3>,
 					<1036800000  4>,
@@ -993,7 +991,7 @@
 					<883200000  12>;
 		qcom,speed6-bin-v0-cl =
 									<0  0>,
-					<400457000  1>,
+					<307000000  1>,
 					<652800000  2>,
 					<806400000  3>,
 				 <1036800000  4>,
@@ -1039,7 +1037,7 @@
 			 <&clock_cpu clk_a53_pwr_clk>;
 
 		qcom,cpufreq-table =
-			< 400457>,
+			< 307000>,
 			< 652800>,
 			< 806400>,
 			<1036800>,
@@ -1104,7 +1102,7 @@
 		cpubw-cpufreq {
 		target-dev = <&cpubw>;
 		cpu-to-dev-map =
-			< 400457  769>,
+			< 307000  769>,
 			< 652800 1611>,
 			< 806400 2124>,
 			<1036800 3221>,
@@ -1120,7 +1118,7 @@
 		mincpubw-cpufreq {
 			target-dev = <&mincpubw>;
 			cpu-to-dev-map =
-				<400457 769>,
+				<3070000 769>,
 				<1401600 3221>,
 				<2208000 5859>;
 		};
