@@ -24,33 +24,33 @@
 	interrupt-parent = <&intc>;
 
 	chosen {
-		bootargs = "sched_enable_hmp=1 sched_enable_power_aware=1";
+		bootargs = "boot_cpus=0,1,2,3,4,5,6,7,8 sched_enable_hmp=1 sched_enable_power_aware=1";
 	};
 
 	cpus {
 		cpu@0 {
-			clock-frequency = <2016000>;
+			clock-frequency = <2208000>;
 		};
 		cpu@1 {
-			clock-frequency = <2016000>;
+			clock-frequency = <2208000>;
 		};
 		cpu@2 {
-			clock-frequency = <2016000>;
+			clock-frequency = <2208000>;
 		};
 		cpu@3 {
-			clock-frequency = <2016000>;
+			clock-frequency = <2208000>;
 		};
 		cpu@100 {
-			clock-frequency = <2016000>;
+			clock-frequency = <2208000>;
 		};
 		cpu@101 {
-			clock-frequency = <2016000>;
+			clock-frequency = <2208000>;
 		};
 		cpu@102 {
 			clock-frequency = <2016000>;
 		};
 		cpu@103 {
-			clock-frequency = <2016000>;
+			clock-frequency = <2208000>;
 		};
 	};
 	
