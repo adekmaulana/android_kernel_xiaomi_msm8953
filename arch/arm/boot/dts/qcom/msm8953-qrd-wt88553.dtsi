@@ -101,7 +101,6 @@
 		pinctrl-3 = <&fpc_irq_active>;
 	};
 };
-
 &i2c_2  { /* i2c 6 */
 	aw2013@45 { /*blink */
 		compatible = "awinic,aw2013";

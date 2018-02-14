@@ -18,6 +18,7 @@
 #include "msm8953-qrd-wt88553.dtsi"
 #include "markw/msm8953-audio-mtp.dtsi"
 #include "markw/msm-pmi8950.dtsi"
+#include "msm8953-pmi8950.dtsi"
 
 / {
 	model = "Qualcomm Technologies, Inc. MSMTITANIUM QRD WT88553";

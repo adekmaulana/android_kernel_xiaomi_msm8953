@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2015-2016, The Linux Foundation. All rights reserved.
+ * Copyright (c) 2015-2017, The Linux Foundation. All rights reserved.
  *
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License version 2 and
@@ -13,7 +13,6 @@
 
 #include "msm8953-pinctrl.dtsi"
 #include "msm8953-audio-mtp.dtsi"
-#include "msm8953-camera-sensor-mtp.dtsi"
 
 &spi_3 { /* BLSP1 QUP3 */
 	spi-max-frequency = <16000000>;
@@ -161,11 +160,6 @@
 	qcom,platform-bklight-en-gpio = <&tlmm 59 0>;
 };
 
-&labibb {
-	status = "ok";
-	qpnp,qpnp-labibb-mode = "lcd";
-};
-
 &dsi_truly_1080_vid {
 	qcom,panel-supply-entries = <&dsi_panel_pwr_supply>;
 	qcom,mdss-dsi-pan-enable-dynamic-fps;
@@ -248,22 +242,6 @@
 };
 
 
-/{
-	mtp_batterydata: qcom,battery-data {
-		qcom,batt-id-range-pct = <15>;
-		#include "batterydata-itech-3000mah.dtsi"
-		#include "batterydata-ascent-3450mAh.dtsi"
-	};
-};
-
-&pmi8950_fg {
-	qcom,battery-data = <&mtp_batterydata>;
-};
-
-&pmi8950_charger {
-	qcom,battery-data = <&mtp_batterydata>;
-};
-
 &pm8953_gpios {
 	/* GPIO 2 (NFC_CLK_REQ) */
 	gpio@c100 {
@@ -275,16 +253,5 @@
 		qcom,src-sel = <0>;
 		qcom,master-en = <1>;
 		status = "okay";
-	};
-};
-
-&firmware {
-	android {
-		fstab {
-			/delete-node/ vendor;
-			system {
-				dev = "/dev/block/platform/soc/7864900.sdhci/by-name/system";
-			};
-		};
 	};
 };
