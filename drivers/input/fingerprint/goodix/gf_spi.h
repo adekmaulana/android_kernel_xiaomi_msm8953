@@ -20,8 +20,8 @@ struct gf_key {
 
 
 struct gf_key_map {
-	char *name;
-	unsigned short val;
+    char *name;
+    unsigned short val;
 };
 
 #define  GF_IOC_MAGIC         'G'
@@ -74,6 +74,7 @@ struct gf_dev {
 	struct pinctrl_state *pinctrl_state[ARRAY_SIZE(pctl_names)];
 
 	struct input_dev *input;
+	/* buffer is NULL unless this device is open (users > 0) */
 	unsigned users;
 	signed irq_gpio;
 	signed reset_gpio;
@@ -102,4 +103,4 @@ int gf_irq_num(struct gf_dev *gf_dev);
 void sendnlmsg(char *message);
 int netlink_init(void);
 void netlink_exit(void);
-#endif
+#endif /*__GF_SPI_H*/
