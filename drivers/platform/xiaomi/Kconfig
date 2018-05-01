@@ -12,6 +12,16 @@ config MACH_XIAOMI_MIDO
 	bool "Mido board"
 	select MACH_XIAOMI_MSM8953
 	help
-	  Support for Redmi Note 4 SD Mido
+	  Support for Redmi Note 4/4X SD Mido
+
+menu "Mido compatibility selection"
+
+config MIDO_TREBLE
+	bool "Mido-treble board"
+	select MACH_XIAOMI_MIDO
+	help
+	  Support for Redmi Note 4/4X SD Mido for treble compatibility
+
+endmenu
 
 endmenu
