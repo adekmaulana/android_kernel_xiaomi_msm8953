@@ -591,9 +591,11 @@ static ssize_t  msm_bus_dbg_update_request_write(struct file *file,
 					goto out;
 				}
 			} else {
+				if (strnstr(chid, cldata->pdata->name, cnt) < 1) {
 				MSM_BUS_DBG("Error parsing input. Index not"
 					" found\n");
 				found = 0;
+				}
 			}
 			if ((index < 0) ||
 					(index > cldata->pdata->num_usecases)) {
