@@ -1651,8 +1651,8 @@ void hdd_hostapd_ch_avoid_cb
                 pHostapdAdapter->sessionCtx.ap.operatingChannel);
       for (channelLoop = 0; channelLoop < unsafeChannelCount; channelLoop++)
       {
-          if ((unsafeChannelList[channelLoop] ==
-                pHostapdAdapter->sessionCtx.ap.operatingChannel))
+          if (unsafeChannelList[channelLoop] ==
+                pHostapdAdapter->sessionCtx.ap.operatingChannel)
           {
               if ((AUTO_CHANNEL_SELECT ==
                      pHostapdAdapter->sessionCtx.ap.sapConfig.channel)

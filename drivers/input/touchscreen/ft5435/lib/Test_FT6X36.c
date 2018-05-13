@@ -376,7 +376,7 @@ unsigned char ReadRawData(unsigned char Freq, unsigned char LineNum, int ByteNum
 	I2C_wBuffer[1] = 0;
 	ReCode = Comm_Base_IIC_IO(I2C_wBuffer, 2, NULL, 0);
 
-	if ((ReCode == ERROR_CODE_OK)) {
+	if (ReCode == ERROR_CODE_OK) {
 		if (ReCode == ERROR_CODE_OK) {
 			I2C_wBuffer[0] = C6X36_RAWDATA_BUF;
 
