@@ -690,7 +690,7 @@ static struct usb_gadget_strings *fn_strings[] = {
 	NULL,
 };
 
-static struct usb_qualifier_descriptor devqual_desc = {
+static struct usb_qualifier_descriptor __maybe_unused devqual_desc = {
 	.bLength = sizeof devqual_desc,
 	.bDescriptorType = USB_DT_DEVICE_QUALIFIER,
 
