@@ -1,5 +1,5 @@
 #ifndef __RTMM_H__
-#define __MIMEM_H__
+#define __RTMM_H__
 
 #define GLOBAL_RECLAIM_SWAPPINESS 150
 
