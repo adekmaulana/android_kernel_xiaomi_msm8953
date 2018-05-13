@@ -559,7 +559,7 @@ void glink_dfs_update_list(struct dentry *curr_dent, struct dentry *parent,
 			dbgfs_dent_s->parent = parent;
 			dbgfs_dent_s->self = curr_dent;
 			strlcpy(dbgfs_dent_s->self_name,
-				curr, strlen(bgfs_dent_s->self_name) + 1);
+				curr, strlen(dbgfs_dent_s->self_name) + 1);
 			strlcpy(dbgfs_dent_s->par_name, par_dir,
 					strlen(dbgfs_dent_s->par_name) + 1);
 			mutex_lock(&dent_list_lock_lha0);
