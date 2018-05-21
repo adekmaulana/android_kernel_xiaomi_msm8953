@@ -568,6 +568,7 @@ CONFIG_CPU_FREQ_GOV_CONSERVATIVE=y
 #
 # CONFIG_CPUFREQ_DT is not set
 # CONFIG_CPU_BOOST is not set
+CONFIG_CPU_WAKE_BOOST=y
 
 #
 # ARM CPU frequency scaling drivers
