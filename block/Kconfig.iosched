@@ -34,7 +34,7 @@ config IOSCHED_DEADLINE
 
 config IOSCHED_MAPLE
 	tristate "Maple I/O scheduler"
-	default y
+	depends on STATE_NOTIFIER
 
 config IOSCHED_CFQ
 	tristate "CFQ I/O scheduler"
@@ -69,6 +69,9 @@ choice
 
 	config DEFAULT_NOOP
 		bool "No-op"
+
+	config DEFAULT_MAPLE
+ 		bool "Maple" if IOSCHED_MAPLE=y
 
 endchoice
 
