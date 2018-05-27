@@ -3448,7 +3448,7 @@ out:
 }
 
 static int validate_beacon_tx_rate(struct cfg80211_registered_device *rdev,
-				   enum nl80211_band band,
+				   u32 band,
 				   struct cfg80211_bitrate_mask *beacon_rate)
 {
 	u32 count_ht, count_vht, i;
@@ -5807,7 +5807,7 @@ static int validate_scan_freqs(struct nlattr *freqs)
 	return n_channels;
 }
 
-static bool is_band_valid(struct wiphy *wiphy, enum ieee80211_band b)
+static bool is_band_valid(struct wiphy *wiphy, u32 b)
 {
 	return b < IEEE80211_NUM_BANDS && wiphy->bands[b];
 }
