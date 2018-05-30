@@ -3045,6 +3045,7 @@ free_node_inode:
 	release_ino_entry(sbi, true);
 	truncate_inode_pages_final(NODE_MAPPING(sbi));
 	iput(sbi->node_inode);
+	f2fs_sbi_list_del(sbi);
 free_nm:
 	destroy_node_manager(sbi);
 free_sm:
