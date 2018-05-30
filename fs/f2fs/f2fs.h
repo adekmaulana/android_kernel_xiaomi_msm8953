@@ -1349,6 +1349,8 @@ struct f2fs_sb_info {
 
 	/* Precomputed FS UUID checksum for seeding other checksums */
 	__u32 s_chksum_seed;
+
+	struct list_head list;
 };
 
 #ifdef CONFIG_F2FS_FAULT_INJECTION
