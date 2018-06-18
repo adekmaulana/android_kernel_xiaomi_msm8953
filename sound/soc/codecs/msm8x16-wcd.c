@@ -4267,7 +4267,7 @@ static int msm8x16_wcd_lo_dac_event(struct snd_soc_dapm_widget *w,
 			MSM8X16_WCD_A_ANALOG_RX_LO_DAC_CTL, 0x08, 0x08);
 		snd_soc_update_bits(codec,
 			MSM8X16_WCD_A_ANALOG_RX_LO_DAC_CTL, 0x40, 0x40);
-#if defined(CONFIG_MACH_XIAOMI_MIDO) || defined(CONFIG_MACH_XIAOMI_MARKW)
+#ifdef CONFIG_MACH_XIAOMI_MIDO
 		msleep(5);
 #endif
 		break;
