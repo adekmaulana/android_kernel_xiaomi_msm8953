@@ -1562,8 +1562,8 @@ static int ft5435_ts_resume(struct device *dev)
 #else
 	msleep(data->pdata->soft_rst_dly);
 	ft5x0x_write_reg(data->client, 0x8c, 0x01);
-	enable_irq_wake(data->client->irq);
 	data->suspended = false;
+	enable_irq_wake(data->client->irq);
 #endif
 
 #if defined(USB_CHARGE_DETECT)
