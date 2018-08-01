@@ -732,8 +732,8 @@ static int ft5x06_ts_resume(struct device *dev)
 	}
 
 #if WT_CTP_GESTURE_SUPPORT
-	printk("Resume Gesture TP.\n");
 	if (gtp_gesture_onoff == '1') {
+		printk("Resume Gesture TP.\n");
 		ft5x0x_write_reg(gesture_client, 0xD0, 0x00);
 		printk("Resume Gesture TP Done.\n");
 		disable_irq(data->client->irq);
@@ -2508,6 +2508,7 @@ static ssize_t proc_gesture_onoff_read(struct file *file, char __user *page, siz
 static ssize_t proc_gesture_onoff_write(struct file *file,  const char __user *buffer, size_t count, loff_t *ppos)
 {
 	sscanf(buffer, "%c", &gtp_gesture_onoff);
+
 	return count;
 }
 
@@ -2953,6 +2954,10 @@ static int ft5x06_ts_probe(struct i2c_client *client,
 #endif
 
 	enable_irq(data->client->irq);
+	if (gtp_gesture_onoff == '0'){
+		/* IRQ should be disabled if gesture is off */
+		disable_irq(data->client->irq);
+	}
 
 	return 0;
 
