@@ -732,10 +732,11 @@ static int ft5x06_ts_resume(struct device *dev)
 	}
 
 #if WT_CTP_GESTURE_SUPPORT
-		printk("Resume Gesture TP.\n");
+	printk("Resume Gesture TP.\n");
 	if (gtp_gesture_onoff == '1') {
 		ft5x0x_write_reg(gesture_client, 0xD0, 0x00);
 		printk("Resume Gesture TP Done.\n");
+		disable_irq(data->client->irq);
 	}
 #endif
 
