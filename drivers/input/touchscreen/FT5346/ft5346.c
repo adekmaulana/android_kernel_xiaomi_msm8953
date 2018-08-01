@@ -350,7 +350,7 @@ static void check_gesture(int gesture_id, struct input_dev *ip_dev)
 		break;
 	}
 }
-static int fts_read_Gestruedata(struct input_dev *ip_dev)
+static int fts_read_Gesturedata(struct input_dev *ip_dev)
 {
 	unsigned char buf[FTS_GESTRUE_POINTS * 3] = { 0 };
 	int ret = -1;
@@ -451,7 +451,7 @@ static irqreturn_t ft5x06_ts_interrupt(int irq, void *dev_id)
 					CTP_ERROR("read value fail");
 				}
 				if (state == 1) {
-					fts_read_Gestruedata(ip_dev);
+					fts_read_Gesturedata(ip_dev);
 					return IRQ_HANDLED;
 				}
 			}
