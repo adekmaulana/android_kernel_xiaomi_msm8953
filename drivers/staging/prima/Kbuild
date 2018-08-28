@@ -727,6 +727,7 @@ ifeq ($(cc-name),clang)
 EXTRA_CFLAGS += -Wno-enum-conversion
 EXTRA_CFLAGS += -Wno-typedef-redefinition
 EXTRA_CFLAGS += -Wno-array-bounds
+EXTRA_CFLAGS += -Wno-non-literal-null-conversion
 endif 
 
 ifeq ($(CONFIG_WLAN_OFFLOAD_PACKETS),y)
