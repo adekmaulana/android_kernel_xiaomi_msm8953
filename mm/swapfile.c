@@ -2538,7 +2538,7 @@ SYSCALL_DEFINE2(swapon, const char __user *, specialfile, int, swap_flags)
 		goto bad_swap;
 	}
 
-	if (bdi_cap_stable_pages_required(inode_to_bdi(inode)))
+	if (bdi_cap_stable_pages_required(mapping->backing_dev_info))
 		p->flags |= SWP_STABLE_WRITES;
 
 	if (p->bdev && blk_queue_nonrot(bdev_get_queue(p->bdev))) {
