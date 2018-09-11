@@ -3341,8 +3341,7 @@ static int cpr3_regulator_measure_aging(struct cpr3_controller *ctrl,
 		if (rc) {
 			cpr3_err(ctrl, "failed to clear CPR4 configuration,rc=%d\n",
 				rc);
-			kfree(quot_delta_results);
-			return rc;
+			goto cleanup;
 		}
 	}
 
