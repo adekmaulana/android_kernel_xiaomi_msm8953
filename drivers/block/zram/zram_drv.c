@@ -39,9 +39,9 @@ static DEFINE_MUTEX(zram_index_mutex);
 
 static int zram_major;
 #if IS_ENABLED(CONFIG_CRYPTO_ZSTD)
-	static const char *default_compressor = "zstd";
+static const char *default_compressor = "zstd";
 #else
-	static const char *default_compressor = "lzo";
+static const char *default_compressor = "lzo";
 #endif
 
 /* Module params (documentation at end) */
@@ -358,7 +358,7 @@ static ssize_t comp_algorithm_store(struct device *dev,
 		return -EBUSY;
 	}
 
-	strlcpy(zram->compressor, compressor, sizeof(compressor));
+	strlcpy(zram->compressor, compressor, sizeof(zram->compressor));
 	up_write(&zram->init_lock);
 	return len;
 }
