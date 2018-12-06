@@ -394,6 +394,9 @@ extern long long simple_strtoll(const char *,char **,unsigned int);
 #define strict_strtoull	kstrtoull
 #define strict_strtoll	kstrtoll
 
+#define strict_strtoul  kstrtoul 
+#define strict_strtol  kstrtol
+
 extern int num_to_str(char *buf, int size, unsigned long long num);
 
 /* lib/printf utilities */

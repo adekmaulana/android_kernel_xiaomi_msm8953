@@ -33,6 +33,11 @@ ccflags-y += -Idrivers/media/platform/msm/ais
 ccflags-y += -Idrivers/media/platform/msm/ais/common
 ccflags-y += -Idrivers/media/platform/msm/ais/sensor/io
 ccflags-y += -Idrivers/media/platform/msm/ais/sensor/cci
+else ifeq ($(CONFIG_MACH_XIAOMI_MARKW),y)
+ccflags-y += -Idrivers/media/platform/msm/camera_v2_markw
+ccflags-y += -Idrivers/media/platform/msm/camera_v2_markw/common
+ccflags-y += -Idrivers/media/platform/msm/camera_v2_markw/sensor/io
+ccflags-y += -Idrivers/media/platform/msm/camera_v2_markw/sensor/cci
 else
 ccflags-y += -Idrivers/media/platform/msm/camera_v2
 ccflags-y += -Idrivers/media/platform/msm/camera_v2/common

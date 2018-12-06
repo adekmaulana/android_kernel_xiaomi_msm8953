@@ -371,6 +371,10 @@ struct wcd_mbhc {
 	int buttons_pressed;
 	struct wcd_mbhc_config *mbhc_cfg;
 	const struct wcd_mbhc_cb *mbhc_cb;
+#if 1
+	struct delayed_work mbhc_btn_delay_dwork;
+	bool ignore_btn_intr;
+#endif
 
 	u32 hph_status; /* track headhpone status */
 	u8 hphlocp_cnt; /* headphone left ocp retry */
@@ -525,5 +529,7 @@ static inline void wcd_mbhc_deinit(struct wcd_mbhc *mbhc)
 {
 }
 #endif
-
+#ifdef CONFIG_MACH_XIAOMI_MARKW
+extern void msm8x16_wcd_codec_set_headset_state(u32 state);
+#endif
 #endif /* __WCD_MBHC_V2_H__ */

@@ -901,6 +901,15 @@ config SERIAL_NUM
 config STATE_NOTIFIER
         bool "State Notifier"
 
+config SECBOOT_FUSE
+	bool "Enable Secure boot fuse Proc Interface"
+	help
+	  Provide a interface for reading CPU secure boot fuse setting. Interface located in
+	  /proc/secboot_fuse_reg
+
+config STATE_NOTIFIER
+        bool "State Notifier"
+
 source "drivers/soc/qcom/memshare/Kconfig"
 
 endif # ARCH_MSM
