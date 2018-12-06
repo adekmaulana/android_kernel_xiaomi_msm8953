@@ -355,7 +355,7 @@ static int fts_read_Gestruedata(struct input_dev *ip_dev)
 	unsigned char buf[FTS_GESTRUE_POINTS * 3] = { 0 };
 	int ret = -1;
 	int i = 0;
-	int gestrue_id = 0;
+	int gesture_id = 0;
 	short pointnum = 0;
 		buf[0] = 0xd3;
 
@@ -367,15 +367,15 @@ static int fts_read_Gestruedata(struct input_dev *ip_dev)
 	}
 
 	if (0x24 == buf[0]) {
-		gestrue_id = 0x24;
-		check_gesture(gestrue_id, ip_dev);
-		CTP_ERROR("tpd %d check_gesture gestrue_id.\n", gestrue_id);
+		gesture_id = 0x24;
+		check_gesture(gesture_id, ip_dev);
+		CTP_ERROR("tpd %d check_gesture gesture_id.\n", gesture_id);
 		return -EPERM;
 	}
 
 	/* FW */
 	if (fts_updateinfo_curr.CHIP_ID == 0x54 || fts_updateinfo_curr.CHIP_ID == 0x58) {
-		gestrue_id = buf[0];
+		gesture_id = buf[0];
 		pointnum = (short)(buf[1]) & 0xff;
 		buf[0] = 0xd3;
 
@@ -390,7 +390,7 @@ static int fts_read_Gestruedata(struct input_dev *ip_dev)
 			return ret;
 		}
 
-		check_gesture(gestrue_id, ip_dev);
+		check_gesture(gesture_id, ip_dev);
 		for (i = 0; i < pointnum; i++) {
 			coordinate_x[i] =  (((s16) buf[0 + (4 * i)]) & 0x0F) <<
 				8 | (((s16) buf[1 + (4 * i)]) & 0xFF);
