@@ -760,7 +760,8 @@ static void tx_complete(struct usb_ep *ep, struct usb_request *req)
 		dev->tx_aggr_cnt[n-1]++;
 
 		/* sg_ctx is only accessible here, can use lock-free version */
-		__skb_queue_purge(&sg_ctx->skbs);
+		while ((skb = __skb_dequeue(&sg_ctx->skbs)) != NULL)
+			dev_kfree_skb_any(skb);
 	}
 
 	dev->net->stats.tx_packets += n;
@@ -1274,23 +1275,6 @@ static netdev_tx_t eth_start_xmit(struct sk_buff *skb,
 	}
 
 	req->length = length;
-
-	/* throttle high/super speed IRQ rate back slightly */
-	if (gadget_is_dualspeed(dev->gadget) &&
-			 (dev->gadget->speed == USB_SPEED_HIGH ||
-			  dev->gadget->speed == USB_SPEED_SUPER)) {
-		spin_lock_irqsave(&dev->req_lock, flags);
-		dev->tx_qlen++;
-		if (dev->tx_qlen == MAX_TX_REQ_WITH_NO_INT) {
-			req->no_interrupt = 0;
-			dev->tx_qlen = 0;
-		} else {
-			req->no_interrupt = 1;
-		}
-		spin_unlock_irqrestore(&dev->req_lock, flags);
-	} else {
-		req->no_interrupt = 0;
-	}
 
 	if (skb_timestamp_enable) {
 		skb->tstamp = ktime_get();

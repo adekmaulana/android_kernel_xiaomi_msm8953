@@ -3448,7 +3448,7 @@ out:
 }
 
 static int validate_beacon_tx_rate(struct cfg80211_registered_device *rdev,
-				   enum nl80211_band band,
+				   u32 band,
 				   struct cfg80211_bitrate_mask *beacon_rate)
 {
 	u32 count_ht, count_vht, i;
@@ -3899,6 +3899,7 @@ static int parse_station_flags(struct genl_info *info,
 		params->sta_flags_mask = BIT(NL80211_STA_FLAG_AUTHENTICATED) |
 					 BIT(NL80211_STA_FLAG_MFP) |
 					 BIT(NL80211_STA_FLAG_AUTHORIZED);
+		break;
 	default:
 		return -EINVAL;
 	}
@@ -5807,7 +5808,7 @@ static int validate_scan_freqs(struct nlattr *freqs)
 	return n_channels;
 }
 
-static bool is_band_valid(struct wiphy *wiphy, enum ieee80211_band b)
+static bool is_band_valid(struct wiphy *wiphy, u32 b)
 {
 	return b < IEEE80211_NUM_BANDS && wiphy->bands[b];
 }
@@ -9877,6 +9878,7 @@ static int nl80211_update_ft_ies(struct sk_buff *skb, struct genl_info *info)
 		return -EOPNOTSUPP;
 
 	if (!info->attrs[NL80211_ATTR_MDID] ||
+	    !info->attrs[NL80211_ATTR_IE] ||
 	    !is_valid_ie_attr(info->attrs[NL80211_ATTR_IE]))
 		return -EINVAL;
 

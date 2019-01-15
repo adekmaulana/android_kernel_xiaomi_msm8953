@@ -10,6 +10,7 @@ obj-$(CONFIG_CORESIGHT_TMC) += coresight-tmc.o
 obj-$(CONFIG_CORESIGHT_TPIU) += coresight-tpiu.o coresight-nidnt.o
 obj-$(CONFIG_CORESIGHT_FUNNEL) += coresight-funnel.o
 obj-$(CONFIG_CORESIGHT_REPLICATOR) += coresight-replicator.o
+CFLAGS_coresight-replicator.o := $(call cc-disable-warning, enum-conversion)
 obj-$(CONFIG_CORESIGHT_TPDA) += coresight-tpda.o
 obj-$(CONFIG_CORESIGHT_TPDM) += coresight-tpdm.o
 obj-$(CONFIG_CORESIGHT_DBGUI) += coresight-dbgui.o

@@ -1417,13 +1417,21 @@ static int
 write_pool(struct entropy_store *r, const char __user *buffer, size_t count)
 {
 	size_t bytes;
-	__u32 buf[16];
+	__u32 t, buf[16];
 	const char __user *p = buffer;
 
 	while (count > 0) {
+		int b, i = 0;
+
 		bytes = min(count, sizeof(buf));
 		if (copy_from_user(&buf, p, bytes))
 			return -EFAULT;
+
+		for (b = bytes ; b > 0 ; b -= sizeof(__u32), i++) {
+			if (!arch_get_random_int(&t))
+				break;
+			buf[i] ^= t;
+		}
 
 		count -= bytes;
 		p += bytes;
@@ -1536,6 +1544,7 @@ SYSCALL_DEFINE3(getrandom, char __user *, buf, size_t, count,
 	if (flags & GRND_RANDOM)
 		return _random_read(flags & GRND_NONBLOCK, buf, count);
 
+#ifdef CONFIG_GETRANDOM_BLOCKING_INIT
 	if (unlikely(nonblocking_pool.initialized == 0)) {
 		if (flags & GRND_NONBLOCK)
 			return -EAGAIN;
@@ -1544,6 +1553,7 @@ SYSCALL_DEFINE3(getrandom, char __user *, buf, size_t, count,
 		if (signal_pending(current))
 			return -ERESTARTSYS;
 	}
+#endif
 	return urandom_read(NULL, buf, count, NULL);
 }
 

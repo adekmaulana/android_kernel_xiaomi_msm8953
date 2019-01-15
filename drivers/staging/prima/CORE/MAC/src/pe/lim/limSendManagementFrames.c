@@ -2616,9 +2616,6 @@ limSendAssocReqMgmtFrame(tpAniSirGlobal   pMac,
 
         mlmAssocCnf.resultCode = eSIR_SME_RESOURCES_UNAVAILABLE;
 
-        palPktFree( pMac->hHdd, HAL_TXRX_FRM_802_11_MGMT,
-                ( void* ) pFrame, ( void* ) pPacket );
-
         limPostSmeMessage( pMac, LIM_MLM_ASSOC_CNF,
                 ( tANI_U32* ) &mlmAssocCnf);
 
@@ -5874,6 +5871,8 @@ tSirRetStatus limSendAddBAReq( tpAniSirGlobal pMac,
         txFlag |= HAL_USE_BD_RATE2_FOR_MANAGEMENT_FRAME;
     }
 
+    txFlag |= HAL_USE_PEER_STA_REQUESTED_MASK;
+
     MTRACE(macTrace(pMac, TRACE_CODE_TX_MGMT,
            psessionEntry->peSessionId,
            pMacHdr->fc.subType));
@@ -6100,6 +6099,8 @@ tSirRetStatus limSendAddBARsp( tpAniSirGlobal pMac,
         txFlag |= HAL_USE_BD_RATE2_FOR_MANAGEMENT_FRAME;
     }
 
+    txFlag |= HAL_USE_PEER_STA_REQUESTED_MASK;
+
     MTRACE(macTrace(pMac, TRACE_CODE_TX_MGMT,
            psessionEntry->peSessionId,
            pMacHdr->fc.subType));
@@ -6309,22 +6310,24 @@ tSirRetStatus limSendDelBAInd( tpAniSirGlobal pMac,
          txFlag |= HAL_USE_BD_RATE2_FOR_MANAGEMENT_FRAME;
      }
 
-    MTRACE(macTrace(pMac, TRACE_CODE_TX_MGMT,
-            psessionEntry->peSessionId,
-            pMacHdr->fc.subType));
-    halStatus = halTxFrame( pMac,
-                            pPacket,
-                            (tANI_U16) frameLen,
-                            HAL_TXRX_FRM_802_11_MGMT,
-                            ANI_TXDIR_TODS,
-                            7,//SMAC_SWBD_TX_TID_MGMT_HIGH,
-                            limTxComplete,
-                            pDelBAIndBuffer, txFlag );
-    MTRACE(macTrace(pMac, TRACE_CODE_TX_COMPLETE,
-           psessionEntry->peSessionId,
-           halStatus));
-    if( eHAL_STATUS_SUCCESS != halStatus )
-    {
+   txFlag |= HAL_USE_PEER_STA_REQUESTED_MASK;
+
+   MTRACE(macTrace(pMac, TRACE_CODE_TX_MGMT,
+          psessionEntry->peSessionId,
+          pMacHdr->fc.subType));
+   halStatus = halTxFrame( pMac,
+                           pPacket,
+                           (tANI_U16) frameLen,
+                           HAL_TXRX_FRM_802_11_MGMT,
+                           ANI_TXDIR_TODS,
+                           7,//SMAC_SWBD_TX_TID_MGMT_HIGH,
+                           limTxComplete,
+                           pDelBAIndBuffer, txFlag );
+   MTRACE(macTrace(pMac, TRACE_CODE_TX_COMPLETE,
+          psessionEntry->peSessionId,
+          halStatus));
+  if( eHAL_STATUS_SUCCESS != halStatus )
+  {
     PELOGE(limLog( pMac, LOGE, FL( "halTxFrame FAILED! Status [%d]" ), halStatus );)
     statusCode = eSIR_FAILURE;
     //Pkt will be freed up by the callback

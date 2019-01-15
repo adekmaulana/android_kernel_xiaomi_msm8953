@@ -8737,6 +8737,10 @@ VOS_STATUS WDA_ProcessUpdateProbeRspTemplate(tWDA_CbContext *pWDA,
    WDI_Status status = WDI_STATUS_SUCCESS;
    WDI_UpdateProbeRspTemplateParamsType *wdiSendProbeRspParam =
          vos_mem_malloc(sizeof(WDI_UpdateProbeRspTemplateParamsType));
+
+   if(pSendProbeRspParams->probeRespTemplateLen > SCH_MAX_PROBE_RESP_SIZE)
+      pSendProbeRspParams->probeRespTemplateLen = SCH_MAX_PROBE_RESP_SIZE;
+
    VOS_TRACE(VOS_MODULE_ID_WDA, VOS_TRACE_LEVEL_INFO,
                 "------> %s probeRespTemplateLen %d" ,__func__,
                 pSendProbeRspParams->probeRespTemplateLen);
@@ -8768,7 +8772,7 @@ VOS_STATUS WDA_ProcessUpdateProbeRspTemplate(tWDA_CbContext *pWDA,
 
    vos_mem_copy(
            wdiSendProbeRspParam->wdiProbeRspTemplateInfo.pProbeRespTemplate,
-           pSendProbeRspParams->pProbeRespTemplate,
+           pSendProbeRspParams->probeRespTemplate,
            pSendProbeRspParams->probeRespTemplateLen);
    
    wdiSendProbeRspParam->wdiReqStatusCB = NULL ;
@@ -12061,6 +12065,27 @@ VOS_STATUS WDA_RemBeaconFilterReq(tWDA_CbContext *pWDA,
    return status;
 }
 
+VOS_STATUS WDA_set_qpower(tWDA_CbContext *pWDA,
+                 uint8_t enable)
+{
+    WDI_Status status;
+
+    VOS_TRACE( VOS_MODULE_ID_WDA, VOS_TRACE_LEVEL_INFO,
+                   FL("---> %s"), __func__);
+    status = WDI_set_qpower(enable);
+    if (status == WDI_STATUS_PENDING)
+    {
+       VOS_TRACE(VOS_MODULE_ID_WDA, VOS_TRACE_LEVEL_INFO,
+                 FL("pending status received "));
+    }
+    else if (status != WDI_STATUS_SUCCESS)
+    {
+       VOS_TRACE(VOS_MODULE_ID_WDA, VOS_TRACE_LEVEL_ERROR,
+               FL("Failure status %d"), status);
+    }
+    return CONVERT_WDI2VOS_STATUS(status);
+}
+
 VOS_STATUS WDA_set_vowifi_ind(tWDA_CbContext *pWDA,
                  tANI_BOOLEAN enable)
 {
@@ -14880,6 +14905,21 @@ VOS_STATUS WDA_TxPacket(tWDA_CbContext *pWDA,
       return VOS_STATUS_E_FAILURE;
    }
 
+  /*
+   * Return if SSR is in progress as TL won't send any frame if SSR is in
+   * progress and also not invokes TX completion callback, which sets
+   * completion variable, leading this function to wait on completion
+   * variable(txFrameEvent) till timeout.
+   *
+   * TBD: As a clean fix it's better to invoke TX completion callback on fail
+   * to send a TX frame.
+   */
+   if(vos_is_logp_in_progress(VOS_MODULE_ID_WDA, NULL)) {
+       VOS_TRACE(VOS_MODULE_ID_WDA, VOS_TRACE_LEVEL_ERROR,
+                 FL("SSR is in progress"));
+       return VOS_STATUS_E_FAILURE;
+   }
+
    VOS_TRACE( VOS_MODULE_ID_WDA, VOS_TRACE_LEVEL_INFO_HIGH, 
                "Tx Mgmt Frame Subtype: %d alloc(%pK) txBdToken = %u",
                pFc->subType, pFrmBuf, txBdToken);
@@ -14971,7 +15011,7 @@ VOS_STATUS WDA_TxPacket(tWDA_CbContext *pWDA,
 
    /* Divert Disassoc/Deauth frames thru self station, as by the time unicast
       disassoc frame reaches the HW, HAL has already deleted the peer station */
-   if ((pFc->type == SIR_MAC_MGMT_FRAME))
+   if (pFc->type == SIR_MAC_MGMT_FRAME)
    {
        if ((pFc->subType == SIR_MAC_MGMT_REASSOC_RSP) ||
                (pFc->subType == SIR_MAC_MGMT_PROBE_REQ))
@@ -17119,6 +17159,14 @@ VOS_STATUS WDA_McProcessMsg( v_CONTEXT_t pVosContext, vos_msg_t *pMsg )
                            "Handling msg type WDA_VOWIFI_MODE");
 
          WDA_set_vowifi_ind(pWDA, pMsg->bodyval);
+         break;
+      }
+
+      case WDA_QPOWER:
+      {
+         VOS_TRACE(VOS_MODULE_ID_WDA, VOS_TRACE_LEVEL_INFO_HIGH,
+                   "Handling msg type WDA_QPOWER");
+                   WDA_set_qpower(pWDA, pMsg->bodyval);
          break;
       }
 
@@ -22961,8 +23009,8 @@ void WDA_MonModeRspCallback(void *pEventData, void* pUserData)
       return ;
    }
    pData = (tSirMonModeReq *)pWdaParams->wdaMsgParam;
-   if (pData != NULL) {
-        pData->callback(pData->magic, pData->cmpVar);
+   if (pData != NULL && pData->callback != NULL) {
+        pData->callback(pData->context);
         vos_mem_free(pWdaParams->wdaMsgParam);
    }
    vos_mem_free(pWdaParams) ;

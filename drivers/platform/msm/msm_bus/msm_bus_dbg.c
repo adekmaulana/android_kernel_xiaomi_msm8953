@@ -577,7 +577,7 @@ static ssize_t  msm_bus_dbg_update_request_write(struct file *file,
 	list_for_each_entry(cldata, &cl_list, list) {
 		if (strnstr(chid, cldata->pdata->name, cnt)) {
 			found = 1;
-			cldata = cldata;
+			(void)(cldata);
 			strsep(&chid, " ");
 			if (chid) {
 				ret = kstrtoul(chid, 10, &index);
@@ -590,9 +590,11 @@ static ssize_t  msm_bus_dbg_update_request_write(struct file *file,
 					goto out;
 				}
 			} else {
+				if (strnstr(chid, cldata->pdata->name, cnt) <= 0) {
 				MSM_BUS_DBG("Error parsing input. Index not"
 					" found\n");
 				found = 0;
+				}
 			}
 			if ((index < 0) ||
 					(index > cldata->pdata->num_usecases)) {

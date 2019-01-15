@@ -53,7 +53,9 @@ DEVICE(funsoft, FUNSOFT_IDS);
 
 /* Infineon Flashloader driver */
 #define FLASHLOADER_IDS()		\
-	{ USB_DEVICE(0x8087, 0x0716) }
+	{ USB_DEVICE_INTERFACE_CLASS(0x058b, 0x0041, USB_CLASS_CDC_DATA) }, \
+	{ USB_DEVICE(0x8087, 0x0716) }, \
+	{ USB_DEVICE(0x8087, 0x0801) }
 DEVICE(flashloader, FLASHLOADER_IDS);
 
 /* ViVOpay USB Serial Driver */
@@ -72,7 +74,8 @@ DEVICE(moto_modem, MOTO_IDS);
 
 /* Motorola Tetra driver */
 #define MOTOROLA_TETRA_IDS()			\
-	{ USB_DEVICE(0x0cad, 0x9011) }	/* Motorola Solutions TETRA PEI */
+	{ USB_DEVICE(0x0cad, 0x9011) },	/* Motorola Solutions TETRA PEI */ \
+	{ USB_DEVICE(0x0cad, 0x9012) }	/* MTP6550 */
 DEVICE(motorola_tetra, MOTOROLA_TETRA_IDS);
 
 /* Novatel Wireless GPS driver */

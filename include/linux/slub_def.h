@@ -67,7 +67,8 @@ struct kmem_cache {
 	int size;		/* The size of an object including meta data */
 	int object_size;	/* The size of an object without meta data */
 	int offset;		/* Free pointer offset. */
-	int cpu_partial;	/* Number of per cpu partial objects to keep around */
+	/* Number of per cpu partial objects to keep around */
+	unsigned int cpu_partial;
 	struct kmem_cache_order_objects oo;
 
 	/* Allocation and freeing of slabs */
@@ -92,6 +93,10 @@ struct kmem_cache {
 	struct kset *memcg_kset;
 #endif
 #endif
+
+	unsigned long random;
+	unsigned long random_active;
+	unsigned long random_inactive;
 
 #ifdef CONFIG_NUMA
 	/*
