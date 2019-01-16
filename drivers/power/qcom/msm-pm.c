@@ -51,7 +51,7 @@
 
 #define MAX_BUF_SIZE  1024
 
-static int msm_pm_debug_mask = 1;
+static int msm_pm_debug_mask = 0;
 module_param_named(
 	debug_mask, msm_pm_debug_mask, int, S_IRUGO | S_IWUSR | S_IWGRP
 );
@@ -125,7 +125,7 @@ static bool msm_pm_swfi(bool from_idle)
 static bool msm_pm_retention(bool from_idle)
 {
 	int ret = 0;
-	unsigned int cpu = smp_processor_id();
+	unsigned int cpu = raw_smp_processor_id();
 	struct clk *cpu_clk = per_cpu(cpu_clks, cpu);
 
 	spin_lock(&retention_lock);
@@ -179,7 +179,7 @@ static inline void msm_pc_inc_debug_count(uint32_t cpu,
 
 static bool msm_pm_pc_hotplug(void)
 {
-	uint32_t cpu = smp_processor_id();
+	uint32_t cpu = raw_smp_processor_id();
 	enum msm_pm_l2_scm_flag flag;
 	struct scm_desc desc;
 
@@ -213,7 +213,7 @@ static bool msm_pm_pc_hotplug(void)
 static bool msm_pm_fastpc(bool from_idle)
 {
 	int ret = 0;
-	unsigned int cpu = smp_processor_id();
+	unsigned int cpu = raw_smp_processor_id();
 
 	ret = msm_spm_set_low_power_mode(MSM_SPM_MODE_FASTPC, false);
 	WARN_ON(ret);
@@ -231,7 +231,7 @@ static bool msm_pm_fastpc(bool from_idle)
 
 int msm_pm_collapse(unsigned long unused)
 {
-	uint32_t cpu = smp_processor_id();
+	uint32_t cpu = raw_smp_processor_id();
 	enum msm_pm_l2_scm_flag flag;
 	struct scm_desc desc;
 
@@ -307,7 +307,7 @@ static bool __ref msm_pm_spm_power_collapse(
 static bool msm_pm_power_collapse_standalone(
 		bool from_idle)
 {
-	unsigned int cpu = smp_processor_id();
+	unsigned int cpu = raw_smp_processor_id();
 	bool collapsed;
 
 	collapsed = msm_pm_spm_power_collapse(cpu,
@@ -354,7 +354,7 @@ static int ramp_up_first_cpu(int cpu, int saved_rate)
 
 static bool msm_pm_power_collapse(bool from_idle)
 {
-	unsigned int cpu = smp_processor_id();
+	unsigned int cpu = raw_smp_processor_id();
 	unsigned long saved_acpuclk_rate = 0;
 	bool collapsed;
 
@@ -414,11 +414,11 @@ static bool (*execute[MSM_PM_SLEEP_MODE_NR])(bool idle) = {
 bool msm_cpu_pm_enter_sleep(enum msm_pm_sleep_mode mode, bool from_idle)
 {
 	bool exit_stat = false;
-	unsigned int cpu = smp_processor_id();
+	unsigned int cpu = raw_smp_processor_id();
 
 	if ((!from_idle  && cpu_online(cpu))
 			|| (MSM_PM_DEBUG_IDLE & msm_pm_debug_mask))
-		pr_info("CPU%u:%s mode:%d during %s\n", cpu, __func__,
+		pr_debug("CPU%u:%s mode:%d during %s\n", cpu, __func__,
 				mode, from_idle ? "idle" : "suspend");
 
 	if (execute[mode])

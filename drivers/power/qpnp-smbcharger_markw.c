@@ -1514,6 +1514,7 @@ static int smbchg_charging_en(struct smbchg_chip *chip, bool en)
 #define CURRENT_900_MA		900
 #define CURRENT_1500_MA		1500
 #define CURRENT_2000_MA		2000
+#define CURRENT_2200_MA		2200
 #define SUSPEND_CURRENT_MA	2
 #define ICL_OVERRIDE_BIT	BIT(2)
 static int smbchg_usb_suspend(struct smbchg_chip *chip, bool suspend)
@@ -1765,7 +1766,7 @@ static int smbchg_set_usb_current_max(struct smbchg_chip *chip,
 							rc);
 			} else {
 				/* default to 500mA */
-				current_ma = CURRENT_500_MA;
+				current_ma = CURRENT_900_MA;
 			}
 			pr_smb(PR_STATUS,
 				"override_usb_current=%d current_ma set to %d\n",
@@ -1810,7 +1811,7 @@ static int smbchg_set_usb_current_max(struct smbchg_chip *chip,
 			}
 			chip->usb_max_current_ma = 150;
 		}
-		if (current_ma == CURRENT_500_MA) {
+		if (current_ma == CURRENT_900_MA) {
 			rc = smbchg_sec_masked_write(chip,
 					chip->usb_chgpth_base + CHGPTH_CFG,
 					CFG_USB_2_3_SEL_BIT, CFG_USB_2);
@@ -1946,14 +1947,14 @@ static int smbchg_set_fastchg_current_raw(struct smbchg_chip *chip,
 	if (i < 0) {
 		dev_err(chip->dev,
 			"Cannot find %dma current_table using %d\n",
-			current_ma, CURRENT_500_MA);
+			current_ma, CURRENT_900_MA);
 
 		rc = smbchg_sec_masked_write(chip, chip->chgr_base + FCC_CFG,
 					FCC_MASK,
 					FCC_500MA_VAL);
 		if (rc < 0)
 			dev_err(chip->dev, "Couldn't set %dmA rc=%d\n",
-					CURRENT_500_MA, rc);
+					CURRENT_900_MA, rc);
 		else
 			chip->fastchg_current_ma = 800;
 		return rc;
