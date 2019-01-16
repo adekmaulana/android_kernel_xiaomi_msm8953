@@ -1,5 +1,4 @@
 /* Copyright (c) 2015-2017, The Linux Foundation. All rights reserved.
- * Copyright (C) 2017 XiaoMi, Inc.
  *
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License version 2 and
@@ -53,8 +52,7 @@
 			SNDRV_PCM_RATE_32000 | SNDRV_PCM_RATE_48000)
 #define MSM8X16_WCD_FORMATS (SNDRV_PCM_FMTBIT_S16_LE |\
 		SNDRV_PCM_FMTBIT_S24_LE |\
-		SNDRV_PCM_FMTBIT_S24_3LE |\
-		SNDRV_PCM_FMTBIT_S32_LE)
+		SNDRV_PCM_FMTBIT_S24_3LE)
 
 #define NUM_INTERPOLATORS	3
 #define BITS_PER_REG		8
@@ -107,6 +105,7 @@ enum {
 #define MICBIAS_DEFAULT_VAL 2700000
 #else
 #define MICBIAS_DEFAULT_VAL 1800000
+#endif
 #define MICBIAS_MIN_VAL 1600000
 #define MICBIAS_STEP_SIZE 50000
 
@@ -4270,6 +4269,7 @@ static int msm8x16_wcd_lo_dac_event(struct snd_soc_dapm_widget *w,
 			MSM8X16_WCD_A_ANALOG_RX_LO_DAC_CTL, 0x40, 0x40);
 #ifdef CONFIG_MACH_XIAOMI_MIDO
 		msleep(5);
+#endif
 		break;
 	case SND_SOC_DAPM_POST_PMU:
 		snd_soc_update_bits(codec,
@@ -4509,6 +4509,7 @@ static const struct snd_soc_dapm_route audio_map[] = {
 	{"LINEOUT DAC", NULL, "RX3 CHAIN"},
 #ifdef CONFIG_MACH_XIAOMI_MIDO
 	{ "Ext Spk", NULL, "LINEOUT PA"},
+#endif
 
 	/* lineout to WSA */
 	{"WSA_SPK OUT", NULL, "LINEOUT PA"},
@@ -4803,24 +4804,13 @@ static int msm8x16_wcd_hw_params(struct snd_pcm_substream *substream,
 	}
 	switch (params_format(params)) {
 	case SNDRV_PCM_FORMAT_S16_LE:
-		if (substream->stream == SNDRV_PCM_STREAM_PLAYBACK) {
-			snd_soc_update_bits(dai->codec,
+		snd_soc_update_bits(dai->codec,
 				MSM8X16_WCD_A_CDC_CLK_RX_I2S_CTL, 0x20, 0x20);
-		} else if (substream->stream == SNDRV_PCM_STREAM_CAPTURE) {
-			snd_soc_update_bits(dai->codec,
-				MSM8X16_WCD_A_CDC_CLK_TX_I2S_CTL, 0x20, 0x20);
-		}
 		break;
 	case SNDRV_PCM_FORMAT_S24_LE:
 	case SNDRV_PCM_FORMAT_S24_3LE:
-	case SNDRV_PCM_FORMAT_S32_LE:
-		if (substream->stream == SNDRV_PCM_STREAM_PLAYBACK) {
-			snd_soc_update_bits(dai->codec,
+		snd_soc_update_bits(dai->codec,
 				MSM8X16_WCD_A_CDC_CLK_RX_I2S_CTL, 0x20, 0x00);
-		} else if (substream->stream == SNDRV_PCM_STREAM_CAPTURE) {
-			snd_soc_update_bits(dai->codec,
-				MSM8X16_WCD_A_CDC_CLK_TX_I2S_CTL, 0x20, 0x00);
-		}
 		break;
 	default:
 		dev_err(dai->codec->dev, "%s: wrong format selected\n",

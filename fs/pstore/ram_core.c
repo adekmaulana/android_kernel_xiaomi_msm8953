@@ -316,6 +316,9 @@ static void notrace persistent_ram_update(struct persistent_ram_zone *prz,
 	struct persistent_ram_buffer *buffer = prz->buffer;
 #ifdef CONFIG_MACH_XIAOMI_MSM8953
 	memcpy_pstore(buffer->data + start, s, count);
+#else
+	memcpy(buffer->data + start, s, count);
+#endif
 	persistent_ram_update_ecc(prz, start, count);
 }
 

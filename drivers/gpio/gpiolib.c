@@ -63,13 +63,17 @@ static inline void desc_set_label(struct gpio_desc *d, const char *label)
 /**
  * Convert a GPIO number to its descriptor
  */
+#ifdef CONFIG_TOUCHSCREEN_GT9XX_MIDO
 static int special_irq;
+#endif
 struct gpio_desc *gpio_to_desc(unsigned gpio)
 {
+#ifdef CONFIG_TOUCHSCREEN_GT9XX_MIDO
 	if (gpio == 65)
 		special_irq = 1;
 	else
 		special_irq = 0;
+#endif
 	if (WARN(!gpio_is_valid(gpio), "invalid GPIO %d\n", gpio))
 		return NULL;
 	else
@@ -988,7 +992,7 @@ int gpiod_direction_input(struct gpio_desc *desc)
 	return status;
 }
 EXPORT_SYMBOL_GPL(gpiod_direction_input);
-extern int gt9xx_flag;
+
 
 static int _gpiod_direction_output_raw(struct gpio_desc *desc, int value)
 {
@@ -996,16 +1000,16 @@ static int _gpiod_direction_output_raw(struct gpio_desc *desc, int value)
 	int			status = -EINVAL;
 
 	/* GPIOs used for IRQs shall not be set as output */
-	if ((special_irq == 1) && (gt9xx_flag == 1)) {
-		printk("[GPIO]set GPIO_65 as irq output\n");
-	} else{
+
 		if (test_bit(FLAG_USED_AS_IRQ, &desc->flags)) {
 			gpiod_err(desc,
 					"%s: tried to set a GPIO tied to an IRQ as output\n",
 					__func__);
 			return -EIO;
 		}
+#ifdef CONFIG_TOUCHSCREEN_GT9XX_MIDO
 	}
+#endif
 
 	/* Open drain pin should not be driven to 1 */
 	if (value && test_bit(FLAG_OPEN_DRAIN,  &desc->flags))

@@ -1,5 +1,5 @@
+
 /* Copyright (c) 2014-2018 The Linux Foundation. All rights reserved.
- * Copyright (C) 2017 XiaoMi, Inc.
  *
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License version 2 and
@@ -434,7 +434,7 @@ module_param_named(
 	int, S_IRUSR | S_IWUSR
 );
 
-static int smbchg_main_chg_icl_percent = 60;
+static int smbchg_main_chg_icl_percent = 80;
 module_param_named(
 	main_chg_icl_percent, smbchg_main_chg_icl_percent,
 	int, S_IRUSR | S_IWUSR
@@ -452,7 +452,11 @@ module_param_named(
 	int, S_IRUSR | S_IWUSR
 );
 
-static int smbchg_default_dcp_icl_ma = 1800;
+#ifdef CONFIG_FORCE_FAST_CHARGE
+static int smbchg_default_dcp_icl_ma = 2500;
+#else
+static int smbchg_default_dcp_icl_ma = 2200;
+#endif
 module_param_named(
 	default_dcp_icl_ma, smbchg_default_dcp_icl_ma,
 	int, S_IRUSR | S_IWUSR
@@ -1642,7 +1646,7 @@ static int smbchg_set_high_usb_chg_current(struct smbchg_chip *chip,
 			dev_err(chip->dev, "Couldn't set %dmA rc=%d\n",
 					CURRENT_150_MA, rc);
 		else
-			chip->usb_max_current_ma = 150;
+			chip->usb_max_current_ma = 800;
 		return rc;
 	}
 
@@ -1908,7 +1912,7 @@ static int smbchg_set_fastchg_current_raw(struct smbchg_chip *chip,
 			dev_err(chip->dev, "Couldn't set %dmA rc=%d\n",
 					CURRENT_500_MA, rc);
 		else
-			chip->fastchg_current_ma = 500;
+			chip->fastchg_current_ma = 800;
 		return rc;
 	}
 
@@ -2580,8 +2584,7 @@ static void smbchg_parallel_usb_en_work(struct work_struct *work)
 
 recheck:
 	chip->parallel.parallel_en_in_progress = false;
-	queue_delayed_work(system_power_efficient_wq,
-		&chip->parallel_en_work, 0);
+	schedule_delayed_work(&chip->parallel_en_work, 0);
 }
 
 static void smbchg_parallel_usb_check_ok(struct smbchg_chip *chip)
@@ -2597,8 +2600,7 @@ static void smbchg_parallel_usb_check_ok(struct smbchg_chip *chip)
 	}
 
 	smbchg_stay_awake(chip, PM_PARALLEL_CHECK);
-	queue_delayed_work(system_power_efficient_wq,
-		&chip->parallel_en_work, 0);
+	schedule_delayed_work(&chip->parallel_en_work, 0);
 }
 
 static int charging_suspend_vote_cb(struct votable *votable, void *data,
@@ -3143,7 +3145,7 @@ out:
 	return rc;
 }
 
-static int smbchg_ibat_ocp_threshold_ua = 4500000;
+static int smbchg_ibat_ocp_threshold_ua = 2800000;
 module_param(smbchg_ibat_ocp_threshold_ua, int, 0644);
 
 #define UCONV			1000000LL
@@ -3531,8 +3533,7 @@ static void smbchg_vfloat_adjust_check(struct smbchg_chip *chip)
 
 	smbchg_stay_awake(chip, PM_REASON_VFLOAT_ADJUST);
 	pr_smb(PR_STATUS, "Starting vfloat adjustments\n");
-	queue_delayed_work(system_power_efficient_wq,
-		&chip->vfloat_adjust_work, 0);
+	schedule_delayed_work(&chip->vfloat_adjust_work, 0);
 }
 
 #define FV_STS_REG			0xC
@@ -4608,9 +4609,8 @@ stop:
 	return;
 
 reschedule:
-	queue_delayed_work(system_power_efficient_wq,
-		&chip->vfloat_adjust_work,
-		msecs_to_jiffies(VFLOAT_RESAMPLE_DELAY_MS));
+	schedule_delayed_work(&chip->vfloat_adjust_work,
+			msecs_to_jiffies(VFLOAT_RESAMPLE_DELAY_MS));
 	return;
 }
 
@@ -4659,8 +4659,8 @@ static int smbchg_set_optimal_charging_mode(struct smbchg_chip *chip, int type)
 	return 0;
 }
 
-#define DEFAULT_SDP_MA		100
-#define DEFAULT_CDP_MA		1500
+#define DEFAULT_SDP_MA		500
+#define DEFAULT_CDP_MA		2200
 static int smbchg_change_usb_supply_type(struct smbchg_chip *chip,
 						enum power_supply_type type)
 {
@@ -4907,15 +4907,18 @@ static int smbchg_restricted_charging(struct smbchg_chip *chip, bool enable)
 	return rc;
 }
 
+#ifdef CONFIG_MACH_XIAOMI_MIDO
 extern void ist30xx_set_ta_mode(bool mode);
 extern void tpd_usb_plugin(bool mode);
 extern void gtp_usb_plugin(bool mode);
 int set_usb_charge_mode_par = 0;
+#endif
+
 static void handle_usb_removal(struct smbchg_chip *chip)
 {
 	struct power_supply *parallel_psy = get_parallel_psy(chip);
 	int rc;
-
+#ifdef CONFIG_MACH_XIAOMI_MIDO
 	if (set_usb_charge_mode_par == 1) {
 		ist30xx_set_ta_mode(0);
 	} else if (set_usb_charge_mode_par == 2) {
@@ -4923,6 +4926,8 @@ static void handle_usb_removal(struct smbchg_chip *chip)
 	} else if (set_usb_charge_mode_par == 3) {
 		gtp_usb_plugin(0);
 	}
+#endif
+
 	pr_smb(PR_STATUS, "triggered\n");
 	smbchg_aicl_deglitch_wa_check(chip);
 	/* Clear the OV detected status set before */
@@ -4992,7 +4997,9 @@ static bool is_usbin_uv_high(struct smbchg_chip *chip)
 	return reg &= USBIN_UV_BIT;
 }
 
+#ifdef CONFIG_MACH_XIAOMI_MIDO
 static int rerun_apsd(struct smbchg_chip *chip);
+#endif
 #define HVDCP_NOTIFY_MS		2500
 static void handle_usb_insertion(struct smbchg_chip *chip)
 {
@@ -5000,6 +5007,7 @@ static void handle_usb_insertion(struct smbchg_chip *chip)
 	int rc;
 	char *usb_type_name = "null";
 
+#ifdef CONFIG_MACH_XIAOMI_MIDO
 	if (set_usb_charge_mode_par == 1) {
 		ist30xx_set_ta_mode(1);
 	} else if (set_usb_charge_mode_par == 2) {
@@ -5007,13 +5015,16 @@ static void handle_usb_insertion(struct smbchg_chip *chip)
 	} else if (set_usb_charge_mode_par == 3) {
 		gtp_usb_plugin(1);
 	}
+#endif
 	pr_smb(PR_STATUS, "triggered\n");
 	/* usb inserted */
 	read_usb_type(chip, &usb_type_name, &usb_supply_type);
+#ifdef CONFIG_MACH_XIAOMI_MIDO
 	if (usb_supply_type == POWER_SUPPLY_TYPE_USB_CDP || usb_supply_type == POWER_SUPPLY_TYPE_USB) {
 		rc = rerun_apsd(chip);
 		read_usb_type(chip, &usb_type_name, &usb_supply_type);
 	}
+#endif
 	pr_smb(PR_STATUS,
 		"inserted type = %d (%s)", usb_supply_type, usb_type_name);
 
@@ -5052,9 +5063,8 @@ static void handle_usb_insertion(struct smbchg_chip *chip)
 			(usb_supply_type == POWER_SUPPLY_TYPE_USB_DCP)) {
 		cancel_delayed_work_sync(&chip->hvdcp_det_work);
 		smbchg_stay_awake(chip, PM_DETECT_HVDCP);
-		queue_delayed_work(system_power_efficient_wq,
-				   &chip->hvdcp_det_work,
-				   msecs_to_jiffies(HVDCP_NOTIFY_MS));
+		schedule_delayed_work(&chip->hvdcp_det_work,
+					msecs_to_jiffies(HVDCP_NOTIFY_MS));
 		if (chip->parallel.use_parallel_aicl) {
 			reinit_completion(&chip->hvdcp_det_done);
 			pr_smb(PR_MISC, "init hvdcp_det_done\n");
@@ -5394,8 +5404,7 @@ static void smbchg_handle_hvdcp3_disable(struct smbchg_chip *chip)
 		read_usb_type(chip, &usb_type_name, &usb_supply_type);
 		smbchg_change_usb_supply_type(chip, usb_supply_type);
 		if (usb_supply_type == POWER_SUPPLY_TYPE_USB_DCP) {
-			queue_delayed_work(system_power_efficient_wq,
-				&chip->hvdcp_det_work,
+			schedule_delayed_work(&chip->hvdcp_det_work,
 				msecs_to_jiffies(HVDCP_NOTIFY_MS));
 			if (chip->parallel.use_parallel_aicl) {
 				reinit_completion(&chip->hvdcp_det_done);
@@ -6147,6 +6156,11 @@ static void smbchg_external_power_changed(struct power_supply *psy)
 				msecs_to_jiffies(HVDCP_NOTIFY_MS));
 	}
 
+#ifndef CONFIG_MACH_XIAOMI_MIDO
+	if (usb_supply_type != POWER_SUPPLY_TYPE_USB)
+		goto  skip_current_for_non_sdp;
+#endif
+
 	pr_smb(PR_MISC, "usb type = %s current_limit = %d\n",
 			usb_type_name, current_limit);
 
@@ -6154,6 +6168,11 @@ static void smbchg_external_power_changed(struct power_supply *psy)
 				current_limit);
 	if (rc < 0)
 		pr_err("Couldn't update USB PSY ICL vote rc=%d\n", rc);
+
+#ifndef CONFIG_MACH_XIAOMI_MIDO
+skip_current_for_non_sdp:
+	smbchg_vfloat_adjust_check(chip);
+#endif
 
 	power_supply_changed(&chip->batt_psy);
 }
@@ -6345,7 +6364,11 @@ static int smbchg_battery_get_property(struct power_supply *psy,
 		val->intval = get_prop_batt_health(chip);
 		break;
 	case POWER_SUPPLY_PROP_TECHNOLOGY:
+#ifdef CONFIG_MACH_XIAOMI_MIDO
 		val->intval = POWER_SUPPLY_TECHNOLOGY_LIPO;
+#else
+		val->intval = POWER_SUPPLY_TECHNOLOGY_LION;
+#endif
 		break;
 	case POWER_SUPPLY_PROP_FLASH_CURRENT_MAX:
 		val->intval = smbchg_calc_max_flash_current(chip);
@@ -6557,6 +6580,7 @@ static irqreturn_t batt_warm_handler(int irq, void *_chip)
 {
 	struct smbchg_chip *chip = _chip;
 	u8 reg = 0;
+#ifdef CONFIG_MACH_XIAOMI_MIDO
 	int rc;
 	/* set the warm float voltage compensation,set the warm float voltage to 4.1V */
 	if (chip->float_voltage_comp != -EINVAL) {
@@ -6565,6 +6589,7 @@ static irqreturn_t batt_warm_handler(int irq, void *_chip)
 		dev_err(chip->dev, "Couldn't set float voltage comp rc = %d\n", rc);
 	pr_smb(PR_STATUS, "set float voltage comp to %d\n", chip->float_voltage_comp);
 }
+#endif
 
 	smbchg_read(chip, &reg, chip->bat_if_base + RT_STS, 1);
 	chip->batt_warm = !!(reg & HOT_BAT_SOFT_BIT);
@@ -6582,11 +6607,13 @@ static irqreturn_t batt_cool_handler(int irq, void *_chip)
 	struct smbchg_chip *chip = _chip;
 	u8 reg = 0;
 
+#ifdef CONFIG_MACH_XIAOMI_MIDO
 	int rc;
 	/* set the cool float voltage compensation ,set the cool float voltage to 4.4V*/
 	rc = smbchg_float_voltage_comp_set(chip, 0);
 	if (rc < 0)
 		dev_err(chip->dev, "Couldn't set float voltage comp rc = %d\n", rc);
+#endif
 
 
 	smbchg_read(chip, &reg, chip->bat_if_base + RT_STS, 1);
@@ -7653,7 +7680,7 @@ static int smbchg_hw_init(struct smbchg_chip *chip)
 		if (rc < 0)
 			dev_err(chip->dev, "Couldn't set OTG OC config rc = %d\n",
 				rc);
-
+#ifdef CONFIG_MACH_XIAOMI_MIDO
 		rc = smbchg_sec_masked_write(chip, chip->otg_base + OTG_CFG, 0x0c, 0x8);
 		if (rc < 0) {
 			dev_err(chip->dev, "Couldn't set SMBCHGL_OTG_CFG rc=%d\n",
@@ -7666,6 +7693,7 @@ static int smbchg_hw_init(struct smbchg_chip *chip)
 			dev_err(chip->dev, "Couldn't set SMBCHGL_OTG_CFG rc=%d\n",
 				rc);
 		}
+#endif
 
 	}
 
@@ -7706,7 +7734,7 @@ static struct of_device_id smbchg_match_table[] = {
 };
 
 #define DC_MA_MIN 300
-#define DC_MA_MAX 2000
+#define DC_MA_MAX 2500
 #define OF_PROP_READ(chip, prop, dt_property, retval, optional)		\
 do {									\
 	if (retval)							\
@@ -7821,7 +7849,7 @@ err:
 }
 
 #define DEFAULT_VLED_MAX_UV		3500000
-#define DEFAULT_FCC_MA			2000
+#define DEFAULT_FCC_MA			2500
 static int smb_parse_dt(struct smbchg_chip *chip)
 {
 	int rc = 0, ocp_thresh = -EINVAL;
@@ -8472,8 +8500,7 @@ static void rerun_hvdcp_det_if_necessary(struct smbchg_chip *chip)
 		if (!chip->hvdcp_not_supported) {
 			cancel_delayed_work_sync(&chip->hvdcp_det_work);
 			smbchg_stay_awake(chip, PM_DETECT_HVDCP);
-			queue_delayed_work(system_power_efficient_wq,
-					&chip->hvdcp_det_work,
+			schedule_delayed_work(&chip->hvdcp_det_work,
 					msecs_to_jiffies(HVDCP_NOTIFY_MS));
 		}
 	}
@@ -8658,7 +8685,9 @@ static int smbchg_probe(struct spmi_device *spmi)
 		goto votables_cleanup;
 	}
 
+#ifdef CONFIG_MACH_XIAOMI_MIDO
 	chip->hvdcp_not_supported = true;
+#endif
 	rc = smbchg_check_chg_version(chip);
 	if (rc) {
 		pr_err("Unable to check schg version rc=%d\n", rc);

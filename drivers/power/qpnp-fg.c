@@ -248,7 +248,11 @@ static struct fg_mem_setting settings[FG_MEM_SETTING_MAX] = {
 	SETTING(CHG_TERM_CURRENT, 0x4F8,   2,      250),
 	SETTING(IRQ_VOLT_EMPTY,	 0x458,   3,      3100),
 	SETTING(CUTOFF_VOLTAGE,	 0x40C,   0,      3200),
+#ifdef CONFIG_MACH_XIAOMI_MIDO
 	SETTING(VBAT_EST_DIFF,	 0x000,   0,      200),
+#else
+	SETTING(VBAT_EST_DIFF,	 0x000,   0,      30),
+#endif
 	SETTING(DELTA_SOC,	 0x450,   3,      1),
 	SETTING(BATT_LOW,	 0x458,   0,      4200),
 	SETTING(THERM_DELAY,	 0x4AC,   3,      0),
@@ -330,7 +334,11 @@ module_param_named(
 	battery_type, fg_batt_type, charp, S_IRUSR | S_IWUSR
 );
 
+#ifdef CONFIG_MACH_XIAOMI_MIDO
 static int fg_sram_update_period_ms = 3000;
+#else
+static int fg_sram_update_period_ms = 30000;
+#endif
 module_param_named(
 	sram_update_period_ms, fg_sram_update_period_ms, int, S_IRUSR | S_IWUSR
 );
@@ -2027,6 +2035,12 @@ static void fg_handle_battery_insertion(struct fg_chip *chip)
 		&chip->update_sram_data, msecs_to_jiffies(0));
 }
 
+#ifndef CONFIG_MACH_XIAOMI_MIDO
+static int soc_to_setpoint(int soc)
+{
+	return DIV_ROUND_CLOSEST(soc * 255, 100);
+}
+#endif
 
 static void batt_to_setpoint_adc(int vbatt_mv, u8 *data)
 {
@@ -8045,9 +8059,14 @@ static int fg_common_hw_init(struct fg_chip *chip)
 			return rc;
 		}
 	}
-
+#ifdef CONFIG_MACH_XIAOMI_MIDO
 	rc = fg_mem_masked_write(chip, settings[FG_MEM_DELTA_SOC].address, 0xFF, 1,
 			settings[FG_MEM_DELTA_SOC].offset);
+#else
+	rc = fg_mem_masked_write(chip, settings[FG_MEM_DELTA_SOC].address, 0xFF,
+			soc_to_setpoint(settings[FG_MEM_DELTA_SOC].value),
+			settings[FG_MEM_DELTA_SOC].offset);
+#endif
 	if (rc) {
 		pr_err("failed to write delta soc rc=%d\n", rc);
 		return rc;

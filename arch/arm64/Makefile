@@ -10,7 +10,7 @@
 #
 # Copyright (C) 1995-2001 by Russell King
 
-LDFLAGS_vmlinux	:=--no-undefined -X
+LDFLAGS_vmlinux	:=-p --no-undefined -X
 CPPFLAGS_vmlinux.lds = -DTEXT_OFFSET=$(TEXT_OFFSET)
 OBJCOPYFLAGS	:=-O binary -R .note -R .note.gnu.build-id -R .comment -S
 GZFLAGS		:=-9
@@ -30,33 +30,21 @@ ifeq ($(CONFIG_COMPAT_VDSO), y)
   # should be ignored. If the error is triggered and you set
   # CONFIG_CROSS_COMPILE_ARM32, set CROSS_COMPILE_ARM32 to an appropriate value
   # when invoking make and fix CONFIG_CROSS_COMPILE_ARM32.
-  ifeq ($(CROSS_COMPILE_ARM32),)
-    $(error CROSS_COMPILE_ARM32 not defined or empty, the compat vDSO will not be built)
-  else ifeq ($(cc-name),clang)
-    export CLANG_TRIPLE_ARM32 ?= $(CROSS_COMPILE_ARM32)
-    export CLANG_TARGET_ARM32 := --target=$(notdir $(CLANG_TRIPLE_ARM32:%-=%))
-    export CONFIG_VDSO32 := y
-    vdso32 := -DCONFIG_VDSO32=1
-  else ifeq ($(shell which $(CROSS_COMPILE_ARM32)$(cc-name) 2> /dev/null),)
-    $(error $(CROSS_COMPILE_ARM32)$(cc-name) not found, check CROSS_COMPILE_ARM32)
-  else
-    export CROSS_COMPILE_ARM32
-    export CONFIG_VDSO32 := y
-    vdso32 := -DCONFIG_VDSO32=1
-  endif
 endif
 
 KBUILD_CFLAGS	+= $(vdso32)
+KBUILD_CFLAGS	+= $(call cc-option,-march=armv8-a+crypto+crc,) $(call cc-option,-mcpu=cortex-a53+crypto+crc,)
 KBUILD_CFLAGS	+= -mgeneral-regs-only
 KBUILD_CFLAGS	+= -fno-pic
 KBUILD_CFLAGS	+= $(call cc-option, -mpc-relative-literal-loads)
-KBUILD_AFLAGS	+= $(vdso32)
-
 ifeq ($(cc-name),clang)
 KBUILD_CFLAGS	+= -DCONFIG_ARCH_SUPPORTS_INT128
 else
 KBUILD_CFLAGS	+= $(call cc-ifversion, -ge, 0500, -DCONFIG_ARCH_SUPPORTS_INT128)
 endif
+KBUILD_CFLAGS	+= $(call cc-option,-mabi=lp64)
+KBUILD_AFLAGS	+= $(call cc-option,-mabi=lp64)
+KBUILD_AFLAGS	+= $(vdso32)
 
 ifeq ($(CONFIG_CPU_BIG_ENDIAN), y)
 KBUILD_CPPFLAGS	+= -mbig-endian
@@ -67,6 +55,25 @@ KBUILD_CPPFLAGS	+= -mlittle-endian
 AS		+= -EL
 LD		+= -EL
 endif
+
+# Cortex-A53 optimizations
+arch-$(CONFIG_ARCH_MSM8916)	:= $(call cc-option,-mcpu=cortex-a53+crc+crypto,-march=armv8-a+crc+crypto)
+tune-$(CONFIG_ARCH_MSM8916)	:= -mtune=cortex-a53
+arch-$(CONFIG_ARCH_MSM8917)	:= $(call cc-option,-mcpu=cortex-a53+crc+crypto,-march=armv8-a+crc+crypto)
+tune-$(CONFIG_ARCH_MSM8917)	:= -mtune=cortex-a53
+arch-$(CONFIG_ARCH_MSM8920)	:= $(call cc-option,-mcpu=cortex-a53+crc+crypto,-march=armv8-a+crc+crypto)
+tune-$(CONFIG_ARCH_MSM8920)	:= -mtune=cortex-a53
+arch-$(CONFIG_ARCH_MSM8937)	:= $(call cc-option,-mcpu=cortex-a53+crc+crypto,-march=armv8-a+crc+crypto)
+tune-$(CONFIG_ARCH_MSM8937)	:= -mtune=cortex-a53
+arch-$(CONFIG_ARCH_MSM8940)	:= $(call cc-option,-mcpu=cortex-a53+crc+crypto,-march=armv8-a+crc+crypto)
+tune-$(CONFIG_ARCH_MSM8940)	:= -mtune=cortex-a53
+arch-$(CONFIG_ARCH_MSM8953)	:= $(call cc-option,-mcpu=cortex-a53+crc+crypto,-march=armv8-a+crc+crypto)
+tune-$(CONFIG_ARCH_MSM8953)	:= -mtune=cortex-a53
+arch-$(CONFIG_ARCH_SDM450)	:= $(call cc-option,-mcpu=cortex-a53+crc+crypto,-march=armv8-a+crc+crypto)
+tune-$(CONFIG_ARCH_SDM450)	:= -mtune=cortex-a53
+
+KBUILD_CFLAGS	+= $(arch-y) $(tune-y)
+KBUILD_AFLAGS	+= $(arch-y) $(tune-y)
 
 CHECKFLAGS	+= -D__aarch64__
 

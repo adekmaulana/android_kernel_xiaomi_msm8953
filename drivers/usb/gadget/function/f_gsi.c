@@ -19,7 +19,7 @@
 #include <linux/timer.h>
 #include "f_gsi.h"
 #include "rndis.h"
-#include "debug.h"
+#include "../debug.h"
 
 static unsigned int gsi_in_aggr_size;
 module_param(gsi_in_aggr_size, uint, S_IRUGO | S_IWUSR);
@@ -49,16 +49,6 @@ MODULE_PARM_DESC(num_out_bufs,
 static bool qti_packet_debug;
 module_param(qti_packet_debug, bool, S_IRUGO | S_IWUSR);
 MODULE_PARM_DESC(qti_packet_debug, "Print QTI Packet's Raw Data");
-
-/* initial value, changed by "ifconfig usb0 hw ether xx:xx:xx:xx:xx:xx" */
-static char *gsi_dev_addr;
-module_param(gsi_dev_addr, charp, S_IRUGO | S_IWUSR);
-MODULE_PARM_DESC(gsi_dev_addr, "QC Device Ethernet Address");
-
-/* this address is invisible to ifconfig */
-static char *gsi_host_addr;
-module_param(gsi_host_addr, charp, S_IRUGO | S_IWUSR);
-MODULE_PARM_DESC(gsi_host_addr, "QC Host Ethernet Address");
 
 static struct workqueue_struct *ipa_usb_wq;
 
@@ -642,12 +632,12 @@ int ipa_usb_notify_cb(enum ipa_usb_notify_event event,
 				return -ENOMEM;
 			}
 			cpkt_notify_speed->type = GSI_CTRL_NOTIFY_SPEED;
-			spin_lock(&gsi->c_port.lock);
+			spin_lock_irqsave(&gsi->c_port.lock, flags);
 			list_add_tail(&cpkt_notify_connect->list,
 					&gsi->c_port.cpkt_resp_q);
 			list_add_tail(&cpkt_notify_speed->list,
 					&gsi->c_port.cpkt_resp_q);
-			spin_unlock(&gsi->c_port.lock);
+			spin_unlock_irqrestore(&gsi->c_port.lock, flags);
 			gsi_ctrl_send_notification(gsi);
 		}
 
@@ -974,9 +964,6 @@ static int ipa_suspend_work_handler(struct gsi_data_port *d_port)
 	if (!usb_gsi_ep_op(gsi->d_port.in_ep, (void *) &f_suspend,
 				GSI_EP_OP_CHECK_FOR_SUSPEND)) {
 		ret = -EFAULT;
-		block_db = false;
-		usb_gsi_ep_op(d_port->in_ep, (void *)&block_db,
-			GSI_EP_OP_SET_CLR_BLOCK_DBL);
 		goto done;
 	}
 
@@ -2928,28 +2915,6 @@ fail:
 	return -ENOMEM;
 }
 
-static int gsi_get_ether_addr(const char *str, u8 *dev_addr)
-{
-	if (str) {
-		unsigned	i;
-
-		for (i = 0; i < 6; i++) {
-			unsigned char num;
-
-			if ((*str == '.') || (*str == ':'))
-				str++;
-			num = hex_to_bin(*str++) << 4;
-			num |= hex_to_bin(*str++);
-			dev_addr[i] = num;
-		}
-		if (is_valid_ether_addr(dev_addr))
-			return 0;
-	}
-	random_ether_addr(dev_addr);
-
-	return 1;
-}
-
 static int gsi_bind(struct usb_configuration *c, struct usb_function *f)
 {
 	struct usb_composite_dev *cdev = c->cdev;
@@ -3012,15 +2977,11 @@ static int gsi_bind(struct usb_configuration *c, struct usb_function *f)
 		rndis_set_param_medium(gsi->config, RNDIS_MEDIUM_802_3, 0);
 
 		/* export host's Ethernet address in CDC format */
-		gsi_get_ether_addr(gsi_dev_addr,
-				   gsi->d_port.ipa_init_params.device_ethaddr);
-
-		gsi_get_ether_addr(gsi_host_addr,
-				   gsi->d_port.ipa_init_params.host_ethaddr);
-
+		random_ether_addr(gsi->d_port.ipa_init_params.device_ethaddr);
+		random_ether_addr(gsi->d_port.ipa_init_params.host_ethaddr);
 		log_event_dbg("setting host_ethaddr=%pM, device_ethaddr = %pM",
-				gsi->d_port.ipa_init_params.host_ethaddr,
-				gsi->d_port.ipa_init_params.device_ethaddr);
+		gsi->d_port.ipa_init_params.host_ethaddr,
+		gsi->d_port.ipa_init_params.device_ethaddr);
 		memcpy(gsi->ethaddr, &gsi->d_port.ipa_init_params.host_ethaddr,
 				ETH_ALEN);
 		rndis_set_host_mac(gsi->config, gsi->ethaddr);
@@ -3148,15 +3109,11 @@ static int gsi_bind(struct usb_configuration *c, struct usb_function *f)
 		info.notify_buf_len = GSI_CTRL_NOTIFY_BUFF_LEN;
 
 		/* export host's Ethernet address in CDC format */
-		gsi_get_ether_addr(gsi_dev_addr,
-				   gsi->d_port.ipa_init_params.device_ethaddr);
-
-		gsi_get_ether_addr(gsi_host_addr,
-				   gsi->d_port.ipa_init_params.host_ethaddr);
-
+		random_ether_addr(gsi->d_port.ipa_init_params.device_ethaddr);
+		random_ether_addr(gsi->d_port.ipa_init_params.host_ethaddr);
 		log_event_dbg("setting host_ethaddr=%pM, device_ethaddr = %pM",
-				gsi->d_port.ipa_init_params.host_ethaddr,
-				gsi->d_port.ipa_init_params.device_ethaddr);
+		gsi->d_port.ipa_init_params.host_ethaddr,
+		gsi->d_port.ipa_init_params.device_ethaddr);
 
 		snprintf(gsi->ethaddr, sizeof(gsi->ethaddr),
 		"%02X%02X%02X%02X%02X%02X",
@@ -3288,7 +3245,6 @@ int gsi_bind_config(struct usb_configuration *c, enum ipa_usb_teth_prot prot_id)
 	case IPA_USB_MBIM:
 		gsi->function.name = "mbim";
 		gsi->function.strings = mbim_gsi_strings;
-		gsi->d_port.ntb_info.ntb_input_size = MBIM_NTB_DEFAULT_IN_SIZE;
 		break;
 	case IPA_USB_DIAG:
 		gsi->function.name = "dpl";

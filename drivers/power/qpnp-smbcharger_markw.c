@@ -1,4 +1,4 @@
-/* Copyright (c) 2014-2018 The Linux Foundation. All rights reserved.
+/* Copyright (c) 2014-2017 The Linux Foundation. All rights reserved.
  * Copyright (C) 2017 XiaoMi, Inc.
  *
  * This program is free software; you can redistribute it and/or modify
@@ -40,6 +40,10 @@
 #include <linux/msm_bcl.h>
 #include <linux/ktime.h>
 #include <linux/pmic-voter.h>
+
+#ifdef CONFIG_FORCE_FAST_CHARGE
+#include <linux/fastchg.h>
+#endif
 
 /* Mask/Bit helpers */
 #define _SMB_MASK(BITS, POS) \
@@ -434,28 +438,38 @@ module_param_named(
 	int, S_IRUSR | S_IWUSR
 );
 
-static int smbchg_main_chg_icl_percent = 60;
+static int smbchg_main_chg_icl_percent = 80;
 module_param_named(
 	main_chg_icl_percent, smbchg_main_chg_icl_percent,
 	int, S_IRUSR | S_IWUSR
 );
 
-static int smbchg_default_hvdcp_icl_ma = 1800;
+
+static int smbchg_default_hvdcp_icl_ma = 2200;
+
+
+
 module_param_named(
 	default_hvdcp_icl_ma, smbchg_default_hvdcp_icl_ma,
 	int, S_IRUSR | S_IWUSR
+
 );
 
-static int smbchg_default_hvdcp3_icl_ma = 3000;
+static int smbchg_default_hvdcp3_icl_ma = 2200;
 module_param_named(
 	default_hvdcp3_icl_ma, smbchg_default_hvdcp3_icl_ma,
 	int, S_IRUSR | S_IWUSR
 );
 
-static int smbchg_default_dcp_icl_ma = 2000;
+#ifdef CONFIG_FORCE_FAST_CHARGE
+static int smbchg_default_dcp_icl_ma = 2500;
+#else
+static int smbchg_default_dcp_icl_ma = 2200;
+#endif
 module_param_named(
 	default_dcp_icl_ma, smbchg_default_dcp_icl_ma,
 	int, S_IRUSR | S_IWUSR
+
 );
 
 static int wipower_dyn_icl_en;
@@ -1406,6 +1420,8 @@ static int dc_ilim_ma_table_8996[] = {
 	2200,
 	2300,
 	2400,
+	2500,
+	2600,
 };
 
 static const int fcc_comp_table_8994[] = {
@@ -1413,6 +1429,12 @@ static const int fcc_comp_table_8994[] = {
 	700,
 	900,
 	1200,
+
+
+
+
+
+
 };
 
 static const int fcc_comp_table_8996[] = {
@@ -1420,6 +1442,11 @@ static const int fcc_comp_table_8996[] = {
 	1100,
 	1200,
 	1500,
+	1600,
+	1800,
+	2000,
+	2500,
+	2600,
 };
 
 static const int aicl_rerun_period[] = {
@@ -1486,6 +1513,7 @@ static int smbchg_charging_en(struct smbchg_chip *chip, bool en)
 #define CURRENT_500_MA		500
 #define CURRENT_900_MA		900
 #define CURRENT_1500_MA		1500
+#define CURRENT_2000_MA		2000
 #define SUSPEND_CURRENT_MA	2
 #define ICL_OVERRIDE_BIT	BIT(2)
 static int smbchg_usb_suspend(struct smbchg_chip *chip, bool suspend)
@@ -1798,9 +1826,13 @@ static int smbchg_set_usb_current_max(struct smbchg_chip *chip,
 				pr_err("Couldn't set CMD_IL rc = %d\n", rc);
 				goto out;
 			}
-			chip->usb_max_current_ma = 500;
+			chip->usb_max_current_ma = 800;
 		}
-		if (current_ma == CURRENT_900_MA) {
+		#ifdef CONFIG_FORCE_FAST_CHARGE
+				if ((force_fast_charge > 0 && current_ma == CURRENT_500_MA) || current_ma == CURRENT_900_MA) {
+		#else
+				if (current_ma == CURRENT_900_MA) {
+		#endif
 			rc = smbchg_sec_masked_write(chip,
 					chip->usb_chgpth_base + CHGPTH_CFG,
 					CFG_USB_2_3_SEL_BIT, CFG_USB_3);
@@ -1923,7 +1955,7 @@ static int smbchg_set_fastchg_current_raw(struct smbchg_chip *chip,
 			dev_err(chip->dev, "Couldn't set %dmA rc=%d\n",
 					CURRENT_500_MA, rc);
 		else
-			chip->fastchg_current_ma = 500;
+			chip->fastchg_current_ma = 800;
 		return rc;
 	}
 
@@ -1956,7 +1988,7 @@ static int smbchg_set_fastchg_current_raw(struct smbchg_chip *chip,
 #define USBIN_ACTIVE_PWR_SRC_BIT	BIT(1)
 #define DCIN_ACTIVE_PWR_SRC_BIT		BIT(0)
 #define PARALLEL_REENABLE_TIMER_MS	1000
-#define PARALLEL_CHG_THRESHOLD_CURRENT	1800
+#define PARALLEL_CHG_THRESHOLD_CURRENT	2200
 static bool smbchg_is_usbin_active_pwr_src(struct smbchg_chip *chip)
 {
 	int rc;
@@ -2291,6 +2323,8 @@ static void smbchg_parallel_usb_enable(struct smbchg_chip *chip,
 			"Couldn't set Vflt on parallel psy rc: %d\n", rc);
 		return;
 	}
+
+
 	/* Set USB ICL */
 	target_icl_ma = get_effective_result_locked(chip->usb_icl_votable);
 	if (target_icl_ma < 0) {
@@ -2595,6 +2629,7 @@ static void smbchg_parallel_usb_en_work(struct work_struct *work)
 
 recheck:
 	chip->parallel.parallel_en_in_progress = false;
+
 	schedule_delayed_work(&chip->parallel_en_work, 0);
 }
 
@@ -2611,6 +2646,7 @@ static void smbchg_parallel_usb_check_ok(struct smbchg_chip *chip)
 	}
 
 	smbchg_stay_awake(chip, PM_PARALLEL_CHECK);
+
 	schedule_delayed_work(&chip->parallel_en_work, 0);
 }
 
@@ -3156,7 +3192,7 @@ out:
 	return rc;
 }
 
-static int smbchg_ibat_ocp_threshold_ua = 4500000;
+static int smbchg_ibat_ocp_threshold_ua = 2800000;
 module_param(smbchg_ibat_ocp_threshold_ua, int, 0644);
 
 #define UCONV			1000000LL
@@ -3366,6 +3402,9 @@ static int smbchg_float_voltage_set(struct smbchg_chip *chip, int vfloat_mv)
 	else
 		chip->vfloat_mv = vfloat_mv;
 
+
+
+
 	return rc;
 }
 
@@ -3544,6 +3583,7 @@ static void smbchg_vfloat_adjust_check(struct smbchg_chip *chip)
 
 	smbchg_stay_awake(chip, PM_REASON_VFLOAT_ADJUST);
 	pr_smb(PR_STATUS, "Starting vfloat adjustments\n");
+
 	schedule_delayed_work(&chip->vfloat_adjust_work, 0);
 }
 
@@ -4259,10 +4299,13 @@ static void smbchg_chg_led_brightness_set(struct led_classdev *cdev,
 	reg = (value > LED_OFF) ? CHG_LED_ON << CHG_LED_SHIFT :
 		CHG_LED_OFF << CHG_LED_SHIFT;
 
+
 	if (value > LED_OFF)
 		power_supply_set_hi_power_state(chip->bms_psy, 1);
 	else
+
 		power_supply_set_hi_power_state(chip->bms_psy, 0);
+
 
 	pr_smb(PR_STATUS,
 			"set the charger led brightness to value=%d\n",
@@ -4304,6 +4347,13 @@ static void smbchg_chg_led_blink_set(struct smbchg_chip *chip,
 {
 	u8 reg;
 	int rc;
+
+
+
+
+
+
+
 
 	if (blinking == 0) {
 		reg = CHG_LED_OFF << CHG_LED_SHIFT;
@@ -4613,6 +4663,7 @@ stop:
 	return;
 
 reschedule:
+
 	schedule_delayed_work(&chip->vfloat_adjust_work,
 			msecs_to_jiffies(VFLOAT_RESAMPLE_DELAY_MS));
 	return;
@@ -4663,13 +4714,13 @@ static int smbchg_set_optimal_charging_mode(struct smbchg_chip *chip, int type)
 	return 0;
 }
 
-#define DEFAULT_SDP_MA		100
-#define DEFAULT_CDP_MA		1500
+#define DEFAULT_SDP_MA		500
+#define DEFAULT_CDP_MA		2200
 static int smbchg_change_usb_supply_type(struct smbchg_chip *chip,
 						enum power_supply_type type)
 {
 	int rc, current_limit_ma;
-	union power_supply_propval propval;
+
 
 	/*
 	 * if the type is not unknown, set the type before changing ICL vote
@@ -4708,12 +4759,12 @@ static int smbchg_change_usb_supply_type(struct smbchg_chip *chip,
 		goto out;
 	}
 
-	if (!chip->skip_usb_notification) {
-		propval.intval = type;
-		chip->usb_psy->set_property(chip->usb_psy,
-				POWER_SUPPLY_PROP_REAL_TYPE,
-				&propval);
-	}
+	if (!chip->skip_usb_notification)
+
+		power_supply_set_supply_type(chip->usb_psy, type);
+
+
+
 
 	/*
 	 * otherwise if it is unknown, remove vote
@@ -4913,10 +4964,20 @@ static int smbchg_restricted_charging(struct smbchg_chip *chip, bool enable)
 extern void ist30xx_set_ta_mode(bool mode);
 extern void tpd_usb_plugin(bool mode);
 
+
+
 static void handle_usb_removal(struct smbchg_chip *chip)
 {
 	struct power_supply *parallel_psy = get_parallel_psy(chip);
 	int rc;
+
+
+
+
+
+
+
+
 
 	pr_smb(PR_STATUS, "triggered\n");
 	smbchg_aicl_deglitch_wa_check(chip);
@@ -4935,6 +4996,7 @@ static void handle_usb_removal(struct smbchg_chip *chip)
 		complete_all(&chip->hvdcp_det_done);
 		pr_smb(PR_MISC, "complete hvdcp_det_done\n");
 	}
+
 	if (!chip->skip_usb_notification) {
 		pr_smb(PR_MISC, "setting usb psy present = %d\n",
 				chip->usb_present);
@@ -4993,7 +5055,7 @@ static void handle_usb_insertion(struct smbchg_chip *chip)
 	enum power_supply_type usb_supply_type;
 	int rc;
 	char *usb_type_name = "null";
-	
+
 	pr_smb(PR_STATUS, "triggered\n");
 	/* usb inserted */
 	read_usb_type(chip, &usb_type_name, &usb_supply_type);
@@ -5039,6 +5101,7 @@ static void handle_usb_insertion(struct smbchg_chip *chip)
 			(usb_supply_type == POWER_SUPPLY_TYPE_USB_DCP)) {
 		cancel_delayed_work_sync(&chip->hvdcp_det_work);
 		smbchg_stay_awake(chip, PM_DETECT_HVDCP);
+
 		schedule_delayed_work(&chip->hvdcp_det_work,
 					msecs_to_jiffies(HVDCP_NOTIFY_MS));
 		if (chip->parallel.use_parallel_aicl) {
@@ -5380,6 +5443,7 @@ static void smbchg_handle_hvdcp3_disable(struct smbchg_chip *chip)
 		read_usb_type(chip, &usb_type_name, &usb_supply_type);
 		smbchg_change_usb_supply_type(chip, usb_supply_type);
 		if (usb_supply_type == POWER_SUPPLY_TYPE_USB_DCP) {
+
 			schedule_delayed_work(&chip->hvdcp_det_work,
 				msecs_to_jiffies(HVDCP_NOTIFY_MS));
 			if (chip->parallel.use_parallel_aicl) {
@@ -6091,7 +6155,7 @@ static void smbchg_external_power_changed(struct power_supply *psy)
 		current_limit = prop.intval / 1000;
 
 	rc = chip->usb_psy->get_property(chip->usb_psy,
-				POWER_SUPPLY_PROP_REAL_TYPE, &prop);
+				POWER_SUPPLY_PROP_TYPE, &prop);
 
 	read_usb_type(chip, &usb_type_name, &usb_supply_type);
 
@@ -6117,6 +6181,7 @@ static void smbchg_external_power_changed(struct power_supply *psy)
 
 		read_usb_type(chip, &usb_type_name, &usb_supply_type);
 		if (usb_supply_type == POWER_SUPPLY_TYPE_USB_DCP) {
+
 			schedule_delayed_work(&chip->hvdcp_det_work,
 				msecs_to_jiffies(HVDCP_NOTIFY_MS));
 			if (chip->parallel.use_parallel_aicl) {
@@ -6128,6 +6193,7 @@ static void smbchg_external_power_changed(struct power_supply *psy)
 
 		read_usb_type(chip, &usb_type_name, &usb_supply_type);
 		if (usb_supply_type == POWER_SUPPLY_TYPE_USB_DCP)
+
 			schedule_delayed_work(&chip->hvdcp_det_work,
 				msecs_to_jiffies(HVDCP_NOTIFY_MS));
 	}
@@ -7686,7 +7752,7 @@ static struct of_device_id smbchg_match_table[] = {
 };
 
 #define DC_MA_MIN 300
-#define DC_MA_MAX 2000
+#define DC_MA_MAX 2500
 #define OF_PROP_READ(chip, prop, dt_property, retval, optional)		\
 do {									\
 	if (retval)							\
@@ -7801,7 +7867,7 @@ err:
 }
 
 #define DEFAULT_VLED_MAX_UV		3500000
-#define DEFAULT_FCC_MA			2000
+#define DEFAULT_FCC_MA			2500
 static int smb_parse_dt(struct smbchg_chip *chip)
 {
 	int rc = 0, ocp_thresh = -EINVAL;
@@ -8452,6 +8518,7 @@ static void rerun_hvdcp_det_if_necessary(struct smbchg_chip *chip)
 		if (!chip->hvdcp_not_supported) {
 			cancel_delayed_work_sync(&chip->hvdcp_det_work);
 			smbchg_stay_awake(chip, PM_DETECT_HVDCP);
+
 			schedule_delayed_work(&chip->hvdcp_det_work,
 					msecs_to_jiffies(HVDCP_NOTIFY_MS));
 		}

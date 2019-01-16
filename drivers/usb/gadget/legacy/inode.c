@@ -656,7 +656,6 @@ fail:
 				   GFP_KERNEL);
 		if (!priv->iv) {
 			kfree(priv);
-			value = -ENOMEM;
 			goto fail;
 		}
 	}
@@ -1615,7 +1614,6 @@ delegate:
 			DBG (dev, "ep_queue --> %d\n", value);
 			req->status = 0;
 		}
-		return value;
 	}
 
 	/* device stalls when value < 0 */
