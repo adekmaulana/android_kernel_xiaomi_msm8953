@@ -1,0 +1,29 @@
+#! /bin/sh
+# postrm script for preload
+
+set -e
+
+case "$1" in
+    purge)
+	rm /var/log/preload.* || true
+	rm -r /var/lib/preload/ || true
+    ;;
+
+    remove|upgrade|failed-upgrade|abort-install|abort-upgrade|disappear)
+
+    ;;
+
+    *)
+	echo "postrm called with unknown argument \`$1'" >&2
+	exit 1
+
+esac
+
+# Automatically added by dh_installinit
+if [ "$1" = "purge" ] ; then
+	update-rc.d preload remove >/dev/null
+fi
+# End automatically added section
+
+
+exit 0

@@ -1,0 +1,423 @@
+Package: appstream
+Description-md5: 6dd88e1f82260435137249a5504e5e81
+Description-en: Software component metadata management
+ AppStream is a metadata specification, allowing to write metadata for
+ software projects in a standardized format.
+ It provides facilities to easily access and transform the data, as well
+ as a few additional services to allow building feature-rich software center
+ applications.
+ .
+ This package provides tools to generate, maintain and query the AppStream
+ data pool of installed and available software, and enables integration
+ with the APT package manager.
+ .
+ The 'appstreamcli' tool can be used for accessing the software component
+ pool as well as for working with AppStream metadata directly, including
+ validating it for compliance with the specification.
+
+Package: appstream-doc
+Description-md5: 876ab269481d56dea4cb91a3c242bd75
+Description-en: Developer documentation for AppStream
+ AppStream is a metadata specification, allowing to write metadata for
+ software projects in a general-purpose format. This allows software centers
+ to display useful information for not installed software, as well as
+ determining software the user might want to install (e.g. to open an
+ unknown file type or to make missing firmware available).
+ .
+ This package provides developer documentation for AppStream.
+
+Package: appstream-doc
+Description-md5: 465c342d4293b96b238719e1aed4f6b0
+Description-en: Developer documentation for AppStream
+ AppStream is a metadata specification, allowing to write metadata for
+ software projects in a standardized format. This allows software centers
+ to display useful information for not installed software, as well as
+ determining software the user might want to install (e.g. to open an
+ unknown file type or to make missing firmware available).
+ .
+ This package provides developer documentation for AppStream.
+
+Package: autopkgtest
+Description-md5: 31d9217a487d44cfd80f0588068648cd
+Description-en: automatic as-installed testing for Debian packages
+ autopkgtest runs tests on binary packages.  The tests are run on the
+ package as installed on a testbed system (which may be found via a
+ virtualisation or containment system).  The tests are expected to be
+ supplied in the corresponding Debian source package.
+ .
+ See autopkgtest(1) and /usr/share/doc/autopkgtest.
+ Depending on which virtualization server you want to use, you need to
+ install additional packages (schroot, lxc, lxd, or qemu-system)
+ .
+ For generating tests of well-known source packages such as Perl and Ruby
+ libraries you should install the autodep8 package.
+
+Package: debhelper
+Description-md5: c3d35229c1ce392f77324206e097b92e
+Description-en: helper programs for debian/rules
+ A collection of programs that can be used in a debian/rules file to
+ automate common tasks related to building Debian packages. Programs
+ are included to install various files into your package, compress
+ files, fix file permissions, integrate your package with the Debian
+ menu system, debconf, doc-base, etc. Most Debian packages use debhelper
+ as part of their build process.
+
+Package: dh-autoreconf
+Description-md5: 64431da0ae4318a5fbf441743bd5ffc5
+Description-en: debhelper add-on to call autoreconf and clean up after the build
+ dh-autoreconf provides a debhelper sequence addon named 'autoreconf' and two
+ commands, dh_autoreconf and dh_autoreconf_clean.
+ .
+ The dh_autoreconf command creates a list of the files and their checksums,
+ calls autoreconf and then creates a second list for the new files.
+ .
+ The dh_autoreconf_clean command compares these two lists and removes all
+ files which have been added or changed (files may be excluded if needed).
+ .
+ For CDBS users, a rule is provided to call the dh-autoreconf programs at
+ the right time.
+
+Package: distro-info
+Description-md5: 5671943e370fd3dd7449d885e6363cee
+Description-en: provides information about the distributions' releases
+ Information about all releases of Debian and Ubuntu. The distro-info script
+ will give you the codename for e.g. the latest stable release of your
+ distribution. To get information about a specific distribution there are the
+ debian-distro-info and the ubuntu-distro-info scripts.
+
+Package: gir1.2-appstream-1.0
+Description-md5: e85f00792d002cbcbb931949e1b6f92e
+Description-en: Library to access AppStream services (introspection data)
+ AppStream is a metadata specification, allowing to write metadata for
+ software projects in a standardized format. This allows software centers
+ to display useful information for not installed software, as well as
+ determining software the user might want to install (e.g. to open an
+ unknown file type or to make missing firmware available).
+ .
+ This package contains introspection data for the AppStream library.
+
+Package: golang-github-lxc-lxd-dev
+Description-md5: bf546539c311f366eeb0ad488709554f
+Description-en: Container hypervisor based on LXC - go source
+ LXD offers a REST API to remotely manage containers over the network,
+ using an image based workflow and with support for live migration.
+ .
+ This package contains the source tree of the lxd project.
+
+Package: libappstream-dev
+Description-md5: 09cded90f0e4f692b9183d306bdb450a
+Description-en: Library to access AppStream services (development files)
+ AppStream is a metadata specification, allowing to write metadata for
+ software projects in a standardized format. This allows software centers
+ to display useful information for not installed software, as well as
+ determining software the user might want to install (e.g. to open an
+ unknown file type or to make missing firmware available).
+ .
+ This package contains development files necessary to develop
+ software management tools which use the AppStream library.
+
+Package: libappstream4
+Description-md5: c567b41943fa9341c85fbc3a182170b0
+Description-en: Library to access AppStream services
+ AppStream is a metadata specification, allowing to write metadata for
+ software projects in a standardized format. This allows software centers
+ to display useful information for not installed software, as well as
+ determining software the user might want to install (e.g. to open an
+ unknown file type or to make missing firmware available).
+ .
+ This package contains a GObject-based library to access AppStream
+ services, like the software component metadata pool.
+ It also contains functions for reading, writing and transforming AppStream
+ metadata.
+
+Package: libappstreamqt-dev
+Description-md5: 0a7919e7eb3578aabb849ac6507d3493
+Description-en: Qt5 library to access AppStream services (development files)
+ AppStream is a metadata specification, allowing to write metadata for
+ software projects in a standardized format. This allows software centers
+ to display useful information for not installed software, as well as
+ determining software the user might want to install (e.g. to open an
+ unknown file type or to make missing firmware available).
+ .
+ This package contains development files necessary to develop
+ software management tools which use the Qt-based AppStream library.
+
+Package: libappstreamqt1
+Description-md5: 946433af77eca5bbb9a9a14a1d0ba20b
+Description-en: Qt5 library to access AppStream services
+ AppStream is a metadata specification, allowing to write metadata for
+ software projects in a general-purpose format. This allows software centers
+ to display useful information for not installed software, as well as
+ determining software the user might want to install (e.g. to open an
+ unknown file type or to make missing firmware available).
+ .
+ This package contains a Qt-based library to access AppStream
+ services, like the software component metadata pool.
+
+Package: libappstreamqt2
+Description-md5: 1fde835e1d44f3e9d2ed1be217653777
+Description-en: Qt5 library to access AppStream services
+ AppStream is a metadata specification, allowing to write metadata for
+ software projects in a standardized format. This allows software centers
+ to display useful information for not installed software, as well as
+ determining software the user might want to install (e.g. to open an
+ unknown file type or to make missing firmware available).
+ .
+ This package contains a Qt-based library to access AppStream
+ services, like the software component metadata pool.
+
+Package: libarchive-dev
+Description-md5: 4fedaf2f347af4287edce946b56ba586
+Description-en: Multi-format archive and compression library (development files)
+ The libarchive library provides a flexible interface for reading and writing
+ archives in various formats such as tar and cpio. libarchive also supports
+ reading and writing archives compressed using various compression filters such
+ as gzip and bzip2. The library is inherently stream-oriented; readers serially
+ iterate through the archive, writers serially add things to the archive.
+ .
+ Archive formats supported are:
+ .
+    * tar (read and write, including GNU extensions)
+    * pax (read and write, including GNU and star extensions)
+    * cpio (read and write, including odc and newc variants)
+    * iso9660 (read and write, including Joliet and Rockridge extensions, with
+      some limitations)
+    * zip (read only, with some limitations, uses zlib)
+    * mtree (read and write)
+    * shar (write only)
+    * ar (read and write, including BSD and GNU/SysV variants)
+    * empty (read only; in particular, note that no other format will accept an
+      empty file)
+    * raw (read only)
+    * xar (read only)
+    * rar (read only, with some limitations)
+    * 7zip (read and write, with some limitations)
+ .
+ Filters supported are:
+ .
+    * gzip (read and write, uses zlib)
+    * bzip2 (read and write, uses bzlib)
+    * compress (read and write, uses an internal implementation)
+    * uudecode (read only)
+    * separate command-line compressors with fixed-signature auto-detection
+    * xz and lzma (read and write using liblzma)
+ .
+ This package provides the files necessary for development with libarchive.
+
+Package: libarchive-tools
+Description-md5: 04bbebb441868f4c976e664833572c46
+Description-en: FreeBSD implementations of 'tar' and 'cpio' and other archive tools
+ This package contains several command-line tools based on the libarchive
+ library.
+ .
+ The bsdtar program is the default system 'tar' program used on FreeBSD. bsdtar
+ uses the libarchive library as a backend which does all of the work for reading
+ and writing archives in various formats.
+ .
+ The bsdcpio program is the default system 'cpio' program used on FreeBSD.
+ bsdcpio uses the libarchive library as a backend which does all of the work for
+ reading and writing archives in various formats.
+ .
+ The bsdcat program reads archived data from files or from its standard input
+ and uses the libarchive library to decompresses it to its standard output.
+ It may be used for viewing the contents of archives or for passing it to other
+ tools for further processing.
+
+Package: libarchive13
+Description-md5: 3efebf57a3d06179c6d5746db080711f
+Description-en: Multi-format archive and compression library (shared library)
+ The libarchive library provides a flexible interface for reading and writing
+ archives in various formats such as tar and cpio. libarchive also supports
+ reading and writing archives compressed using various compression filters such
+ as gzip and bzip2. The library is inherently stream-oriented; readers serially
+ iterate through the archive, writers serially add things to the archive.
+ .
+ Archive formats supported are:
+ .
+    * tar (read and write, including GNU extensions)
+    * pax (read and write, including GNU and star extensions)
+    * cpio (read and write, including odc and newc variants)
+    * iso9660 (read and write, including Joliet and Rockridge extensions, with
+      some limitations)
+    * zip (read only, with some limitations, uses zlib)
+    * mtree (read and write)
+    * shar (write only)
+    * ar (read and write, including BSD and GNU/SysV variants)
+    * empty (read only; in particular, note that no other format will accept an
+      empty file)
+    * raw (read only)
+    * xar (read only)
+    * rar (read only, with some limitations)
+    * 7zip (read and write, with some limitations)
+ .
+ Filters supported are:
+ .
+    * gzip (read and write, uses zlib)
+    * bzip2 (read and write, uses bzlib)
+    * compress (read and write, uses an internal implementation)
+    * uudecode (read only)
+    * separate command-line compressors with fixed-signature auto-detection
+    * xz and lzma (read and write using liblzma)
+ .
+ This package provides the libarchive shared library.
+
+Package: libdistro-info-perl
+Description-md5: f417f8a2f224f083f2115d9569272b72
+Description-en: information about distributions' releases (Perl module)
+ Information about all releases of Debian and Ubuntu.
+ .
+ This package contains a Perl module for parsing the data in distro-info-data.
+ There is also a command line interface in the distro-info package.
+
+Package: liblxc-common
+Description-md5: 9157a820a0659f86e4e9edfb89d0b33f
+Description-en: Linux Containers userspace tools (common tools)
+ Containers are insulated areas inside a system, which have their own namespace
+ for filesystem, network, PID, IPC, CPU and memory allocation and which can be
+ created using the Control Group and Namespace features included in the Linux
+ kernel.
+ .
+ This package contains a few binaries and security profiles required by
+ all liblxc users.
+
+Package: liblxc-dev
+Description-md5: c719178b7e79ce1ed39519707c589961
+Description-en: Linux Containers userspace tools (development)
+ Containers are insulated areas inside a system, which have their own namespace
+ for filesystem, network, PID, IPC, CPU and memory allocation and which can be
+ created using the Control Group and Namespace features included in the Linux
+ kernel.
+ .
+ This package contains the development files.
+
+Package: liblxc1
+Description-md5: d757397b1a93a5bea5c72032f3ef485d
+Description-en: Linux Containers userspace tools (library)
+ Containers are insulated areas inside a system, which have their own namespace
+ for filesystem, network, PID, IPC, CPU and memory allocation and which can be
+ created using the Control Group and Namespace features included in the Linux
+ kernel.
+ .
+ This package contains the libraries.
+
+Package: libpam-cgfs
+Description-md5: cb57c39f06feeaf43987af0884bc76f8
+Description-en: PAM module for managing cgroups for LXC
+ Containers are insulated areas inside a system, which have their own namespace
+ for filesystem, network, PID, IPC, CPU and memory allocation and which can be
+ created using the Control Group and Namespace features included in the Linux
+ kernel.
+ .
+ This provides a Pluggable Authentication Module (PAM) to provide
+ logged-in users with a set of cgroups which they can administer.
+ This allows for instance unprivileged containers, and session
+ management using cgroup process tracking.
+
+Package: lxc
+Description-md5: 8f5ab7156cfdafe3662f916116c20006
+Description-en: Transitional package - lxc -> lxc-utils
+ This is a transitional dummy package. It can safely be removed.
+ .
+ lxc is now replaced by lxc-utils.
+
+Package: lxc-dev
+Description-md5: 901ee3caa837071f9dec6c5062db7b76
+Description-en: Transitional package - lxc-dev -> liblxc-dev
+ This is a transitional dummy package. It can safely be removed.
+ .
+ lxc-dev is now replaced by liblxc-dev.
+
+Package: lxc-templates
+Description-md5: 9a526ab1c6ccc435c574f17de9485e7e
+Description-en: Linux Containers userspace tools (templates)
+ Containers are insulated areas inside a system, which have their own namespace
+ for filesystem, network, PID, IPC, CPU and memory allocation and which can be
+ created using the Control Group and Namespace features included in the Linux
+ kernel.
+ .
+ This package contains the templates.
+
+Package: lxc-utils
+Description-md5: 4ece0dffd153c29e95ffdb89f8238dfc
+Description-en: Linux Containers userspace tools
+ Containers are insulated areas inside a system, which have their own namespace
+ for filesystem, network, PID, IPC, CPU and memory allocation and which can be
+ created using the Control Group and Namespace features included in the Linux
+ kernel.
+ .
+ This package provides the lxc-* tools, which can be used to start a single
+ daemon in a container, or to boot an entire "containerized" system, and to
+ manage and debug your containers.
+
+Package: lxc1
+Description-md5: 273a0579052e484ba19949ef240341d4
+Description-en: Transitional package - lxc1 -> lxc-utils
+ This is a transitional dummy package. It can safely be removed.
+ .
+ lxc1 is now replaced by lxc-utils.
+
+Package: lxc2
+Description-md5: 16aa6b32a6decc4b676db644304f6925
+Description-en: Container hypervisor based on LXC - metapackage
+ LXD offers a REST API to remotely manage containers over the network,
+ using an image based workflow and with support for live migration.
+ .
+ This is a dummy metapackage to install LXD and its client.
+
+Package: lxcfs
+Description-md5: f3cabfc6ca3d3433720d9d811af950bd
+Description-en: FUSE based filesystem for LXC
+ LXCFS provides a FUSE based filesystem to improve the LXC experience
+ within the containers.
+ .
+ This filesystem offers both a cgroupfs-like view for use by
+ unprivileged containers which wouldn't otherwise be allowed to mount
+ cgroupfs. And a set of files that are meant to be bind-mounted over
+ their /proc equivalent to make them cgroup-aware.
+
+Package: lxd
+Description-md5: aae21ff20f4cc6a1e21b22e39cdd87bf
+Description-en: Container hypervisor based on LXC - daemon
+ LXD offers a REST API to remotely manage containers over the network,
+ using an image based workflow and with support for live migration.
+ .
+ This package contains the LXD daemon.
+
+Package: lxd-client
+Description-md5: c5f7d80cfd076c2db1400c3ee9b9332f
+Description-en: Container hypervisor based on LXC - client
+ LXD offers a REST API to remotely manage containers over the network,
+ using an image based workflow and with support for live migration.
+ .
+ This package contains the command line client.
+
+Package: lxd-tools
+Description-md5: 0dfa59a5cd7d8576e3182fb10faa4e93
+Description-en: Container hypervisor based on LXC - extra tools
+ LXD offers a REST API to remotely manage containers over the network,
+ using an image based workflow and with support for live migration.
+ .
+ This package contains extra tools provided with LXD.
+  - fuidshift - A tool to map/unmap filesystem uids/gids
+  - lxc-to-lxd - A tool to migrate LXC containers to LXD
+  - lxd-benchmark - A benchmarking tool for LXD
+
+Package: python3-distro-info
+Description-md5: 0792778c111d953817469a438613f2f3
+Description-en: information about distributions' releases (Python 3 module)
+ Information about all releases of Debian and Ubuntu.
+ .
+ This package contains a Python 3 module for parsing the data in
+ distro-info-data. There is also a command line interface in the distro-info
+ package.
+
+Package: python3-lxc
+Description-md5: ee623a31db200104a7207d9de42b8f04
+Description-en: Linux Containers userspace tools (Python 3.x bindings)
+ Containers are insulated areas inside a system, which have their own namespace
+ for filesystem, network, PID, IPC, CPU and memory allocation and which can be
+ created using the Control Group and Namespace features included in the Linux
+ kernel.
+ .
+ This package contains the Python 3.x bindings.
+

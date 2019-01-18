@@ -1,0 +1,13 @@
+#!/bin/sh
+set -e
+
+case "$1" in
+    configure)
+        [ -x /usr/sbin/update-initramfs ] && update-initramfs -u
+        [ -x /etc/kernel/postinst.d/dracut ] && /etc/kernel/postinst.d/dracut $(uname -r)
+    ;;
+esac
+
+
+
+exit 0

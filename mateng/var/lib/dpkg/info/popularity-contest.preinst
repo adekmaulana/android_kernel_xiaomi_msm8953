@@ -1,0 +1,24 @@
+#!/bin/sh
+
+set -e
+
+case "$1" in
+install|upgrade)
+# Move a conffile without triggering a dpkg question if it was not modified.
+    if dpkg --compare-versions "$2" le "1.44"; then
+      PKGNAME="popularity-contest"
+      CONFFILE="/etc/cron.weekly/popularity-contest"
+      NEWCONFFILE="/etc/cron.daily/popularity-contest"
+      if [ -e "$CONFFILE" ]; then
+          md5sum="`md5sum \"$CONFFILE\" | sed -e \"s/ .*//\"`"
+          old_md5sum="`dpkg-query -W -f='${Conffiles}' $PKGNAME | sed -n -e \"\\\\' $CONFFILE '{s/ obsolete$//;s/.* //p}\"`"
+          if [ "$md5sum" = "$old_md5sum" ]; then
+              rm -f "$CONFFILE"
+          else
+              mv -f "$CONFFILE" "$NEWCONFFILE"
+          fi
+      fi
+    fi
+esac
+
+

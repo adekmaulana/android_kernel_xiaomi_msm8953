@@ -1,0 +1,815 @@
+Package: appstream
+Architecture: amd64
+Version: 0.10.6-1~ubuntu16.04.2
+Priority: optional
+Section: admin
+Origin: Ubuntu
+Maintainer: Ubuntu Developers <ubuntu-devel-discuss@lists.ubuntu.com>
+Original-Maintainer: Matthias Klumpp <mak@debian.org>
+Bugs: https://bugs.launchpad.net/ubuntu/+filebug
+Installed-Size: 489
+Provides: appstream-index
+Depends: libappstream4 (>= 0.10.2), libc6 (>= 2.4), libglib2.0-0 (>= 2.46)
+Breaks: appstream-index (<< 0.10.6-1~ubuntu16.04.2)
+Filename: pool/main/a/appstream/appstream_0.10.6-1~ubuntu16.04.2_amd64.deb
+Size: 96976
+MD5sum: 4c5f5a21ebd20072eaa831cb9f124ef5
+SHA1: 8ab7debd326a6e4d4cca0854d9f26f8db108e5a6
+SHA256: 9192a3eb7c3e454b76172a4d326b095e81cc61f431eaebcb452a97ef2ff6d7f6
+Homepage: http://www.freedesktop.org/wiki/Distributions/AppStream/
+Description: Software component metadata management
+Task: ubuntu-desktop, ubuntu-usb, kubuntu-desktop, kubuntu-full, edubuntu-desktop, edubuntu-usb, xubuntu-desktop, mythbuntu-frontend, mythbuntu-desktop, mythbuntu-backend-slave, mythbuntu-backend-master, ubuntustudio-desktop, ubuntu-gnome-desktop, ubuntukylin-desktop
+Description-md5: 6dd88e1f82260435137249a5504e5e81
+Supported: 5y
+
+Package: appstream-doc
+Architecture: all
+Version: 0.10.1-1~ubuntu16.04.1
+Multi-Arch: foreign
+Priority: optional
+Section: doc
+Source: appstream
+Origin: Ubuntu
+Maintainer: Ubuntu Developers <ubuntu-devel-discuss@lists.ubuntu.com>
+Original-Maintainer: Matthias Klumpp <mak@debian.org>
+Bugs: https://bugs.launchpad.net/ubuntu/+filebug
+Installed-Size: 3080
+Suggests: appstream
+Filename: pool/main/a/appstream/appstream-doc_0.10.1-1~ubuntu16.04.1_all.deb
+Size: 1666318
+MD5sum: 9b42033a0a84565f48daf8c9574541ad
+SHA1: d12e6b13349e877cd8c925903c6d2ef95406e6b8
+SHA256: 19c410645ef28ad7887d91d4961c5f06ac6950a63641d30f715ec6ab943a439b
+Homepage: http://www.freedesktop.org/wiki/Distributions/AppStream/
+Description: Developer documentation for AppStream
+Description-md5: 876ab269481d56dea4cb91a3c242bd75
+Supported: 5y
+
+Package: appstream-doc
+Architecture: all
+Version: 0.10.6-1~ubuntu16.04.2
+Multi-Arch: foreign
+Priority: optional
+Section: doc
+Source: appstream
+Origin: Ubuntu
+Maintainer: Ubuntu Developers <ubuntu-devel-discuss@lists.ubuntu.com>
+Original-Maintainer: Matthias Klumpp <mak@debian.org>
+Bugs: https://bugs.launchpad.net/ubuntu/+filebug
+Installed-Size: 3194
+Suggests: appstream
+Filename: pool/main/a/appstream/appstream-doc_0.10.6-1~ubuntu16.04.2_all.deb
+Size: 1675090
+MD5sum: c39ae0e794d3a8ecee981babfd98a5e4
+SHA1: 7003df33ac996b8e9cef270382efe74c285de16e
+SHA256: 3f55ed68222d1208791a0dcbccc62300b0ff3dbaf40cb828ba74176c25144bf2
+Homepage: http://www.freedesktop.org/wiki/Distributions/AppStream/
+Description: Developer documentation for AppStream
+Description-md5: 465c342d4293b96b238719e1aed4f6b0
+Supported: 5y
+
+Package: autopkgtest
+Architecture: all
+Version: 4.3~ubuntu16.04.1
+Priority: optional
+Section: devel
+Origin: Ubuntu
+Maintainer: Ubuntu Developers <ubuntu-devel-discuss@lists.ubuntu.com>
+Original-Maintainer: Autopkgtest team <autopkgtest-devel@lists.alioth.debian.org>
+Bugs: https://bugs.launchpad.net/ubuntu/+filebug
+Installed-Size: 540
+Depends: python3, python3-debian, apt-utils, libdpkg-perl, procps
+Recommends: autodep8
+Suggests: schroot, lxc, lxd-client, qemu-system, qemu-utils
+Filename: pool/main/a/autopkgtest/autopkgtest_4.3~ubuntu16.04.1_all.deb
+Size: 133118
+MD5sum: 454474fcf6624d0e269f8e1d2224a2c4
+SHA1: bf3f9a7dd8fd13c26e5e536deede19ef0a4e7b07
+SHA256: 9c398f7b4216a7802596f597e42e9fa89b027a3f44e0fa14118890411f847f92
+Description: automatic as-installed testing for Debian packages
+Description-md5: 31d9217a487d44cfd80f0588068648cd
+Supported: 5y
+
+Package: debhelper
+Architecture: all
+Version: 10.2.2ubuntu1~ubuntu16.04.1
+Multi-Arch: foreign
+Priority: optional
+Section: devel
+Origin: Ubuntu
+Maintainer: Ubuntu Developers <ubuntu-devel-discuss@lists.ubuntu.com>
+Original-Maintainer: Debhelper Maintainers <debhelper-devel@lists.alioth.debian.org>
+Bugs: https://bugs.launchpad.net/ubuntu/+filebug
+Installed-Size: 1307
+Depends: autotools-dev, binutils, dh-autoreconf (>= 12~), dh-strip-nondeterminism, dpkg (>= 1.16.2), dpkg-dev (>= 1.18.2~), file (>= 3.23), libdpkg-perl (>= 1.17.14), man-db (>= 2.5.1-1), po-debconf, perl
+Suggests: dh-make
+Breaks: dh-systemd (<< 1.38)
+Replaces: dh-systemd (<< 1.38)
+Filename: pool/main/d/debhelper/debhelper_10.2.2ubuntu1~ubuntu16.04.1_all.deb
+Size: 743304
+MD5sum: 51b8365ad88bd3d6d32da2fa2bd144a8
+SHA1: 5a967a4603acc7b2bcd4a22daef3c554ebe82038
+SHA256: 596b7ee7e9f1efa3c4a8547a11e11462155484347c639744387cf0f84412a5c7
+Description: helper programs for debian/rules
+Task: ubuntu-sdk
+Description-md5: c3d35229c1ce392f77324206e097b92e
+Supported: 5y
+
+Package: dh-autoreconf
+Architecture: all
+Version: 12~ubuntu16.04.1
+Multi-Arch: foreign
+Priority: optional
+Section: devel
+Origin: Ubuntu
+Maintainer: Ubuntu Developers <ubuntu-devel-discuss@lists.ubuntu.com>
+Original-Maintainer: Julian Andres Klode <jak@debian.org>
+Bugs: https://bugs.launchpad.net/ubuntu/+filebug
+Installed-Size: 44
+Depends: perl, debhelper, autoconf, automake | automaken, autopoint, libtool (>= 2.4.2)
+Enhances: cdbs, debhelper
+Filename: pool/main/d/dh-autoreconf/dh-autoreconf_12~ubuntu16.04.1_all.deb
+Size: 15694
+MD5sum: 43d4d5c09998e771d54eddd4ce2610ec
+SHA1: 16fcf599fbc7ad863043710e9fd010e8e1b46ec2
+SHA256: a11908df3373fb609d0dff96a67cba456dfdc51c0d72ca954614b81fd1956c51
+Description: debhelper add-on to call autoreconf and clean up after the build
+Description-md5: 64431da0ae4318a5fbf441743bd5ffc5
+Supported: 5y
+
+Package: distro-info
+Architecture: amd64
+Version: 0.18~ubuntu16.04.1
+Priority: optional
+Section: devel
+Origin: Ubuntu
+Maintainer: Ubuntu Developers <ubuntu-devel-discuss@lists.ubuntu.com>
+Original-Maintainer: Benjamin Drung <bdrung@debian.org>
+Bugs: https://bugs.launchpad.net/ubuntu/+filebug
+Installed-Size: 90
+Depends: distro-info-data (>= 0.7~), libc6 (>= 2.7)
+Suggests: shunit2 (>= 2.1.6)
+Breaks: ubuntu-dev-tools (<< 0.133~)
+Replaces: ubuntu-dev-tools (<< 0.127~)
+Filename: pool/main/d/distro-info/distro-info_0.18~ubuntu16.04.1_amd64.deb
+Size: 20006
+MD5sum: f568faa2c3e7e99225de5160a96b7555
+SHA1: f7d720229669ddc261823f50a31d797cfbb3fd91
+SHA256: 76e50d033cbbdc3578163a8ea3e2a0898a3c7e4b16c55b7da41de88202c1c125
+Description: provides information about the distributions' releases
+Task: ubuntu-sdk
+Description-md5: 5671943e370fd3dd7449d885e6363cee
+Supported: 5y
+
+Package: gir1.2-appstream-1.0
+Architecture: amd64
+Version: 0.10.6-1~ubuntu16.04.2
+Priority: optional
+Section: introspection
+Source: appstream
+Origin: Ubuntu
+Maintainer: Ubuntu Developers <ubuntu-devel-discuss@lists.ubuntu.com>
+Original-Maintainer: Matthias Klumpp <mak@debian.org>
+Bugs: https://bugs.launchpad.net/ubuntu/+filebug
+Installed-Size: 53
+Depends: libappstream4 (= 0.10.6-1~ubuntu16.04.2), gir1.2-glib-2.0
+Breaks: gir1.2-appstream (<< 0.10.1)
+Replaces: gir1.2-appstream (<< 0.10.1)
+Filename: pool/main/a/appstream/gir1.2-appstream-1.0_0.10.6-1~ubuntu16.04.2_amd64.deb
+Size: 10912
+MD5sum: 0a89283de1d95968d82f4804f2ae6d45
+SHA1: 6fd851fc66727ba6e2a5d53b53ae0e26598581e9
+SHA256: b038c5a645a05589510f71c8584465d23aa8176ab2c90087e29fe86e653ed515
+Homepage: http://www.freedesktop.org/wiki/Distributions/AppStream/
+Description: Library to access AppStream services (introspection data)
+Description-md5: e85f00792d002cbcbb931949e1b6f92e
+
+Package: golang-github-lxc-lxd-dev
+Architecture: all
+Version: 2.16-0ubuntu2~ubuntu16.04.1
+Priority: optional
+Section: admin
+Source: lxd
+Origin: Ubuntu
+Maintainer: Ubuntu Developers <ubuntu-devel-discuss@lists.ubuntu.com>
+Bugs: https://bugs.launchpad.net/ubuntu/+filebug
+Installed-Size: 2162
+Depends: golang-go, lxc-dev, pkg-config
+Filename: pool/main/l/lxd/golang-github-lxc-lxd-dev_2.16-0ubuntu2~ubuntu16.04.1_all.deb
+Size: 324882
+MD5sum: f237d60f0ab44909d8e1c6077dda84c8
+SHA1: 674a50abac35374e74fbb61fcc997c61e2b9519f
+SHA256: 6e616ec249718085a6d62805ee0fc9b11eb14ca19721961e9fd5d36ddd494df4
+Homepage: https://linuxcontainers.org/
+Description: Container hypervisor based on LXC - go source
+Description-md5: bf546539c311f366eeb0ad488709554f
+Supported: 5y
+
+Package: golang-github-lxc-lxd-dev
+Architecture: all
+Version: 2.21-0ubuntu3~16.04.2
+Priority: optional
+Section: admin
+Source: lxd
+Origin: Ubuntu
+Maintainer: Ubuntu Developers <ubuntu-devel-discuss@lists.ubuntu.com>
+Bugs: https://bugs.launchpad.net/ubuntu/+filebug
+Installed-Size: 2608
+Depends: golang-go, lxc-dev, pkg-config
+Filename: pool/main/l/lxd/golang-github-lxc-lxd-dev_2.21-0ubuntu3~16.04.2_all.deb
+Size: 404896
+MD5sum: 514b65724b48283211785682680f389f
+SHA1: f557a09af35780def8c39f99d8b8feac719bb2aa
+SHA256: a2321d251255a8181b54931bbc5527f43e3e4580f02eb7465af6eccc49552c30
+Homepage: https://linuxcontainers.org/
+Description: Container hypervisor based on LXC - go source
+Description-md5: bf546539c311f366eeb0ad488709554f
+Supported: 5y
+
+Package: libappstream-dev
+Architecture: amd64
+Version: 0.10.6-1~ubuntu16.04.2
+Priority: optional
+Section: libdevel
+Source: appstream
+Origin: Ubuntu
+Maintainer: Ubuntu Developers <ubuntu-devel-discuss@lists.ubuntu.com>
+Original-Maintainer: Matthias Klumpp <mak@debian.org>
+Bugs: https://bugs.launchpad.net/ubuntu/+filebug
+Installed-Size: 402
+Depends: gir1.2-appstream-1.0 (= 0.10.6-1~ubuntu16.04.2), libappstream4 (= 0.10.6-1~ubuntu16.04.2), libglib2.0-dev (>= 2.46)
+Suggests: appstream-generator
+Filename: pool/main/a/appstream/libappstream-dev_0.10.6-1~ubuntu16.04.2_amd64.deb
+Size: 33296
+MD5sum: 6bb0a97895426141642603a5ab4349cc
+SHA1: f4fa1c2e48c567fb52942e902ae9f8911fcf9a4d
+SHA256: 807a93090f1233f9f4dfff8a8b9b1fa808c3c09d0cf0c45406c3e8427656938d
+Homepage: http://www.freedesktop.org/wiki/Distributions/AppStream/
+Description: Library to access AppStream services (development files)
+Description-md5: 09cded90f0e4f692b9183d306bdb450a
+Supported: 5y
+
+Package: libappstream4
+Architecture: amd64
+Version: 0.10.6-1~ubuntu16.04.2
+Multi-Arch: same
+Priority: optional
+Section: libs
+Source: appstream
+Origin: Ubuntu
+Maintainer: Ubuntu Developers <ubuntu-devel-discuss@lists.ubuntu.com>
+Original-Maintainer: Matthias Klumpp <mak@debian.org>
+Bugs: https://bugs.launchpad.net/ubuntu/+filebug
+Installed-Size: 279
+Depends: libc6 (>= 2.14), libglib2.0-0 (>= 2.46), libstemmer0d (>= 0+svn527), libxml2 (>= 2.7.4), libyaml-0-2
+Filename: pool/main/a/appstream/libappstream4_0.10.6-1~ubuntu16.04.2_amd64.deb
+Size: 87230
+MD5sum: 2500ee0bc7eeff821262960eb8cf971e
+SHA1: 84742ce51c234e3b7135fc2fb0b5163a562c8a76
+SHA256: 5609f495ede3e87fcf7f6101eec22ddce1ce806253fa9cbda58fa69485bb9c61
+Homepage: http://www.freedesktop.org/wiki/Distributions/AppStream/
+Description: Library to access AppStream services
+Description-md5: c567b41943fa9341c85fbc3a182170b0
+
+Package: libappstreamqt-dev
+Architecture: amd64
+Version: 0.10.6-1~ubuntu16.04.2
+Multi-Arch: same
+Priority: optional
+Section: libdevel
+Source: appstream
+Origin: Ubuntu
+Maintainer: Ubuntu Developers <ubuntu-devel-discuss@lists.ubuntu.com>
+Original-Maintainer: Matthias Klumpp <mak@debian.org>
+Bugs: https://bugs.launchpad.net/ubuntu/+filebug
+Installed-Size: 64
+Depends: libappstreamqt2 (= 0.10.6-1~ubuntu16.04.2), qtbase5-dev (>= 5.4)
+Filename: pool/main/a/appstream/libappstreamqt-dev_0.10.6-1~ubuntu16.04.2_amd64.deb
+Size: 9124
+MD5sum: b35651ecaae7f0f2c34483cebb1a18bb
+SHA1: cb0d15f4900f272a29d7c10ae23a2ba6d8987cb5
+SHA256: 3de2c781b4873a60bddcdec74fe5173f4a4006fa6fbfcc8596012c611d46f281
+Homepage: http://www.freedesktop.org/wiki/Distributions/AppStream/
+Description: Qt5 library to access AppStream services (development files)
+Description-md5: 0a7919e7eb3578aabb849ac6507d3493
+Supported: 5y
+
+Package: libappstreamqt1
+Architecture: amd64
+Version: 0.10.1-1~ubuntu16.04.1
+Multi-Arch: same
+Priority: optional
+Section: libs
+Source: appstream
+Origin: Ubuntu
+Maintainer: Ubuntu Developers <ubuntu-devel-discuss@lists.ubuntu.com>
+Original-Maintainer: Matthias Klumpp <mak@debian.org>
+Bugs: https://bugs.launchpad.net/ubuntu/+filebug
+Installed-Size: 117
+Depends: libappstream4 (>= 0.10.0), libc6 (>= 2.4), libgcc1 (>= 1:3.0), libglib2.0-0 (>= 2.46), libqt5core5a (>= 5.5.0), libstdc++6 (>= 4.1.1)
+Filename: pool/main/a/appstream/libappstreamqt1_0.10.1-1~ubuntu16.04.1_amd64.deb
+Size: 32130
+MD5sum: 0b39d5c03f031ef4be7d69756b31bc87
+SHA1: d2fae5318112b6c8b627ea35a20188380ae2df9c
+SHA256: 314b804d8e9f7a3355ec90085cec1452c5fc6db8215509b0707b35453f17405a
+Homepage: http://www.freedesktop.org/wiki/Distributions/AppStream/
+Description: Qt5 library to access AppStream services
+Task: kubuntu-desktop, kubuntu-full
+Description-md5: 946433af77eca5bbb9a9a14a1d0ba20b
+Supported: 5y
+
+Package: libappstreamqt2
+Architecture: amd64
+Version: 0.10.6-1~ubuntu16.04.2
+Multi-Arch: same
+Priority: optional
+Section: libs
+Source: appstream
+Origin: Ubuntu
+Maintainer: Ubuntu Developers <ubuntu-devel-discuss@lists.ubuntu.com>
+Original-Maintainer: Matthias Klumpp <mak@debian.org>
+Bugs: https://bugs.launchpad.net/ubuntu/+filebug
+Installed-Size: 134
+Depends: libappstream4 (>= 0.10.2), libc6 (>= 2.4), libgcc1 (>= 1:3.0), libglib2.0-0 (>= 2.46), libqt5core5a (>= 5.5.0), libstdc++6 (>= 4.1.1)
+Filename: pool/main/a/appstream/libappstreamqt2_0.10.6-1~ubuntu16.04.2_amd64.deb
+Size: 30148
+MD5sum: f60ba670b340c1cc3c241111a4e3fe01
+SHA1: 726843541fa3e2fcacc903d37e68722356ee5eb5
+SHA256: ff269c8bdf859343236da9d4a0427dd05187305ffcf4c4b3637ac21026ff60fd
+Homepage: http://www.freedesktop.org/wiki/Distributions/AppStream/
+Description: Qt5 library to access AppStream services
+Description-md5: 1fde835e1d44f3e9d2ed1be217653777
+
+Package: libarchive-dev
+Architecture: amd64
+Version: 3.2.1-2~ubuntu16.04.1
+Multi-Arch: same
+Priority: optional
+Section: libdevel
+Source: libarchive
+Origin: Ubuntu
+Maintainer: Ubuntu Developers <ubuntu-devel-discuss@lists.ubuntu.com>
+Original-Maintainer: Debian Libarchive Maintainers <ah-libarchive@debian.org>
+Bugs: https://bugs.launchpad.net/ubuntu/+filebug
+Installed-Size: 1580
+Depends: libarchive13 (= 3.2.1-2~ubuntu16.04.1)
+Filename: pool/main/liba/libarchive/libarchive-dev_3.2.1-2~ubuntu16.04.1_amd64.deb
+Size: 465384
+MD5sum: bfc25ce9ea5971834c0d608f11322281
+SHA1: a92d3dd052771b6d14309c0fdb11b2e32aeaa567
+SHA256: 174f76ee38e84dbf71ad26526c9d50a2c1d8b823a1a51494eff0d8c5446b9cad
+Homepage: http://www.libarchive.org/
+Description: Multi-format archive and compression library (development files)
+Description-md5: 4fedaf2f347af4287edce946b56ba586
+Supported: 5y
+
+Package: libarchive-tools
+Architecture: amd64
+Version: 3.2.1-2~ubuntu16.04.1
+Priority: optional
+Section: utils
+Source: libarchive
+Origin: Ubuntu
+Maintainer: Ubuntu Developers <ubuntu-devel-discuss@lists.ubuntu.com>
+Original-Maintainer: Debian Libarchive Maintainers <ah-libarchive@debian.org>
+Bugs: https://bugs.launchpad.net/ubuntu/+filebug
+Installed-Size: 176
+Depends: libarchive13 (= 3.2.1-2~ubuntu16.04.1), libc6 (>= 2.14)
+Breaks: bsdcpio (<< 3.2.1-2~), bsdtar (<< 3.2.1-2~)
+Replaces: bsdcpio (<< 3.2.1-2~), bsdtar (<< 3.2.1-2~)
+Filename: pool/main/liba/libarchive/libarchive-tools_3.2.1-2~ubuntu16.04.1_amd64.deb
+Size: 68188
+MD5sum: 4b09a7c24651fe1f3a9d263c0969e507
+SHA1: a537426eb382ce2036749add1746ad4b7b9ad118
+SHA256: 216c0de76ae4b182e66c4613e954fe39aafbf4380fcc3ce79824781f5618c593
+Homepage: http://www.libarchive.org/
+Description: FreeBSD implementations of 'tar' and 'cpio' and other archive tools
+Description-md5: 04bbebb441868f4c976e664833572c46
+
+Package: libarchive13
+Architecture: amd64
+Version: 3.2.1-2~ubuntu16.04.1
+Multi-Arch: same
+Priority: optional
+Section: libs
+Source: libarchive
+Origin: Ubuntu
+Maintainer: Ubuntu Developers <ubuntu-devel-discuss@lists.ubuntu.com>
+Original-Maintainer: Debian Libarchive Maintainers <ah-libarchive@debian.org>
+Bugs: https://bugs.launchpad.net/ubuntu/+filebug
+Installed-Size: 732
+Depends: libacl1 (>= 2.2.51-8), libbz2-1.0, libc6 (>= 2.16), liblz4-1 (>= 0.0~r130), liblzma5 (>= 5.1.1alpha+20120614), liblzo2-2, libnettle6, libxml2 (>= 2.7.4), zlib1g (>= 1:1.1.4)
+Suggests: lrzip
+Filename: pool/main/liba/libarchive/libarchive13_3.2.1-2~ubuntu16.04.1_amd64.deb
+Size: 282860
+MD5sum: 2d98a284b18da7a1a407b9ef316437de
+SHA1: f2be7b4b3d0341067e43eb9343f9c2dc6bff53ce
+SHA256: 2c8cc6ea375376947b550a4d738068217e1abf41a26582a3b6f00c10bce92443
+Homepage: http://www.libarchive.org/
+Description: Multi-format archive and compression library (shared library)
+Task: ubuntu-desktop, ubuntu-usb, samba-server, kubuntu-desktop, edubuntu-desktop, edubuntu-usb, xubuntu-core, xubuntu-desktop, mythbuntu-desktop, lubuntu-core, ubuntustudio-desktop-core, ubuntustudio-desktop, ubuntu-gnome-desktop, ubuntu-sdk-libs-tools, ubuntukylin-desktop, ubuntu-mate-core, ubuntu-mate-desktop, ubuntu-mate-cloudtop
+Description-md5: 3efebf57a3d06179c6d5746db080711f
+Supported: 5y
+
+Package: libdistro-info-perl
+Architecture: all
+Version: 0.18~ubuntu16.04.1
+Priority: optional
+Section: perl
+Source: distro-info
+Origin: Ubuntu
+Maintainer: Ubuntu Developers <ubuntu-devel-discuss@lists.ubuntu.com>
+Original-Maintainer: Benjamin Drung <bdrung@debian.org>
+Bugs: https://bugs.launchpad.net/ubuntu/+filebug
+Installed-Size: 22
+Depends: distro-info-data, perl
+Filename: pool/main/d/distro-info/libdistro-info-perl_0.18~ubuntu16.04.1_all.deb
+Size: 4742
+MD5sum: f1f61975b5df0a124c84608051251589
+SHA1: 0f539c63a8fa7e29ec59bd124e7751f18d029565
+SHA256: 2c80b07b970f9916cad8ec9b83c42ba0fa626b9797f6f3e24a5ed2fa5392e233
+Description: information about distributions' releases (Perl module)
+Task: ubuntu-sdk
+Description-md5: f417f8a2f224f083f2115d9569272b72
+Supported: 5y
+
+Package: liblxc-common
+Architecture: amd64
+Version: 3.0.3-0ubuntu1~16.04.1
+Priority: optional
+Section: admin
+Source: lxc
+Origin: Ubuntu
+Maintainer: Ubuntu Developers <ubuntu-devel-discuss@lists.ubuntu.com>
+Bugs: https://bugs.launchpad.net/ubuntu/+filebug
+Installed-Size: 533
+Provides: lxc-common
+Depends: liblxc1 (= 3.0.3-0ubuntu1~16.04.1), libc6 (>= 2.17), libcap2 (>= 1:2.10), libgnutls30 (>= 3.4.0)
+Conflicts: lxc-common
+Breaks: lxc-templates (<< 3.0.0~beta1-0ubuntu1~), lxc-utils (<< 3.0.0~beta2-0ubuntu2~), lxc1 (<< 3.0.0~beta2-0ubuntu2~)
+Replaces: lxc-common, lxc-templates (<< 3.0.0~beta1-0ubuntu1~), lxc-utils (<< 3.0.0~beta2-0ubuntu2~), lxc1 (<< 3.0.0~beta2-0ubuntu2~)
+Filename: pool/main/l/lxc/liblxc-common_3.0.3-0ubuntu1~16.04.1_amd64.deb
+Size: 109702
+MD5sum: efcc266098432acea841cdcf2e909859
+SHA1: 53a5e83c2171fd0c1d8d4809988d78507faf43bb
+SHA256: 52ffb9f39e5afc1b7c2403d902c2b997aac46392cb7b2db7db817f0a17924238
+Homepage: https://linuxcontainers.org
+Description: Linux Containers userspace tools (common tools)
+Description-md5: 9157a820a0659f86e4e9edfb89d0b33f
+
+Package: liblxc-dev
+Architecture: amd64
+Version: 3.0.3-0ubuntu1~16.04.1
+Priority: optional
+Section: libdevel
+Source: lxc
+Origin: Ubuntu
+Maintainer: Ubuntu Developers <ubuntu-devel-discuss@lists.ubuntu.com>
+Bugs: https://bugs.launchpad.net/ubuntu/+filebug
+Installed-Size: 1618
+Depends: liblxc1 (= 3.0.3-0ubuntu1~16.04.1)
+Breaks: lxc-dev (<< 2.1.1-0ubuntu2~)
+Replaces: lxc-dev (<< 2.1.1-0ubuntu2~)
+Filename: pool/main/l/lxc/liblxc-dev_3.0.3-0ubuntu1~16.04.1_amd64.deb
+Size: 296662
+MD5sum: 33b8c84576d0820adfc3db36579bf100
+SHA1: 3d3e3d87990f7dc2b1a76512df12469780098a20
+SHA256: bc4e6375299be3d554b1871d0eeed8e6ff33a896a7896cd3d0c0a210d719c866
+Homepage: https://linuxcontainers.org
+Description: Linux Containers userspace tools (development)
+Description-md5: c719178b7e79ce1ed39519707c589961
+
+Package: liblxc1
+Architecture: amd64
+Version: 3.0.3-0ubuntu1~16.04.1
+Priority: optional
+Section: admin
+Source: lxc
+Origin: Ubuntu
+Maintainer: Ubuntu Developers <ubuntu-devel-discuss@lists.ubuntu.com>
+Bugs: https://bugs.launchpad.net/ubuntu/+filebug
+Installed-Size: 893
+Depends: cgroup-lite | systemd, liblxc-common (= 3.0.3-0ubuntu1~16.04.1), rsync, libc6 (>= 2.17), libcap2 (>= 1:2.10), libgnutls30 (>= 3.4.0), libseccomp2 (>= 2.1.0), libselinux1 (>= 1.32)
+Recommends: lxcfs, uidmap
+Filename: pool/main/l/lxc/liblxc1_3.0.3-0ubuntu1~16.04.1_amd64.deb
+Size: 263700
+MD5sum: a9decedb3e7a36e446c56bf013430b14
+SHA1: 32919b96b34349bd3a196d05b5f3127aff83601f
+SHA256: 91e58a4136ac7cbdb08863e5d4f36f52d17206e8be3736313d6302175a1d0f72
+Homepage: https://linuxcontainers.org
+Description: Linux Containers userspace tools (library)
+Task: cloud-image, server, ubuntu-touch
+Description-md5: d757397b1a93a5bea5c72032f3ef485d
+Supported: 5y
+
+Package: libpam-cgfs
+Architecture: amd64
+Version: 3.0.3-0ubuntu1~16.04.1
+Priority: optional
+Section: admin
+Source: lxc
+Origin: Ubuntu
+Maintainer: Ubuntu Developers <ubuntu-devel-discuss@lists.ubuntu.com>
+Bugs: https://bugs.launchpad.net/ubuntu/+filebug
+Installed-Size: 128
+Depends: libpam-runtime (>= 1.0.1-6), libc6 (>= 2.14), libpam0g (>= 0.99.7.1)
+Conflicts: libpam-cgm
+Filename: pool/main/l/lxc/libpam-cgfs_3.0.3-0ubuntu1~16.04.1_amd64.deb
+Size: 29504
+MD5sum: 593a2c32456e1c3b9eb45ec20ecc4a76
+SHA1: 0e956856c3c3817eaa9d3ee2f7b761555d0de0b7
+SHA256: b0168d42a8d4f560a8d4f10bebc5992e55f7c1af1d839c8d8a668a24aa317dd4
+Homepage: https://linuxcontainers.org
+Description: PAM module for managing cgroups for LXC
+Description-md5: cb57c39f06feeaf43987af0884bc76f8
+Supported: 5y
+
+Package: lxc
+Architecture: all
+Version: 3.0.3-0ubuntu1~16.04.1
+Priority: optional
+Section: admin
+Origin: Ubuntu
+Maintainer: Ubuntu Developers <ubuntu-devel-discuss@lists.ubuntu.com>
+Bugs: https://bugs.launchpad.net/ubuntu/+filebug
+Installed-Size: 72
+Depends: lxc-utils (>= 3.0.3-0ubuntu1~16.04.1)
+Filename: pool/main/l/lxc/lxc_3.0.3-0ubuntu1~16.04.1_all.deb
+Size: 2892
+MD5sum: 8775b868416369cb9dc6caec36c59f06
+SHA1: be7f4d9461a27b21cb6dfc742a99566831294095
+SHA256: 32ea67a0db3be27bd029a33158d1f10fca81f01ce0254a99dd83ec2513996836
+Homepage: https://linuxcontainers.org
+Description: Transitional package - lxc -> lxc-utils
+Task: ubuntu-touch
+Description-md5: 8f5ab7156cfdafe3662f916116c20006
+Supported: 5y
+
+Package: lxc-dev
+Architecture: all
+Version: 3.0.3-0ubuntu1~16.04.1
+Priority: optional
+Section: libdevel
+Source: lxc
+Origin: Ubuntu
+Maintainer: Ubuntu Developers <ubuntu-devel-discuss@lists.ubuntu.com>
+Bugs: https://bugs.launchpad.net/ubuntu/+filebug
+Installed-Size: 71
+Depends: liblxc-dev (>= 3.0.3-0ubuntu1~16.04.1)
+Filename: pool/main/l/lxc/lxc-dev_3.0.3-0ubuntu1~16.04.1_all.deb
+Size: 2378
+MD5sum: 997666f7d6f41c9209cbf9022ce408fd
+SHA1: 9e127f0b8694229dce80f9a76504848e5bc7b6f8
+SHA256: 2e2176289f8719e14d530a0af1aa58e504bc944715725640b8e51c41ef696c65
+Homepage: https://linuxcontainers.org
+Description: Transitional package - lxc-dev -> liblxc-dev
+Description-md5: 901ee3caa837071f9dec6c5062db7b76
+Supported: 5y
+
+Package: lxc-templates
+Architecture: amd64
+Version: 3.0.0-0ubuntu1~16.04.1
+Priority: optional
+Section: admin
+Origin: Ubuntu
+Maintainer: Ubuntu Developers <ubuntu-devel-discuss@lists.ubuntu.com>
+Bugs: https://bugs.launchpad.net/ubuntu/+filebug
+Installed-Size: 494
+Depends: lxc-utils
+Recommends: busybox-static, cloud-image-utils | cloud-utils, debootstrap | cdebootstrap, openssl, rsync, uuid-runtime, xz-utils
+Suggests: qemu-user-static
+Filename: pool/main/l/lxc-templates/lxc-templates_3.0.0-0ubuntu1~16.04.1_amd64.deb
+Size: 82858
+MD5sum: 79a54b452c47e7282932bac9c169d478
+SHA1: e8f6a8691d283da5ef3fcaa2d402ca710012dca6
+SHA256: 8095c09939c930d5b092f7ce31e00ff59cbe2d2d1122fdc16d2e93ddc66def00
+Homepage: https://github.com/lxc/lxc-templates
+Description: Linux Containers userspace tools (templates)
+Description-md5: 9a526ab1c6ccc435c574f17de9485e7e
+Supported: 5y
+
+Package: lxc-utils
+Architecture: amd64
+Version: 3.0.3-0ubuntu1~16.04.1
+Priority: optional
+Section: admin
+Source: lxc
+Origin: Ubuntu
+Maintainer: Ubuntu Developers <ubuntu-devel-discuss@lists.ubuntu.com>
+Bugs: https://bugs.launchpad.net/ubuntu/+filebug
+Installed-Size: 1093
+Depends: adduser, bridge-utils, dnsmasq-base, iptables, liblxc1 (= 3.0.3-0ubuntu1~16.04.1), init-system-helpers (>= 1.18~), libc6 (>= 2.17), libgnutls30 (>= 3.4.0)
+Recommends: libpam-cgfs
+Suggests: btrfs-tools, lvm2, lxc-templates, lxctl
+Breaks: lxc1 (<< 2.1.1-0ubuntu2~)
+Replaces: lxc1 (<< 2.1.1-0ubuntu2~)
+Filename: pool/main/l/lxc/lxc-utils_3.0.3-0ubuntu1~16.04.1_amd64.deb
+Size: 353934
+MD5sum: 267eb2f2fea2be871cf278d2817923ad
+SHA1: cbbb1fc9bef24a4ad5b3551d8184c3f37592ddc2
+SHA256: 4b9540a9e42e5c28e99c019761c4ff2b9eb3de1fb3e68aea0b233c299a629b51
+Homepage: https://linuxcontainers.org
+Description: Linux Containers userspace tools
+Description-md5: 4ece0dffd153c29e95ffdb89f8238dfc
+
+Package: lxc1
+Architecture: all
+Version: 3.0.3-0ubuntu1~16.04.1
+Priority: optional
+Section: admin
+Source: lxc
+Origin: Ubuntu
+Maintainer: Ubuntu Developers <ubuntu-devel-discuss@lists.ubuntu.com>
+Bugs: https://bugs.launchpad.net/ubuntu/+filebug
+Installed-Size: 71
+Depends: lxc-utils (>= 3.0.3-0ubuntu1~16.04.1)
+Filename: pool/main/l/lxc/lxc1_3.0.3-0ubuntu1~16.04.1_all.deb
+Size: 2380
+MD5sum: 0a269f0ebfe05fc37689f4d981d19c8a
+SHA1: 4986eef7a1977463b3e24de94cf3a73d97c8cbbe
+SHA256: eeb3f03e0daa94bc48c9820be470472d53088be066c943999700851057885370
+Homepage: https://linuxcontainers.org
+Description: Transitional package - lxc1 -> lxc-utils
+Task: ubuntu-touch
+Description-md5: 273a0579052e484ba19949ef240341d4
+Supported: 5y
+
+Package: lxc2
+Architecture: all
+Version: 2.16-0ubuntu2~ubuntu16.04.1
+Priority: extra
+Section: metapackages
+Source: lxd
+Origin: Ubuntu
+Maintainer: Ubuntu Developers <ubuntu-devel-discuss@lists.ubuntu.com>
+Bugs: https://bugs.launchpad.net/ubuntu/+filebug
+Installed-Size: 56
+Depends: lxd, lxd-client
+Filename: pool/main/l/lxd/lxc2_2.16-0ubuntu2~ubuntu16.04.1_all.deb
+Size: 4060
+MD5sum: 5bddc561a177bfa7d59e057f6bf7ffef
+SHA1: 99c6efb619a984feaa9a9fa9bd1b449dccc5f035
+SHA256: 30b827d894e0b0a788c0b82e5324104e3fd129a5d12eebbbe3909e1a389305b5
+Homepage: https://linuxcontainers.org/
+Description: Container hypervisor based on LXC - metapackage
+Description-md5: 16aa6b32a6decc4b676db644304f6925
+Supported: 5y
+
+Package: lxc2
+Architecture: all
+Version: 2.21-0ubuntu3~16.04.2
+Priority: extra
+Section: metapackages
+Source: lxd
+Origin: Ubuntu
+Maintainer: Ubuntu Developers <ubuntu-devel-discuss@lists.ubuntu.com>
+Bugs: https://bugs.launchpad.net/ubuntu/+filebug
+Installed-Size: 65
+Depends: lxd, lxd-client
+Filename: pool/main/l/lxd/lxc2_2.21-0ubuntu3~16.04.2_all.deb
+Size: 4028
+MD5sum: 4c8dc33ff3f8b3218453d9ea79ed9e92
+SHA1: 083b925ad15988f18f5873552cdf5b227cefb752
+SHA256: e0c3cbbdfc5ba94bdd617b1302f1c2195d7a5d55af3cc479cfff34a68c28c970
+Homepage: https://linuxcontainers.org/
+Description: Container hypervisor based on LXC - metapackage
+Description-md5: 16aa6b32a6decc4b676db644304f6925
+Supported: 5y
+
+Package: lxcfs
+Architecture: amd64
+Version: 3.0.3-0ubuntu1~16.04.1
+Priority: optional
+Section: admin
+Origin: Ubuntu
+Maintainer: Ubuntu Developers <ubuntu-devel-discuss@lists.ubuntu.com>
+Original-Maintainer: pkg-lxc <pkg-lxc-devel@lists.alioth.debian.org>
+Bugs: https://bugs.launchpad.net/ubuntu/+filebug
+Installed-Size: 137
+Depends: libc6 (>= 2.17), libfuse2 (>= 2.6), init-system-helpers (>= 1.18~), lsb-base (>= 3.0-6)
+Filename: pool/main/l/lxcfs/lxcfs_3.0.3-0ubuntu1~16.04.1_amd64.deb
+Size: 38566
+MD5sum: a42d50e598d7e3e329c94dcbf91656cd
+SHA1: 30f6847a1bd89d795498caf333f5a71d7ec789ef
+SHA256: 209fdcecb99586c6674a93635cbb0404840ef11ff664e1aa4cfee53cfa993d9c
+Homepage: https://linuxcontainers.org
+Description: FUSE based filesystem for LXC
+Task: cloud-image, server
+Description-md5: f3cabfc6ca3d3433720d9d811af950bd
+Supported: 5y
+
+Package: lxd
+Architecture: amd64
+Version: 3.0.3-0ubuntu1~16.04.1
+Built-Using: golang-1.10 (= 1.10.4-2ubuntu1~16.04.1)
+Priority: optional
+Section: admin
+Origin: Ubuntu
+Maintainer: Ubuntu Developers <ubuntu-devel-discuss@lists.ubuntu.com>
+Bugs: https://bugs.launchpad.net/ubuntu/+filebug
+Installed-Size: 20147
+Depends: acl, adduser, dnsmasq-base, ebtables, iproute2, iptables, liblxc1 (>= 3.0.0~), lsb-base (>= 3.0-6), lxcfs (>= 3.0.0~), lxd-client (= 3.0.3-0ubuntu1~16.04.1), passwd (>= 1:4.1.5.1-1ubuntu5~), rsync, squashfs-tools, uidmap (>= 1:4.1.5.1-1ubuntu5~), xdelta3, xz-utils, init-system-helpers (>= 1.18~), libacl1 (>= 2.2.51-8), libc6 (>= 2.14), libuv1 (>= 1.4.2)
+Recommends: apparmor
+Suggests: criu, lxd-tools
+Filename: pool/main/l/lxd/lxd_3.0.3-0ubuntu1~16.04.1_amd64.deb
+Size: 5542190
+MD5sum: 3fb7d1ad5bc51f7091e8b1fe8ec192ab
+SHA1: f4723692d9261c456a45aaaf8fa4dfa5ac2f8e40
+SHA256: b8666180fc6f4eb58a800400bebbdbd1680cf609add0613070cd074c90a34997
+Homepage: https://linuxcontainers.org/
+Description: Container hypervisor based on LXC - daemon
+Task: cloud-image, server
+Description-md5: aae21ff20f4cc6a1e21b22e39cdd87bf
+Supported: 5y
+
+Package: lxd-client
+Architecture: amd64
+Version: 3.0.3-0ubuntu1~16.04.1
+Built-Using: golang-1.10 (= 1.10.4-2ubuntu1~16.04.1)
+Priority: optional
+Section: admin
+Source: lxd
+Origin: Ubuntu
+Maintainer: Ubuntu Developers <ubuntu-devel-discuss@lists.ubuntu.com>
+Bugs: https://bugs.launchpad.net/ubuntu/+filebug
+Installed-Size: 10773
+Depends: libc6 (>= 2.14)
+Suggests: lxd
+Breaks: lxc1 (<= 2.0.0~rc13-0ubuntu2~)
+Replaces: lxc1 (<= 2.0.0~rc13-0ubuntu2~)
+Filename: pool/main/l/lxd/lxd-client_3.0.3-0ubuntu1~16.04.1_amd64.deb
+Size: 3027068
+MD5sum: 7ef01aa6f37d60251916f1d294a47850
+SHA1: ffed032a4bab4b4dc94a374cdbb5d8f83b5acd62
+SHA256: cd13486d07f94994012082011d8596aee130a248734ba2862dd63814e4d1a22e
+Homepage: https://linuxcontainers.org/
+Description: Container hypervisor based on LXC - client
+Task: cloud-image, server
+Description-md5: c5f7d80cfd076c2db1400c3ee9b9332f
+Supported: 5y
+
+Package: lxd-tools
+Architecture: amd64
+Version: 3.0.3-0ubuntu1~16.04.1
+Built-Using: golang-1.10 (= 1.10.4-2ubuntu1~16.04.1)
+Priority: optional
+Section: admin
+Source: lxd
+Origin: Ubuntu
+Maintainer: Ubuntu Developers <ubuntu-devel-discuss@lists.ubuntu.com>
+Bugs: https://bugs.launchpad.net/ubuntu/+filebug
+Installed-Size: 14925
+Depends: python3, python3-lxc, libacl1 (>= 2.2.51-8), libc6 (>= 2.14)
+Filename: pool/main/l/lxd/lxd-tools_3.0.3-0ubuntu1~16.04.1_amd64.deb
+Size: 3564336
+MD5sum: 5895f7a067d2b2197922e8461d6fa26c
+SHA1: 7d8abb2e9ecbf4116cfcc7ff1b5d9ae6a8f63b22
+SHA256: 25113e582362f379fdb0a1922536d07dd87b64f04cbc2c3e9a3212d6cf613e53
+Homepage: https://linuxcontainers.org/
+Description: Container hypervisor based on LXC - extra tools
+Description-md5: 0dfa59a5cd7d8576e3182fb10faa4e93
+Supported: 5y
+
+Package: python3-distro-info
+Architecture: all
+Version: 0.18~ubuntu16.04.1
+Priority: optional
+Section: python
+Source: distro-info
+Origin: Ubuntu
+Maintainer: Ubuntu Developers <ubuntu-devel-discuss@lists.ubuntu.com>
+Original-Maintainer: Benjamin Drung <bdrung@debian.org>
+Bugs: https://bugs.launchpad.net/ubuntu/+filebug
+Installed-Size: 53
+Depends: distro-info-data, python3:any (>= 3.3.2-2~)
+Filename: pool/main/d/distro-info/python3-distro-info_0.18~ubuntu16.04.1_all.deb
+Size: 9146
+MD5sum: 93aa4555d31869a13f3621377250a781
+SHA1: 19941a6146b0a7b24dd7f6bb3a7519606cc46be2
+SHA256: d8082f7c4ef6ec243fc88e245e150647617d95311827cf7be8ea874ac02276d1
+Description: information about distributions' releases (Python 3 module)
+Task: ubuntu-pocket-desktop
+Description-md5: 0792778c111d953817469a438613f2f3
+Supported: 5y
+
+Package: python3-lxc
+Architecture: amd64
+Version: 3.0.1-0ubuntu1~16.04.1
+Priority: optional
+Section: python
+Origin: Ubuntu
+Maintainer: Ubuntu Developers <ubuntu-devel-discuss@lists.ubuntu.com>
+Bugs: https://bugs.launchpad.net/ubuntu/+filebug
+Installed-Size: 85
+Depends: python3 (<< 3.6), python3 (>= 3.5~), libc6 (>= 2.4), liblxc1
+Filename: pool/main/p/python3-lxc/python3-lxc_3.0.1-0ubuntu1~16.04.1_amd64.deb
+Size: 20304
+MD5sum: cb0537f1ff299ca126bbca2d36bd5c07
+SHA1: c56331f1c175da695debb3d56d5a8682a4c8c532
+SHA256: 3e6184042a0df319241f5a65698d299675d1dafb8882fd39a4e0ad71b2dad326
+Homepage: https://github.com/lxc/python3-lxc
+Description: Linux Containers userspace tools (Python 3.x bindings)
+Task: ubuntu-touch
+Description-md5: ee623a31db200104a7207d9de42b8f04
+Supported: 5y
+

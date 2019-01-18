@@ -1,0 +1,55 @@
+#!/bin/sh
+set -e
+
+case "$1" in
+    configure)
+        # There appears to be some cases where apparmor gets confused
+        # about the freshness of its cache, so lets just wipe it.
+        rm -f /etc/apparmor.d/cache/lxc-containers
+
+        # lxc-containers must be manually loaded as dh_apparmor doesn't
+        # know what to do with it
+        if [ -x /lib/init/apparmor-profile-load ]; then
+            /lib/init/apparmor-profile-load lxc-containers
+        elif [ -x /etc/init.d/apparmor ]; then
+            invoke-rc.d apparmor reload || true
+        fi
+    ;;
+
+    abort-upgrade|abort-remove|abort-deconfigure)
+    ;;
+
+    *)
+        echo "postinst called with unknown argument \`$1'" >&2
+        exit 1
+    ;;
+esac
+
+# Automatically added by dh_apparmor
+if [ "$1" = "configure" ]; then
+    APP_PROFILE="/etc/apparmor.d/usr.bin.lxc-start"
+    if [ -f "$APP_PROFILE" ]; then
+        # Add the local/ include
+        LOCAL_APP_PROFILE="/etc/apparmor.d/local/usr.bin.lxc-start"
+
+        test -e "$LOCAL_APP_PROFILE" || {
+            tmp=`mktemp`
+        cat <<EOM > "$tmp"
+# Site-specific additions and overrides for usr.bin.lxc-start.
+# For more details, please see /etc/apparmor.d/local/README.
+EOM
+            mkdir `dirname "$LOCAL_APP_PROFILE"` 2>/dev/null || true
+            mv -f "$tmp" "$LOCAL_APP_PROFILE"
+            chmod 644 "$LOCAL_APP_PROFILE"
+        }
+
+        # Reload the profile, including any abstraction updates
+        if aa-status --enabled 2>/dev/null; then
+            apparmor_parser -r -T -W "$APP_PROFILE" || true
+        fi
+    fi
+fi
+# End automatically added section
+
+
+exit 0

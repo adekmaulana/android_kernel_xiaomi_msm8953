@@ -11,11 +11,11 @@ export CLANG_TCHAIN="/mnt/d/markw/dragontc/bin/clang"
 export CLANG_VERSION="$(${CLANG_TCHAIN} --version | head -n 1 | cut -d'(' -f1,4)"
 export LD_LIBRARY_PATH="${TOOL_CHAIN_PATH}/../lib"
 #export PATH=$PATH:${TOOL_CHAIN_PATH}
-export builddir="${kernel_dir}/mateng"
+#export builddir="${kernel_dir}/mateng"
 #export modules_dir="zip/system/lib/modules"
-export ZIPPER_DIR="${kernel_dir}/zip"
-export ZIP_NAME="wayang™${V}_Oreo-Los_Aosp.zip"
-export IMAGE="arch/arm64/boot/Image.gz-dtb";
+#export ZIPPER_DIR="${kernel_dir}/zip"
+#export ZIP_NAME="wayang™${V}_Oreo-Los_Aosp.zip"
+#export IMAGE="arch/arm64/boot/Image.gz-dtb";
 JOBS="-j8"
 cd $kernel_dir
 

@@ -1,0 +1,10 @@
+/.
+/usr
+/usr/share
+/usr/share/keyrings
+/usr/share/keyrings/ubuntu-cloudimage-keyring-removed.gpg
+/usr/share/keyrings/ubuntu-cloudimage-keyring.gpg
+/usr/share/doc
+/usr/share/doc/ubuntu-cloudimage-keyring
+/usr/share/doc/ubuntu-cloudimage-keyring/copyright
+/usr/share/doc/ubuntu-cloudimage-keyring/changelog.gz

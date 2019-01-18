@@ -1,0 +1,8 @@
+/etc/apparmor.d/abstractions/lxc/container-base
+/etc/apparmor.d/abstractions/lxc/start-container
+/etc/apparmor.d/lxc-containers
+/etc/apparmor.d/lxc/lxc-default
+/etc/apparmor.d/lxc/lxc-default-cgns
+/etc/apparmor.d/lxc/lxc-default-with-mounting
+/etc/apparmor.d/lxc/lxc-default-with-nesting
+/etc/apparmor.d/usr.bin.lxc-start

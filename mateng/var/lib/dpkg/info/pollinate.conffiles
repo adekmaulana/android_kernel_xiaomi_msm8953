@@ -1,0 +1,3 @@
+/etc/default/pollinate
+/etc/init/pollinate.conf
+/etc/pollinate/entropy.ubuntu.com.pem

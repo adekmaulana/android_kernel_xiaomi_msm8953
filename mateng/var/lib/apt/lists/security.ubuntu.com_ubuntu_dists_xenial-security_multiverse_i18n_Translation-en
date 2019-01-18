@@ -1,0 +1,175 @@
+Package: flashplugin-installer
+Description-md5: a03e9ebc20ce82c05567d088e79bf750
+Description-en: Adobe Flash Player plugin installer
+ Downloads and Installs the Adobe Flash Player plugin. The Adobe Flash Player
+ plugin supports playing of media and other dynamic content online.
+ .
+ The Adobe Flash Player plugin will work with a range of web-browsers including,
+ limited to:
+  * Firefox
+  * Chromium
+  * SeaMonkey
+  * Iceweasel
+  * Iceape
+  * Galeon
+  * Epiphany
+  * Konqueror
+ .
+ WARNING: Installing this Ubuntu package causes the Adobe Flash Player plugin to
+ be downloaded from the Adobe web site. The distribution license of the
+ Adobe Flash Player plugin is available at www.adobe.com. Installing this
+ Ubuntu package implies that you have accepted the terms of that license.
+
+Package: libclamunrar7
+Description-md5: cc91b3ee0883ae72d88576f9ca8c850e
+Description-en: anti-virus utility for Unix - unrar support
+ Clam AntiVirus is an anti-virus toolkit for Unix. The main purpose of
+ this software is the integration with mail servers (attachment
+ scanning). The package provides a flexible and scalable
+ multi-threaded daemon in the clamav-daemon package, a command-line
+ scanner in the clamav package, and a tool for automatic updating via
+ the Internet in the clamav-freshclam package. The programs are based
+ on libclamav7, which can be used by other software.
+ .
+ This package provides support for RAR packaged files or mail attachments.
+ Support will be available once this package is installed and clamd or a local
+ clamscan is restarted.
+
+Package: libcuda1-331
+Description-md5: a10363c018e08f69fb7494b3d411a6f6
+Description-en: Transitional package for libcuda1-340
+ This is a transitional package for libcuda1-340, and can be
+ safely removed after the installation is complete.
+
+Package: libcuda1-331-updates
+Description-md5: a10363c018e08f69fb7494b3d411a6f6
+Description-en: Transitional package for libcuda1-340
+ This is a transitional package for libcuda1-340, and can be
+ safely removed after the installation is complete.
+
+Package: libcuda1-340-updates
+Description-md5: a10363c018e08f69fb7494b3d411a6f6
+Description-en: Transitional package for libcuda1-340
+ This is a transitional package for libcuda1-340, and can be
+ safely removed after the installation is complete.
+
+Package: libcuda1-375
+Description-md5: 75f404c52df7fbe2fb5d9f76b20e3fa0
+Description-en: Transitional package for libcuda1-384
+ This is a transitional package for libcuda1-384, and can be
+ safely removed after the installation is complete.
+
+Package: nvidia-libopencl1-304
+Description-md5: b847113bb2144ba87848ff3f7ae69ec2
+Description-en: NVIDIA OpenCL Driver and ICD Loader library
+ OpenCL (Open Computing Language) is a multivendor open standard for
+ general-purpose parallel programming of heterogeneous systems that include
+ CPUs, GPUs and other processors.
+ .
+ This package contains NVIDIA's OpenCL implementation and the ICD Loader
+ library. This library supports only OpenCL 1.1.
+
+Package: nvidia-libopencl1-304-updates
+Description-md5: b75658e0bed2f0080631d2168d802d7f
+Description-en: Transitional package for nvidia-libopencl1-304
+ This is a transitional package for nvidia-libopencl1-304, and can be
+ safely removed after the installation is complete.
+
+Package: nvidia-libopencl1-331
+Description-md5: c0bc1edc3452a373d95e34ed168d26d3
+Description-en: Transitional package for nvidia-libopencl1-340
+ This is a transitional package for nvidia-libopencl1-340, and can be
+ safely removed after the installation is complete.
+
+Package: nvidia-libopencl1-331-updates
+Description-md5: c0bc1edc3452a373d95e34ed168d26d3
+Description-en: Transitional package for nvidia-libopencl1-340
+ This is a transitional package for nvidia-libopencl1-340, and can be
+ safely removed after the installation is complete.
+
+Package: nvidia-libopencl1-340
+Description-md5: b847113bb2144ba87848ff3f7ae69ec2
+Description-en: NVIDIA OpenCL Driver and ICD Loader library
+ OpenCL (Open Computing Language) is a multivendor open standard for
+ general-purpose parallel programming of heterogeneous systems that include
+ CPUs, GPUs and other processors.
+ .
+ This package contains NVIDIA's OpenCL implementation and the ICD Loader
+ library. This library supports only OpenCL 1.1.
+
+Package: nvidia-libopencl1-340-updates
+Description-md5: c0bc1edc3452a373d95e34ed168d26d3
+Description-en: Transitional package for nvidia-libopencl1-340
+ This is a transitional package for nvidia-libopencl1-340, and can be
+ safely removed after the installation is complete.
+
+Package: nvidia-libopencl1-361
+Description-md5: 81e751bafa04a99aee20554c5d5426c5
+Description-en: Transitional package for nvidia-libopencl1-367
+ This is a transitional package for nvidia-libopencl1-367, and can be
+ safely removed after the installation is complete.
+
+Package: nvidia-libopencl1-375
+Description-md5: 02273268060be5f90f10375e3637837e
+Description-en: Transitional package for nvidia-libopencl1-384
+ This is a transitional package for nvidia-libopencl1-384, and can be
+ safely removed after the installation is complete.
+
+Package: nvidia-libopencl1-384
+Description-md5: b847113bb2144ba87848ff3f7ae69ec2
+Description-en: NVIDIA OpenCL Driver and ICD Loader library
+ OpenCL (Open Computing Language) is a multivendor open standard for
+ general-purpose parallel programming of heterogeneous systems that include
+ CPUs, GPUs and other processors.
+ .
+ This package contains NVIDIA's OpenCL implementation and the ICD Loader
+ library. This library supports only OpenCL 1.1.
+
+Package: nvidia-opencl-icd-331
+Description-md5: 5698808952d1d1454e2b98d80ab83d79
+Description-en: Transitional package for nvidia-opencl-icd-340
+ This is a transitional package for nvidia-opencl-icd-340, and can be
+ safely removed after the installation is complete.
+
+Package: nvidia-opencl-icd-331-updates
+Description-md5: 5698808952d1d1454e2b98d80ab83d79
+Description-en: Transitional package for nvidia-opencl-icd-340
+ This is a transitional package for nvidia-opencl-icd-340, and can be
+ safely removed after the installation is complete.
+
+Package: nvidia-opencl-icd-340-updates
+Description-md5: 5698808952d1d1454e2b98d80ab83d79
+Description-en: Transitional package for nvidia-opencl-icd-340
+ This is a transitional package for nvidia-opencl-icd-340, and can be
+ safely removed after the installation is complete.
+
+Package: nvidia-opencl-icd-375
+Description-md5: 81b7231b7aba328a877a327ca60dc0b8
+Description-en: Transitional package for nvidia-opencl-icd-384
+ This is a transitional package for nvidia-opencl-icd-384, and can be
+ safely removed after the installation is complete.
+
+Package: unrar
+Description-md5: 363f696bb115028ffafb265ccc9f32fb
+Description-en: Unarchiver for .rar files (non-free version)
+ Unrar can extract files from .rar archives. If you want to create .rar
+ archives, install package rar.
+
+Package: linux-firmware-snapdragon
+Description-md5: d98b2c8091af43eafba19481307e73dc
+Description-en: DragonBoard410c wifi firmware
+ This package contains the proprietary files necessary to make
+ wifi work on the DragonBoard410c.
+
+Package: linux-firmware-raspi2
+Description-md5: 2d87d254447f99a5e678827b890a3fc7
+Description-en: RaspberryPi2 GPU firmware and bootloaders
+ This package contains all the proprietary files necessary to boot a
+ RaspberryPi2 board.
+
+Package: flashplugin-downloader
+Description-md5: 66ea91f4e504085408ea841953dc65d0
+Description-en: Adobe Flash Player plugin installer (transitional package)
+ This package is a transitional package that can safely be removed after you installed
+ flashplugin-installer.
+

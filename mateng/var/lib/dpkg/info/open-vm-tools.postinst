@@ -1,0 +1,61 @@
+#!/bin/sh
+
+set -e
+
+case "${1}" in
+	configure)
+		if which udevadm 1>/dev/null
+		then
+			udevadm trigger
+		fi
+		;;
+
+	abort-upgrade|abort-remove|abort-deconfigure)
+
+		;;
+
+	*)
+		echo "postinst called with unknown argument \`${1}'" >&2
+		exit 1
+		;;
+esac
+
+# Automatically added by dh_systemd_enable
+# This will only remove masks created by d-s-h on package removal.
+deb-systemd-helper unmask open-vm-tools.service >/dev/null || true
+
+# was-enabled defaults to true, so new installations run enable.
+if deb-systemd-helper --quiet was-enabled open-vm-tools.service; then
+	# Enables the unit on first installation, creates new
+	# symlinks on upgrades if the unit file has changed.
+	deb-systemd-helper enable open-vm-tools.service >/dev/null || true
+else
+	# Update the statefile to add new symlinks (if any), which need to be
+	# cleaned up on purge. Also remove old symlinks.
+	deb-systemd-helper update-state open-vm-tools.service >/dev/null || true
+fi
+# End automatically added section
+# Automatically added by dh_installinit
+if [ "$1" = "configure" ] || [ "$1" = "abort-upgrade" ]; then
+	if [ -x "/etc/init.d/open-vm-tools" ]; then
+		update-rc.d open-vm-tools defaults >/dev/null
+	fi
+	if [ -x "/etc/init.d/open-vm-tools" ] || [ -e "/etc/init/open-vm-tools.conf" ]; then
+		invoke-rc.d open-vm-tools start || exit $?
+	fi
+fi
+# End automatically added section
+# Automatically added by dh_installudev
+if [ "$1" = configure ]; then
+	if [ -e "/etc/udev/rules.d/z60_open-vm-tools.rules" ]; then
+		echo "Preserving user changes to /etc/udev/rules.d/60-open-vm-tools.rules ..."
+		if [ -e "/etc/udev/rules.d/60-open-vm-tools.rules" ]; then
+			mv -f "/etc/udev/rules.d/60-open-vm-tools.rules" "/etc/udev/rules.d/60-open-vm-tools.rules.dpkg-new"
+		fi
+		mv -f "/etc/udev/rules.d/z60_open-vm-tools.rules" "/etc/udev/rules.d/60-open-vm-tools.rules"
+	fi
+fi
+# End automatically added section
+
+
+exit 0

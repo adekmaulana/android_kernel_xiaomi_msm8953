@@ -1,0 +1,8 @@
+#!/bin/sh
+
+# after vlan-raw-device interface is ifup'ed, then
+# create any associated vlan interfaces
+# (LP: #1701032)
+if [ -x /lib/udev/vlan-network-interface ]; then
+  env INTERFACE=$IFACE /lib/udev/vlan-network-interface
+fi

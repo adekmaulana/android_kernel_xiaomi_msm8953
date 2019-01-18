@@ -1,0 +1,171 @@
+Template: lxd/bridge-upgrade-warning
+Type: note
+Description: lxcbr0 is being replaced by lxdbr0
+ With this package upgrade LXD is moving away from the LXC provided
+ lxcbr0 bridge and moving to its own lxdbr0 bridge.
+ .
+ The reason for this switch is:
+  - Drop the dependency on the old LXC (lxc1) package.
+  - Only run the bridge when LXD is running.
+  - Don't hardcode a subnet which may be used by the user.
+ .
+ Important differences between lxcbr0 and lxdbr0:
+  - The lxdbr0 bridge DOES NOT come with ANY configured IPv4 or IPv6 subnet.
+  - The bridge provides basic HTTP connectivity out of the box by way of
+    a tiny HTTP PROXY server running on an IPv6 link-local address.
+  - The user IS EXPECTED to configure the bridge to use an UNUSED subnet
+    on their network.
+ .
+ To configure lxdbr0 to your liking, please run: dpkg-reconfigure -p medium lxd
+ .
+ To stay on the old lxcbr0 bridge, make sure you have the "lxc1"
+ package installed, then select the "use an existing bridge" option.
+
+Template: lxd/bridge-random-warning
+Type: note
+Description: A random subnet was selected for you
+ This subnet was selected for your convenience and the next questions have been
+ pre-answered accordingly.
+ .
+ Please make sure this subnet isn't already in use somewhere on your
+ network, if it is, change it to one which isn't.
+ .
+ If you later notice network connectivity issues, re-configure lxd and
+ pick a different subnet.
+
+Template: lxd/bridge-empty-error
+Type: note
+Description: Empty values are not allowed
+ The question you just answered requires you to provide a value.
+ .
+ An example value is usually provided in the question description.
+
+Template: lxd/setup-bridge
+Type: boolean
+Default: true
+Description: Would you like to setup a network bridge for LXD containers now?
+ Containers need a bridge to connect them together and to the host for
+ outside network connectivity.
+ .
+ Choosing this option will let you configure the default LXD bridge to
+ your liking.
+ .
+ If you would rather not have LXD do this for you, then you will be
+ asked whether you want to use an existing bridge or just do everything
+ manually.
+
+Template: lxd/use-existing-bridge
+Type: boolean
+Default: false
+Description: Do you want to use an existing bridge?
+ If you have an existing bridge you want to use for LXD containers,
+ you will be asked for its name and LXD will be configured for you.
+ .
+ If you would rather do everything by hand or not use a bridge at all,
+ then answer no.
+
+Template: lxd/update-profile
+Type: boolean
+Default: true
+Description: Would you like to have the default LXD profile use this bridge?
+ LXD uses configuration profiles to group configuration option for containers.
+ .
+ With this option, you can control whether the default LXD profile should be
+ automatically updated to use this bridge.
+ .
+ If set, the "eth0" device of the default profile will be set to use
+ the LXD bridge.
+
+Template: lxd/bridge-name
+Type: string
+Default: lxdbr0
+Description: Bridge interface name:
+ A valid network interface name (e.g. lxdbr0).
+
+Template: lxd/bridge-dnsmasq
+Type: string
+Description: Path to a dnsmasq configuration file:
+ This allows you to include extra dnsmasq configuration options into the
+ LXD managed bridge.
+ .
+ If set, this must be a path to a valid configuration file.
+
+Template: lxd/bridge-domain
+Type: string
+Default: lxd
+Description: Domain name:
+ This is used to resolve other containers on the bridge.
+ .
+ You can then contact containers which used IPv4 DHCP to get their IP
+ address by using <name>.<domain>.
+
+Template: lxd/bridge-ipv4
+Type: boolean
+Default: false
+Description: Do you want to setup an IPv4 subnet?
+ This is needed to provide IPv4 connectivity for your containers.
+
+Template: lxd/bridge-ipv4-address
+Type: string
+Description: IPv4 address:
+ A valid IPv4 address. (e.g. 10.0.8.1)
+
+Template: lxd/bridge-ipv4-netmask
+Type: string
+Description: IPv4 CIDR mask:
+ A valid CIDR mask. (e.g. 24)
+
+Template: lxd/bridge-ipv4-dhcp-first
+Type: string
+Description: First DHCP address:
+ The first address to be handed out over DHCP (e.g. 10.0.8.2)
+
+Template: lxd/bridge-ipv4-dhcp-last
+Type: string
+Description: Last DHCP address:
+ The last address to be handed out over DHCP (e.g. 10.0.8.254)
+
+Template: lxd/bridge-ipv4-dhcp-leases
+Type: string
+Description: Max number of DHCP clients:
+ The maximum number of DHCP leases that can be obtained. (e.g. 250)
+
+Template: lxd/bridge-ipv4-nat
+Type: boolean
+Default: true
+Description: Do you want to NAT the IPv4 traffic?
+ This is needed unless you are using a routed IPv4 subnet.
+
+Template: lxd/bridge-ipv6
+Type: boolean
+Default: false
+Description: Do you want to setup an IPv6 subnet?
+ This is needed to provide IPv6 connectivity for your containers.
+
+Template: lxd/bridge-ipv6-address
+Type: string
+Description: IPv6 address:
+ A valid IPv6 address (e.g. fd98:9e0:3744::1)
+
+Template: lxd/bridge-ipv6-netmask
+Type: string
+Description: IPv6 CIDR mask:
+ A valid IPv6 netmask (e.g. 64)
+
+Template: lxd/bridge-ipv6-nat
+Type: boolean
+Default: false
+Description: Do you want to NAT the IPv6 traffic?
+ This is needed unless you are using a routed IPv6 subnet.
+
+Template: lxd/bridge-http-proxy
+Type: boolean
+Default: true
+Description: Do you want to setup an HTTP proxy?
+ LXD runs a minimal HTTP proxy on the bridge.
+ .
+ This proxy is mostly useful in the default configuration where no IPv4
+ or IPv6 connectivity is available.
+ .
+ Once you have usable subnets configured, this is unlikely to be needed
+ and can be turned off.

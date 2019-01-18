@@ -1,0 +1,2565 @@
+;/****************************************************************************
+; * Copyright 2011-2014 Qualcomm Atheros Inc., all rights reserved.          *
+; *                                                                          *
+; * Copyright (c) 2011-2014 Qualcomm Atheros, Inc.                           *
+; * All Rights Reserved.                                                     *
+; * Qualcomm Atheros Confidential and Proprietary.                           *
+; *                                                                          *
+; * INF file for Qualcomm Atheros reference designs                          *
+; ****************************************************************************/
+
+[version]
+Signature   = "$Windows NT$"
+Class       = Net
+ClassGUID   = {4d36e972-e325-11ce-bfc1-08002be10318}
+Provider    = %ATHEROS%
+CatalogFile = Qcamainext10x.cat
+DriverVer   = 08/23/2016,12.0.0.278
+
+[Manufacturer]
+%ATHEROS%     = Atheros, NTamd64.6.3
+
+[ControlFlags]
+ExcludeFromSelect = *
+
+;
+; OS 6.3 Manufacturer section
+;
+[Atheros.NTamd64.6.3]
+; DisplayName               Section                 DeviceID
+; -----------               -------                 --------
+;;Rome 2.2
+%ATHR.DeviceDesc.6320%     = ATHR_DEV_OS63_988x_FTM.ndi,                PCI\VEN_168C&DEV_003E&SUBSYS_00000000
+%ATHR.DeviceDesc.2582%     = ATHR_DEV_OS63_988x_Killer_NFA344.ndi,      PCI\VEN_168C&DEV_003E&SUBSYS_15251A56&REV_20 ;for Killer QCA2582
+%ATHR.DeviceDesc.2582%     = ATHR_DEV_OS63_988x_LE_Killer_NFA344.ndi,   PCI\VEN_168C&DEV_003E&SUBSYS_152517AA&REV_20 ;for Lenovo Killer QCA2582
+%ATHR.DeviceDesc.6320%     = ATHR_DEV_OS63_988x_NFA344.ndi,             PCI\VEN_168C&DEV_003E&SUBSYS_3344168C&REV_20 ;for QCA NFA344i
+%ATHR.DeviceDesc.6320_2%   = ATHR_DEV_OS63_988x_NFA345.ndi,             PCI\VEN_168C&DEV_0041&SUBSYS_3345168C&REV_20 ;for QCA NFA345i
+%ATHR.DeviceDesc.6320%     = ATHR_DEV_OS63_988x_NFA324.ndi,             PCI\VEN_168C&DEV_003E&SUBSYS_3346168C        ;for QCA NFA324
+%ATHR.DeviceDesc.6320%     = ATHR_DEV_OS63_988x_NFA354.ndi,             PCI\VEN_168C&DEV_003E&SUBSYS_3348168C&REV_20 ;for QCA NFA354 
+%ATHR.DeviceDesc.6320_2%   = ATHR_DEV_OS63_988x_NFA355.ndi,             PCI\VEN_168C&DEV_0041&SUBSYS_3349168C&REV_20 ;for QCA NFA355i
+%ATHR.DeviceDesc.6320%     = ATHR_DEV_OS63_988x_FUJI_NFA344.ndi,        PCI\VEN_168C&DEV_003E&SUBSYS_190D10CF&REV_20 ;for Fujitsu NFA344
+%ATHR.DeviceDesc.6320%     = ATHR_DEV_OS63_988x_LE_NFA344.ndi,          PCI\VEN_168C&DEV_003E&SUBSYS_304417AA&REV_20 ;for Lenovo NFA344-WW 
+%ATHR.DeviceDesc.6320%     = ATHR_DEV_OS63_988x_LE_NFA344.ndi,          PCI\VEN_168C&DEV_003E&SUBSYS_314417AA&REV_20 ;for Lenovo NFA344-US 
+%ATHR.DeviceDesc.6320%     = ATHR_DEV_OS63_988x_LE_NFA344.ndi,          PCI\VEN_168C&DEV_003E&SUBSYS_324417AA&REV_20 ;for Lenovo NFA344-Indonesia 
+%ATHR.DeviceDesc.6320%     = ATHR_DEV_OS63_988x_LE_NFA344.ndi,          PCI\VEN_168C&DEV_003E&SUBSYS_334417AA&REV_20 ;for Lenovo NFA344-Russia/Ukraine/Egypt
+%ATHR.DeviceDesc.6320_2%   = ATHR_DEV_OS63_988x_LE_NFA345.ndi,          PCI\VEN_168C&DEV_0041&SUBSYS_304517AA&REV_20 ;for Lenovo NFA345-WW 
+%ATHR.DeviceDesc.6320_2%   = ATHR_DEV_OS63_988x_LE_NFA345.ndi,          PCI\VEN_168C&DEV_0041&SUBSYS_314517AA&REV_20 ;for Lenovo NFA345-US 
+%ATHR.DeviceDesc.6320_2%   = ATHR_DEV_OS63_988x_LE_NFA345.ndi,          PCI\VEN_168C&DEV_0041&SUBSYS_324517AA&REV_20 ;for Lenovo NFA345-Indonesia
+%ATHR.DeviceDesc.6320_2%   = ATHR_DEV_OS63_988x_LE_NFA345_IPG.ndi,      PCI\VEN_168C&DEV_0041&SUBSYS_354517AA&REV_20 ;for Lenovo NFA345-WW 
+%ATHR.DeviceDesc.6320_2%   = ATHR_DEV_OS63_988x_LE_NFA345_IPG.ndi,      PCI\VEN_168C&DEV_0041&SUBSYS_364517AA&REV_20 ;for Lenovo NFA345-US 
+%ATHR.DeviceDesc.6320_2%   = ATHR_DEV_OS63_988x_LE_NFA345_IPG.ndi,      PCI\VEN_168C&DEV_0041&SUBSYS_374517AA&REV_20 ;for Lenovo NFA345-Indonesia
+%ATHR.DeviceDesc.6320%     = ATHR_DEV_OS63_988x_AC_NFA344.ndi,          PCI\VEN_168C&DEV_003E&SUBSYS_080411AD&REV_20 ;for Acer NFA344
+%ATHR.DeviceDesc.6320%     = ATHR_DEV_OS63_988x_AC_NFA344.ndi,          PCI\VEN_168C&DEV_003E&SUBSYS_E08E105B&REV_20 ;for Acer NFA344
+%ATHR.DeviceDesc.6320%     = ATHR_DEV_OS63_988x_AC_NFA344.ndi,          PCI\VEN_168C&DEV_003E&SUBSYS_180411AD&REV_20 ;for Acer NFA344 US
+%ATHR.DeviceDesc.6320%     = ATHR_DEV_OS63_988x_NFA344.ndi,             PCI\VEN_168C&DEV_003E&SUBSYS_082411AD&REV_20 ;for generic NFA344
+%ATHR.DeviceDesc.6320%     = ATHR_DEV_OS63_988x_AS_NFA344.ndi,          PCI\VEN_168C&DEV_003E&SUBSYS_081411AD&REV_20 ;for Asus NFA344
+%ATHR.DeviceDesc.6320_2%   = ATHR_DEV_OS63_988x_AS_NFA345.ndi,          PCI\VEN_168C&DEV_0041&SUBSYS_080511AD&REV_20 ;for Asus NFA345 
+%ATHR.DeviceDesc.6320%     = ATHR_DEV_OS63_988x_ss_NFA354.ndi,          PCI\VEN_168C&DEV_003E&SUBSYS_4125144D&REV_20 ;for Samsung NFA354
+%ATHR.DeviceDesc.6320%     = ATHR_DEV_OS63_988x_ss_NFA354.ndi,          PCI\VEN_168C&DEV_003E&SUBSYS_4126144D&REV_20 ;for Samsung NFA354
+%ATHR.DeviceDesc.6320%     = ATHR_DEV_OS63_988x_ss_NFA354.ndi,          PCI\VEN_168C&DEV_003E&SUBSYS_4127144D&REV_20 ;for Samsung NFA354
+%ATHR.DeviceDesc.6320%     = ATHR_DEV_OS63_988x_ss_NFA354.ndi,          PCI\VEN_168C&DEV_003E&SUBSYS_4128144D&REV_20 ;for Samsung NFA354
+%ATHR.DeviceDesc.6320_2%   = ATHR_DEV_OS63_988x_ss_NFA355.ndi,          PCI\VEN_168C&DEV_0041&SUBSYS_4121144D&REV_20 ;for Samsung NFA355
+%ATHR.DeviceDesc.6320_2%   = ATHR_DEV_OS63_988x_ss_NFA355.ndi,          PCI\VEN_168C&DEV_0041&SUBSYS_4122144D&REV_20 ;for Samsung NFA355
+%ATHR.DeviceDesc.6320_2%   = ATHR_DEV_OS63_988x_ss_NFA355.ndi,          PCI\VEN_168C&DEV_0041&SUBSYS_4123144D&REV_20 ;for Samsung NFA355
+%ATHR.DeviceDesc.6320_2%   = ATHR_DEV_OS63_988x_ss_NFA355.ndi,          PCI\VEN_168C&DEV_0041&SUBSYS_4124144D&REV_20 ;for Samsung NFA355
+
+;;Tufello 1.0
+%ATHR.DeviceDesc.9377%     = ATHR_DEV_OS63_988x_FTM.ndi,                PCI\VEN_168C&DEV_0042&SUBSYS_00000000
+%ATHR.DeviceDesc.9377%     = ATHR_DEV_OS63_988x_NFA425_TF.ndi,          PCI\VEN_168C&DEV_0042&SUBSYS_3365168C&REV_30 ;for QCA NFA425
+%ATHR.DeviceDesc.9377%     = ATHR_DEV_OS63_988x_NFA435_TF.ndi,          PCI\VEN_168C&DEV_0042&SUBSYS_334F168C&REV_30 ;for QCA NFA435
+%ATHR.DeviceDesc.9377%     = ATHR_DEV_OS63_988x_SS_NFA455_TF.ndi,       PCI\VEN_168C&DEV_0042&SUBSYS_412B144D&REV_30 ;for Samsung
+%ATHR.DeviceDesc.9377%     = ATHR_DEV_OS63_988x_SS_NFA435_TF.ndi,       PCI\VEN_168C&DEV_0042&SUBSYS_412C144D&REV_30 ;for Samsung
+%ATHR.DeviceDesc.9377%     = ATHR_DEV_OS63_988x_SS_NFA435_TF.ndi,       PCI\VEN_168C&DEV_0042&SUBSYS_412D144D&REV_30 ;for Samsung
+%ATHR.DeviceDesc.9377%     = ATHR_DEV_OS63_988x_SS_NFA435_TF.ndi,       PCI\VEN_168C&DEV_0042&SUBSYS_412E144D&REV_30 ;for Samsung
+%ATHR.DeviceDesc.9377%     = ATHR_DEV_OS63_988x_SS_NFA425_TF.ndi,       PCI\VEN_168C&DEV_0042&SUBSYS_4133144D&REV_30 ;for Samsung
+%ATHR.DeviceDesc.9377%     = ATHR_DEV_OS63_988x_AS_NFA435_2_TF.ndi,     PCI\VEN_168C&DEV_0042&SUBSYS_22311A3B&REV_30 ;for Asus
+%ATHR.DeviceDesc.9377%     = ATHR_DEV_OS63_988x_AS_NFA435_SGL_CS_TF.ndi,PCI\VEN_168C&DEV_0042&SUBSYS_2B311A3B&REV_30 ;for Asus
+%ATHR.DeviceDesc.9377%     = ATHR_DEV_OS63_988x_AS_NFA435_2_TF.ndi,     PCI\VEN_168C&DEV_0042&SUBSYS_2C311A3B&REV_30 ;for Asus
+%ATHR.DeviceDesc.9377%     = ATHR_DEV_OS63_988x_AS_NFA435_2_TF.ndi,     PCI\VEN_168C&DEV_0042&SUBSYS_2D311A3B&REV_30 ;for Asus
+%ATHR.DeviceDesc.9377%     = ATHR_DEV_OS63_988x_AS_NFA435_2_TF.ndi,     PCI\VEN_168C&DEV_0042&SUBSYS_081611AD&REV_30 ;for Asus
+%ATHR.DeviceDesc.9377%     = ATHR_DEV_OS63_988x_AS_NFA435_SGL_TF.ndi,   PCI\VEN_168C&DEV_0042&SUBSYS_2F311A3B&REV_30 ;for Asus Indonesia
+%ATHR.DeviceDesc.9377%     = ATHR_DEV_OS63_988x_AS_NFA435_TF.ndi,       PCI\VEN_168C&DEV_0042&SUBSYS_7145144F&REV_30 ;for Asus Askey
+%ATHR.DeviceDesc.9377%     = ATHR_DEV_OS63_988x_AC_NFA435_TF.ndi,       PCI\VEN_168C&DEV_0042&SUBSYS_E09A105B&REV_30 ;for Acer
+%ATHR.DeviceDesc.9377%     = ATHR_DEV_OS63_988x_AC_NFA435_TF.ndi,       PCI\VEN_168C&DEV_0042&SUBSYS_080611AD&REV_30 ;for Acer
+%ATHR.DeviceDesc.9377%     = ATHR_DEV_OS63_988x_AC_NFA435_TF.ndi,       PCI\VEN_168C&DEV_0042&SUBSYS_180611AD&REV_30 ;for Acer
+%ATHR.DeviceDesc.9377%     = ATHR_DEV_OS63_988x_LE_NFA435_TF.ndi,       PCI\VEN_168C&DEV_0042&SUBSYS_403517AA&REV_30 ;for Lenovo
+%ATHR.DeviceDesc.9377%     = ATHR_DEV_OS63_988x_LE_NFA435_TF.ndi,       PCI\VEN_168C&DEV_0042&SUBSYS_413517AA&REV_30 ;for Lenovo
+%ATHR.DeviceDesc.9377%     = ATHR_DEV_OS63_988x_LE_NFA435_TF.ndi,       PCI\VEN_168C&DEV_0042&SUBSYS_423517AA&REV_30 ;for Lenovo
+%ATHR.DeviceDesc.9377%     = ATHR_DEV_OS63_988x_LE_NFA435_TF.ndi,       PCI\VEN_168C&DEV_0042&SUBSYS_433517AA&REV_30 ;for Lenovo
+;;Tufello 1.1
+%ATHR.DeviceDesc.9377%     = ATHR_DEV_OS63_988x_NFA425_TF11.ndi,      PCI\VEN_168C&DEV_0042&SUBSYS_3365168C&REV_31 ;for QCA NFA425
+%ATHR.DeviceDesc.9377%     = ATHR_DEV_OS63_988x_NFA425_SGL_TF11.ndi,  PCI\VEN_168C&DEV_0042&SUBSYS_3369168C&REV_31 ;for QCA NFA425-5s
+%ATHR.DeviceDesc.9377%     = ATHR_DEV_OS63_988x_NFA435_TF11.ndi,      PCI\VEN_168C&DEV_0042&SUBSYS_334F168C&REV_31 ;for QCA NFA435
+%ATHR.DeviceDesc.9377%     = ATHR_DEV_OS63_988x_NFA435_SGL_TF11.ndi,  PCI\VEN_168C&DEV_0042&SUBSYS_3368168C&REV_31 ;for QCA NFA435as
+%ATHR.DeviceDesc.9377%     = ATHR_DEV_OS63_988x_SS_NFA455_TF11.ndi,   PCI\VEN_168C&DEV_0042&SUBSYS_412B144D&REV_31 ;for Samsung
+%ATHR.DeviceDesc.9377%     = ATHR_DEV_OS63_988x_SS_NFA435_TF11.ndi,   PCI\VEN_168C&DEV_0042&SUBSYS_412C144D&REV_31 ;for Samsung
+%ATHR.DeviceDesc.9377%     = ATHR_DEV_OS63_988x_SS_NFA435_TF11.ndi,   PCI\VEN_168C&DEV_0042&SUBSYS_412D144D&REV_31 ;for Samsung
+%ATHR.DeviceDesc.9377%     = ATHR_DEV_OS63_988x_SS_NFA435_TF11.ndi,   PCI\VEN_168C&DEV_0042&SUBSYS_412E144D&REV_31 ;for Samsung
+%ATHR.DeviceDesc.9377%     = ATHR_DEV_OS63_988x_SS_NFA425_TF11.ndi,   PCI\VEN_168C&DEV_0042&SUBSYS_4133144D&REV_31 ;for Samsung
+%ATHR.DeviceDesc.9377%     = ATHR_DEV_OS63_988x_AS_NFA435_TF11.ndi,       PCI\VEN_168C&DEV_0042&SUBSYS_223A1A3B&REV_31 ;for Asus
+%ATHR.DeviceDesc.9377%     = ATHR_DEV_OS63_988x_AS_NFA435_SGL_TF11.ndi,   PCI\VEN_168C&DEV_0042&SUBSYS_223B1A3B&REV_31 ;for Asus
+%ATHR.DeviceDesc.9377%     = ATHR_DEV_OS63_988x_AS_NFA435_TF11.ndi,       PCI\VEN_168C&DEV_0042&SUBSYS_223C1A3B&REV_31 ;for Asus
+%ATHR.DeviceDesc.9377%     = ATHR_DEV_OS63_988x_AS_NFA435_TF11.ndi,       PCI\VEN_168C&DEV_0042&SUBSYS_22311A3B&REV_31 ;for Asus
+%ATHR.DeviceDesc.9377%     = ATHR_DEV_OS63_988x_AS_NFA435_SGL_TF11.ndi,   PCI\VEN_168C&DEV_0042&SUBSYS_2B311A3B&REV_31 ;for Asus
+%ATHR.DeviceDesc.9377%     = ATHR_DEV_OS63_988x_AS_NFA435_TF11.ndi,       PCI\VEN_168C&DEV_0042&SUBSYS_7145144F&REV_31 ;for Asus
+%ATHR.DeviceDesc.9377%     = ATHR_DEV_OS63_988x_AS_NFA435_TF11.ndi,       PCI\VEN_168C&DEV_0042&SUBSYS_2C311A3B&REV_31 ;for Asus Indonesia
+%ATHR.DeviceDesc.9377%     = ATHR_DEV_OS63_988x_AS_NFA435_SGL_TF11.ndi,   PCI\VEN_168C&DEV_0042&SUBSYS_2F311A3B&REV_31 ;for Asus Indonesia
+%ATHR.DeviceDesc.9377%     = ATHR_DEV_OS63_988x_AS_NFA435_SGL_TF11.ndi,   PCI\VEN_168C&DEV_0042&SUBSYS_7148144F&REV_31 ;for Asus
+%ATHR.DeviceDesc.9377%     = ATHR_DEV_OS63_988x_AS_NFA425_2_TF11.ndi,     PCI\VEN_168C&DEV_0042&SUBSYS_22511A3B&REV_31 ;for Asus
+%ATHR.DeviceDesc.9377%     = ATHR_DEV_OS63_988x_AS_NFA425_2_TF11.ndi,     PCI\VEN_168C&DEV_0042&SUBSYS_25131A3B&REV_31 ;for Asus Indonesia
+%ATHR.DeviceDesc.9377%     = ATHR_DEV_OS63_988x_AS_NFA425_TF11.ndi,       PCI\VEN_168C&DEV_0042&SUBSYS_2B511A3B&REV_31 ;for Asus
+%ATHR.DeviceDesc.9377%     = ATHR_DEV_OS63_988x_AS_NFA425_TF11.ndi,       PCI\VEN_168C&DEV_0042&SUBSYS_2C511A3B&REV_31 ;for Asus
+%ATHR.DeviceDesc.9377%     = ATHR_DEV_OS63_988x_AS_NFA425_TF11.ndi,       PCI\VEN_168C&DEV_0042&SUBSYS_7142144F&REV_31 ;for Asus
+%ATHR.DeviceDesc.9377%     = ATHR_DEV_OS63_988x_AS_NFA425_TF11.ndi,       PCI\VEN_168C&DEV_0042&SUBSYS_25111A3B&REV_31 ;for Asus
+%ATHR.DeviceDesc.9377%     = ATHR_DEV_OS63_988x_AS_NFA425_3_SGL_TF11.ndi, PCI\VEN_168C&DEV_0042&SUBSYS_2A511A3B&REV_31 ;for Asus
+%ATHR.DeviceDesc.9377%     = ATHR_DEV_OS63_988x_AS_NFA425_2_SGL_TF11.ndi, PCI\VEN_168C&DEV_0042&SUBSYS_25141A3B&REV_31 ;for Asus Indonesia
+%ATHR.DeviceDesc.9377%     = ATHR_DEV_OS63_988x_AS_NFA425_SGL_TF11.ndi,   PCI\VEN_168C&DEV_0042&SUBSYS_25121A3B&REV_31 ;for Asus
+%ATHR.DeviceDesc.9377%     = ATHR_DEV_OS63_988x_AC_NFA425_TF11.ndi,   PCI\VEN_168C&DEV_0042&SUBSYS_050711AD&REV_31 ;for Acer
+%ATHR.DeviceDesc.9377%     = ATHR_DEV_OS63_988x_AC_NFA425_TF11.ndi,   PCI\VEN_168C&DEV_0042&SUBSYS_25101A3B&REV_31 ;for Acer
+%ATHR.DeviceDesc.9377%     = ATHR_DEV_OS63_988x_AC_NFA435_TF11.ndi,   PCI\VEN_168C&DEV_0042&SUBSYS_E09A105B&REV_31 ;for Acer
+%ATHR.DeviceDesc.9377%     = ATHR_DEV_OS63_988x_AC_NFA435_TF11.ndi,   PCI\VEN_168C&DEV_0042&SUBSYS_080611AD&REV_31 ;for Acer
+%ATHR.DeviceDesc.9377%     = ATHR_DEV_OS63_988x_AC_NFA435_TF11.ndi,   PCI\VEN_168C&DEV_0042&SUBSYS_180611AD&REV_31 ;for Acer
+%ATHR.DeviceDesc.9377%     = ATHR_DEV_OS63_988x_AC_NFA435_TF11.ndi,   PCI\VEN_168C&DEV_0042&SUBSYS_08A611AD&REV_31 ;for Acer
+%ATHR.DeviceDesc.9377%     = ATHR_DEV_OS63_988x_AC_NFA435_TF11.ndi,   PCI\VEN_168C&DEV_0042&SUBSYS_E0A1105B&REV_31 ;for Acer
+%ATHR.DeviceDesc.9377%     = ATHR_DEV_OS63_988x_LE_NFA435_TF11.ndi,   PCI\VEN_168C&DEV_0042&SUBSYS_403517AA&REV_31 ;for Lenovo
+%ATHR.DeviceDesc.9377%     = ATHR_DEV_OS63_988x_LE_NFA435_TF11.ndi,   PCI\VEN_168C&DEV_0042&SUBSYS_413517AA&REV_31 ;for Lenovo
+%ATHR.DeviceDesc.9377%     = ATHR_DEV_OS63_988x_LE_NFA435_TF11.ndi,   PCI\VEN_168C&DEV_0042&SUBSYS_423517AA&REV_31 ;for Lenovo
+%ATHR.DeviceDesc.9377%     = ATHR_DEV_OS63_988x_LE_NFA435_TF11.ndi,   PCI\VEN_168C&DEV_0042&SUBSYS_433517AA&REV_31 ;for Lenovo
+%ATHR.DeviceDesc.9377%     = ATHR_DEV_OS63_988x_LE_NFA435_TF11.ndi,   PCI\VEN_168C&DEV_0042&SUBSYS_090117AA&REV_31 ;for Lenovo
+%ATHR.DeviceDesc.9377%     = ATHR_DEV_OS63_988x_LE_NFA435_TF11.ndi,   PCI\VEN_168C&DEV_0042&SUBSYS_091117AA&REV_31 ;for Lenovo Indonesia SKU
+%ATHR.DeviceDesc.9377%     = ATHR_DEV_OS63_988x_LE_NFA435_TF11.ndi,   PCI\VEN_168C&DEV_0042&SUBSYS_092117AA&REV_31 ;for Lenovo AGN SKU
+%ATHR.DeviceDesc.9377%     = ATHR_DEV_OS63_988x_LE_NFA425_TF11.ndi,   PCI\VEN_168C&DEV_0042&SUBSYS_093117AA&REV_31 ;for Lenovo
+%ATHR.DeviceDesc.9377%     = ATHR_DEV_OS63_988x_LE_NFA425_TF11.ndi,   PCI\VEN_168C&DEV_0042&SUBSYS_402517AA&REV_31 ;for Lenovo
+
+;;Rome 3.x
+%ATHR.DeviceDesc.6320_3%   = ATHR_DEV_OS63_988x_NFA324A_1.ndi,          PCI\VEN_168C&DEV_003E&SUBSYS_334E168C&REV_30 ;for QCA NFA324A-1
+%ATHR.DeviceDesc.6320_3%   = ATHR_DEV_OS63_988x_NFA324A_5.ndi,          PCI\VEN_168C&DEV_003E&SUBSYS_3360168C&REV_30 ;for QCA NFA324A-5
+%ATHR.DeviceDesc.6320_3%   = ATHR_DEV_OS63_988x_NFA344A.ndi,            PCI\VEN_168C&DEV_003E&SUBSYS_3361168C&REV_30 ;for QCA NFA344A
+%ATHR.DeviceDesc.6320_3%   = ATHR_DEV_OS63_988x_NFA354A.ndi,            PCI\VEN_168C&DEV_003E&SUBSYS_3362168C&REV_30 ;for QCA NFA354A
+%ATHR.DeviceDesc.6320_3%   = ATHR_DEV_OS63_988x_NFA364A.ndi,            PCI\VEN_168C&DEV_003E&SUBSYS_3363168C&REV_30 ;for QCA NFA364A
+%ATHR.DeviceDesc.6320_3%   = ATHR_DEV_OS63_988x_NFA324A_1.ndi,          PCI\VEN_168C&DEV_003E&SUBSYS_334E168C&REV_32 ;for QCA NFA324A-1
+%ATHR.DeviceDesc.6320_3%   = ATHR_DEV_OS63_988x_NFA324A_5.ndi,          PCI\VEN_168C&DEV_003E&SUBSYS_3360168C&REV_32 ;for QCA NFA324A-5
+%ATHR.DeviceDesc.6320_3%   = ATHR_DEV_OS63_988x_NFA344A.ndi,            PCI\VEN_168C&DEV_003E&SUBSYS_3361168C&REV_32 ;for QCA NFA344A
+%ATHR.DeviceDesc.6320_3%   = ATHR_DEV_OS63_988x_NFA344A.ndi,            PCI\VEN_168C&DEV_003E&SUBSYS_525A1A56&REV_32 ;for Killer1525A
+%ATHR.DeviceDesc.6320_3%   = ATHR_DEV_OS63_988x_NFA354A.ndi,            PCI\VEN_168C&DEV_003E&SUBSYS_3362168C&REV_32 ;for QCA NFA354A
+%ATHR.DeviceDesc.6320_3%   = ATHR_DEV_OS63_988x_NFA364A.ndi,            PCI\VEN_168C&DEV_003E&SUBSYS_3363168C&REV_32 ;for QCA NFA364A
+%ATHR.DeviceDesc.6320_3%   = ATHR_DEV_OS63_988x_QCA9008.ndi,            PCI\VEN_168C&DEV_003E&SUBSYS_3366168C&REV_32 ;for QCA QCA9008
+%ATHR.DeviceDesc.6320_3%   = ATHR_DEV_OS63_988x_USI_9008.ndi,           PCI\VEN_168C&DEV_003E&SUBSYS_900814CD&REV_32 ;for USI 9008
+%ATHR.DeviceDesc.6320_3%   = ATHR_DEV_OS63_988x_AS_9008.ndi,            PCI\VEN_168C&DEV_003E&SUBSYS_980114CD&REV_32 ;for Asus 9008
+%ATHR.DeviceDesc.6320_3%   = ATHR_DEV_OS63_988x_AC_9008.ndi,            PCI\VEN_168C&DEV_003E&SUBSYS_980214CD&REV_32 ;for Acer 9008
+%ATHR.DeviceDesc.2582_2%   = ATHR_DEV_OS63_988x_Killer_NFA344A.ndi,     PCI\VEN_168C&DEV_003E&SUBSYS_14351A56&REV_32 ;for Killer 1435
+%ATHR.DeviceDesc.2582_3%   = ATHR_DEV_OS63_988x_Killer_NFA364A.ndi,     PCI\VEN_168C&DEV_003E&SUBSYS_535A1A56&REV_32 ;for Killer
+%ATHR.DeviceDesc.2582_3%   = ATHR_DEV_OS63_988x_RV_Killer_NFA364A_2.ndi,PCI\VEN_168C&DEV_003E&SUBSYS_15351A56&REV_32 ;for Rivet Killer
+%ATHR.DeviceDesc.2582_3%   = ATHR_DEV_OS63_988x_RV_Killer_NFA364A.ndi,  PCI\VEN_168C&DEV_003E&SUBSYS_15361A56&REV_32 ;for Rivet Killer
+%ATHR.DeviceDesc.2582_3%   = ATHR_DEV_OS63_988x_LE_Killer_NFA364A.ndi,  PCI\VEN_168C&DEV_003E&SUBSYS_153517AA&REV_32 ;for Lenovo Killer
+%ATHR.DeviceDesc.6320_3%   = ATHR_DEV_OS63_988x_FJ_1_NFA344A.ndi,       PCI\VEN_168C&DEV_003E&SUBSYS_192A10CF&REV_32 ;for Fujitsu
+%ATHR.DeviceDesc.6320_3%   = ATHR_DEV_OS63_988x_FJ_NFA344A.ndi,         PCI\VEN_168C&DEV_003E&SUBSYS_192B10CF&REV_32 ;for Fujitsu
+%ATHR.DeviceDesc.6320_3%   = ATHR_DEV_OS63_988x_SS_NFA324A_5.ndi,       PCI\VEN_168C&DEV_003E&SUBSYS_412F144D&REV_32 ;for Samsung
+%ATHR.DeviceDesc.6320_3%   = ATHR_DEV_OS63_988x_SS_NFA324A_5.ndi,       PCI\VEN_168C&DEV_003E&SUBSYS_4130144D&REV_32 ;for Samsung
+%ATHR.DeviceDesc.6320_3%   = ATHR_DEV_OS63_988x_SS_NFA324A_5.ndi,       PCI\VEN_168C&DEV_003E&SUBSYS_4131144D&REV_32 ;for Samsung
+%ATHR.DeviceDesc.6320_3%   = ATHR_DEV_OS63_988x_SS_NFA324A_5.ndi,       PCI\VEN_168C&DEV_003E&SUBSYS_4132144D&REV_32 ;for Samsung
+%ATHR.DeviceDesc.6320_3%   = ATHR_DEV_OS63_988x_AC_NFA324A_5.ndi,       PCI\VEN_168C&DEV_003E&SUBSYS_E0A0105B&REV_32 ;for Acer
+%ATHR.DeviceDesc.6320_3%   = ATHR_DEV_OS63_988x_AC_NFA324A_5.ndi,       PCI\VEN_168C&DEV_003E&SUBSYS_050311AD&REV_32 ;for Acer
+%ATHR.DeviceDesc.6320_3%   = ATHR_DEV_OS63_988x_SS_COB.ndi,             PCI\VEN_168C&DEV_003E&SUBSYS_C135144D&REV_32 ;for Samsung ; Win10 only
+%ATHR.DeviceDesc.6320_3%   = ATHR_DEV_OS63_988x_AC_NFA344A.ndi,         PCI\VEN_168C&DEV_003E&SUBSYS_080711AD&REV_32 ;for Acer WW SKU
+%ATHR.DeviceDesc.6320_3%   = ATHR_DEV_OS63_988x_AC_NFA344A.ndi,         PCI\VEN_168C&DEV_003E&SUBSYS_180711AD&REV_32 ;for Acer US SKU
+%ATHR.DeviceDesc.6320_3%   = ATHR_DEV_OS63_988x_AC_NFA344A.ndi,         PCI\VEN_168C&DEV_003E&SUBSYS_E09D105B&REV_32 ;for Acer WW,US,Indonesia
+%ATHR.DeviceDesc.6320_3%   = ATHR_DEV_OS63_988x_VA_NFA344A.ndi,         PCI\VEN_168C&DEV_003E&SUBSYS_E0A2105B&REV_32 ;for VAIO
+%ATHR.DeviceDesc.6320_3%   = ATHR_DEV_OS63_988x_AS_NFA364A_3.ndi,       PCI\VEN_168C&DEV_003E&SUBSYS_86CD1043&REV_32 ;for Asus
+%ATHR.DeviceDesc.6320_3%   = ATHR_DEV_OS63_988x_AS_NFA364A_3.ndi,       PCI\VEN_168C&DEV_003E&SUBSYS_86E01043&REV_32 ;for Asus
+%ATHR.DeviceDesc.6320_3%   = ATHR_DEV_OS63_988x_AS_NFA364A.ndi,         PCI\VEN_168C&DEV_003E&SUBSYS_22601A3B&REV_32 ;for Asus
+%ATHR.DeviceDesc.6320_3%   = ATHR_DEV_OS63_988x_AS_NFA364A_2.ndi,       PCI\VEN_168C&DEV_003E&SUBSYS_080811AD&REV_32 ;for Asus
+%ATHR.DeviceDesc.6320_3%   = ATHR_DEV_OS63_988x_NFA364A.ndi,            PCI\VEN_168C&DEV_003E&SUBSYS_7144144F&REV_32 ;for Asus
+%ATHR.DeviceDesc.6320_3%   = ATHR_DEV_OS63_988x_NFA344A.ndi,            PCI\VEN_168C&DEV_003E&SUBSYS_7143144F&REV_32 ;for Asus
+%ATHR.DeviceDesc.6320_3%   = ATHR_DEV_OS63_988x_AS_NFA344A.ndi,         PCI\VEN_168C&DEV_003E&SUBSYS_86F81043&REV_32 ;for Asus WW SKU
+%ATHR.DeviceDesc.6320_3%   = ATHR_DEV_OS63_988x_AS_NFA344A.ndi,         PCI\VEN_168C&DEV_003E&SUBSYS_86F91043&REV_32 ;for Asus US SKU
+%ATHR.DeviceDesc.6320_3%   = ATHR_DEV_OS63_988x_LE_NFA344A.ndi,         PCI\VEN_168C&DEV_003E&SUBSYS_082717AA&REV_32 ;for Lenovo
+%ATHR.DeviceDesc.6320_3%   = ATHR_DEV_OS63_988x_LE_NFA344A.ndi,         PCI\VEN_168C&DEV_003E&SUBSYS_083717AA&REV_32 ;for Lenovo FCC SKU
+%ATHR.DeviceDesc.6320_3%   = ATHR_DEV_OS63_988x_LE_NFA344A.ndi,         PCI\VEN_168C&DEV_003E&SUBSYS_084717AA&REV_32 ;for Lenovo Indonesia SKU
+%ATHR.DeviceDesc.6320_3%   = ATHR_DEV_OS63_988x_LE_NFA344A.ndi,         PCI\VEN_168C&DEV_003E&SUBSYS_085717AA&REV_32 ;for Lenovo AGN SKU
+%ATHR.DeviceDesc.6320_3%   = ATHR_DEV_OS63_988x_LE_Killer_NFA344A.ndi,  PCI\VEN_168C&DEV_003E&SUBSYS_143517AA&REV_32 ;for Lenovo
+
+;;Start of FTM section
+
+[ATHR_DEV_OS63_988x_FTM.ndi.NTamd64]
+Characteristics = 0x84
+BusType         = 5
+AddReg          = atheros_os63.reg, atheros11n.reg, smpsDynamic.reg, UtfMode.reg, D0PC.reg, roam.reg, wmmac.reg, FW_FTM.reg, BD_FTM.reg
+DelReg          = atheros.DelReg
+CopyFiles       = atheros.CopyFiles
+*IfType         = 71        ; IF_TYPE_IEEE80211
+*MediaType      = 16        ; NdisMediumNative802_11
+*PhysicalMediaType = 9      ; NdisPhysicalMediumNative802_11
+Include         = machine.inf, netvwifibus.inf
+Needs           = VWiFiBus.CopyFiles
+
+[ATHR_DEV_OS63_988x_FTM.ndi.NTamd64.Services]
+AddService = Qcamain10x64, 2, atheros.Service, atheros.EventLog
+Include    = netvwifibus.inf
+Needs      = VWiFiBus.Services
+
+[ATHR_DEV_OS63_988x_FTM.ndi.NTamd64.HW]
+AddReg  = MSI.reg
+Include = netvwifibus.inf
+Needs   = PciASPMOptIn, VWiFiBus.PnPFilterRegistration
+
+;;End of FTM section
+
+;;Start of Rome 2.x section
+[ATHR_DEV_OS63_988x_NFA324.ndi.NTamd64]
+Characteristics = 0x84
+BusType         = 5
+AddReg          = atheros_os63.reg, atheros11n.reg, smpsDynamic.reg, qca_utf.reg, D0PC.reg, roam.reg, wmmac.reg, FW_20.reg, BD_NFA324.reg, enableLegacyBurst.reg
+DelReg          = atheros.DelReg
+CopyFiles       = atheros.CopyFiles, atheros_FW.CopyFiles, atheros_BD_NFA324.CopyFiles
+*IfType         = 71        ; IF_TYPE_IEEE80211
+*MediaType      = 16        ; NdisMediumNative802_11
+*PhysicalMediaType = 9      ; NdisPhysicalMediumNative802_11
+Include         = machine.inf, netvwifibus.inf
+Needs           = VWiFiBus.CopyFiles
+
+[ATHR_DEV_OS63_988x_NFA324.ndi.NTamd64.Services]
+AddService = Qcamain10x64, 2, atheros.Service, atheros.EventLog
+Include    = netvwifibus.inf
+Needs      = VWiFiBus.Services
+
+[ATHR_DEV_OS63_988x_NFA324.ndi.NTamd64.HW]
+AddReg  = MSI.reg
+Include = netvwifibus.inf
+Needs   = PciASPMOptIn, VWiFiBus.PnPFilterRegistration
+
+[ATHR_DEV_OS63_988x_Killer_NFA344.ndi.NTamd64]
+Characteristics = 0x84
+BusType         = 5
+AddReg          = atheros_os63.reg, atheros11n.reg, smpsDynamic.reg, qca_utf.reg, D0PC.reg, roam.reg, wmmac.reg, FW_20.reg, BD_NFA344_le.reg, CoexConfig_dell.reg, wowEnable.reg, enableSmbios.reg, enableLegacyBurst.reg, BandPrefer_WirelessMode.reg
+DelReg          = atheros.DelReg
+CopyFiles       = atheros.CopyFiles, atheros_FW.CopyFiles, atheros_BD_NFA344_le.CopyFiles
+*IfType         = 71        ; IF_TYPE_IEEE80211
+*MediaType      = 16        ; NdisMediumNative802_11
+*PhysicalMediaType = 9      ; NdisPhysicalMediumNative802_11
+Include         = machine.inf, netvwifibus.inf
+Needs           = VWiFiBus.CopyFiles
+
+[ATHR_DEV_OS63_988x_Killer_NFA344.ndi.NTamd64.Services]
+AddService = Qcamain10x64, 2, atheros.Service, atheros.EventLog
+Include    = netvwifibus.inf
+Needs      = VWiFiBus.Services
+
+[ATHR_DEV_OS63_988x_Killer_NFA344.ndi.NTamd64.HW]
+AddReg  = MSI.reg
+Include = netvwifibus.inf
+Needs   = PciASPMOptIn, VWiFiBus.PnPFilterRegistration
+
+[ATHR_DEV_OS63_988x_LE_Killer_NFA344.ndi.NTamd64]
+Characteristics = 0x84
+BusType         = 5
+AddReg          = atheros_os63.reg, atheros11n.reg, smpsDynamic.reg, qca_utf.reg, D0PC.reg, roam.reg, wmmac.reg, FW_20.reg, BD_NFA344_le.reg, 11acUefi.reg, CoexConfig_le.reg, SetPCIECtrlRegOnAMD.reg, ClearPCIECtrlRegOnAMD.reg, enableLegacyBurst.reg, enableSmbios.reg, BandPrefer_WirelessMode.reg
+DelReg          = atheros.DelReg
+CopyFiles       = atheros.CopyFiles, atheros_FW.CopyFiles, atheros_BD_NFA344_le.CopyFiles
+*IfType         = 71        ; IF_TYPE_IEEE80211
+*MediaType      = 16        ; NdisMediumNative802_11
+*PhysicalMediaType = 9      ; NdisPhysicalMediumNative802_11
+Include         = machine.inf, netvwifibus.inf
+Needs           = VWiFiBus.CopyFiles
+
+[ATHR_DEV_OS63_988x_LE_Killer_NFA344.ndi.NTamd64.Services]
+AddService = Qcamain10x64, 2, atheros.Service, atheros.EventLog
+Include    = netvwifibus.inf
+Needs      = VWiFiBus.Services
+
+[ATHR_DEV_OS63_988x_LE_Killer_NFA344.ndi.NTamd64.HW]
+AddReg  = MSI.reg
+Include = netvwifibus.inf
+Needs   = PciASPMOptIn, VWiFiBus.PnPFilterRegistration
+
+[ATHR_DEV_OS63_988x_NFA344.ndi.NTamd64]
+Characteristics = 0x84
+BusType         = 5
+AddReg          = atheros_os63.reg, atheros11n.reg, smpsDynamic.reg, qca_utf.reg, D0PC.reg, roam.reg, wmmac.reg, FW_20.reg, BD_NFA344.reg, enableLegacyBurst.reg
+DelReg          = atheros.DelReg
+CopyFiles       = atheros.CopyFiles, atheros_FW.CopyFiles, atheros_BD_NFA344.CopyFiles
+*IfType         = 71        ; IF_TYPE_IEEE80211
+*MediaType      = 16        ; NdisMediumNative802_11
+*PhysicalMediaType = 9      ; NdisPhysicalMediumNative802_11
+Include         = machine.inf, netvwifibus.inf
+Needs           = VWiFiBus.CopyFiles
+
+[ATHR_DEV_OS63_988x_NFA344.ndi.NTamd64.Services]
+AddService = Qcamain10x64, 2, atheros.Service, atheros.EventLog
+Include    = netvwifibus.inf
+Needs      = VWiFiBus.Services
+
+[ATHR_DEV_OS63_988x_NFA344.ndi.NTamd64.HW]
+AddReg  = MSI.reg
+Include = netvwifibus.inf
+Needs   = PciASPMOptIn, VWiFiBus.PnPFilterRegistration
+
+[ATHR_DEV_OS63_988x_NFA345.ndi.NTamd64]
+Characteristics = 0x84
+BusType         = 5
+AddReg          = atheros_os63.reg, atheros11n.reg, smpsDynamic.reg, qca_utf.reg, D0PC.reg, roam.reg, wmmac.reg, FW_20.reg, BD_NFA345.reg, enableLegacyBurst.reg
+DelReg          = atheros.DelReg
+CopyFiles       = atheros.CopyFiles, atheros_FW.CopyFiles, atheros_BD_NFA345.CopyFiles
+*IfType         = 71        ; IF_TYPE_IEEE80211
+*MediaType      = 16        ; NdisMediumNative802_11
+*PhysicalMediaType = 9      ; NdisPhysicalMediumNative802_11
+Include         = machine.inf, netvwifibus.inf
+Needs           = VWiFiBus.CopyFiles
+
+[ATHR_DEV_OS63_988x_NFA345.ndi.NTamd64.Services]
+AddService = Qcamain10x64, 2, atheros.Service, atheros.EventLog
+Include    = netvwifibus.inf
+Needs      = VWiFiBus.Services
+
+[ATHR_DEV_OS63_988x_NFA345.ndi.NTamd64.HW]
+AddReg  = MSI.reg
+Include = netvwifibus.inf
+Needs   = PciASPMOptIn, VWiFiBus.PnPFilterRegistration
+
+[ATHR_DEV_OS63_988x_NFA354.ndi.NTamd64]
+Characteristics = 0x84
+BusType         = 5
+AddReg          = atheros_os63.reg, atheros11n.reg, smpsDynamic.reg, qca_utf.reg, D0PC.reg, roam.reg, wmmac.reg, FW_20.reg, BD_NFA354.reg, enableLegacyBurst.reg
+DelReg          = atheros.DelReg
+CopyFiles       = atheros.CopyFiles, atheros_FW.CopyFiles, atheros_BD_NFA354.CopyFiles
+*IfType         = 71        ; IF_TYPE_IEEE80211
+*MediaType      = 16        ; NdisMediumNative802_11
+*PhysicalMediaType = 9      ; NdisPhysicalMediumNative802_11
+Include         = machine.inf, netvwifibus.inf
+Needs           = VWiFiBus.CopyFiles
+
+[ATHR_DEV_OS63_988x_NFA354.ndi.NTamd64.Services]
+AddService = Qcamain10x64, 2, atheros.Service, atheros.EventLog
+Include    = netvwifibus.inf
+Needs      = VWiFiBus.Services
+
+[ATHR_DEV_OS63_988x_NFA354.ndi.NTamd64.HW]
+AddReg  = MSI.reg
+Include = netvwifibus.inf
+Needs   = PciASPMOptIn, VWiFiBus.PnPFilterRegistration
+
+[ATHR_DEV_OS63_988x_NFA355.ndi.NTamd64]
+Characteristics = 0x84
+BusType         = 5
+AddReg          = atheros_os63.reg, atheros11n.reg, smpsDynamic.reg, qca_utf.reg, D0PC.reg, roam.reg, wmmac.reg, FW_20.reg, BD_NFA355.reg, enableLegacyBurst.reg
+DelReg          = atheros.DelReg
+CopyFiles       = atheros.CopyFiles, atheros_FW.CopyFiles, atheros_BD_NFA355.CopyFiles
+*IfType         = 71        ; IF_TYPE_IEEE80211
+*MediaType      = 16        ; NdisMediumNative802_11
+*PhysicalMediaType = 9      ; NdisPhysicalMediumNative802_11
+Include         = machine.inf, netvwifibus.inf
+Needs           = VWiFiBus.CopyFiles
+
+[ATHR_DEV_OS63_988x_NFA355.ndi.NTamd64.Services]
+AddService = Qcamain10x64, 2, atheros.Service, atheros.EventLog
+Include    = netvwifibus.inf
+Needs      = VWiFiBus.Services
+
+[ATHR_DEV_OS63_988x_NFA355.ndi.NTamd64.HW]
+AddReg  = MSI.reg
+Include = netvwifibus.inf
+Needs   = PciASPMOptIn, VWiFiBus.PnPFilterRegistration
+
+[ATHR_DEV_OS63_988x_FUJI_NFA344.ndi.NTamd64]
+Characteristics = 0x84
+BusType         = 5
+AddReg          = atheros_os63.reg, atheros11n.reg, smpsDynamic.reg, qca_utf.reg, D0PC.reg, roam.reg, wmmac.reg, FW_20.reg, BD_NFA344.reg, wowEnable.reg, enableLegacyBurst.reg
+DelReg          = atheros.DelReg
+CopyFiles       = atheros.CopyFiles, atheros_FW.CopyFiles, atheros_BD_NFA344.CopyFiles
+*IfType         = 71        ; IF_TYPE_IEEE80211
+*MediaType      = 16        ; NdisMediumNative802_11
+*PhysicalMediaType = 9      ; NdisPhysicalMediumNative802_11
+Include         = machine.inf, netvwifibus.inf
+Needs           = VWiFiBus.CopyFiles
+
+[ATHR_DEV_OS63_988x_FUJI_NFA344.ndi.NTamd64.Services]
+AddService = Qcamain10x64, 2, atheros.Service, atheros.EventLog
+Include    = netvwifibus.inf
+Needs      = VWiFiBus.Services
+
+[ATHR_DEV_OS63_988x_FUJI_NFA344.ndi.NTamd64.HW]
+AddReg  = MSI.reg
+Include = netvwifibus.inf
+Needs   = PciASPMOptIn, VWiFiBus.PnPFilterRegistration
+
+[ATHR_DEV_OS63_988x_LE_NFA344.ndi.NTamd64]
+Characteristics = 0x84
+BusType         = 5
+AddReg          = atheros_os63.reg, atheros11n.reg, smpsDynamic.reg, qca_utf.reg, D0PC.reg, roam.reg, wmmac.reg, FW_20.reg, BD_NFA344_le.reg, TPCOffset_le_344.reg, TPC_Profile_LE_344.reg, resumeAsyncDlFw.reg, 11acUefi.reg, CoexConfig_le.reg, SetPCIECtrlRegOnAMD.reg, ClearPCIECtrlRegOnAMD.reg, enableLegacyBurst.reg
+DelReg          = atheros.DelReg
+CopyFiles       = atheros.CopyFiles, atheros_FW.CopyFiles, atheros_BD_NFA344_le.CopyFiles
+*IfType         = 71        ; IF_TYPE_IEEE80211
+*MediaType      = 16        ; NdisMediumNative802_11
+*PhysicalMediaType = 9      ; NdisPhysicalMediumNative802_11
+Include         = machine.inf, netvwifibus.inf
+Needs           = VWiFiBus.CopyFiles
+
+[ATHR_DEV_OS63_988x_LE_NFA344.ndi.NTamd64.Services]
+AddService = Qcamain10x64, 2, atheros.Service, atheros.EventLog
+Include    = netvwifibus.inf
+Needs      = VWiFiBus.Services
+
+[ATHR_DEV_OS63_988x_LE_NFA344.ndi.NTamd64.HW]
+AddReg  = MSI.reg
+Include = netvwifibus.inf
+Needs   = PciASPMOptIn, VWiFiBus.PnPFilterRegistration
+
+[ATHR_DEV_OS63_988x_LE_NFA345.ndi.NTamd64]
+Characteristics = 0x84
+BusType         = 5
+AddReg          = atheros_os63.reg, atheros11n.reg, smpsDynamic.reg, qca_utf.reg, D0PC.reg, roam.reg, wmmac.reg, FW_20.reg, BD_NFA345.reg, resumeAsyncDlFw.reg, 11acUefi.reg, CoexConfig_le.reg, SetPCIECtrlRegOnAMD.reg, ClearPCIECtrlRegOnAMD.reg, enableLegacyBurst.reg
+DelReg          = atheros.DelReg
+CopyFiles       = atheros.CopyFiles, atheros_FW.CopyFiles, atheros_BD_NFA345.CopyFiles
+*IfType         = 71        ; IF_TYPE_IEEE80211
+*MediaType      = 16        ; NdisMediumNative802_11
+*PhysicalMediaType = 9      ; NdisPhysicalMediumNative802_11
+Include         = machine.inf, netvwifibus.inf
+Needs           = VWiFiBus.CopyFiles
+
+[ATHR_DEV_OS63_988x_LE_NFA345.ndi.NTamd64.Services]
+AddService = Qcamain10x64, 2, atheros.Service, atheros.EventLog
+Include    = netvwifibus.inf
+Needs      = VWiFiBus.Services
+
+[ATHR_DEV_OS63_988x_LE_NFA345.ndi.NTamd64.HW]
+AddReg  = MSI.reg
+Include = netvwifibus.inf
+Needs   = PciASPMOptIn, VWiFiBus.PnPFilterRegistration
+
+[ATHR_DEV_OS63_988x_LE_NFA345_IPG.ndi.NTamd64]
+Characteristics = 0x84
+BusType         = 5
+AddReg          = atheros_os63.reg, atheros11n.reg, smpsDynamic.reg, qca_utf.reg, D0PC.reg, roam.reg, wmmac.reg, FW_20.reg, BD_NFA345_le.reg, TPCOffset_le_345.reg, TPC_Profile_LE_345.reg, resumeAsyncDlFw.reg, 11acUefi.reg, CoexConfig_le.reg, SetPCIECtrlRegOnAMD.reg, ClearPCIECtrlRegOnAMD.reg, enableLegacyBurst.reg, MAX_MSDU.reg ; Win10 only
+DelReg          = atheros.DelReg
+CopyFiles       = atheros.CopyFiles, atheros_FW.CopyFiles, atheros_BD_NFA345_le.CopyFiles
+*IfType         = 71        ; IF_TYPE_IEEE80211
+*MediaType      = 16        ; NdisMediumNative802_11
+*PhysicalMediaType = 9      ; NdisPhysicalMediumNative802_11
+Include         = machine.inf, netvwifibus.inf
+Needs           = VWiFiBus.CopyFiles
+
+[ATHR_DEV_OS63_988x_LE_NFA345_IPG.ndi.NTamd64.Services]
+AddService = Qcamain10x64, 2, atheros.Service, atheros.EventLog
+Include    = netvwifibus.inf
+Needs      = VWiFiBus.Services
+
+[ATHR_DEV_OS63_988x_LE_NFA345_IPG.ndi.NTamd64.HW]
+AddReg  = MSI.reg
+Include = netvwifibus.inf
+Needs   = PciASPMOptIn, VWiFiBus.PnPFilterRegistration
+
+[ATHR_DEV_OS63_988x_AC_NFA344.ndi.NTamd64]
+Characteristics = 0x84
+BusType         = 5
+AddReg          = atheros_os63.reg, atheros11n.reg, smpsDynamic.reg, qca_utf.reg, D0PC.reg, roam.reg, wmmac.reg, FW_20.reg, BD_NFA344.reg, enableIOACv20.reg, BandPrefer_WirelessMode.reg, GOTimeQuota.reg, SetPCIECtrlRegOnAMD.reg, enableLegacyBurst.reg, AdjustRSSI2.reg ; Win10 only
+DelReg          = atheros.DelReg
+CopyFiles       = atheros.CopyFiles, atheros_FW.CopyFiles, atheros_BD_NFA344.CopyFiles
+*IfType         = 71        ; IF_TYPE_IEEE80211
+*MediaType      = 16        ; NdisMediumNative802_11
+*PhysicalMediaType = 9      ; NdisPhysicalMediumNative802_11
+Include         = machine.inf, netvwifibus.inf
+Needs           = VWiFiBus.CopyFiles
+
+[ATHR_DEV_OS63_988x_AC_NFA344.ndi.NTamd64.Services]
+AddService = Qcamain10x64, 2, atheros.Service, atheros.EventLog
+Include    = netvwifibus.inf
+Needs      = VWiFiBus.Services
+
+[ATHR_DEV_OS63_988x_AC_NFA344.ndi.NTamd64.HW]
+AddReg  = MSI.reg
+Include = netvwifibus.inf
+Needs   = PciASPMOptIn, VWiFiBus.PnPFilterRegistration
+
+[ATHR_DEV_OS63_988x_AS_NFA344.ndi.NTamd64]
+Characteristics = 0x84
+BusType         = 5
+AddReg          = atheros_os63.reg, atheros11n.reg, smpsDynamic.reg, qca_utf.reg, D0PC.reg, roam.reg, wmmac.reg, FW_20.reg, BD_NFA344.reg, enableLegacyBurst.reg
+DelReg          = atheros.DelReg
+CopyFiles       = atheros.CopyFiles, atheros_FW.CopyFiles, atheros_BD_NFA344.CopyFiles
+*IfType         = 71        ; IF_TYPE_IEEE80211
+*MediaType      = 16        ; NdisMediumNative802_11
+*PhysicalMediaType = 9      ; NdisPhysicalMediumNative802_11
+Include         = machine.inf, netvwifibus.inf
+Needs           = VWiFiBus.CopyFiles
+
+[ATHR_DEV_OS63_988x_AS_NFA344.ndi.NTamd64.Services]
+AddService = Qcamain10x64, 2, atheros.Service, atheros.EventLog
+Include    = netvwifibus.inf
+Needs      = VWiFiBus.Services
+
+[ATHR_DEV_OS63_988x_AS_NFA344.ndi.NTamd64.HW]
+AddReg  = MSI.reg
+Include = netvwifibus.inf
+Needs   = PciASPMOptIn, VWiFiBus.PnPFilterRegistration
+
+[ATHR_DEV_OS63_988x_AS_NFA345.ndi.NTamd64]
+Characteristics = 0x84
+BusType         = 5
+AddReg          = atheros_os63.reg, atheros11n.reg, smpsDynamic.reg, qca_utf.reg, D0PC.reg, roam.reg, wmmac.reg, FW_20.reg, BD_NFA345.reg, enableLegacyBurst.reg
+DelReg          = atheros.DelReg
+CopyFiles       = atheros.CopyFiles, atheros_FW.CopyFiles, atheros_BD_NFA345.CopyFiles
+*IfType         = 71        ; IF_TYPE_IEEE80211
+*MediaType      = 16        ; NdisMediumNative802_11
+*PhysicalMediaType = 9      ; NdisPhysicalMediumNative802_11
+Include         = machine.inf, netvwifibus.inf
+Needs           = VWiFiBus.CopyFiles
+
+[ATHR_DEV_OS63_988x_AS_NFA345.ndi.NTamd64.Services]
+AddService = Qcamain10x64, 2, atheros.Service, atheros.EventLog
+Include    = netvwifibus.inf
+Needs      = VWiFiBus.Services
+
+[ATHR_DEV_OS63_988x_AS_NFA345.ndi.NTamd64.HW]
+AddReg  = MSI.reg
+Include = netvwifibus.inf
+Needs   = PciASPMOptIn, VWiFiBus.PnPFilterRegistration
+
+[ATHR_DEV_OS63_988x_ss_NFA354.ndi.NTamd64]
+Characteristics = 0x84
+BusType         = 5
+AddReg          = atheros_os63.reg, atheros11n.reg, smpsDynamic.reg, qca_utf.reg, D0PC.reg, roam.reg, wmmac.reg, ignore11denable.reg, FW_20.reg, BD_NFA354.reg, CoexConfig_ss.reg, TPC_Profile_SS.reg, D3TimingOpEnable_ss.reg, BandPrefer_WirelessMode.reg, ANI_Disable.reg, DYN_ANI_On_RTS.reg, BeLatency.reg, enableLegacyBurst.reg, enableSmbios.reg, DisableAmsdu.reg
+DelReg          = atheros.DelReg
+CopyFiles       = atheros.CopyFiles, atheros_FW.CopyFiles, atheros_BD_NFA354.CopyFiles, atheros_BD_NFA354_SS.CopyFiles
+*IfType         = 71        ; IF_TYPE_IEEE80211
+*MediaType      = 16        ; NdisMediumNative802_11
+*PhysicalMediaType = 9      ; NdisPhysicalMediumNative802_11
+Include         = machine.inf, netvwifibus.inf
+Needs           = VWiFiBus.CopyFiles
+
+[ATHR_DEV_OS63_988x_ss_NFA354.ndi.NTamd64.Services]
+AddService = Qcamain10x64, 2, atheros.Service, atheros.EventLog
+Include    = netvwifibus.inf
+Needs      = VWiFiBus.Services
+
+[ATHR_DEV_OS63_988x_ss_NFA354.ndi.NTamd64.HW]
+AddReg  = MSI.reg
+Include = netvwifibus.inf
+Needs   = PciASPMOptIn, VWiFiBus.PnPFilterRegistration
+
+[ATHR_DEV_OS63_988x_ss_NFA355.ndi.NTamd64]
+Characteristics = 0x84
+BusType         = 5
+AddReg          = atheros_os63.reg, atheros11n.reg, smpsDynamic.reg, qca_utf.reg, D0PC.reg, roam.reg, wmmac.reg, ignore11denable.reg, FW_20.reg, BD_NFA355.reg, CoexConfig_ss.reg, D3TimingOpEnable_ss.reg, BandPrefer_WirelessMode.reg, BeLatency.reg, enableLegacyBurst.reg, DisableAmsdu.reg
+DelReg          = atheros.DelReg
+CopyFiles       = atheros.CopyFiles, atheros_FW.CopyFiles, atheros_BD_NFA355.CopyFiles
+*IfType         = 71        ; IF_TYPE_IEEE80211
+*MediaType      = 16        ; NdisMediumNative802_11
+*PhysicalMediaType = 9      ; NdisPhysicalMediumNative802_11
+Include         = machine.inf, netvwifibus.inf
+Needs           = VWiFiBus.CopyFiles
+
+[ATHR_DEV_OS63_988x_ss_NFA355.ndi.NTamd64.Services]
+AddService = Qcamain10x64, 2, atheros.Service, atheros.EventLog
+Include    = netvwifibus.inf
+Needs      = VWiFiBus.Services
+
+[ATHR_DEV_OS63_988x_ss_NFA355.ndi.NTamd64.HW]
+AddReg  = MSI.reg
+Include = netvwifibus.inf
+Needs   = PciASPMOptIn, VWiFiBus.PnPFilterRegistration
+
+;;End of Rome 2.x Section
+
+;;Start of Tufello 1.0 Sections
+
+[ATHR_DEV_OS63_988x_NFA425_TF.ndi.NTamd64]
+Characteristics = 0x84
+BusType         = 5
+AddReg          = atheros_os63.reg, atheros11n.reg, qca_utf.reg, D0PC.reg, roam.reg, wmmac.reg, FW_TF.reg, BD_NFA425_TF.reg, enableTxbfee.reg, enableDVS.reg, enableVht2G.reg
+DelReg          = atheros.DelReg
+CopyFiles       = atheros.CopyFiles, atheros_FW_TF.CopyFiles, atheros_BD_NFA425_TF.CopyFiles
+*IfType         = 71        ; IF_TYPE_IEEE80211
+*MediaType      = 16        ; NdisMediumNative802_11
+*PhysicalMediaType = 9      ; NdisPhysicalMediumNative802_11
+Include         = machine.inf, netvwifibus.inf
+Needs           = VWiFiBus.CopyFiles
+
+[ATHR_DEV_OS63_988x_NFA425_TF.ndi.NTamd64.Services]
+AddService = Qcamain10x64, 2, atheros.Service, atheros.EventLog
+Include    = netvwifibus.inf
+Needs      = VWiFiBus.Services
+
+[ATHR_DEV_OS63_988x_NFA425_TF.ndi.NTamd64.HW]
+AddReg  = MSI.reg
+Include = netvwifibus.inf
+Needs   = PciASPMOptIn, VWiFiBus.PnPFilterRegistration
+
+[ATHR_DEV_OS63_988x_SS_NFA425_TF.ndi.NTamd64]
+Characteristics = 0x84
+BusType         = 5
+AddReg          = atheros_os63.reg, atheros11n.reg, qca_utf.reg, D0PC.reg, roam.reg, wmmac.reg, FW_TF.reg, BD_NFA425_TF.reg, enableTxbfee.reg, enableDVS.reg, enableSmbios.reg, enableVht2G.reg, DisableAmsdu.reg
+DelReg          = atheros.DelReg
+CopyFiles       = atheros.CopyFiles, atheros_FW_TF.CopyFiles, atheros_BD_NFA425_TF.CopyFiles
+*IfType         = 71        ; IF_TYPE_IEEE80211
+*MediaType      = 16        ; NdisMediumNative802_11
+*PhysicalMediaType = 9      ; NdisPhysicalMediumNative802_11
+Include         = machine.inf, netvwifibus.inf
+Needs           = VWiFiBus.CopyFiles
+
+[ATHR_DEV_OS63_988x_SS_NFA425_TF.ndi.NTamd64.Services]
+AddService = Qcamain10x64, 2, atheros.Service, atheros.EventLog
+Include    = netvwifibus.inf
+Needs      = VWiFiBus.Services
+
+[ATHR_DEV_OS63_988x_SS_NFA425_TF.ndi.NTamd64.HW]
+AddReg  = MSI.reg
+Include = netvwifibus.inf
+Needs   = PciASPMOptIn, VWiFiBus.PnPFilterRegistration
+
+[ATHR_DEV_OS63_988x_NFA435_TF.ndi.NTamd64]
+Characteristics = 0x84
+BusType         = 5
+AddReg          = atheros_os63.reg, atheros11n.reg, qca_utf.reg, D0PC.reg, roam.reg, wmmac.reg, FW_TF.reg, BD_NFA435_TF.reg, enableTxbfee.reg, enableDVS.reg, enableVht2G.reg
+DelReg          = atheros.DelReg
+CopyFiles       = atheros.CopyFiles, atheros_FW_TF.CopyFiles, atheros_BD_NFA435_TF.CopyFiles
+*IfType         = 71        ; IF_TYPE_IEEE80211
+*MediaType      = 16        ; NdisMediumNative802_11
+*PhysicalMediaType = 9      ; NdisPhysicalMediumNative802_11
+Include         = machine.inf, netvwifibus.inf
+Needs           = VWiFiBus.CopyFiles
+
+[ATHR_DEV_OS63_988x_NFA435_TF.ndi.NTamd64.Services]
+AddService = Qcamain10x64, 2, atheros.Service, atheros.EventLog
+Include    = netvwifibus.inf
+Needs      = VWiFiBus.Services
+
+[ATHR_DEV_OS63_988x_NFA435_TF.ndi.NTamd64.HW]
+AddReg  = MSI.reg
+Include = netvwifibus.inf
+Needs   = PciASPMOptIn, VWiFiBus.PnPFilterRegistration
+
+[ATHR_DEV_OS63_988x_SS_NFA435_TF.ndi.NTamd64]
+Characteristics = 0x84
+BusType         = 5
+AddReg          = atheros_os63.reg, atheros11n.reg, qca_utf.reg, D0PC.reg, roam.reg, wmmac.reg, FW_TF.reg, BD_NFA435_TF.reg, enableTxbfee.reg, enableDVS.reg, BandPrefer_WirelessMode.reg, enableVht2G.reg, DisableAmsdu.reg
+DelReg          = atheros.DelReg
+CopyFiles       = atheros.CopyFiles, atheros_FW_TF.CopyFiles, atheros_BD_NFA435_TF.CopyFiles
+*IfType         = 71        ; IF_TYPE_IEEE80211
+*MediaType      = 16        ; NdisMediumNative802_11
+*PhysicalMediaType = 9      ; NdisPhysicalMediumNative802_11
+Include         = machine.inf, netvwifibus.inf
+Needs           = VWiFiBus.CopyFiles
+
+[ATHR_DEV_OS63_988x_SS_NFA435_TF.ndi.NTamd64.Services]
+AddService = Qcamain10x64, 2, atheros.Service, atheros.EventLog
+Include    = netvwifibus.inf
+Needs      = VWiFiBus.Services
+
+[ATHR_DEV_OS63_988x_SS_NFA435_TF.ndi.NTamd64.HW]
+AddReg  = MSI.reg
+Include = netvwifibus.inf
+Needs   = PciASPMOptIn, VWiFiBus.PnPFilterRegistration
+
+[ATHR_DEV_OS63_988x_SS_NFA455_TF.ndi.NTamd64]
+Characteristics = 0x84
+BusType         = 5
+AddReg          = atheros_os63.reg, atheros11n.reg, qca_utf.reg, D0PC.reg, roam.reg, wmmac.reg, FW_TF.reg, BD_NFA455_TF.reg, enableTxbfee.reg, enableDVS.reg, CoexConfig_ss.reg, BandPrefer_WirelessMode.reg, enableVht2G.reg, DisableAmsdu.reg
+DelReg          = atheros.DelReg
+CopyFiles       = atheros.CopyFiles, atheros_FW_TF.CopyFiles, atheros_BD_NFA455_TF.CopyFiles
+*IfType         = 71        ; IF_TYPE_IEEE80211
+*MediaType      = 16        ; NdisMediumNative802_11
+*PhysicalMediaType = 9      ; NdisPhysicalMediumNative802_11
+Include         = machine.inf, netvwifibus.inf
+Needs           = VWiFiBus.CopyFiles
+
+[ATHR_DEV_OS63_988x_SS_NFA455_TF.ndi.NTamd64.Services]
+AddService = Qcamain10x64, 2, atheros.Service, atheros.EventLog
+Include    = netvwifibus.inf
+Needs      = VWiFiBus.Services
+
+[ATHR_DEV_OS63_988x_SS_NFA455_TF.ndi.NTamd64.HW]
+AddReg  = MSI.reg
+Include = netvwifibus.inf
+Needs   = PciASPMOptIn, VWiFiBus.PnPFilterRegistration
+
+[ATHR_DEV_OS63_988x_AC_NFA435_TF.ndi.NTamd64]
+Characteristics = 0x84
+BusType         = 5
+AddReg          = atheros_os63.reg, atheros11n.reg, qca_utf.reg, D0PC.reg, roam.reg, wmmac.reg, FW_TF.reg, BD_NFA435_TF.reg, enableTxbfee.reg, enableDVS.reg, SetPCIECtrlRegOnAMD.reg, ClearPCIECtrlRegOnAMD.reg, enableVht2G.reg, BandPrefer_WirelessMode.reg, enableSmbios.reg, AdjustRSSI2.reg ; Win10 only 1
+DelReg          = atheros.DelReg
+CopyFiles       = atheros.CopyFiles, atheros_FW_TF.CopyFiles, atheros_BD_NFA435_TF.CopyFiles
+*IfType         = 71        ; IF_TYPE_IEEE80211
+*MediaType      = 16        ; NdisMediumNative802_11
+*PhysicalMediaType = 9      ; NdisPhysicalMediumNative802_11
+Include         = machine.inf, netvwifibus.inf
+Needs           = VWiFiBus.CopyFiles
+
+[ATHR_DEV_OS63_988x_AC_NFA435_TF.ndi.NTamd64.Services]
+AddService = Qcamain10x64, 2, atheros.Service, atheros.EventLog
+Include    = netvwifibus.inf
+Needs      = VWiFiBus.Services
+
+[ATHR_DEV_OS63_988x_AC_NFA435_TF.ndi.NTamd64.HW]
+AddReg  = MSI.reg
+Include = netvwifibus.inf
+Needs   = PciASPMOptIn, VWiFiBus.PnPFilterRegistration
+
+[ATHR_DEV_OS63_988x_LE_NFA435_TF.ndi.NTamd64]
+Characteristics = 0x84
+BusType         = 5
+AddReg          = atheros_os63.reg, atheros11n.reg, qca_utf.reg, D0PC.reg, roam.reg, wmmac.reg, FW_TF.reg, BD_NFA435_TF.reg, enableTxbfee.reg, enableDVS.reg, enableTTA.reg, 11acUefi.reg, TPC_Profile_NFA435_LE.reg, SetPCIECtrlRegOnAMD.reg, ClearPCIECtrlRegOnAMD.reg, enableVht2G.reg, stbcTxbfWar.reg, BdfExtPerUEFI.reg, WarScanAfterRadioOn.reg, enableLegacyBurst.reg, DPC_Core_2.reg ; Win10 only 4
+DelReg          = atheros.DelReg
+CopyFiles       = atheros.CopyFiles, atheros_FW_TF.CopyFiles, atheros_BD_NFA435_TF.CopyFiles, atheros_BD_NFA435_TF_LE.CopyFiles
+*IfType         = 71        ; IF_TYPE_IEEE80211
+*MediaType      = 16        ; NdisMediumNative802_11
+*PhysicalMediaType = 9      ; NdisPhysicalMediumNative802_11
+Include         = machine.inf, netvwifibus.inf
+Needs           = VWiFiBus.CopyFiles
+
+[ATHR_DEV_OS63_988x_LE_NFA435_TF.ndi.NTamd64.Services]
+AddService = Qcamain10x64, 2, atheros.Service, atheros.EventLog
+Include    = netvwifibus.inf
+Needs      = VWiFiBus.Services
+
+[ATHR_DEV_OS63_988x_LE_NFA435_TF.ndi.NTamd64.HW]
+AddReg  = MSI.reg
+Include = netvwifibus.inf
+Needs   = PciASPMOptIn, VWiFiBus.PnPFilterRegistration
+
+[ATHR_DEV_OS63_988x_AS_NFA435_TF.ndi.NTamd64]
+Characteristics = 0x84
+BusType         = 5
+AddReg          = atheros_os63.reg, atheros11n.reg, qca_utf.reg, D0PC.reg, roam.reg, wmmac.reg, FW_TF.reg, BD_NFA435_TF_A.reg, enableTxbfee.reg, enableDVS.reg, wowEnable.reg, TPC_Profile_NFA435_AS.reg, enableVht2G.reg, serviceMonWlan.reg
+DelReg          = atheros.DelReg
+CopyFiles       = atheros.CopyFiles, atheros_FW_TF.CopyFiles, atheros_BD_NFA435_TF_A.CopyFiles
+*IfType         = 71        ; IF_TYPE_IEEE80211
+*MediaType      = 16        ; NdisMediumNative802_11
+*PhysicalMediaType = 9      ; NdisPhysicalMediumNative802_11
+Include         = machine.inf, netvwifibus.inf
+Needs           = VWiFiBus.CopyFiles
+
+[ATHR_DEV_OS63_988x_AS_NFA435_TF.ndi.NTamd64.Services]
+AddService = Qcamain10x64, 2, atheros.Service, atheros.EventLog
+Include    = netvwifibus.inf
+Needs      = VWiFiBus.Services
+
+[ATHR_DEV_OS63_988x_AS_NFA435_TF.ndi.NTamd64.HW]
+AddReg  = MSI.reg
+Include = netvwifibus.inf
+Needs   = PciASPMOptIn, VWiFiBus.PnPFilterRegistration
+
+[ATHR_DEV_OS63_988x_AS_NFA435_2_TF.ndi.NTamd64]
+Characteristics = 0x84
+BusType         = 5
+AddReg          = atheros_os63.reg, atheros11n.reg, qca_utf.reg, D0PC.reg, roam.reg, wmmac.reg, FW_TF.reg, BD_NFA435_TF_A.reg, enableTxbfee.reg, enableDVS.reg, wowEnable.reg, TPC_Profile_NFA435_AS.reg, enableVht2G.reg, serviceMonWlan.reg, SetPCIECtrlRegOnAMD.reg, ClearPCIECtrlRegOnAMD.reg, enableHwRfKill.reg ; Win8 Win10 only
+DelReg          = atheros.DelReg
+CopyFiles       = atheros.CopyFiles, atheros_FW_TF.CopyFiles, atheros_BD_NFA435_TF_A.CopyFiles
+*IfType         = 71        ; IF_TYPE_IEEE80211
+*MediaType      = 16        ; NdisMediumNative802_11
+*PhysicalMediaType = 9      ; NdisPhysicalMediumNative802_11
+Include         = machine.inf, netvwifibus.inf
+Needs           = VWiFiBus.CopyFiles
+
+[ATHR_DEV_OS63_988x_AS_NFA435_2_TF.ndi.NTamd64.Services]
+AddService = Qcamain10x64, 2, atheros.Service, atheros.EventLog
+Include    = netvwifibus.inf
+Needs      = VWiFiBus.Services
+
+[ATHR_DEV_OS63_988x_AS_NFA435_2_TF.ndi.NTamd64.HW]
+AddReg  = MSI.reg
+Include = netvwifibus.inf
+Needs   = PciASPMOptIn, VWiFiBus.PnPFilterRegistration
+
+[ATHR_DEV_OS63_988x_AS_NFA435_SGL_TF.ndi.NTamd64]
+Characteristics = 0x84
+BusType         = 5
+AddReg          = atheros_os63.reg, atheros11n.reg, qca_utf.reg, D0PC.reg, roam.reg, wmmac.reg, FW_TF.reg, BD_NFA435_TF_A.reg, enableTxbfee.reg, wowEnable.reg, TPC_Profile_NFA435_AS.reg, enableVht2G.reg, serviceMonWlan.reg, SetPCIECtrlRegOnAMD.reg, ClearPCIECtrlRegOnAMD.reg, enableHwRfKill.reg ; Win8 Win10 only
+DelReg          = atheros.DelReg
+CopyFiles       = atheros.CopyFiles, atheros_FW_TF.CopyFiles, atheros_BD_NFA435_TF_A.CopyFiles
+*IfType         = 71        ; IF_TYPE_IEEE80211
+*MediaType      = 16        ; NdisMediumNative802_11
+*PhysicalMediaType = 9      ; NdisPhysicalMediumNative802_11
+Include         = machine.inf, netvwifibus.inf
+Needs           = VWiFiBus.CopyFiles
+
+[ATHR_DEV_OS63_988x_AS_NFA435_SGL_TF.ndi.NTamd64.Services]
+AddService = Qcamain10x64, 2, atheros.Service, atheros.EventLog
+Include    = netvwifibus.inf
+Needs      = VWiFiBus.Services
+
+[ATHR_DEV_OS63_988x_AS_NFA435_SGL_TF.ndi.NTamd64.HW]
+AddReg  = MSI.reg
+Include = netvwifibus.inf
+Needs   = PciASPMOptIn, VWiFiBus.PnPFilterRegistration
+
+[ATHR_DEV_OS63_988x_AS_NFA435_SGL_CS_TF.ndi.NTamd64]
+Characteristics = 0x84
+BusType         = 5
+AddReg          = atheros_os63.reg, atheros11n.reg, qca_utf.reg, D0PC.reg, roam.reg, wmmac.reg, FW_TF.reg, BD_NFA435_TF_A.reg, enableTxbfee.reg, wowEnable.reg, TPC_Profile_NFA435_AS.reg, enableVht2G.reg, serviceMonWlan.reg, EnableModulatedDTIM3.reg, SetPCIECtrlRegOnAMD.reg, ClearPCIECtrlRegOnAMD.reg, enableHwRfKill.reg ; Win8 Win10 only
+DelReg          = atheros.DelReg
+CopyFiles       = atheros.CopyFiles, atheros_FW_TF.CopyFiles, atheros_BD_NFA435_TF_A.CopyFiles
+*IfType         = 71        ; IF_TYPE_IEEE80211
+*MediaType      = 16        ; NdisMediumNative802_11
+*PhysicalMediaType = 9      ; NdisPhysicalMediumNative802_11
+Include         = machine.inf, netvwifibus.inf
+Needs           = VWiFiBus.CopyFiles
+
+[ATHR_DEV_OS63_988x_AS_NFA435_SGL_CS_TF.ndi.NTamd64.Services]
+AddService = Qcamain10x64, 2, atheros.Service, atheros.EventLog
+Include    = netvwifibus.inf
+Needs      = VWiFiBus.Services
+
+[ATHR_DEV_OS63_988x_AS_NFA435_SGL_CS_TF.ndi.NTamd64.HW]
+AddReg  = MSI.reg
+Include = netvwifibus.inf
+Needs   = PciASPMOptIn, VWiFiBus.PnPFilterRegistration
+
+;;End of Tufello 1.0 Sections
+
+;;Start of Tufello 1.1 Sections
+
+[ATHR_DEV_OS63_988x_NFA425_TF11.ndi.NTamd64]
+Characteristics = 0x84
+BusType         = 5
+AddReg          = atheros_os63.reg, atheros11n.reg, qca_utf.reg, D0PC.reg, roam.reg, wmmac.reg, FW_TF.reg, BD_NFA425_TF11.reg, enableTxbfee.reg, enableDVS.reg, enableVht2G.reg
+DelReg          = atheros.DelReg
+CopyFiles       = atheros.CopyFiles, atheros_FW_TF.CopyFiles, atheros_BD_NFA425_TF11.CopyFiles
+*IfType         = 71        ; IF_TYPE_IEEE80211
+*MediaType      = 16        ; NdisMediumNative802_11
+*PhysicalMediaType = 9      ; NdisPhysicalMediumNative802_11
+Include         = machine.inf, netvwifibus.inf
+Needs           = VWiFiBus.CopyFiles
+
+[ATHR_DEV_OS63_988x_NFA425_TF11.ndi.NTamd64.Services]
+AddService = Qcamain10x64, 2, atheros.Service, atheros.EventLog
+Include    = netvwifibus.inf
+Needs      = VWiFiBus.Services
+
+[ATHR_DEV_OS63_988x_NFA425_TF11.ndi.NTamd64.HW]
+AddReg  = MSI.reg
+Include = netvwifibus.inf
+Needs   = PciASPMOptIn, VWiFiBus.PnPFilterRegistration
+
+[ATHR_DEV_OS63_988x_LE_NFA425_TF11.ndi.NTamd64]
+Characteristics = 0x84
+BusType         = 5
+AddReg          = atheros_os63.reg, atheros11n.reg, qca_utf.reg, D0PC.reg, roam.reg, wmmac.reg, FW_TF.reg, BD_NFA425_TF11.reg, enableTxbfee.reg, enableDVS.reg, enableTTA.reg, SetPCIECtrlRegOnAMD.reg, ClearPCIECtrlRegOnAMD.reg, enableVht2G.reg, stbcTxbfWar.reg, enableLegacyBurst.reg, wowEnable.reg, 11acUefi.reg, DPC_Core_2.reg; Win10 only 2
+DelReg          = atheros.DelReg
+CopyFiles       = atheros.CopyFiles, atheros_FW_TF.CopyFiles, atheros_BD_NFA425_TF11.CopyFiles
+*IfType         = 71        ; IF_TYPE_IEEE80211
+*MediaType      = 16        ; NdisMediumNative802_11
+*PhysicalMediaType = 9      ; NdisPhysicalMediumNative802_11
+Include         = machine.inf, netvwifibus.inf
+Needs           = VWiFiBus.CopyFiles
+
+[ATHR_DEV_OS63_988x_LE_NFA425_TF11.ndi.NTamd64.Services]
+AddService = Qcamain10x64, 2, atheros.Service, atheros.EventLog
+Include    = netvwifibus.inf
+Needs      = VWiFiBus.Services
+
+[ATHR_DEV_OS63_988x_LE_NFA425_TF11.ndi.NTamd64.HW]
+AddReg  = MSI.reg
+Include = netvwifibus.inf
+Needs   = PciASPMOptIn, VWiFiBus.PnPFilterRegistration
+
+[ATHR_DEV_OS63_988x_AC_NFA425_TF11.ndi.NTamd64]
+Characteristics = 0x84
+BusType         = 5
+AddReg          = atheros_os63.reg, atheros11n.reg, qca_utf.reg, D0PC.reg, roam.reg, wmmac.reg, FW_TF.reg, BD_NFA425_TF11.reg, enableTxbfee.reg, enableDVS.reg, enableVht2G.reg, BandPrefer_WirelessMode.reg, CtlPerUEFI.reg, AdjustRSSI2.reg ; Win10 only 2 reg
+DelReg          = atheros.DelReg
+CopyFiles       = atheros.CopyFiles, atheros_FW_TF.CopyFiles, atheros_BD_NFA425_TF11.CopyFiles
+*IfType         = 71        ; IF_TYPE_IEEE80211
+*MediaType      = 16        ; NdisMediumNative802_11
+*PhysicalMediaType = 9      ; NdisPhysicalMediumNative802_11
+Include         = machine.inf, netvwifibus.inf
+Needs           = VWiFiBus.CopyFiles
+
+[ATHR_DEV_OS63_988x_AC_NFA425_TF11.ndi.NTamd64.Services]
+AddService = Qcamain10x64, 2, atheros.Service, atheros.EventLog
+Include    = netvwifibus.inf
+Needs      = VWiFiBus.Services
+
+[ATHR_DEV_OS63_988x_AC_NFA425_TF11.ndi.NTamd64.HW]
+AddReg  = MSI.reg
+Include = netvwifibus.inf
+Needs   = PciASPMOptIn, VWiFiBus.PnPFilterRegistration
+
+[ATHR_DEV_OS63_988x_NFA425_SGL_TF11.ndi.NTamd64]
+Characteristics = 0x84
+BusType         = 5
+AddReg          = atheros_os63.reg, atheros11n.reg, qca_utf.reg, D0PC.reg, roam.reg, wmmac.reg, FW_TF.reg, BD_NFA425_TF11.reg, enableTxbfee.reg, enableVht2G.reg
+DelReg          = atheros.DelReg
+CopyFiles       = atheros.CopyFiles, atheros_FW_TF.CopyFiles, atheros_BD_NFA425_TF11.CopyFiles
+*IfType         = 71        ; IF_TYPE_IEEE80211
+*MediaType      = 16        ; NdisMediumNative802_11
+*PhysicalMediaType = 9      ; NdisPhysicalMediumNative802_11
+Include         = machine.inf, netvwifibus.inf
+Needs           = VWiFiBus.CopyFiles
+
+[ATHR_DEV_OS63_988x_NFA425_SGL_TF11.ndi.NTamd64.Services]
+AddService = Qcamain10x64, 2, atheros.Service, atheros.EventLog
+Include    = netvwifibus.inf
+Needs      = VWiFiBus.Services
+
+[ATHR_DEV_OS63_988x_NFA425_SGL_TF11.ndi.NTamd64.HW]
+AddReg  = MSI.reg
+Include = netvwifibus.inf
+Needs   = PciASPMOptIn, VWiFiBus.PnPFilterRegistration
+
+[ATHR_DEV_OS63_988x_SS_NFA425_TF11.ndi.NTamd64]
+Characteristics = 0x84
+BusType         = 5
+AddReg          = atheros_os63.reg, atheros11n.reg, qca_utf.reg, D0PC.reg, roam.reg, wmmac.reg, FW_TF.reg, BD_NFA425_TF11.reg, enableTxbfee.reg, enableDVS.reg, enableSmbios.reg, enableVht2G.reg, DisableAmsdu.reg
+DelReg          = atheros.DelReg
+CopyFiles       = atheros.CopyFiles, atheros_FW_TF.CopyFiles, atheros_BD_NFA425_TF11.CopyFiles
+*IfType         = 71        ; IF_TYPE_IEEE80211
+*MediaType      = 16        ; NdisMediumNative802_11
+*PhysicalMediaType = 9      ; NdisPhysicalMediumNative802_11
+Include         = machine.inf, netvwifibus.inf
+Needs           = VWiFiBus.CopyFiles
+
+[ATHR_DEV_OS63_988x_SS_NFA425_TF11.ndi.NTamd64.Services]
+AddService = Qcamain10x64, 2, atheros.Service, atheros.EventLog
+Include    = netvwifibus.inf
+Needs      = VWiFiBus.Services
+
+[ATHR_DEV_OS63_988x_SS_NFA425_TF11.ndi.NTamd64.HW]
+AddReg  = MSI.reg
+Include = netvwifibus.inf
+Needs   = PciASPMOptIn, VWiFiBus.PnPFilterRegistration
+
+[ATHR_DEV_OS63_988x_AS_NFA425_TF11.ndi.NTamd64]
+Characteristics = 0x84
+BusType         = 5
+AddReg          = atheros_os63.reg, atheros11n.reg, qca_utf.reg, D0PC.reg, roam.reg, wmmac.reg, FW_TF.reg, BD_NFA425_TF11_A.reg, enableTxbfee.reg, enableDVS.reg, wowEnable.reg, enableVht2G.reg, serviceMonWlan.reg
+DelReg          = atheros.DelReg
+CopyFiles       = atheros.CopyFiles, atheros_FW_TF.CopyFiles, atheros_BD_NFA425_TF11_A.CopyFiles
+*IfType         = 71        ; IF_TYPE_IEEE80211
+*MediaType      = 16        ; NdisMediumNative802_11
+*PhysicalMediaType = 9      ; NdisPhysicalMediumNative802_11
+Include         = machine.inf, netvwifibus.inf
+Needs           = VWiFiBus.CopyFiles
+
+[ATHR_DEV_OS63_988x_AS_NFA425_TF11.ndi.NTamd64.Services]
+AddService = Qcamain10x64, 2, atheros.Service, atheros.EventLog
+Include    = netvwifibus.inf
+Needs      = VWiFiBus.Services
+
+[ATHR_DEV_OS63_988x_AS_NFA425_TF11.ndi.NTamd64.HW]
+AddReg  = MSI.reg
+Include = netvwifibus.inf
+Needs   = PciASPMOptIn, VWiFiBus.PnPFilterRegistration
+
+[ATHR_DEV_OS63_988x_AS_NFA425_2_TF11.ndi.NTamd64]
+Characteristics = 0x84
+BusType         = 5
+AddReg          = atheros_os63.reg, atheros11n.reg, qca_utf.reg, D0PC.reg, roam.reg, wmmac.reg, FW_TF.reg, BD_NFA425_TF11_A.reg, enableTxbfee.reg, enableDVS.reg, wowEnable.reg, enableVht2G.reg, serviceMonWlan.reg, enableSmbios.reg
+DelReg          = atheros.DelReg
+CopyFiles       = atheros.CopyFiles, atheros_FW_TF.CopyFiles, atheros_BD_NFA425_TF11_A.CopyFiles
+*IfType         = 71        ; IF_TYPE_IEEE80211
+*MediaType      = 16        ; NdisMediumNative802_11
+*PhysicalMediaType = 9      ; NdisPhysicalMediumNative802_11
+Include         = machine.inf, netvwifibus.inf
+Needs           = VWiFiBus.CopyFiles
+
+[ATHR_DEV_OS63_988x_AS_NFA425_2_TF11.ndi.NTamd64.Services]
+AddService = Qcamain10x64, 2, atheros.Service, atheros.EventLog
+Include    = netvwifibus.inf
+Needs      = VWiFiBus.Services
+
+[ATHR_DEV_OS63_988x_AS_NFA425_2_TF11.ndi.NTamd64.HW]
+AddReg  = MSI.reg
+Include = netvwifibus.inf
+Needs   = PciASPMOptIn, VWiFiBus.PnPFilterRegistration
+
+[ATHR_DEV_OS63_988x_AS_NFA425_SGL_TF11.ndi.NTamd64]
+Characteristics = 0x84
+BusType         = 5
+AddReg          = atheros_os63.reg, atheros11n.reg, qca_utf.reg, D0PC.reg, roam.reg, wmmac.reg, FW_TF.reg, BD_NFA425_TF11_A.reg, enableTxbfee.reg, wowEnable.reg, enableVht2G.reg, serviceMonWlan.reg, enableHwRfKill.reg ; Win8 Win10 only
+DelReg          = atheros.DelReg
+CopyFiles       = atheros.CopyFiles, atheros_FW_TF.CopyFiles, atheros_BD_NFA425_TF11_A.CopyFiles
+*IfType         = 71        ; IF_TYPE_IEEE80211
+*MediaType      = 16        ; NdisMediumNative802_11
+*PhysicalMediaType = 9      ; NdisPhysicalMediumNative802_11
+Include         = machine.inf, netvwifibus.inf
+Needs           = VWiFiBus.CopyFiles
+
+[ATHR_DEV_OS63_988x_AS_NFA425_SGL_TF11.ndi.NTamd64.Services]
+AddService = Qcamain10x64, 2, atheros.Service, atheros.EventLog
+Include    = netvwifibus.inf
+Needs      = VWiFiBus.Services
+
+[ATHR_DEV_OS63_988x_AS_NFA425_SGL_TF11.ndi.NTamd64.HW]
+AddReg  = MSI.reg
+Include = netvwifibus.inf
+Needs   = PciASPMOptIn, VWiFiBus.PnPFilterRegistration
+
+[ATHR_DEV_OS63_988x_AS_NFA425_2_SGL_TF11.ndi.NTamd64]
+Characteristics = 0x84
+BusType         = 5
+AddReg          = atheros_os63.reg, atheros11n.reg, qca_utf.reg, D0PC.reg, roam.reg, wmmac.reg, FW_TF.reg, BD_NFA425_TF11_A.reg, enableTxbfee.reg, wowEnable.reg, enableVht2G.reg, serviceMonWlan.reg, enableSmbios.reg, enableHwRfKill.reg ; Win8 Win10 only
+DelReg          = atheros.DelReg
+CopyFiles       = atheros.CopyFiles, atheros_FW_TF.CopyFiles, atheros_BD_NFA425_TF11_A.CopyFiles
+*IfType         = 71        ; IF_TYPE_IEEE80211
+*MediaType      = 16        ; NdisMediumNative802_11
+*PhysicalMediaType = 9      ; NdisPhysicalMediumNative802_11
+Include         = machine.inf, netvwifibus.inf
+Needs           = VWiFiBus.CopyFiles
+
+[ATHR_DEV_OS63_988x_AS_NFA425_2_SGL_TF11.ndi.NTamd64.Services]
+AddService = Qcamain10x64, 2, atheros.Service, atheros.EventLog
+Include    = netvwifibus.inf
+Needs      = VWiFiBus.Services
+
+[ATHR_DEV_OS63_988x_AS_NFA425_2_SGL_TF11.ndi.NTamd64.HW]
+AddReg  = MSI.reg
+Include = netvwifibus.inf
+Needs   = PciASPMOptIn, VWiFiBus.PnPFilterRegistration
+
+[ATHR_DEV_OS63_988x_AS_NFA425_3_SGL_TF11.ndi.NTamd64]
+Characteristics = 0x84
+BusType         = 5
+AddReg          = atheros_os63.reg, atheros11n.reg, qca_utf.reg, D0PC.reg, roam.reg, wmmac.reg, FW_TF.reg, BD_NFA425_TF11_A.reg, enableTxbfee.reg, wowEnable.reg, enableVht2G.reg, serviceMonWlan.reg, enableSmbios.reg, enableHwRfKill.reg ; Win8 Win10 only
+DelReg          = atheros.DelReg
+CopyFiles       = atheros.CopyFiles, atheros_FW_TF.CopyFiles, atheros_BD_NFA425_TF11_A.CopyFiles, atheros_BD_NFA425_TF11_A_low.CopyFiles
+*IfType         = 71        ; IF_TYPE_IEEE80211
+*MediaType      = 16        ; NdisMediumNative802_11
+*PhysicalMediaType = 9      ; NdisPhysicalMediumNative802_11
+Include         = machine.inf, netvwifibus.inf
+Needs           = VWiFiBus.CopyFiles
+
+[ATHR_DEV_OS63_988x_AS_NFA425_3_SGL_TF11.ndi.NTamd64.Services]
+AddService = Qcamain10x64, 2, atheros.Service, atheros.EventLog
+Include    = netvwifibus.inf
+Needs      = VWiFiBus.Services
+
+[ATHR_DEV_OS63_988x_AS_NFA425_3_SGL_TF11.ndi.NTamd64.HW]
+AddReg  = MSI.reg
+Include = netvwifibus.inf
+Needs   = PciASPMOptIn, VWiFiBus.PnPFilterRegistration
+
+[ATHR_DEV_OS63_988x_NFA435_TF11.ndi.NTamd64]
+Characteristics = 0x84
+BusType         = 5
+AddReg          = atheros_os63.reg, atheros11n.reg, qca_utf.reg, D0PC.reg, roam.reg, wmmac.reg, FW_TF.reg, BD_NFA435_TF11.reg, enableTxbfee.reg, enableDVS.reg, enableVht2G.reg
+DelReg          = atheros.DelReg
+CopyFiles       = atheros.CopyFiles, atheros_FW_TF.CopyFiles, atheros_BD_NFA435_TF11.CopyFiles
+*IfType         = 71        ; IF_TYPE_IEEE80211
+*MediaType      = 16        ; NdisMediumNative802_11
+*PhysicalMediaType = 9      ; NdisPhysicalMediumNative802_11
+Include         = machine.inf, netvwifibus.inf
+Needs           = VWiFiBus.CopyFiles
+
+[ATHR_DEV_OS63_988x_NFA435_TF11.ndi.NTamd64.Services]
+AddService = Qcamain10x64, 2, atheros.Service, atheros.EventLog
+Include    = netvwifibus.inf
+Needs      = VWiFiBus.Services
+
+[ATHR_DEV_OS63_988x_NFA435_TF11.ndi.NTamd64.HW]
+AddReg  = MSI.reg
+Include = netvwifibus.inf
+Needs   = PciASPMOptIn, VWiFiBus.PnPFilterRegistration
+
+[ATHR_DEV_OS63_988x_NFA435_SGL_TF11.ndi.NTamd64]
+Characteristics = 0x84
+BusType         = 5
+AddReg          = atheros_os63.reg, atheros11n.reg, qca_utf.reg, D0PC.reg, roam.reg, wmmac.reg, FW_TF.reg, BD_NFA435_TF11.reg, enableTxbfee.reg, enableVht2G.reg
+DelReg          = atheros.DelReg
+CopyFiles       = atheros.CopyFiles, atheros_FW_TF.CopyFiles, atheros_BD_NFA435_TF11.CopyFiles
+*IfType         = 71        ; IF_TYPE_IEEE80211
+*MediaType      = 16        ; NdisMediumNative802_11
+*PhysicalMediaType = 9      ; NdisPhysicalMediumNative802_11
+Include         = machine.inf, netvwifibus.inf
+Needs           = VWiFiBus.CopyFiles
+
+[ATHR_DEV_OS63_988x_NFA435_SGL_TF11.ndi.NTamd64.Services]
+AddService = Qcamain10x64, 2, atheros.Service, atheros.EventLog
+Include    = netvwifibus.inf
+Needs      = VWiFiBus.Services
+
+[ATHR_DEV_OS63_988x_NFA435_SGL_TF11.ndi.NTamd64.HW]
+AddReg  = MSI.reg
+Include = netvwifibus.inf
+Needs   = PciASPMOptIn, VWiFiBus.PnPFilterRegistration
+
+[ATHR_DEV_OS63_988x_SS_NFA435_TF11.ndi.NTamd64]
+Characteristics = 0x84
+BusType         = 5
+AddReg          = atheros_os63.reg, atheros11n.reg, qca_utf.reg, D0PC.reg, roam.reg, wmmac.reg, FW_TF.reg, BD_NFA435_TF11.reg, enableTxbfee.reg, enableDVS.reg, BandPrefer_WirelessMode.reg, enableVht2G.reg, DisableAmsdu.reg
+DelReg          = atheros.DelReg
+CopyFiles       = atheros.CopyFiles, atheros_FW_TF.CopyFiles, atheros_BD_NFA435_TF11.CopyFiles
+*IfType         = 71        ; IF_TYPE_IEEE80211
+*MediaType      = 16        ; NdisMediumNative802_11
+*PhysicalMediaType = 9      ; NdisPhysicalMediumNative802_11
+Include         = machine.inf, netvwifibus.inf
+Needs           = VWiFiBus.CopyFiles
+
+[ATHR_DEV_OS63_988x_SS_NFA435_TF11.ndi.NTamd64.Services]
+AddService = Qcamain10x64, 2, atheros.Service, atheros.EventLog
+Include    = netvwifibus.inf
+Needs      = VWiFiBus.Services
+
+[ATHR_DEV_OS63_988x_SS_NFA435_TF11.ndi.NTamd64.HW]
+AddReg  = MSI.reg
+Include = netvwifibus.inf
+Needs   = PciASPMOptIn, VWiFiBus.PnPFilterRegistration
+
+[ATHR_DEV_OS63_988x_SS_NFA455_TF11.ndi.NTamd64]
+Characteristics = 0x84
+BusType         = 5
+AddReg          = atheros_os63.reg, atheros11n.reg, qca_utf.reg, D0PC.reg, roam.reg, wmmac.reg, FW_TF.reg, BD_NFA435_TF11.reg, enableTxbfee.reg, enableDVS.reg, CoexConfig_ss.reg, BandPrefer_WirelessMode.reg, enableVht2G.reg, DisableAmsdu.reg
+DelReg          = atheros.DelReg
+CopyFiles       = atheros.CopyFiles, atheros_FW_TF.CopyFiles, atheros_BD_NFA435_TF11.CopyFiles
+*IfType         = 71        ; IF_TYPE_IEEE80211
+*MediaType      = 16        ; NdisMediumNative802_11
+*PhysicalMediaType = 9      ; NdisPhysicalMediumNative802_11
+Include         = machine.inf, netvwifibus.inf
+Needs           = VWiFiBus.CopyFiles
+
+[ATHR_DEV_OS63_988x_SS_NFA455_TF11.ndi.NTamd64.Services]
+AddService = Qcamain10x64, 2, atheros.Service, atheros.EventLog
+Include    = netvwifibus.inf
+Needs      = VWiFiBus.Services
+
+[ATHR_DEV_OS63_988x_SS_NFA455_TF11.ndi.NTamd64.HW]
+AddReg  = MSI.reg
+Include = netvwifibus.inf
+Needs   = PciASPMOptIn, VWiFiBus.PnPFilterRegistration
+
+[ATHR_DEV_OS63_988x_AC_NFA435_TF11.ndi.NTamd64]
+Characteristics = 0x84
+BusType         = 5
+AddReg          = atheros_os63.reg, atheros11n.reg, qca_utf.reg, D0PC.reg, roam.reg, wmmac.reg, FW_TF.reg, BD_NFA435_TF11.reg, enableTxbfee.reg, enableDVS.reg, SetPCIECtrlRegOnAMD.reg, ClearPCIECtrlRegOnAMD.reg, enableVht2G.reg, BandPrefer_WirelessMode.reg, enableSmbios.reg, CtlPerUEFI.reg, AdjustRSSI2.reg ; Win10 only 2
+DelReg          = atheros.DelReg
+CopyFiles       = atheros.CopyFiles, atheros_FW_TF.CopyFiles, atheros_BD_NFA435_TF11.CopyFiles
+*IfType         = 71        ; IF_TYPE_IEEE80211
+*MediaType      = 16        ; NdisMediumNative802_11
+*PhysicalMediaType = 9      ; NdisPhysicalMediumNative802_11
+Include         = machine.inf, netvwifibus.inf
+Needs           = VWiFiBus.CopyFiles
+
+[ATHR_DEV_OS63_988x_AC_NFA435_TF11.ndi.NTamd64.Services]
+AddService = Qcamain10x64, 2, atheros.Service, atheros.EventLog
+Include    = netvwifibus.inf
+Needs      = VWiFiBus.Services
+
+[ATHR_DEV_OS63_988x_AC_NFA435_TF11.ndi.NTamd64.HW]
+AddReg  = MSI.reg
+Include = netvwifibus.inf
+Needs   = PciASPMOptIn, VWiFiBus.PnPFilterRegistration
+
+[ATHR_DEV_OS63_988x_LE_NFA435_TF11.ndi.NTamd64]
+Characteristics = 0x84
+BusType         = 5
+AddReg          = atheros_os63.reg, atheros11n.reg, qca_utf.reg, D0PC.reg, roam.reg, wmmac.reg, FW_TF.reg, BD_NFA435_TF11.reg, enableTxbfee.reg, enableDVS.reg, enableTTA.reg, 11acUefi.reg, TPC_Profile_NFA435_LE.reg, SetPCIECtrlRegOnAMD.reg, ClearPCIECtrlRegOnAMD.reg, enableVht2G.reg, stbcTxbfWar.reg, enableLegacyBurst.reg, BdfExtPerUEFI.reg, DPC_Core_2.reg ; Win8 Win10 only, Win10 only
+DelReg          = atheros.DelReg
+CopyFiles       = atheros.CopyFiles, atheros_FW_TF.CopyFiles, atheros_BD_NFA435_TF11.CopyFiles, atheros_BD_NFA435_TF11_LE.CopyFiles
+*IfType         = 71        ; IF_TYPE_IEEE80211
+*MediaType      = 16        ; NdisMediumNative802_11
+*PhysicalMediaType = 9      ; NdisPhysicalMediumNative802_11
+Include         = machine.inf, netvwifibus.inf
+Needs           = VWiFiBus.CopyFiles
+
+[ATHR_DEV_OS63_988x_LE_NFA435_TF11.ndi.NTamd64.Services]
+AddService = Qcamain10x64, 2, atheros.Service, atheros.EventLog
+Include    = netvwifibus.inf
+Needs      = VWiFiBus.Services
+
+[ATHR_DEV_OS63_988x_LE_NFA435_TF11.ndi.NTamd64.HW]
+AddReg  = MSI.reg
+Include = netvwifibus.inf
+Needs   = PciASPMOptIn, VWiFiBus.PnPFilterRegistration
+
+[ATHR_DEV_OS63_988x_AS_NFA435_TF11.ndi.NTamd64]
+Characteristics = 0x84
+BusType         = 5
+AddReg          = atheros_os63.reg, atheros11n.reg, qca_utf.reg, D0PC.reg, roam.reg, wmmac.reg, FW_TF.reg, BD_NFA435_TF11_A.reg, enableTxbfee.reg, enableDVS.reg, wowEnable.reg, enableVht2G.reg, serviceMonWlan.reg, SetPCIECtrlRegOnAMD.reg, ClearPCIECtrlRegOnAMD.reg, enableHwRfKill.reg ; Win8 Win10 only
+DelReg          = atheros.DelReg
+CopyFiles       = atheros.CopyFiles, atheros_FW_TF.CopyFiles, atheros_BD_NFA435_TF11_A.CopyFiles
+*IfType         = 71        ; IF_TYPE_IEEE80211
+*MediaType      = 16        ; NdisMediumNative802_11
+*PhysicalMediaType = 9      ; NdisPhysicalMediumNative802_11
+Include         = machine.inf, netvwifibus.inf
+Needs           = VWiFiBus.CopyFiles
+
+[ATHR_DEV_OS63_988x_AS_NFA435_TF11.ndi.NTamd64.Services]
+AddService = Qcamain10x64, 2, atheros.Service, atheros.EventLog
+Include    = netvwifibus.inf
+Needs      = VWiFiBus.Services
+
+[ATHR_DEV_OS63_988x_AS_NFA435_TF11.ndi.NTamd64.HW]
+AddReg  = MSI.reg
+Include = netvwifibus.inf
+Needs   = PciASPMOptIn, VWiFiBus.PnPFilterRegistration
+
+[ATHR_DEV_OS63_988x_AS_NFA435_SGL_TF11.ndi.NTamd64]
+Characteristics = 0x84
+BusType         = 5
+AddReg          = atheros_os63.reg, atheros11n.reg, qca_utf.reg, D0PC.reg, roam.reg, wmmac.reg, FW_TF.reg, BD_NFA435_TF11_A.reg, enableTxbfee.reg, wowEnable.reg, enableVht2G.reg, serviceMonWlan.reg, SetPCIECtrlRegOnAMD.reg, ClearPCIECtrlRegOnAMD.reg, enableHwRfKill.reg ; Win8 Win10 only
+DelReg          = atheros.DelReg
+CopyFiles       = atheros.CopyFiles, atheros_FW_TF.CopyFiles, atheros_BD_NFA435_TF11_A.CopyFiles
+*IfType         = 71        ; IF_TYPE_IEEE80211
+*MediaType      = 16        ; NdisMediumNative802_11
+*PhysicalMediaType = 9      ; NdisPhysicalMediumNative802_11
+Include         = machine.inf, netvwifibus.inf
+Needs           = VWiFiBus.CopyFiles
+
+[ATHR_DEV_OS63_988x_AS_NFA435_SGL_TF11.ndi.NTamd64.Services]
+AddService = Qcamain10x64, 2, atheros.Service, atheros.EventLog
+Include    = netvwifibus.inf
+Needs      = VWiFiBus.Services
+
+[ATHR_DEV_OS63_988x_AS_NFA435_SGL_TF11.ndi.NTamd64.HW]
+AddReg  = MSI.reg
+Include = netvwifibus.inf
+Needs   = PciASPMOptIn, VWiFiBus.PnPFilterRegistration
+
+;;End of Tufello 1.1 Sections
+
+;;Start of Rome 3.x section
+
+[ATHR_DEV_OS63_988x_NFA324A_1.ndi.NTamd64]
+Characteristics = 0x84
+BusType         = 5
+AddReg          = atheros_os63.reg, atheros11n.reg, smpsDynamic.reg, qca_utf.reg, D0PC.reg, roam.reg, wmmac.reg, FW_3X.reg, BD_NFA324A_1.reg, enableTxbfee.reg
+DelReg          = atheros.DelReg
+CopyFiles       = atheros.CopyFiles, atheros_FW_3X.CopyFiles, atheros_BD_NFA324A_1.CopyFiles
+*IfType         = 71        ; IF_TYPE_IEEE80211
+*MediaType      = 16        ; NdisMediumNative802_11
+*PhysicalMediaType = 9      ; NdisPhysicalMediumNative802_11
+Include         = machine.inf, netvwifibus.inf
+Needs           = VWiFiBus.CopyFiles
+
+[ATHR_DEV_OS63_988x_NFA324A_1.ndi.NTamd64.Services]
+AddService = Qcamain10x64, 2, atheros.Service, atheros.EventLog
+Include    = netvwifibus.inf
+Needs      = VWiFiBus.Services
+
+[ATHR_DEV_OS63_988x_NFA324A_1.ndi.NTamd64.HW]
+AddReg  = MSI.reg
+Include = netvwifibus.inf
+Needs   = PciASPMOptIn, VWiFiBus.PnPFilterRegistration
+
+[ATHR_DEV_OS63_988x_SS_COB.ndi.NTamd64] ; Win10 only
+Characteristics = 0x84
+BusType         = 5
+AddReg          = atheros_os63.reg, atheros11n.reg, smpsDynamic.reg, qca_utf.reg, D0PC.reg, roam.reg, wmmac.reg, FW_3X.reg, BD_SS_COB.reg, enableTxbfee.reg, wowEnable.reg, enableSmbios.reg, MacAddressPerUEFI.reg, enableLegacyBurst.reg, ch128Disable.reg, disable2gHt40.reg
+DelReg          = atheros.DelReg
+CopyFiles       = atheros.CopyFiles, atheros_FW_3X.CopyFiles, atheros_BD_SS_COB.CopyFiles
+*IfType         = 71        ; IF_TYPE_IEEE80211
+*MediaType      = 16        ; NdisMediumNative802_11
+*PhysicalMediaType = 9      ; NdisPhysicalMediumNative802_11
+Include         = machine.inf, netvwifibus.inf
+Needs           = VWiFiBus.CopyFiles
+
+[ATHR_DEV_OS63_988x_SS_COB.ndi.NTamd64.Services] ; Win10 only
+AddService = Qcamain10x64, 2, atheros.Service, atheros.EventLog
+Include    = netvwifibus.inf
+Needs      = VWiFiBus.Services
+
+[ATHR_DEV_OS63_988x_SS_COB.ndi.NTamd64.HW] ; Win10 only
+AddReg  = MSI.reg
+Include = netvwifibus.inf
+Needs   = PciASPMOptIn, VWiFiBus.PnPFilterRegistration
+
+[ATHR_DEV_OS63_988x_NFA324A_5.ndi.NTamd64]
+Characteristics = 0x84
+BusType         = 5
+AddReg          = atheros_os63.reg, atheros11n.reg, smpsDynamic.reg, qca_utf.reg, D0PC.reg, roam.reg, wmmac.reg, FW_3X.reg, BD_NFA324A_5.reg, enableTxbfee.reg, enableSmbiosLe.reg, ANI_Disable.reg, DYN_ANI_On_RTS.reg
+DelReg          = atheros.DelReg
+CopyFiles       = atheros.CopyFiles, atheros_FW_3X.CopyFiles, atheros_BD_NFA324A_5.CopyFiles
+*IfType         = 71        ; IF_TYPE_IEEE80211
+*MediaType      = 16        ; NdisMediumNative802_11
+*PhysicalMediaType = 9      ; NdisPhysicalMediumNative802_11
+Include         = machine.inf, netvwifibus.inf
+Needs           = VWiFiBus.CopyFiles
+
+[ATHR_DEV_OS63_988x_NFA324A_5.ndi.NTamd64.Services]
+AddService = Qcamain10x64, 2, atheros.Service, atheros.EventLog
+Include    = netvwifibus.inf
+Needs      = VWiFiBus.Services
+
+[ATHR_DEV_OS63_988x_NFA324A_5.ndi.NTamd64.HW]
+AddReg  = MSI.reg
+Include = netvwifibus.inf
+Needs   = PciASPMOptIn, VWiFiBus.PnPFilterRegistration
+
+[ATHR_DEV_OS63_988x_AC_NFA324A_5.ndi.NTamd64]
+Characteristics = 0x84
+BusType         = 5
+AddReg          = atheros_os63.reg, atheros11n.reg, smpsDynamic.reg, qca_utf.reg, D0PC.reg, roam.reg, wmmac.reg, FW_3X.reg, BD_NFA324A_5.reg, enableTxbfee.reg, BandPrefer_WirelessMode.reg, enableSmbios.reg, wowEnable.reg, serviceMonWlan.reg, CtlPerUEFI.reg, AdjustRSSI2.reg ; Win10 only 2 reg
+DelReg          = atheros.DelReg
+CopyFiles       = atheros.CopyFiles, atheros_FW_3X.CopyFiles, atheros_BD_NFA324A_5.CopyFiles
+*IfType         = 71        ; IF_TYPE_IEEE80211
+*MediaType      = 16        ; NdisMediumNative802_11
+*PhysicalMediaType = 9      ; NdisPhysicalMediumNative802_11
+Include         = machine.inf, netvwifibus.inf
+Needs           = VWiFiBus.CopyFiles
+
+[ATHR_DEV_OS63_988x_AC_NFA324A_5.ndi.NTamd64.Services]
+AddService = Qcamain10x64, 2, atheros.Service, atheros.EventLog
+Include    = netvwifibus.inf
+Needs      = VWiFiBus.Services
+
+[ATHR_DEV_OS63_988x_AC_NFA324A_5.ndi.NTamd64.HW]
+AddReg  = MSI.reg
+Include = netvwifibus.inf
+Needs   = PciASPMOptIn, VWiFiBus.PnPFilterRegistration
+
+[ATHR_DEV_OS63_988x_SS_NFA324A_5.ndi.NTamd64]
+Characteristics = 0x84
+BusType         = 5
+AddReg          = atheros_os63.reg, atheros11n.reg, smpsDynamic.reg, qca_utf.reg, D0PC.reg, roam.reg, wmmac.reg, FW_3X.reg, BD_NFA324A_5.reg, enableTxbfee.reg, BandPrefer_WirelessMode.reg, enableSmbios.reg, CoexConfig_ss.reg, DisableAmsdu.reg
+DelReg          = atheros.DelReg
+CopyFiles       = atheros.CopyFiles, atheros_FW_3X.CopyFiles, atheros_BD_NFA324A_5.CopyFiles, atheros_BD_NFA324A_SS.CopyFiles, atheros_BD_NFA324A_5_B.CopyFiles ; Win10 only
+*IfType         = 71        ; IF_TYPE_IEEE80211
+*MediaType      = 16        ; NdisMediumNative802_11
+*PhysicalMediaType = 9      ; NdisPhysicalMediumNative802_11
+Include         = machine.inf, netvwifibus.inf
+Needs           = VWiFiBus.CopyFiles
+
+[ATHR_DEV_OS63_988x_SS_NFA324A_5.ndi.NTamd64.Services]
+AddService = Qcamain10x64, 2, atheros.Service, atheros.EventLog
+Include    = netvwifibus.inf
+Needs      = VWiFiBus.Services
+
+[ATHR_DEV_OS63_988x_SS_NFA324A_5.ndi.NTamd64.HW]
+AddReg  = MSI.reg
+Include = netvwifibus.inf
+Needs   = PciASPMOptIn, VWiFiBus.PnPFilterRegistration
+
+[ATHR_DEV_OS63_988x_NFA344A.ndi.NTamd64]
+Characteristics = 0x84
+BusType         = 5
+AddReg          = atheros_os63.reg, atheros11n.reg, smpsDynamic.reg, qca_utf.reg, D0PC.reg, roam.reg, wmmac.reg, FW_3X.reg, BD_NFA344A.reg, enableTxbfee.reg
+DelReg          = atheros.DelReg
+CopyFiles       = atheros.CopyFiles, atheros_FW_3X.CopyFiles, atheros_BD_NFA344A.CopyFiles
+*IfType         = 71        ; IF_TYPE_IEEE80211
+*MediaType      = 16        ; NdisMediumNative802_11
+*PhysicalMediaType = 9      ; NdisPhysicalMediumNative802_11
+Include         = machine.inf, netvwifibus.inf
+Needs           = VWiFiBus.CopyFiles
+
+[ATHR_DEV_OS63_988x_NFA344A.ndi.NTamd64.Services]
+AddService = Qcamain10x64, 2, atheros.Service, atheros.EventLog
+Include    = netvwifibus.inf
+Needs      = VWiFiBus.Services
+
+[ATHR_DEV_OS63_988x_NFA344A.ndi.NTamd64.HW]
+AddReg  = MSI.reg
+Include = netvwifibus.inf
+Needs   = PciASPMOptIn, VWiFiBus.PnPFilterRegistration
+
+[ATHR_DEV_OS63_988x_LE_NFA344A.ndi.NTamd64]
+Characteristics = 0x84
+BusType         = 5
+AddReg          = atheros_os63.reg, atheros11n.reg, smpsDynamic.reg, qca_utf.reg, D0PC.reg, roam.reg, wmmac.reg, FW_3X.reg, BD_NFA344A_H.reg, enableTxbfee.reg, enableTTA.reg, SetPCIECtrlRegOnAMD.reg, ClearPCIECtrlRegOnAMD.reg, enableVht2G.reg, stbcTxbfWar.reg, disableTXBFforBadPerfAPs.reg, enableLegacyBurst.reg, BdfExtPerUEFI.reg, 11acUefi.reg, DPC_Core_2.reg ; Win10 only 2
+DelReg          = atheros.DelReg
+CopyFiles       = atheros.CopyFiles, atheros_FW_3X.CopyFiles, atheros_BD_NFA344A_H.CopyFiles, atheros_BD_NFA344A_LE.CopyFiles
+*IfType         = 71        ; IF_TYPE_IEEE80211
+*MediaType      = 16        ; NdisMediumNative802_11
+*PhysicalMediaType = 9      ; NdisPhysicalMediumNative802_11
+Include         = machine.inf, netvwifibus.inf
+Needs           = VWiFiBus.CopyFiles
+
+[ATHR_DEV_OS63_988x_LE_NFA344A.ndi.NTamd64.Services]
+AddService = Qcamain10x64, 2, atheros.Service, atheros.EventLog
+Include    = netvwifibus.inf
+Needs      = VWiFiBus.Services
+
+[ATHR_DEV_OS63_988x_LE_NFA344A.ndi.NTamd64.HW]
+AddReg  = MSI.reg
+Include = netvwifibus.inf
+Needs   = PciASPMOptIn, VWiFiBus.PnPFilterRegistration
+
+[ATHR_DEV_OS63_988x_Killer_NFA344A.ndi.NTamd64]
+Characteristics = 0x84
+BusType         = 5
+AddReg          = atheros_os63.reg, atheros11n.reg, smpsDynamic.reg, qca_utf.reg, D0PC.reg, roam.reg, wmmac.reg, FW_3X.reg, BD_NFA344A.reg, enableTxbfee.reg, enableSmbios.reg, BandPrefer_WirelessMode.reg, CstateWarEnable.reg ; Win10 only
+DelReg          = atheros.DelReg
+CopyFiles       = atheros.CopyFiles, atheros_FW_3X.CopyFiles, atheros_BD_NFA344A.CopyFiles
+*IfType         = 71        ; IF_TYPE_IEEE80211
+*MediaType      = 16        ; NdisMediumNative802_11
+*PhysicalMediaType = 9      ; NdisPhysicalMediumNative802_11
+Include         = machine.inf, netvwifibus.inf
+Needs           = VWiFiBus.CopyFiles
+
+[ATHR_DEV_OS63_988x_Killer_NFA344A.ndi.NTamd64.Services]
+AddService = Qcamain10x64, 2, atheros.Service, atheros.EventLog
+Include    = netvwifibus.inf
+Needs      = VWiFiBus.Services
+
+[ATHR_DEV_OS63_988x_Killer_NFA344A.ndi.NTamd64.HW]
+AddReg  = MSI.reg
+Include = netvwifibus.inf
+Needs   = PciASPMOptIn, VWiFiBus.PnPFilterRegistration
+
+[ATHR_DEV_OS63_988x_AS_NFA344A.ndi.NTamd64]
+Characteristics = 0x84
+BusType         = 5
+AddReg          = atheros_os63.reg, atheros11n.reg, smpsDynamic.reg, qca_utf.reg, D0PC.reg, roam.reg, wmmac.reg, FW_3X.reg, BD_NFA344A.reg, enableTxbfee.reg, WowEventIgnore.reg
+DelReg          = atheros.DelReg
+CopyFiles       = atheros.CopyFiles, atheros_FW_3X.CopyFiles, atheros_BD_NFA344A.CopyFiles
+*IfType         = 71        ; IF_TYPE_IEEE80211
+*MediaType      = 16        ; NdisMediumNative802_11
+*PhysicalMediaType = 9      ; NdisPhysicalMediumNative802_11
+Include         = machine.inf, netvwifibus.inf
+Needs           = VWiFiBus.CopyFiles
+
+[ATHR_DEV_OS63_988x_AS_NFA344A.ndi.NTamd64.Services]
+AddService = Qcamain10x64, 2, atheros.Service, atheros.EventLog
+Include    = netvwifibus.inf
+Needs      = VWiFiBus.Services
+
+[ATHR_DEV_OS63_988x_AS_NFA344A.ndi.NTamd64.HW]
+AddReg  = MSI.reg
+Include = netvwifibus.inf
+Needs   = PciASPMOptIn, VWiFiBus.PnPFilterRegistration
+
+[ATHR_DEV_OS63_988x_AC_NFA344A.ndi.NTamd64]
+Characteristics = 0x84
+BusType         = 5
+AddReg          = atheros_os63.reg, atheros11n.reg, smpsDynamic.reg, qca_utf.reg, D0PC.reg, roam.reg, wmmac.reg, FW_3X.reg, BD_NFA344A.reg, enableTxbfee.reg, enableSmbios.reg, BandPrefer_WirelessMode.reg, CtlPerUEFI.reg, AdjustRSSI2.reg ; Win10 only 2 reg
+DelReg          = atheros.DelReg
+CopyFiles       = atheros.CopyFiles, atheros_FW_3X.CopyFiles, atheros_BD_NFA344A.CopyFiles, atheros_BD_NFA344A_AC.CopyFiles
+*IfType         = 71        ; IF_TYPE_IEEE80211
+*MediaType      = 16        ; NdisMediumNative802_11
+*PhysicalMediaType = 9      ; NdisPhysicalMediumNative802_11
+Include         = machine.inf, netvwifibus.inf
+Needs           = VWiFiBus.CopyFiles
+
+[ATHR_DEV_OS63_988x_AC_NFA344A.ndi.NTamd64.Services]
+AddService = Qcamain10x64, 2, atheros.Service, atheros.EventLog
+Include    = netvwifibus.inf
+Needs      = VWiFiBus.Services
+
+[ATHR_DEV_OS63_988x_AC_NFA344A.ndi.NTamd64.HW]
+AddReg  = MSI.reg
+Include = netvwifibus.inf
+Needs   = PciASPMOptIn, VWiFiBus.PnPFilterRegistration
+
+[ATHR_DEV_OS63_988x_VA_NFA344A.ndi.NTamd64]
+Characteristics = 0x84
+BusType         = 5
+AddReg          = atheros_os63.reg, atheros11n.reg, smpsDynamic.reg, qca_utf.reg, D0PC.reg, roam.reg, wmmac.reg, FW_3X.reg, BD_NFA344A.reg, enableTxbfee.reg, BandPrefer_WirelessMode.reg
+DelReg          = atheros.DelReg
+CopyFiles       = atheros.CopyFiles, atheros_FW_3X.CopyFiles, atheros_BD_NFA344A.CopyFiles, atheros_BD_NFA344A_AC.CopyFiles
+*IfType         = 71        ; IF_TYPE_IEEE80211
+*MediaType      = 16        ; NdisMediumNative802_11
+*PhysicalMediaType = 9      ; NdisPhysicalMediumNative802_11
+Include         = machine.inf, netvwifibus.inf
+Needs           = VWiFiBus.CopyFiles
+
+[ATHR_DEV_OS63_988x_VA_NFA344A.ndi.NTamd64.Services]
+AddService = Qcamain10x64, 2, atheros.Service, atheros.EventLog
+Include    = netvwifibus.inf
+Needs      = VWiFiBus.Services
+
+[ATHR_DEV_OS63_988x_VA_NFA344A.ndi.NTamd64.HW]
+AddReg  = MSI.reg
+Include = netvwifibus.inf
+Needs   = PciASPMOptIn, VWiFiBus.PnPFilterRegistration
+
+[ATHR_DEV_OS63_988x_FJ_NFA344A.ndi.NTamd64]
+Characteristics = 0x84
+BusType         = 5
+AddReg          = atheros_os63.reg, atheros11n.reg, smpsDynamic.reg, qca_utf.reg, D0PC.reg, roam.reg, wmmac.reg, FW_3X.reg, BD_NFA344A.reg, enableTxbfee.reg, WirelessMode_simple.reg, SetPCIECtrlRegOnAMD.reg, ClearPCIECtrlRegOnAMD.reg
+DelReg          = atheros.DelReg
+CopyFiles       = atheros.CopyFiles, atheros_FW_3X.CopyFiles, atheros_BD_NFA344A.CopyFiles
+*IfType         = 71        ; IF_TYPE_IEEE80211
+*MediaType      = 16        ; NdisMediumNative802_11
+*PhysicalMediaType = 9      ; NdisPhysicalMediumNative802_11
+Include         = machine.inf, netvwifibus.inf
+Needs           = VWiFiBus.CopyFiles
+
+[ATHR_DEV_OS63_988x_FJ_NFA344A.ndi.NTamd64.Services]
+AddService = Qcamain10x64, 2, atheros.Service, atheros.EventLog
+Include    = netvwifibus.inf
+Needs      = VWiFiBus.Services
+
+[ATHR_DEV_OS63_988x_FJ_NFA344A.ndi.NTamd64.HW]
+AddReg  = MSI.reg
+Include = netvwifibus.inf
+Needs   = PciASPMOptIn, VWiFiBus.PnPFilterRegistration
+
+[ATHR_DEV_OS63_988x_FJ_1_NFA344A.ndi.NTamd64]
+Characteristics = 0x84
+BusType         = 5
+AddReg          = atheros_os63.reg, atheros11n.reg, smpsDynamic.reg, qca_utf.reg, D0PC.reg, roam.reg, wmmac.reg, FW_3X.reg, BD_NFA344A.reg, enableTxbfee.reg, WirelessMode_simple.reg, wowEnable.reg, SetPCIECtrlRegOnAMD.reg, ClearPCIECtrlRegOnAMD.reg, EnableWowPME.reg ; Win10 only
+DelReg          = atheros.DelReg
+CopyFiles       = atheros.CopyFiles, atheros_FW_3X.CopyFiles, atheros_BD_NFA344A.CopyFiles
+*IfType         = 71        ; IF_TYPE_IEEE80211
+*MediaType      = 16        ; NdisMediumNative802_11
+*PhysicalMediaType = 9      ; NdisPhysicalMediumNative802_11
+Include         = machine.inf, netvwifibus.inf
+Needs           = VWiFiBus.CopyFiles
+
+[ATHR_DEV_OS63_988x_FJ_1_NFA344A.ndi.NTamd64.Services]
+AddService = Qcamain10x64, 2, atheros.Service, atheros.EventLog
+Include    = netvwifibus.inf
+Needs      = VWiFiBus.Services
+
+[ATHR_DEV_OS63_988x_FJ_1_NFA344A.ndi.NTamd64.HW]
+AddReg  = MSI.reg
+Include = netvwifibus.inf
+Needs   = PciASPMOptIn, VWiFiBus.PnPFilterRegistration
+
+[ATHR_DEV_OS63_988x_NFA354A.ndi.NTamd64]
+Characteristics = 0x84
+BusType         = 5
+AddReg          = atheros_os63.reg, atheros11n.reg, smpsDynamic.reg, qca_utf.reg, D0PC.reg, roam.reg, wmmac.reg, FW_3X.reg, BD_NFA354A.reg, enableTxbfee.reg
+DelReg          = atheros.DelReg
+CopyFiles       = atheros.CopyFiles, atheros_FW_3X.CopyFiles, atheros_BD_NFA354A.CopyFiles
+*IfType         = 71        ; IF_TYPE_IEEE80211
+*MediaType      = 16        ; NdisMediumNative802_11
+*PhysicalMediaType = 9      ; NdisPhysicalMediumNative802_11
+Include         = machine.inf, netvwifibus.inf
+Needs           = VWiFiBus.CopyFiles
+
+[ATHR_DEV_OS63_988x_NFA354A.ndi.NTamd64.Services]
+AddService = Qcamain10x64, 2, atheros.Service, atheros.EventLog
+Include    = netvwifibus.inf
+Needs      = VWiFiBus.Services
+
+[ATHR_DEV_OS63_988x_NFA354A.ndi.NTamd64.HW]
+AddReg  = MSI.reg
+Include = netvwifibus.inf
+Needs   = PciASPMOptIn, VWiFiBus.PnPFilterRegistration
+
+[ATHR_DEV_OS63_988x_NFA364A.ndi.NTamd64]
+Characteristics = 0x84
+BusType         = 5
+AddReg          = atheros_os63.reg, atheros11n.reg, smpsDynamic.reg, qca_utf.reg, D0PC.reg, roam.reg, wmmac.reg, FW_3X.reg, BD_NFA364A.reg, enableTxbfee.reg
+DelReg          = atheros.DelReg
+CopyFiles       = atheros.CopyFiles, atheros_FW_3X.CopyFiles, atheros_BD_NFA364A.CopyFiles
+*IfType         = 71        ; IF_TYPE_IEEE80211
+*MediaType      = 16        ; NdisMediumNative802_11
+*PhysicalMediaType = 9      ; NdisPhysicalMediumNative802_11
+Include         = machine.inf, netvwifibus.inf
+Needs           = VWiFiBus.CopyFiles
+
+[ATHR_DEV_OS63_988x_NFA364A.ndi.NTamd64.Services]
+AddService = Qcamain10x64, 2, atheros.Service, atheros.EventLog
+Include    = netvwifibus.inf
+Needs      = VWiFiBus.Services
+
+[ATHR_DEV_OS63_988x_NFA364A.ndi.NTamd64.HW]
+AddReg  = MSI.reg
+Include = netvwifibus.inf
+Needs   = PciASPMOptIn, VWiFiBus.PnPFilterRegistration
+
+[ATHR_DEV_OS63_988x_AS_NFA364A.ndi.NTamd64]
+Characteristics = 0x84
+BusType         = 5
+AddReg          = atheros_os63.reg, atheros11n.reg, smpsDynamic.reg, qca_utf.reg, D0PC.reg, roam.reg, wmmac.reg, FW_3X.reg, BD_NFA364A.reg, enableTxbfee.reg, wowEnable.reg, enableSmbios.reg, serviceMonWlan.reg, enableHwRfKill.reg ; Win8 Win10 only
+DelReg          = atheros.DelReg
+CopyFiles       = atheros.CopyFiles, atheros_FW_3X.CopyFiles, atheros_BD_NFA364A.CopyFiles, atheros_BD_NFA364A_1213.CopyFiles
+*IfType         = 71        ; IF_TYPE_IEEE80211
+*MediaType      = 16        ; NdisMediumNative802_11
+*PhysicalMediaType = 9      ; NdisPhysicalMediumNative802_11
+Include         = machine.inf, netvwifibus.inf
+Needs           = VWiFiBus.CopyFiles
+
+[ATHR_DEV_OS63_988x_AS_NFA364A.ndi.NTamd64.Services]
+AddService = Qcamain10x64, 2, atheros.Service, atheros.EventLog
+Include    = netvwifibus.inf
+Needs      = VWiFiBus.Services
+
+[ATHR_DEV_OS63_988x_AS_NFA364A.ndi.NTamd64.HW]
+AddReg  = MSI.reg
+Include = netvwifibus.inf
+Needs   = PciASPMOptIn, VWiFiBus.PnPFilterRegistration
+
+[ATHR_DEV_OS63_988x_AS_NFA364A_2.ndi.NTamd64]
+Characteristics = 0x84
+BusType         = 5
+AddReg          = atheros_os63.reg, atheros11n.reg, smpsDynamic.reg, qca_utf.reg, D0PC.reg, roam.reg, wmmac.reg, FW_3X.reg, BD_NFA364A_A.reg, enableTxbfee.reg, wowEnable.reg, enableSmbios.reg, serviceMonWlan.reg
+DelReg          = atheros.DelReg
+CopyFiles       = atheros.CopyFiles, atheros_FW_3X.CopyFiles, atheros_BD_NFA364A_A.CopyFiles, atheros_BD_NFA364A_1213.CopyFiles
+*IfType         = 71        ; IF_TYPE_IEEE80211
+*MediaType      = 16        ; NdisMediumNative802_11
+*PhysicalMediaType = 9      ; NdisPhysicalMediumNative802_11
+Include         = machine.inf, netvwifibus.inf
+Needs           = VWiFiBus.CopyFiles
+
+[ATHR_DEV_OS63_988x_AS_NFA364A_2.ndi.NTamd64.Services]
+AddService = Qcamain10x64, 2, atheros.Service, atheros.EventLog
+Include    = netvwifibus.inf
+Needs      = VWiFiBus.Services
+
+[ATHR_DEV_OS63_988x_AS_NFA364A_2.ndi.NTamd64.HW]
+AddReg  = MSI.reg
+Include = netvwifibus.inf
+Needs   = PciASPMOptIn, VWiFiBus.PnPFilterRegistration
+
+[ATHR_DEV_OS63_988x_AS_NFA364A_3.ndi.NTamd64]
+Characteristics = 0x84
+BusType         = 5
+AddReg          = atheros_os63.reg, atheros11n.reg, smpsDynamic.reg, qca_utf.reg, D0PC.reg, roam.reg, wmmac.reg, FW_3X.reg, BD_NFA364A.reg, enableTxbfee.reg, wowEnable.reg, enableSmbios.reg, serviceMonWlan.reg, WowEventIgnore.reg, disableTXBFforBadPerfAPs.reg
+DelReg          = atheros.DelReg
+CopyFiles       = atheros.CopyFiles, atheros_FW_3X.CopyFiles, atheros_BD_NFA364A.CopyFiles, atheros_BD_NFA364A_1213.CopyFiles
+*IfType         = 71        ; IF_TYPE_IEEE80211
+*MediaType      = 16        ; NdisMediumNative802_11
+*PhysicalMediaType = 9      ; NdisPhysicalMediumNative802_11
+Include         = machine.inf, netvwifibus.inf
+Needs           = VWiFiBus.CopyFiles
+
+[ATHR_DEV_OS63_988x_AS_NFA364A_3.ndi.NTamd64.Services]
+AddService = Qcamain10x64, 2, atheros.Service, atheros.EventLog
+Include    = netvwifibus.inf
+Needs      = VWiFiBus.Services
+
+[ATHR_DEV_OS63_988x_AS_NFA364A_3.ndi.NTamd64.HW]
+AddReg  = MSI.reg
+Include = netvwifibus.inf
+Needs   = PciASPMOptIn, VWiFiBus.PnPFilterRegistration
+
+[ATHR_DEV_OS63_988x_QCA9008.ndi.NTamd64]
+Characteristics = 0x84
+BusType         = 5
+AddReg          = atheros_os63.reg, atheros11n.reg, smpsDynamic.reg, qca_utf.reg, D0PC.reg, roam.reg, wmmac.reg, FW_3X.reg, BD_QCA9008.reg, enableTxbfee.reg
+DelReg          = atheros.DelReg
+CopyFiles       = atheros.CopyFiles, atheros_FW_3X.CopyFiles, atheros_BD_QCA9008.CopyFiles
+*IfType         = 71        ; IF_TYPE_IEEE80211
+*MediaType      = 16        ; NdisMediumNative802_11
+*PhysicalMediaType = 9      ; NdisPhysicalMediumNative802_11
+Include         = machine.inf, netvwifibus.inf
+Needs           = VWiFiBus.CopyFiles
+
+[ATHR_DEV_OS63_988x_QCA9008.ndi.NTamd64.Services]
+AddService = Qcamain10x64, 2, atheros.Service, atheros.EventLog
+Include    = netvwifibus.inf
+Needs      = VWiFiBus.Services
+
+[ATHR_DEV_OS63_988x_QCA9008.ndi.NTamd64.HW]
+AddReg  = MSI.reg
+Include = netvwifibus.inf
+Needs   = PciASPMOptIn, VWiFiBus.PnPFilterRegistration
+
+[ATHR_DEV_OS63_988x_USI_9008.ndi.NTamd64]
+Characteristics = 0x84
+BusType         = 5
+AddReg          = atheros_os63.reg, atheros11n.reg, smpsDynamic.reg, qca_utf.reg, D0PC.reg, roam.reg, wmmac.reg, FW_3X.reg, BD_QCA9008.reg, enableTxbfee.reg, enableSmbios.reg
+DelReg          = atheros.DelReg
+CopyFiles       = atheros.CopyFiles, atheros_FW_3X.CopyFiles, atheros_BD_QCA9008.CopyFiles
+*IfType         = 71        ; IF_TYPE_IEEE80211
+*MediaType      = 16        ; NdisMediumNative802_11
+*PhysicalMediaType = 9      ; NdisPhysicalMediumNative802_11
+Include         = machine.inf, netvwifibus.inf
+Needs           = VWiFiBus.CopyFiles
+
+[ATHR_DEV_OS63_988x_USI_9008.ndi.NTamd64.Services]
+AddService = Qcamain10x64, 2, atheros.Service, atheros.EventLog
+Include    = netvwifibus.inf
+Needs      = VWiFiBus.Services
+
+[ATHR_DEV_OS63_988x_USI_9008.ndi.NTamd64.HW]
+AddReg  = MSI.reg
+Include = netvwifibus.inf
+Needs   = PciASPMOptIn, VWiFiBus.PnPFilterRegistration
+
+[ATHR_DEV_OS63_988x_AC_9008.ndi.NTamd64]
+Characteristics = 0x84
+BusType         = 5
+AddReg          = atheros_os63.reg, atheros11n.reg, smpsDynamic.reg, qca_utf.reg, D0PC.reg, roam.reg, wmmac.reg, FW_3X.reg, BD_QCA9008.reg, enableTxbfee.reg, enableSmbios.reg, CtlPerUEFI.reg, AdjustRSSI2.reg ; Win10 only 2 reg
+DelReg          = atheros.DelReg
+CopyFiles       = atheros.CopyFiles, atheros_FW_3X.CopyFiles, atheros_BD_QCA9008.CopyFiles
+*IfType         = 71        ; IF_TYPE_IEEE80211
+*MediaType      = 16        ; NdisMediumNative802_11
+*PhysicalMediaType = 9      ; NdisPhysicalMediumNative802_11
+Include         = machine.inf, netvwifibus.inf
+Needs           = VWiFiBus.CopyFiles
+
+[ATHR_DEV_OS63_988x_AC_9008.ndi.NTamd64.Services]
+AddService = Qcamain10x64, 2, atheros.Service, atheros.EventLog
+Include    = netvwifibus.inf
+Needs      = VWiFiBus.Services
+
+[ATHR_DEV_OS63_988x_AC_9008.ndi.NTamd64.HW]
+AddReg  = MSI.reg
+Include = netvwifibus.inf
+Needs   = PciASPMOptIn, VWiFiBus.PnPFilterRegistration
+
+[ATHR_DEV_OS63_988x_AS_9008.ndi.NTamd64]
+Characteristics = 0x84
+BusType         = 5
+AddReg          = atheros_os63.reg, atheros11n.reg, smpsDynamic.reg, qca_utf.reg, D0PC.reg, roam.reg, wmmac.reg, FW_3X.reg, BD_QCA9008.reg, enableTxbfee.reg, wowEnable.reg, serviceMonWlan.reg, Ch1213Option.reg ; Win10 only 
+DelReg          = atheros.DelReg
+CopyFiles       = atheros.CopyFiles, atheros_FW_3X.CopyFiles, atheros_BD_QCA9008.CopyFiles
+*IfType         = 71        ; IF_TYPE_IEEE80211
+*MediaType      = 16        ; NdisMediumNative802_11
+*PhysicalMediaType = 9      ; NdisPhysicalMediumNative802_11
+Include         = machine.inf, netvwifibus.inf
+Needs           = VWiFiBus.CopyFiles
+
+[ATHR_DEV_OS63_988x_AS_9008.ndi.NTamd64.Services]
+AddService = Qcamain10x64, 2, atheros.Service, atheros.EventLog
+Include    = netvwifibus.inf
+Needs      = VWiFiBus.Services
+
+[ATHR_DEV_OS63_988x_AS_9008.ndi.NTamd64.HW]
+AddReg  = MSI.reg
+Include = netvwifibus.inf
+Needs   = PciASPMOptIn, VWiFiBus.PnPFilterRegistration
+
+[ATHR_DEV_OS63_988x_Killer_NFA364A.ndi.NTamd64]
+Characteristics = 0x84
+BusType         = 5
+AddReg          = atheros_os63.reg, atheros11n.reg, smpsDynamic.reg, qca_utf.reg, D0PC.reg, roam.reg, wmmac.reg, FW_3X.reg, BD_NFA364A.reg, enableTxbfee.reg, enableSmbios.reg, BandPrefer_WirelessMode.reg
+DelReg          = atheros.DelReg
+CopyFiles       = atheros.CopyFiles, atheros_FW_3X.CopyFiles, atheros_BD_NFA364A.CopyFiles
+*IfType         = 71        ; IF_TYPE_IEEE80211
+*MediaType      = 16        ; NdisMediumNative802_11
+*PhysicalMediaType = 9      ; NdisPhysicalMediumNative802_11
+Include         = machine.inf, netvwifibus.inf
+Needs           = VWiFiBus.CopyFiles
+
+[ATHR_DEV_OS63_988x_Killer_NFA364A.ndi.NTamd64.Services]
+AddService = Qcamain10x64, 2, atheros.Service, atheros.EventLog
+Include    = netvwifibus.inf
+Needs      = VWiFiBus.Services
+
+[ATHR_DEV_OS63_988x_Killer_NFA364A.ndi.NTamd64.HW]
+AddReg  = MSI.reg
+Include = netvwifibus.inf
+Needs   = PciASPMOptIn, VWiFiBus.PnPFilterRegistration
+
+[ATHR_DEV_OS63_988x_RV_Killer_NFA364A.ndi.NTamd64]
+Characteristics = 0x84
+BusType         = 5
+AddReg          = atheros_os63.reg, atheros11n.reg, smpsDynamic.reg, qca_utf.reg, D0PC.reg, roam.reg, wmmac.reg, FW_3X.reg, BD_NFA364A.reg, enableTxbfee.reg, enableSmbios.reg, BandPrefer_WirelessMode.reg, wowEnable.reg, disableTXBFforBadPerfAPs.reg, stbcTxbfWar.reg, serviceMonWlan.reg, CtlPerUEFI.reg ; Win10 only
+DelReg          = atheros.DelReg
+CopyFiles       = atheros.CopyFiles, atheros_FW_3X.CopyFiles, atheros_BD_NFA364A.CopyFiles, atheros_BD_NFA364A_RV.CopyFiles
+*IfType         = 71        ; IF_TYPE_IEEE80211
+*MediaType      = 16        ; NdisMediumNative802_11
+*PhysicalMediaType = 9      ; NdisPhysicalMediumNative802_11
+Include         = machine.inf, netvwifibus.inf
+Needs           = VWiFiBus.CopyFiles
+
+[ATHR_DEV_OS63_988x_RV_Killer_NFA364A.ndi.NTamd64.Services]
+AddService = Qcamain10x64, 2, atheros.Service, atheros.EventLog
+Include    = netvwifibus.inf
+Needs      = VWiFiBus.Services
+
+[ATHR_DEV_OS63_988x_RV_Killer_NFA364A.ndi.NTamd64.HW]
+AddReg  = MSI.reg
+Include = netvwifibus.inf
+Needs   = PciASPMOptIn, VWiFiBus.PnPFilterRegistration
+
+[ATHR_DEV_OS63_988x_RV_Killer_NFA364A_2.ndi.NTamd64] ; Win10 only
+Characteristics = 0x84
+BusType         = 5
+AddReg          = atheros_os63.reg, atheros11n.reg, smpsDynamic.reg, qca_utf.reg, D0PC.reg, roam.reg, wmmac.reg, FW_3X.reg, BD_NFA364A.reg, enableTxbfee.reg, enableSmbios.reg, BandPrefer_WirelessMode.reg, wowEnable.reg, disableTXBFforBadPerfAPs.reg, stbcTxbfWar.reg, serviceMonWlan.reg, CtlPerUEFI.reg, CstateWarEnable.reg ; Win10 only 2
+DelReg          = atheros.DelReg
+CopyFiles       = atheros.CopyFiles, atheros_FW_3X.CopyFiles, atheros_BD_NFA364A.CopyFiles, atheros_BD_NFA364A_RV.CopyFiles
+*IfType         = 71        ; IF_TYPE_IEEE80211
+*MediaType      = 16        ; NdisMediumNative802_11
+*PhysicalMediaType = 9      ; NdisPhysicalMediumNative802_11
+Include         = machine.inf, netvwifibus.inf
+Needs           = VWiFiBus.CopyFiles
+
+[ATHR_DEV_OS63_988x_RV_Killer_NFA364A_2.ndi.NTamd64.Services]
+AddService = Qcamain10x64, 2, atheros.Service, atheros.EventLog
+Include    = netvwifibus.inf
+Needs      = VWiFiBus.Services
+
+[ATHR_DEV_OS63_988x_RV_Killer_NFA364A_2.ndi.NTamd64.HW]
+AddReg  = MSI.reg
+Include = netvwifibus.inf
+Needs   = PciASPMOptIn, VWiFiBus.PnPFilterRegistration
+
+[ATHR_DEV_OS63_988x_LE_Killer_NFA364A.ndi.NTamd64]
+Characteristics = 0x84
+BusType         = 5
+AddReg          = atheros_os63.reg, atheros11n.reg, smpsDynamic.reg, qca_utf.reg, D0PC.reg, roam.reg, wmmac.reg, FW_3X.reg, BD_NFA364A.reg, disableTxbfee.reg, DYN_ANI.reg, DYN_BURST.reg, 11acUefi.reg, SetPCIECtrlRegOnAMD.reg, ClearPCIECtrlRegOnAMD.reg, DPC_Core_2.reg ; Win10 only
+DelReg          = atheros.DelReg
+CopyFiles       = atheros.CopyFiles, atheros_FW_3X.CopyFiles, atheros_BD_NFA364A.CopyFiles
+*IfType         = 71        ; IF_TYPE_IEEE80211
+*MediaType      = 16        ; NdisMediumNative802_11
+*PhysicalMediaType = 9      ; NdisPhysicalMediumNative802_11
+Include         = machine.inf, netvwifibus.inf
+Needs           = VWiFiBus.CopyFiles
+
+[ATHR_DEV_OS63_988x_LE_Killer_NFA364A.ndi.NTamd64.Services]
+AddService = Qcamain10x64, 2, atheros.Service, atheros.EventLog
+Include    = netvwifibus.inf
+Needs      = VWiFiBus.Services
+
+[ATHR_DEV_OS63_988x_LE_Killer_NFA364A.ndi.NTamd64.HW]
+AddReg  = MSI.reg
+Include = netvwifibus.inf
+Needs   = PciASPMOptIn, VWiFiBus.PnPFilterRegistration
+
+[ATHR_DEV_OS63_988x_LE_Killer_NFA344A.ndi.NTamd64]
+Characteristics = 0x84
+BusType         = 5
+AddReg          = atheros_os63.reg, atheros11n.reg, smpsDynamic.reg, qca_utf.reg, D0PC.reg, roam.reg, wmmac.reg, FW_3X.reg, BD_NFA344A_H.reg, SetPCIECtrlRegOnAMD.reg, ClearPCIECtrlRegOnAMD.reg, disableTXBFforBadPerfAPs.reg, enableLegacyBurst.reg, BdfExtPerUEFI.reg, disableTxbfee.reg, DYN_ANI.reg, DYN_BURST.reg, 11acUefi.reg, DPC_Core_2.reg ; Win8 Win10 only 4, Win10 only
+DelReg          = atheros.DelReg
+CopyFiles       = atheros.CopyFiles, atheros_FW_3X.CopyFiles, atheros_BD_NFA344A_H.CopyFiles, atheros_BD_NFA344A_LE.CopyFiles
+*IfType         = 71        ; IF_TYPE_IEEE80211
+*MediaType      = 16        ; NdisMediumNative802_11
+*PhysicalMediaType = 9      ; NdisPhysicalMediumNative802_11
+Include         = machine.inf, netvwifibus.inf
+Needs           = VWiFiBus.CopyFiles
+
+[ATHR_DEV_OS63_988x_LE_Killer_NFA344A.ndi.NTamd64.Services]
+AddService = Qcamain10x64, 2, atheros.Service, atheros.EventLog
+Include    = netvwifibus.inf
+Needs      = VWiFiBus.Services
+
+[ATHR_DEV_OS63_988x_LE_Killer_NFA344A.ndi.NTamd64.HW]
+AddReg  = MSI.reg
+Include = netvwifibus.inf
+Needs   = PciASPMOptIn, VWiFiBus.PnPFilterRegistration
+
+;;End of Rome 3.x section
+
+[atheros_os63.reg]
+HKR, Ndi,                           Service,    0, "Qcamain10x64"
+HKR, Ndi\Interfaces,                UpperRange, 0, "ndis5"
+HKR, Ndi\Interfaces,                LowerRange, 0, "wlan,ethernet,vwifi"
+HKR, , AddNewChannelfor11d, 0x00010001, 0
+HKR, , disableP2pLinkSpeedInd, 0x00010001, 1  ; Win10 only
+HKR, , AdaptiveSchedulerEnable, 0x00010001, 1 ; Win10 only
+
+[atheros11n.reg]
+HKR, Ndi\Params\roamPolicy,         ParamDesc,  0, %RoamAggressive%
+HKR, Ndi\Params\roamPolicy,         Type,       0, "enum"
+HKR, Ndi\Params\roamPolicy\enum,    "5",        0, %RssiHighest%
+HKR, Ndi\Params\roamPolicy\enum,    "4",        0, %RssiMedium-high%
+HKR, Ndi\Params\roamPolicy\enum,    "3",        0, %RssiMedium%
+HKR, Ndi\Params\roamPolicy\enum,    "2",        0, %RssiMedium-low%
+HKR, Ndi\Params\roamPolicy\enum,    "1",        0, %RssiLowest%
+HKR, Ndi\Params\roamPolicy,         Default,    0, "3"
+HKR, Ndi\params\NetworkAddress,     ParamDesc,  0,  %NetworkAddress%
+HKR, Ndi\params\NetworkAddress,     default,    0,  ""
+HKR, Ndi\params\NetworkAddress,     LimitText,  0,  "12"
+HKR, Ndi\params\NetworkAddress,     UpperCase,  0,  "1"
+HKR, Ndi\params\NetworkAddress,     optional,   0,  "1"
+HKR, Ndi\params\NetworkAddress,     type,       0,  "edit"
+
+[qca_utf.reg]
+HKR, , UtfMode,       0x10001,  "0"
+HKR, , UtfTraceLevel, 0x10001,  "0"
+
+[UtfMode.reg]
+HKR, , UtfMode,       0x10001,  "1"
+HKR, , UtfTraceLevel, 0x10001,  "0"
+
+[atheros.DelReg]
+HKR,Ndi\Params\tpc
+HKR,,tpc
+HKR,,AdHocBand
+HKR,,AwakeTimePerf
+HKR,,beaconInterval
+HKR,,bkScanEnable
+HKR,,ccode
+HKR,,FragThreshold
+HKR,,HwTxRetries
+HKR,,rateCtrlEnable
+HKR,,RTSThreshold
+HKR,,halPcieClockReq
+HKR,Ndi\params,radioEnable,0x2000
+HKR,Ndi\params,sleepMode,0x2000
+HKR,,gpioFunc0ActHi
+HKR,,gpioFunc1ActHi
+HKR,,gpioLedCustom
+HKR,,gpioPinFunc0
+HKR,,gpioPinFunc1
+HKR, Ndi\params\NetworkAddress
+HKR,,NetworkAddress
+HKR, Ndi\params\roamPolicy
+HKR,,roamPolicy
+HKR,,ftEnable
+HKR,,wmmacEnable
+HKR,,BugCheckOnTargetFailure
+HKR,,targetRecoveryEnabled
+HKR,,FWFileName
+HKR,,BoardDataFileName
+HKR,,EnableHardwareRFKill
+HKR,,rxChainMask
+HKR,,txChainMaskLegacy
+HKR,,rxChainMaskLegacy
+HKR,,rxChainDetect
+HKR,,rxChainDetectRef
+HKR,,rxChainDetectThreshA
+HKR,,rxChainDetectThreshG
+HKR,,rxChainDetectDeltaA
+HKR,,rxChainDetectDeltaG
+HKR, Ndi\params\smpsDynamic
+HKR, Ndi\params\D0PCEnable
+HKR,,wmeEnabled
+HKR,,halPcieWaen
+HKR,,halPcieDetach
+HKR,,ampEnable
+HKR,,btCoexAntDivEnable
+HKR,,translateNullSsid
+HKR,,defaultIbssChannel
+HKR,,paprdEnable
+HKR,,lnaDivUseBtAntEnable
+HKR,,antCtrlComm2gSwitchEnable
+HKR,,extLnaCtlGpio
+HKR,,rateCtrlTxFastDrop
+HKR,,antDivLowRssiCfg
+HKR,,btCoexDivDefVal
+HKR,,antDivFastDivBias
+HKR,,extAttenMarginCfg
+HKR,,UtfMode
+HKR,,UtfTraceLevel,
+HKR,,DpcTargetProcessors
+HKR,,DpcLockMode
+HKR,,gAntennaDiversity
+HKR,,ignore11dBeacon
+HKR,,smbiosAuthenticationEnable
+HKR,,resumeAsyncDlFw
+HKR,,SetPCIECtrlRegOnAMD
+HKR,,ClearPCIECtrlRegOnAMD
+HKR,,BEVOLatencyEnable
+HKR,,wowEnable
+HKR,,AcerWowOffload
+HKR,,Txbfee
+HKR,,Txbfeeenable
+HKR,,TPCOffset
+HKR,,CoexConfig
+HKR,,enableTTA
+HKR,,TpcProfile
+HKR,,enableANI
+HKR,,RTSOnANIFlag
+HKR,,D3TimingOpEnable
+HKR,,BurstDisableOnANIFlag
+HKLM,SYSTEM\CurrentControlSet\Services\NativeWifiP\Parameters,EnableWoWLAN
+HKR,,dot11acSelection
+HKR,,SmUfCfgParaPolicy
+HKR,,SIFSBurstEnable
+HKR,,AddNewChannelfor11d
+HKR,,NetBand
+HKR,,wModeSelect
+HKR,,VHT40WAR
+HKR,,legacyburstenable
+HKR,,stbcTxbfWar
+HKR,,serviceMonWlan
+HKR,,gEnableModulatedDTIM
+HKR,,WowEventIgnore
+HKR,,BdfExtPerUEFI
+HKR,,disableTXBFforBadPerfAPs
+HKR,,disableP2pLinkSpeedInd ; Win10 only
+HKR,,*TransmitBuffers       ; Win10 only
+HKR,,DBFileName             ; Win10 only
+HKR,,MacAddressPerUEFI      ; Win10 only
+HKR,,AdaptiveSchedulerEnable; Win10 only
+HKR,,ch128_disable          ; Win10 only
+HKR,,CtlPerUEFI             ; Win10 only
+HKR,,enable2GHzHt40Cap      ; Win10 only
+HKR,,AdjustRSSI2            ; Win10 only
+HKR,,EnableWowPME           ; Win10 only
+HKR,,WarScanAfterRadioOn    ; Win10 only
+HKR,,Ch1213_options         ; Win10 only
+HKR,,CstateWarEnable        ; Win10 only
+HKR,,skipRegAccessInPCIDevReset ; Win10 only
+HKR,,htamsduEnable          ; Win10 only
+
+[smpsDynamic.reg]
+HKR, Ndi\params\smpsDynamic,            ParamDesc,  0,  %smpsDynamic%
+HKR, Ndi\params\smpsDynamic,            Base,       0,  "10"
+HKR, Ndi\params\smpsDynamic,            default,    0,  "0"
+HKR, Ndi\params\smpsDynamic,            type,       0,  "enum"
+HKR, Ndi\params\smpsDynamic\enum,       "1",        0,  %Enable%
+HKR, Ndi\params\smpsDynamic\enum,       "0",        0,  %Disable%
+
+[D0PC.reg]
+HKR, NDI\params\D0PCEnable,ParamDesc,,          %D0PCDesc%
+HKR, NDI\params\D0PCEnable,type,,               "enum"
+HKR, NDI\params\D0PCEnable,Default,,            "0"
+HKR, NDI\params\D0PCEnable\enum,0,,             %Disable%
+HKR, NDI\params\D0PCEnable\enum,1,,             %Enable%
+
+[BandPrefer_WirelessMode.reg]
+HKR, Ndi\params\StaPreferredBand,      ParamDesc,          0,          "Preferred Band"
+HKR, Ndi\params\StaPreferredBand,      default,            0,          "1"
+HKR, Ndi\params\StaPreferredBand,      type,               0,          "enum"
+HKR, Ndi\params\StaPreferredBand\enum, "1",                0,          "1 - No Preference"
+HKR, Ndi\params\StaPreferredBand\enum, "2",                0,          "2 - Prefer 2.4Ghz Band"
+HKR, Ndi\params\StaPreferredBand\enum, "3",                0,          "3 - Prefer 5Ghz Band"
+HKR, Ndi\params\StaWirelessMode,       ParamDesc,          0,          "Wireless Mode"
+HKR, Ndi\params\StaWirelessMode,       default,            0,          "12"
+HKR, Ndi\params\StaWirelessMode,       type,               0,          "enum"
+HKR, Ndi\params\StaWirelessMode\enum,  "1",                0,          "01 - 11 b"
+HKR, Ndi\params\StaWirelessMode\enum,  "2",                0,          "02 - 11 g"
+HKR, Ndi\params\StaWirelessMode\enum,  "3",                0,          "03 - 11 b/g"
+HKR, Ndi\params\StaWirelessMode\enum,  "4",                0,          "04 - 11 g/n"
+HKR, Ndi\params\StaWirelessMode\enum,  "5",                0,          "05 - 11 b/g/n"
+HKR, Ndi\params\StaWirelessMode\enum,  "6",                0,          "06 - 11 a"
+HKR, Ndi\params\StaWirelessMode\enum,  "7",                0,          "07 - 11 a/n"
+HKR, Ndi\params\StaWirelessMode\enum,  "8",                0,          "08 - 11 a/b/g/n"
+HKR, Ndi\params\StaWirelessMode\enum,  "9",                0,          "09 - 11 a/g/n"
+HKR, Ndi\params\StaWirelessMode\enum,  "10",               0,          "10 - 11 a/n/ac"
+HKR, Ndi\params\StaWirelessMode\enum,  "11",               0,          "11 - 11 a/g/n/ac"
+HKR, Ndi\params\StaWirelessMode\enum,  "12",               0,          "12 - 11 a/b/g/n/ac"
+
+[WirelessMode_simple.reg]
+HKR, Ndi\params\StaWirelessMode,       ParamDesc,          0,          "Wireless Mode Selection"
+HKR, Ndi\params\StaWirelessMode,       default,            0,          "12"
+HKR, Ndi\params\StaWirelessMode,       type,               0,          "enum"
+HKR, Ndi\params\StaWirelessMode\enum,  "5",                0,          "2GHz Only"
+HKR, Ndi\params\StaWirelessMode\enum,  "10",               0,          "5GHz Only"
+HKR, Ndi\params\StaWirelessMode\enum,  "12",               0,          "Auto"
+
+[MSI.reg]
+HKR, "Interrupt Management", 0x00000010
+HKR, "Interrupt Management\MessageSignaledInterruptProperties", 0x00000010
+HKR, "Interrupt Management\MessageSignaledInterruptProperties", MSISupported, 0x00010001, 1
+HKR, "Interrupt Management\MessageSignaledInterruptProperties", MessageNumberLimit, 0x00010001, 8
+
+[ANI_Disable.reg]
+HKR, , enableANI, 0x00010001, 0
+
+[DYN_ANI_On_RTS.reg]
+HKR, , RTSOnANIFlag, 0x00010001, 1
+
+[roam.reg]
+HKR, , ftEnable, 0x00010001, 1
+
+[wmmac.reg]
+HKR, , wmmacEnable, 0x00010001, 1
+
+[ignore11denable.reg]
+HKR, , ignore11dBeacon, 0x00010001, 1
+
+[wowEnable.reg]
+HKR, , wowEnable, 0x00010001, 1
+
+[resumeAsyncDlFw.reg]
+HKR, , resumeAsyncDlFw, 0x00010001, 1
+
+[SetPCIECtrlRegOnAMD.reg]
+HKR, , SetPCIECtrlRegOnAMD, 0x00010001, 1
+
+[ClearPCIECtrlRegOnAMD.reg]
+HKR, , ClearPCIECtrlRegOnAMD, 0x00010001, 1
+
+[BeLatency.reg]
+HKR, , BEVOLatencyEnable, 0x00010001, 1
+
+[11acUefi.reg]
+HKR, , dot11acSelection, 0x00010001, 1
+
+[TPC_Profile_NFA435_LE.reg]
+HKR, , TpcProfile, 0x00010001, 4
+
+[TPC_Profile_NFA435_AS.reg]
+HKR, , TpcProfile, 0x00010001, 6
+
+[enableSmbiosLe.reg]
+HKR, , SmUfCfgParaPolicy, 0x00010001, 2
+
+[enableSmbios.reg]
+HKR, , SmUfCfgParaPolicy, 0x00010001, 1
+
+[enableSSR.reg]
+HKR, , BugCheckOnTargetFailure, 0x00010001, 0x22
+HKR, , targetRecoveryEnabled, 0x00010001, 1
+
+[GOTimeQuota.reg]
+HKR, , MediaStreamGOTimeQuota, 0x00010001, 0x32
+
+[enableIOACv20.reg]
+HKR, , wowEnable, 0x00010001, 1
+HKR, , AcerWowOffload, 0x00010001, 0x81
+
+[enableTxbfee.reg]
+HKR, , Txbfee, 0x00010001, 0x8D
+HKR, , Txbfeeenable, 0x00010001, 1
+
+[CoexConfig_dell.reg]
+HKR, , CoexConfig, 0x00010001, 1
+
+[CoexConfig_ss.reg]
+HKR, , CoexConfig, 0x00010001, 2
+
+[CoexConfig_le.reg]
+HKR, , CoexConfig, 0x00010001, 4
+
+[DPC_2_Cores.reg] ; Win10 no DpcLockMode
+HKR, , DpcTargetProcessors, 0x00010001, 3
+
+[DPC_Core_2.reg] ; Win10 only
+HKR, , DpcTargetProcessors, 0x00010001, 4
+
+[BURST_le_364A.reg]
+HKR, , SIFSBurstEnable, 0x00010001, 0
+
+[TPCOffset_le_344.reg]
+HKR, , TPCOffset, 0x00010001, 0x25
+
+[TPCOffset_le_345.reg]
+HKR, , TPCOffset, 0x00010001, 0x45
+
+[enableWoWWLAN.reg]
+HKLM, SYSTEM\CurrentControlSet\Services\NativeWifiP\Parameters, EnableWoWLAN, 0x00010001, 1
+
+[enableDVS.reg]
+HKR, , gAntennaDiversity, 0x00010001, 3
+
+[enableTTA.reg]
+HKR, , enableTTA, 0x00010001, 1
+
+[TPC_Profile_SS.reg]
+HKR, , TpcProfile, 0x00010001, 1
+
+[TPC_Profile_LE_344.reg]
+HKR, , TpcProfile, 0x00010001, 2
+
+[TPC_Profile_LE_345.reg]
+HKR, , TpcProfile, 0x00010001, 3
+
+[TPC_Profile_364A.reg]
+HKR, , TpcProfile, 0x00010001, 5
+
+[D3TimingOpEnable_ss.reg]
+HKR, , D3TimingOpEnable, 0x00010001, 1
+
+[DYN_ANI.reg]
+HKR, , enableANI, 0x00010001, 1
+HKR, , RTSOnANIFlag, 0x00010001, 1
+
+[DYN_BURST.reg]
+HKR, , BurstDisableOnANIFlag, 0x00010001, 1
+
+[disableTxbfee.reg]
+HKR, , Txbfeeenable, 0x00010001, 0
+
+[enableVht2G.reg]
+HKR, , NetBand, 0x00010001, 0x6FFFFFF
+HKR, , wModeSelect, 0x00010001, 0x6FFFFFF
+HKR, , VHT40WAR, 0x00010001, 1
+
+[enableLegacyBurst.reg]
+HKR, , legacyburstenable, 0x00010001, 1
+
+[stbcTxbfWar.reg]
+HKR, , stbcTxbfWar, 0x00010001, 1
+
+[enableHwRfKill.reg]
+HKR, , EnableHardwareRFKill, 0x00010001, 1
+
+[serviceMonWlan.reg]
+HKR, , serviceMonWlan, 0x00010001, 1
+
+[EnableModulatedDTIM3.reg]
+HKR, , gEnableModulatedDTIM, 0x00010001, 3
+
+[WowEventIgnore.reg]
+HKR, , WowEventIgnore, 0x00010001, 0x28
+
+[BdfExtPerUEFI.reg]
+HKR, , BdfExtPerUEFI, 0x00010001, 2
+
+[disableTXBFforBadPerfAPs.reg]
+HKR, , disableTXBFforBadPerfAPs, 0x00010001, 1
+
+[MAX_MSDU.reg] ; Win10 only
+HKR, , *TransmitBuffers, 0x00010001, 512
+
+[MacAddressPerUEFI.reg] ; Win10 only
+HKR, , MacAddressPerUEFI, 0x00010001, 1
+
+[ch128Disable.reg] ; Win10 only
+HKR, , ch128_disable, 0x00010001, 1
+
+[CtlPerUEFI.reg] ; Win10 only
+HKR, , CtlPerUEFI, 0x00010001, 1
+
+[disable2gHt40.reg] ; Win10 only
+HKR, , enable2GHzHt40Cap, 0x00010001, 0
+
+[AdjustRSSI2.reg] ; Win10 only
+HKR, , AdjustRSSI2, 0x00010001, 1
+
+[EnableWowPME.reg] ; Win10 only
+HKR, , EnableWowPME, 0x00010001, 1
+
+[WarScanAfterRadioOn.reg] ; Win10 only
+HKR, , WarScanAfterRadioOn, 0x00010001, 1
+
+[Ch1213Option.reg] ; Win10 only
+HKR, , Ch1213_options, 0x00010001, 2
+
+[CstateWarEnable.reg] ; Win10 only
+HKR, , CstateWarEnable, 0x00010001, 1
+
+[DisableAmsdu.reg] ; Win10 only
+HKR, , htamsduEnable, 0x00010001, 0
+
+;;End of Customized Section
+
+[atheros.Service]
+DisplayName     = %ATHR.Service.DispName%
+ServiceType     = 1         ;SERVICE_KERNEL_DRIVER
+StartType       = 3         ;SERVICE_DEMAND_START
+ErrorControl    = 1         ;SERVICE_ERROR_NORMAL
+ServiceBinary   = %12%\Qcamain10x64.sys
+LoadOrderGroup  = NDIS
+
+[atheros.EventLog]
+AddReg = atheros.AddEventLog.reg
+
+[atheros.AddEventLog.reg]
+HKR, , EventMessageFile, 0x00020000, "%%SystemRoot%%\System32\netevent.dll"
+HKR, , TypesSupported,   0x00010001, 7
+
+[atheros.CopyFiles]
+Qcamain10x64.sys,,,2
+
+;;Start of FTM FW and BD files
+
+[FW_FTM.reg]
+HKR, , FWFileName, 0x00000000, "qca_fw.bin"
+
+[BD_FTM.reg]
+HKR, , BoardDataFileName, 0x00000000, "fakeBoardData.bin"
+
+;;End of FTM FW and BD files
+
+;;Start of Rome 2.x FW and BD files
+
+[FW_20.reg]
+HKR, , FWFileName, 0x00000000, "qca61x4_1_1_2.bin"
+
+[BD_NFA324.reg]
+HKR, , BoardDataFileName, 0x00000000, "eeprom_ar6320_2p1_NFA324i_5.bin"
+
+[BD_NFA344.reg]
+HKR, , BoardDataFileName, 0x00000000, "eeprom_ar6320_2p1_NFA344i.bin"
+
+[BD_NFA344_le.reg]
+HKR, , BoardDataFileName, 0x00000000, "eeprom_ar6320_2p1_NFA344i_highTX.bin"
+
+[BD_NFA345.reg]
+HKR, , BoardDataFileName, 0x00000000, "eeprom_ar6320_2p1_NFA345i.bin"
+
+[BD_NFA345_le.reg]
+HKR, , BoardDataFileName, 0x00000000, "eeprom_ar6320_2p1_NFA345i_highTX.bin"
+
+[BD_NFA354.reg]
+HKR, , BoardDataFileName, 0x00000000, "eeprom_ar6320_2p1_NFA354xp.bin"
+
+[BD_NFA355.reg]
+HKR, , BoardDataFileName, 0x00000000, "eeprom_ar6320_2p1_NFA355i.bin"
+
+[atheros_FW.CopyFiles]
+qca61x4_1_1_2.bin,,,2
+
+[atheros_BD_NFA324.CopyFiles]
+eeprom_ar6320_2p1_NFA324i_5.bin,,,2
+
+[atheros_BD_NFA344.CopyFiles]
+eeprom_ar6320_2p1_NFA344i.bin,,,2
+
+[atheros_BD_NFA344_le.CopyFiles]
+eeprom_ar6320_2p1_NFA344i_highTX.bin,,,2
+
+[atheros_BD_NFA345.CopyFiles]
+eeprom_ar6320_2p1_NFA345i.bin,,,2
+
+[atheros_BD_NFA345_le.CopyFiles]
+eeprom_ar6320_2p1_NFA345i_highTX.bin,,,2
+
+[atheros_BD_NFA354.CopyFiles]
+eeprom_ar6320_2p1_NFA354xp.bin,,,2
+
+[atheros_BD_NFA354_SS.CopyFiles]
+eeprom_ar6320_2p1_NFA354xp_SS_EU.bin,,,2
+
+[atheros_BD_NFA355.CopyFiles]
+eeprom_ar6320_2p1_NFA355i.bin,,,2
+
+;;End of Rome 2.x FW and BD files
+
+;;Start of Tufello FW and BD files
+
+[FW_TF.reg]
+HKR, , FWFileName, 0x00000000, "qca9377_2_0.bin"
+HKR, , DBFileName, 0x00000000, "Data9377_2_0.msc"
+
+[BD_NFA425_TF.reg]
+HKR, , BoardDataFileName, 0x00000000, "eeprom_qca9377_1p0_NFA425_olpc.bin"
+
+[BD_NFA425_TF11.reg]
+HKR, , BoardDataFileName, 0x00000000, "eeprom_qca9377_1p1_NFA425_olpc.bin"
+
+[BD_NFA425_TF11_A.reg]
+HKR, , BoardDataFileName, 0x00000000, "eeprom_qca9377_1p1_NFA425_olpc_A.bin"
+
+[BD_NFA425_TF11_A_low.reg]
+HKR, , BoardDataFileName, 0x00000000, "eeprom_qca9377_1p1_NFA425_olpc_A_low.bin"
+
+[BD_NFA435_TF.reg]
+HKR, , BoardDataFileName, 0x00000000, "eeprom_qca9377_1p0_NFA435_olpc.bin"
+
+[BD_NFA435_TF_A.reg]
+HKR, , BoardDataFileName, 0x00000000, "eeprom_qca9377_1p0_NFA435_olpc_A.bin"
+
+[BD_NFA435_TF11.reg]
+HKR, , BoardDataFileName, 0x00000000, "eeprom_qca9377_1p1_NFA435_olpc.bin"
+
+[BD_NFA435_TF11_A.reg]
+HKR, , BoardDataFileName, 0x00000000, "eeprom_qca9377_1p1_NFA435_olpc_A.bin"
+
+[BD_NFA455_TF.reg]
+HKR, , BoardDataFileName, 0x00000000, "eeprom_qca9377_1p0_NFA455_olpc.bin"
+
+[atheros_FW_TF.CopyFiles]
+qca9377_2_0.bin,,,2
+Data9377_2_0.msc,,,2 ; Win10 only
+
+[atheros_BD_NFA425_TF.CopyFiles]
+eeprom_qca9377_1p0_NFA425_olpc.bin,,,2
+
+[atheros_BD_NFA425_TF11.CopyFiles]
+eeprom_qca9377_1p1_NFA425_olpc.bin,,,2
+
+[atheros_BD_NFA425_TF11_A.CopyFiles]
+eeprom_qca9377_1p1_NFA425_olpc_A.bin,,,2
+
+[atheros_BD_NFA425_TF11_A_low.CopyFiles]
+eeprom_qca9377_1p1_NFA425_olpc_A_low.bin,,,2
+eeprom_qca9377_1p1_NFA425_olpc_A_low2.bin,,,2
+
+[atheros_BD_NFA435_TF.CopyFiles]
+eeprom_qca9377_1p0_NFA435_olpc.bin,,,2
+
+[atheros_BD_NFA435_TF_A.CopyFiles]
+eeprom_qca9377_1p0_NFA435_olpc_A.bin,,,2
+
+[atheros_BD_NFA435_TF_LE.CopyFiles]
+eeprom_qca9377_1p0_NFA435_olpc_LE_1.bin,,,2
+
+[atheros_BD_NFA435_TF11.CopyFiles]
+eeprom_qca9377_1p1_NFA435_olpc.bin,,,2
+
+[atheros_BD_NFA435_TF11_A.CopyFiles]
+eeprom_qca9377_1p1_NFA435_olpc_A.bin,,,2
+
+[atheros_BD_NFA435_TF11_LE.CopyFiles]
+eeprom_qca9377_1p1_NFA435_olpc_LE_1.bin,,,2
+eeprom_qca9377_1p1_NFA435_olpc_LE_2.bin,,,2
+
+[atheros_BD_NFA455_TF.CopyFiles]
+eeprom_qca9377_1p0_NFA455_olpc.bin,,,2
+
+;;End of Tufello FW and BD files
+
+;;Start of Rome 3.x FW and BD files
+
+[FW_3X.reg]
+HKR, , FWFileName, 0x00000000, "qca61x4_2_2.bin"
+HKR, , DBFileName, 0x00000000, "Data61x4_2_2.msc" ; Win10 only
+
+[BD_NFA324A_1.reg]
+HKR, , BoardDataFileName, 0x00000000, "eeprom_ar6320_3p0_NFA324i_1.bin"
+
+[BD_SS_COB.reg] ; Win10 only
+HKR, , BoardDataFileName, 0x00000000, "eeprom_ar6320_3p0_SS_700.bin"
+
+[BD_NFA324A_5.reg]
+HKR, , BoardDataFileName, 0x00000000, "eeprom_ar6320_3p0_NFA324i_5.bin"
+
+[BD_NFA344A.reg]
+HKR, , BoardDataFileName, 0x00000000, "eeprom_ar6320_3p0_NFA344a.bin"
+
+[BD_NFA344A_H.reg]
+HKR, , BoardDataFileName, 0x00000000, "eeprom_ar6320_3p0_NFA344a_highTX.bin"
+
+[BD_NFA354A.reg]
+HKR, , BoardDataFileName, 0x00000000, "eeprom_ar6320_3p0_NFA354xp.bin"
+
+[BD_NFA364A.reg]
+HKR, , BoardDataFileName, 0x00000000, "eeprom_ar6320_3p0_NFA364xp.bin"
+
+[BD_NFA364A_A.reg]
+HKR, , BoardDataFileName, 0x00000000, "eeprom_ar6320_3p0_NFA364xp_powerA.bin"
+
+[BD_QCA9008.reg]
+HKR, , BoardDataFileName, 0x00000000, "eeprom_ar6320_3p0_QCA9008.bin"
+
+[atheros_FW_3X.CopyFiles]
+qca61x4_2_2.bin,,,2
+Data61x4_2_2.msc,,,2 ; Win10 only
+
+[atheros_BD_NFA324A_1.CopyFiles]
+eeprom_ar6320_3p0_NFA324i_1.bin,,,2
+
+[atheros_BD_SS_COB.CopyFiles] ; Win10 only
+eeprom_ar6320_3p0_SS_700.bin,,,2
+eeprom_ar6320_3p0_SS_700_K.bin,,,2
+
+[atheros_BD_NFA324A_5.CopyFiles]
+eeprom_ar6320_3p0_NFA324i_5.bin,,,2
+
+[atheros_BD_NFA324A_SS.CopyFiles]
+eeprom_ar6320_3p0_NFA324i_5_SS_N.bin,,,2
+eeprom_ar6320_3p0_NFA324i_5_SS_S.bin,,,2
+eeprom_ar6320_3p0_NFA324i_5_SS_T.bin,,,2
+eeprom_ar6320_3p0_NFA324i_5_SS_V.bin,,,2
+
+[atheros_BD_NFA324A_5_B.CopyFiles] ; Win10 only
+eeprom_ar6320_3p0_NFA324i_5_B.bin,,,2
+
+[atheros_BD_NFA344A.CopyFiles]
+eeprom_ar6320_3p0_NFA344a.bin,,,2
+
+[atheros_BD_NFA344A_H.CopyFiles]
+eeprom_ar6320_3p0_NFA344a_highTX.bin,,,2
+
+[atheros_BD_NFA344A_LE.CopyFiles]
+eeprom_ar6320_3p0_NFA344a_highTX_LE_1.bin,,,2
+eeprom_ar6320_3p0_NFA344a_highTX_LE_2.bin,,,2
+eeprom_ar6320_3p0_NFA344a_highTX_LE_3.bin,,,2
+eeprom_ar6320_3p0_NFA344a_highTX_LE_4.bin,,,2
+eeprom_ar6320_3p0_NFA344a_highTX_LE_5.bin,,,2
+eeprom_ar6320_3p0_NFA344a_highTX_LE_6.bin,,,2
+
+[atheros_BD_NFA344A_AC.CopyFiles]
+eeprom_ar6320_3p0_NFA344a_BLP.bin,,,2
+eeprom_ar6320_3p0_NFA344a_AC_BRN.bin,,,2
+
+[atheros_BD_NFA354A.CopyFiles]
+eeprom_ar6320_3p0_NFA354xp.bin,,,2
+
+[atheros_BD_NFA364A.CopyFiles]
+eeprom_ar6320_3p0_NFA364xp.bin,,,2
+
+[atheros_BD_NFA364A_A.CopyFiles]
+eeprom_ar6320_3p0_NFA364xp_powerA.bin,,,2
+
+[atheros_BD_NFA364A_1213.CopyFiles]
+eeprom_ar6320_3p0_NFA364xp_power1213.bin,,,2
+
+[atheros_BD_NFA364A_RV.CopyFiles]
+eeprom_ar6320_3p0_NFA364xp_RV_0519.bin ,,,2
+eeprom_ar6320_3p0_NFA364xp_RV_0520.bin ,,,2
+
+[atheros_BD_QCA9008.CopyFiles]
+eeprom_ar6320_3p0_QCA9008.bin,,,2
+
+;;End of Rome 3.x FW and BD files
+
+[SourceDisksNames]
+1 = %DiskDescription%,,,
+
+[SourceDisksFiles]
+Qcamain10x64.sys                          = 1,,
+qca61x4_1_1_2.bin                         = 1,,
+eeprom_ar6320_2p1_NFA324i_5.bin           = 1,,
+eeprom_ar6320_2p1_NFA344i.bin             = 1,,
+eeprom_ar6320_2p1_NFA344i_highTX.bin      = 1,,
+eeprom_ar6320_2p1_NFA345i.bin             = 1,,
+eeprom_ar6320_2p1_NFA345i_highTX.bin      = 1,,
+eeprom_ar6320_2p1_NFA354xp.bin            = 1,,
+eeprom_ar6320_2p1_NFA354xp_SS_EU.bin      = 1,,
+eeprom_ar6320_2p1_NFA355i.bin             = 1,,
+qca9377_2_0.bin                           = 1,,
+Data9377_2_0.msc                          = 1,, ; Win10 only
+eeprom_qca9377_1p0_NFA425_olpc.bin        = 1,,
+eeprom_qca9377_1p1_NFA425_olpc.bin        = 1,,
+eeprom_qca9377_1p1_NFA425_olpc_A.bin      = 1,,
+eeprom_qca9377_1p1_NFA425_olpc_A_low.bin  = 1,,
+eeprom_qca9377_1p1_NFA425_olpc_A_low2.bin = 1,,
+eeprom_qca9377_1p0_NFA435_olpc.bin        = 1,,
+eeprom_qca9377_1p0_NFA435_olpc_A.bin      = 1,,
+eeprom_qca9377_1p0_NFA435_olpc_LE_1.bin   = 1,,
+eeprom_qca9377_1p1_NFA435_olpc.bin        = 1,,
+eeprom_qca9377_1p1_NFA435_olpc_A.bin      = 1,,
+eeprom_qca9377_1p1_NFA435_olpc_LE_1.bin   = 1,,
+eeprom_qca9377_1p1_NFA435_olpc_LE_2.bin   = 1,,
+eeprom_qca9377_1p0_NFA455_olpc.bin        = 1,,
+qca61x4_2_2.bin                           = 1,,
+Data61x4_2_2.msc                          = 1,, ; Win10 only
+eeprom_ar6320_3p0_NFA324i_1.bin           = 1,,
+eeprom_ar6320_3p0_SS_700.bin              = 1,, ; Win10 only
+eeprom_ar6320_3p0_SS_700_K.bin            = 1,, ; Win10 only
+eeprom_ar6320_3p0_NFA324i_5.bin           = 1,,
+eeprom_ar6320_3p0_NFA324i_5_SS_N.bin      = 1,,
+eeprom_ar6320_3p0_NFA324i_5_SS_S.bin      = 1,,
+eeprom_ar6320_3p0_NFA324i_5_SS_T.bin      = 1,,
+eeprom_ar6320_3p0_NFA324i_5_SS_V.bin      = 1,,
+eeprom_ar6320_3p0_NFA324i_5_B.bin         = 1,, ; Win10 only
+eeprom_ar6320_3p0_NFA344a.bin             = 1,,
+eeprom_ar6320_3p0_NFA344a_highTX.bin      = 1,,
+eeprom_ar6320_3p0_NFA344a_highTX_LE_1.bin = 1,,
+eeprom_ar6320_3p0_NFA344a_highTX_LE_2.bin = 1,,
+eeprom_ar6320_3p0_NFA344a_highTX_LE_3.bin = 1,,
+eeprom_ar6320_3p0_NFA344a_highTX_LE_4.bin = 1,,
+eeprom_ar6320_3p0_NFA344a_highTX_LE_5.bin = 1,,
+eeprom_ar6320_3p0_NFA344a_highTX_LE_6.bin = 1,,
+eeprom_ar6320_3p0_NFA344a_BLP.bin         = 1,,
+eeprom_ar6320_3p0_NFA344a_AC_BRN.bin      = 1,,
+eeprom_ar6320_3p0_NFA354xp.bin            = 1,,
+eeprom_ar6320_3p0_NFA364xp.bin            = 1,,
+eeprom_ar6320_3p0_NFA364xp_powerA.bin     = 1,,
+eeprom_ar6320_3p0_NFA364xp_power1213.bin  = 1,,
+eeprom_ar6320_3p0_NFA364xp_RV_0519.bin    = 1,,
+eeprom_ar6320_3p0_NFA364xp_RV_0520.bin    = 1,,
+eeprom_ar6320_3p0_QCA9008.bin             = 1,,
+eeprom_ar6320_3p0_NFA344A_power1213.bin   = 1,,
+eeprom_ar6320_3p0_NFA344A_power1213_DE_5459.bin = 1,,
+eeprom_ar6320_3p0_NFA344A_power1213_DE_0410.bin = 1,,
+eeprom_ar6320_3p0_NFA344A_power1213_RV_0519.bin = 1,,
+
+[DestinationDirs]
+atheros.CopyFiles                  = 12
+atheros_FW.CopyFiles               = 12
+atheros_BD_NFA324.CopyFiles        = 12
+atheros_BD_NFA344.CopyFiles        = 12
+atheros_BD_NFA344_le.CopyFiles     = 12
+atheros_BD_NFA345.CopyFiles        = 12
+atheros_BD_NFA345_le.CopyFiles     = 12
+atheros_BD_NFA354.CopyFiles        = 12
+atheros_BD_NFA354_SS.CopyFiles     = 12
+atheros_BD_NFA355.CopyFiles        = 12
+atheros_FW_TF.CopyFiles            = 12
+atheros_BD_NFA425_TF.CopyFiles     = 12
+atheros_BD_NFA425_TF11.CopyFiles   = 12
+atheros_BD_NFA425_TF11_A.CopyFiles = 12
+atheros_BD_NFA425_TF11_A_low.CopyFiles = 12
+atheros_BD_NFA435_TF.CopyFiles     = 12
+atheros_BD_NFA435_TF_A.CopyFiles   = 12
+atheros_BD_NFA435_TF_LE.CopyFiles  = 12
+atheros_BD_NFA435_TF11.CopyFiles   = 12
+atheros_BD_NFA435_TF11_A.CopyFiles = 12
+atheros_BD_NFA435_TF11_LE.CopyFiles= 12
+atheros_BD_NFA455_TF.CopyFiles     = 12
+atheros_FW_3X.CopyFiles            = 12
+atheros_BD_NFA324A_1.CopyFiles     = 12
+atheros_BD_SS_COB.CopyFiles        = 12 ; Win10 only
+atheros_BD_NFA324A_5.CopyFiles     = 12
+atheros_BD_NFA324A_SS.CopyFiles    = 12
+atheros_BD_NFA324A_5_B.CopyFiles   = 12 ; Win10 only
+atheros_BD_NFA344A.CopyFiles       = 12
+atheros_BD_NFA344A_H.CopyFiles     = 12
+atheros_BD_NFA344A_LE.CopyFiles    = 12
+atheros_BD_NFA344A_AC.CopyFiles    = 12
+atheros_BD_NFA354A.CopyFiles       = 12
+atheros_BD_NFA364A.CopyFiles       = 12
+atheros_BD_NFA364A_A.CopyFiles     = 12
+atheros_BD_NFA364A_1213.CopyFiles  = 12
+atheros_BD_NFA364A_RV.CopyFiles    = 12
+atheros_BD_QCA9008.CopyFiles       = 12
+DefaultDestDir                     = 11
+
+[Strings]
+Msft                         = "Microsoft"
+Atheros                      = "Qualcomm Atheros Communications Inc."
+ATHR.Service.DispName        = "Qualcomm Atheros Extensible Wireless LAN 11AC device driver"
+DiskDescription              = "Qualcomm Atheros Sample Driver Disk 1"
+Enable                       = "Enable"
+Disable                      = "Disable"
+RoamAggressive               = "Roaming aggressiveness"
+RssiLowest                   = "1.Lowest"
+RssiMedium-low               = "2.Medium-low"   
+RssiMedium                   = "3.Medium"
+RssiMedium-high              = "4.Medium-high"
+RssiHighest                  = "5.Highest"
+NetworkAddress               = "Network Address"
+bkScanEnable                 = "BackgroundScan On/Off"
+radioEnable                  = "Radio On/Off"
+smpsDynamic                  = "Dynamic MIMO Power Save"
+D0PCDesc                     = "D0 PacketCoalescing"
+ATHR.DeviceDesc.6320         = "Qualcomm Atheros QCA61x4 Wireless Network Adapter"
+ATHR.DeviceDesc.6320_2       = "Qualcomm Atheros QCA61x4 Wireless Network Adapter"
+ATHR.DeviceDesc.6320_3       = "Qualcomm Atheros QCA61x4A Wireless Network Adapter"
+ATHR.DeviceDesc.2582         = "Killer Wireless-n/a/ac 1525 Wireless Network Adapter"
+ATHR.DeviceDesc.2582_2       = "Killer Wireless-n/a/ac 1435 Wireless Network Adapter"
+ATHR.DeviceDesc.2582_3       = "Killer Wireless-n/a/ac 1535 Wireless Network Adapter"
+ATHR.DeviceDesc.9377         = "Qualcomm Atheros QCA9377 Wireless Network Adapter"
+

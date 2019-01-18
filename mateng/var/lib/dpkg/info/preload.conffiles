@@ -1,0 +1,4 @@
+/etc/init.d/preload
+/etc/preload.conf
+/etc/logrotate.d/preload
+/etc/default/preload

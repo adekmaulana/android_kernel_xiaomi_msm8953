@@ -1,0 +1,147 @@
+#!/bin/sh
+
+# Load debconf variables
+. /usr/share/debconf/confmodule
+
+conffile=/etc/popularity-contest.conf
+
+set -e
+
+if [ -e $conffile ] ; then
+    # Fetch current values.
+    . $conffile
+fi
+
+# Get this setting from debconf.  It was set based on the content of
+# /etc/popularity-contest.conf in the 'config' script, so it should be
+# safe to ignore the value fetched by loading the file above.  This
+# should allow for using debconf to reconfigure the package.
+db_get popularity-contest/participate || true
+if [ "$RET" = "yes" ] || [ "$RET" = "YES" ] || [ "$RET" = "true" ]; then
+    PARTICIPATE="yes"
+else
+    PARTICIPATE="no"
+fi
+
+# The md5 sum of an empty file
+EMPTYID="d41d8cd98f00b204e9800998ecf8427e"
+
+generate_id() {
+        if which uuidgen >/dev/null 2>&1; then
+                MY_HOSTID=`uuidgen | tr -d -`
+        else
+	        MY_HOSTID=`dd if=/dev/urandom bs=1k count=1 2>/dev/null | md5sum | sed 's/  -//'''`
+        fi
+}
+
+# Select a random day to submit on, to spread the load over time, unless it is already set.
+select_random_day() {
+        DAY=`bash -c 'echo $(($RANDOM % 7))'`
+}
+
+generate_crond() {
+  MIN=`bash -c 'echo $(($RANDOM % 60))'`
+  HOUR=`bash -c 'echo $(($RANDOM % 24))'`
+  FILE=/etc/cron.daily/popularity-contest
+  cat > /etc/cron.d/popularity-contest <<EOF
+SHELL=/bin/sh
+PATH=/usr/local/sbin:/usr/local/bin:/sbin:/bin:/usr/sbin:/usr/bin
+$MIN $HOUR * * *   root    test -x $FILE && $FILE --crond
+EOF
+}
+generate_conffile() {
+	generate_id
+	generate_crond
+	select_random_day
+	cat <<-EOF >$conffile
+		# Config file for Debian's popularity-contest package.
+		#
+		# To change this file, use:
+		#        dpkg-reconfigure popularity-contest
+		#
+		# You can also edit it by hand, if you so choose.
+		#
+		# See /usr/share/popularity-contest/default.conf for more info
+		# on the options.
+		
+		MY_HOSTID="$MY_HOSTID"
+		PARTICIPATE="$PARTICIPATE"
+		USEHTTP="yes"
+		DAY="$DAY"
+	EOF
+
+	# preseeding is only allowed on first time install
+	db_get popularity-contest/submiturls || true
+	if [ -n "$RET" ] ; then
+	    echo "SUBMITURLS=\"$RET\"" >> $conffile
+	fi
+
+	# Make sure user nobody can read the file.
+	chmod a+r $conffile
+}
+
+case "$1" in
+    configure)
+	if [ ! -e $conffile ]; then
+	    generate_conffile
+	else
+	    # If MY_HOSTID is not set, add it.  This is useful when disk images are prepared
+	    if [ -z "$MY_HOSTID" ] ; then
+	        generate_id
+	        echo "MY_HOSTID=\"$MY_HOSTID\"" >> $conffile
+	    fi
+
+            OLDHOSTID="$MY_HOSTID";
+            case "$MY_HOSTID" in
+            # Workaround for bug #237874 triggered on hurd.  The
+            # problem was fixed in version 1.15, 2004-03-20.
+
+              $EMPTYID) generate_id;;
+            # Workaround for bug #240603 triggered by md5sums change
+            # of behaviour with stdin. version 1.17, 2004-04-12.
+              *-)  MY_HOSTID="${MY_HOSTID%  -}";;
+            esac;
+
+	    # If DAY is not set, add it.
+	    if [ -z "$DAY" ] ; then
+	        select_random_day
+	        echo "DAY=\"$DAY\"" >> $conffile
+	    fi
+	    if [ ! -f /etc/cron.d/popularity-contest ] ; then
+	        generate_crond
+	    fi
+
+	    # Replace only if the content changed, to avoid changing the
+	    # config file date when no change was done.
+
+	    # Commenting out the obsolete addresses, to use the
+	    # default config from /usr/share/ on hosts where
+	    # the old default was unchanged.  Replace the "empty" id.
+
+	    sedopts=" \
+		s/^PARTICIPATE=.*$/PARTICIPATE=\"$PARTICIPATE\"/;   \
+		s/^\(MAILTO=\"erich-survey@debian.org\"\)$/#\1/;    \
+		s/^\(MAILTO=\"apenwarr-survey@debian.org\"\)$/#\1/; \
+		s/^\(MAILTO=\"survey@popcon.debian.org\"\)$/#\1/;   \
+                "
+            if [ "$OLDHOSTID" != "$MY_HOSTID" ]; then
+                sedopts="$sedopts \
+                s/^MY_HOSTID=\"\\?$OLDHOSTID\"\\?/MY_HOSTID=\"$MY_HOSTID\"/; \
+		"
+            fi
+
+	    if sed "$sedopts" < $conffile > $conffile.new &&
+		! cmp $conffile $conffile.new > /dev/null; then
+		mv $conffile.new $conffile
+		# Make sure user nobody can read the file.
+		chmod a+r $conffile
+	    else
+		rm $conffile.new
+	    fi
+	fi
+	;;
+    *)
+	;;
+esac
+
+

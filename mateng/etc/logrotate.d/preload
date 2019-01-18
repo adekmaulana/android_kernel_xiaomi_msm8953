@@ -1,0 +1,9 @@
+/var/log/preload.log {
+    missingok
+    notifempty
+    size=64k
+    compress
+    postrotate
+	/bin/kill -HUP `/bin/pidof preload 2>/dev/null` 2> /dev/null || true
+    endscript
+}

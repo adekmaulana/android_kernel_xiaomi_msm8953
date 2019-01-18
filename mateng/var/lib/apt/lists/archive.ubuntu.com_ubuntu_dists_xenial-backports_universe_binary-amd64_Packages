@@ -1,0 +1,877 @@
+Package: ansible
+Architecture: all
+Version: 2.1.1.0-1~ubuntu16.04.1
+Priority: optional
+Section: universe/admin
+Origin: Ubuntu
+Maintainer: Ubuntu Developers <ubuntu-devel-discuss@lists.ubuntu.com>
+Original-Maintainer: Harlan Lieberman-Berg <hlieberman@debian.org>
+Bugs: https://bugs.launchpad.net/ubuntu/+filebug
+Installed-Size: 8940
+Depends: python-crypto (>= 2.6), python-jinja2, python-paramiko, python-pkg-resources, python-yaml, python:any (<< 2.8), python:any (>= 2.7.5-5~), python-httplib2, python-netaddr
+Recommends: python-selinux
+Suggests: sshpass
+Filename: pool/universe/a/ansible/ansible_2.1.1.0-1~ubuntu16.04.1_all.deb
+Size: 1248662
+MD5sum: c76f3adcb9c6e945dd389de216210d42
+SHA1: f699515b6c5d683a9a8e43be0804638dc4a50af1
+SHA256: 099d3a37bd53b16685726e43447bd9cf26977a9d3dd25816b64636520f05c778
+Homepage: http://ansible.com
+Description: Configuration management, deployment, and task execution system
+Description-md5: db2b21b0d2286fccc4401d5982361488
+
+Package: appstream-index
+Architecture: all
+Version: 0.10.1-1~ubuntu16.04.1
+Priority: optional
+Section: universe/admin
+Source: appstream
+Origin: Ubuntu
+Maintainer: Ubuntu Developers <ubuntu-devel-discuss@lists.ubuntu.com>
+Original-Maintainer: Matthias Klumpp <mak@debian.org>
+Bugs: https://bugs.launchpad.net/ubuntu/+filebug
+Installed-Size: 12
+Depends: appstream (>= 0.10.1-1~ubuntu16.04.1)
+Filename: pool/universe/a/appstream/appstream-index_0.10.1-1~ubuntu16.04.1_all.deb
+Size: 1848
+MD5sum: 007132bdb44d247177c16386b887f886
+SHA1: fe36ab081c591b4b47aa7e162f4ac7fc713914a7
+SHA256: 27707ec37a08b205172750e4f1a9b2e19162e6291f0c0a7e2fa3f26bc0957e81
+Homepage: http://www.freedesktop.org/wiki/Distributions/AppStream/
+Description: Transitional package (appstream-index -> appstream)
+Description-md5: 303e99a55dc11a5b27161702a0cd1d09
+
+Package: appstream-index
+Architecture: all
+Version: 0.10.6-1~ubuntu16.04.2
+Priority: optional
+Section: universe/admin
+Source: appstream
+Origin: Ubuntu
+Maintainer: Ubuntu Developers <ubuntu-devel-discuss@lists.ubuntu.com>
+Original-Maintainer: Matthias Klumpp <mak@debian.org>
+Bugs: https://bugs.launchpad.net/ubuntu/+filebug
+Installed-Size: 13
+Depends: appstream (>= 0.10.6-1~ubuntu16.04.2)
+Filename: pool/universe/a/appstream/appstream-index_0.10.6-1~ubuntu16.04.2_all.deb
+Size: 1812
+MD5sum: 693b33442a428a384462d92056ed0aec
+SHA1: 0ffa3d3aaece2bf500c7e6bdde18785b389db462
+SHA256: 9cbfce11bca7bca3ccee2d4af8b3b72638b0225f0b6f070857c793b1f213ac28
+Homepage: http://www.freedesktop.org/wiki/Distributions/AppStream/
+Description: Transitional package (appstream-index -> appstream)
+Description-md5: 303e99a55dc11a5b27161702a0cd1d09
+
+Package: bsdcpio
+Architecture: all
+Version: 3.2.1-2~ubuntu16.04.1
+Priority: optional
+Section: universe/utils
+Source: libarchive
+Origin: Ubuntu
+Maintainer: Ubuntu Developers <ubuntu-devel-discuss@lists.ubuntu.com>
+Original-Maintainer: Debian Libarchive Maintainers <ah-libarchive@debian.org>
+Bugs: https://bugs.launchpad.net/ubuntu/+filebug
+Installed-Size: 27
+Depends: libarchive-tools (>= 3.2.1-2~ubuntu16.04.1)
+Filename: pool/universe/liba/libarchive/bsdcpio_3.2.1-2~ubuntu16.04.1_all.deb
+Size: 4174
+MD5sum: ecbaa11674093630618a924eaca8270f
+SHA1: a08ecc18bb2b380905cb891a447d9fca781be72f
+SHA256: c9620d3b62845bec1f1aef9525356d06c0cd7ac80dca54b66d9fa1af74bb7080
+Homepage: http://www.libarchive.org/
+Description: transitional dummy package for moving bsdcpio to libarchive-tools
+Description-md5: 0d0614fc5b8366385e38162f0cfff695
+
+Package: bsdtar
+Architecture: all
+Version: 3.2.1-2~ubuntu16.04.1
+Priority: optional
+Section: universe/utils
+Source: libarchive
+Origin: Ubuntu
+Maintainer: Ubuntu Developers <ubuntu-devel-discuss@lists.ubuntu.com>
+Original-Maintainer: Debian Libarchive Maintainers <ah-libarchive@debian.org>
+Bugs: https://bugs.launchpad.net/ubuntu/+filebug
+Installed-Size: 27
+Depends: libarchive-tools (>= 3.2.1-2~ubuntu16.04.1)
+Filename: pool/universe/liba/libarchive/bsdtar_3.2.1-2~ubuntu16.04.1_all.deb
+Size: 4162
+MD5sum: 21701ad94d8fb6932b644811eef413fa
+SHA1: 9d8ebe5c910a027ac9f4aade72c0f52dac1b36c4
+SHA256: f4f036088490d8650f66645168705d677c4f8d49cf24411fb520c603b1309c69
+Homepage: http://www.libarchive.org/
+Description: transitional dummy package for moving bsdtar to libarchive-tools
+Description-md5: 74b38cb72c3d7fd4cf1c23df80a00577
+
+Package: cockpit
+Architecture: all
+Version: 178-1~ubuntu16.04.1
+Priority: optional
+Section: universe/admin
+Origin: Ubuntu
+Maintainer: Ubuntu Developers <ubuntu-devel-discuss@lists.ubuntu.com>
+Original-Maintainer: Utopia Maintenance Team <pkg-utopia-maintainers@lists.alioth.debian.org>
+Bugs: https://bugs.launchpad.net/ubuntu/+filebug
+Installed-Size: 59
+Depends: cockpit-bridge, cockpit-ws, cockpit-system
+Recommends: cockpit-storaged, cockpit-networkmanager, cockpit-dashboard, cockpit-packagekit
+Suggests: cockpit-doc, cockpit-pcp, cockpit-docker, xdg-utils
+Filename: pool/universe/c/cockpit/cockpit_178-1~ubuntu16.04.1_all.deb
+Size: 16106
+MD5sum: 20a00c822d787b4c0f27a4f9e2341ab0
+SHA1: 8be6ca5c7b65151cb70a73fdeb9648f5cb649468
+SHA256: 443418be367f1006f414c57bc8b646baf34aac8752a7b64f4e10a95081748a2c
+Homepage: https://cockpit-project.org/
+Description: User interface for Linux servers
+Description-md5: 5eb1d21349be18ee9bad20c445921f54
+
+Package: cockpit-bridge
+Architecture: amd64
+Version: 178-1~ubuntu16.04.1
+Priority: optional
+Section: universe/admin
+Source: cockpit
+Origin: Ubuntu
+Maintainer: Ubuntu Developers <ubuntu-devel-discuss@lists.ubuntu.com>
+Original-Maintainer: Utopia Maintenance Team <pkg-utopia-maintainers@lists.alioth.debian.org>
+Bugs: https://bugs.launchpad.net/ubuntu/+filebug
+Installed-Size: 959
+Provides: cockpit-ssh
+Depends: libc6 (>= 2.15), libglib2.0-0 (>= 2.35.9), libjson-glib-1.0-0 (>= 0.16.0), libpolkit-agent-1-0 (>= 0.105), libpolkit-gobject-1-0 (>= 0.104), libssh-4 (>= 0.6.1), libsystemd0, glib-networking
+Breaks: cockpit-dashboard (<< 170.x)
+Replaces: cockpit-dashboard (<< 170.x)
+Filename: pool/universe/c/cockpit/cockpit-bridge_178-1~ubuntu16.04.1_amd64.deb
+Size: 482328
+MD5sum: 146296aeff1f8a602b2844e116268657
+SHA1: 4e6c1c5ab9214d5ed29942f6cfb0a6c2b06a61a7
+SHA256: 210b155cad8ecf9241919140b18bed5b7ca6e23b228fdd3a305bc6d00062caee
+Homepage: https://cockpit-project.org/
+Description: Cockpit bridge server-side component
+Description-md5: 34419f40043aa83e9a0fb5968fe56ce7
+
+Package: cockpit-dashboard
+Architecture: all
+Version: 178-1~ubuntu16.04.1
+Priority: optional
+Section: universe/admin
+Source: cockpit
+Origin: Ubuntu
+Maintainer: Ubuntu Developers <ubuntu-devel-discuss@lists.ubuntu.com>
+Original-Maintainer: Utopia Maintenance Team <pkg-utopia-maintainers@lists.alioth.debian.org>
+Bugs: https://bugs.launchpad.net/ubuntu/+filebug
+Installed-Size: 163
+Depends: cockpit-bridge (>= 170.x), cockpit-ws (>= 178-1~ubuntu16.04.1), cockpit-ws (<< 178-1~ubuntu16.04.1.1~)
+Replaces: cockpit-system (<< 128), cockpit-ws (<< 128)
+Filename: pool/universe/c/cockpit/cockpit-dashboard_178-1~ubuntu16.04.1_all.deb
+Size: 132796
+MD5sum: faaa26c2e7700b48e27b2a129793f6b3
+SHA1: ef4d4050bf731b231e03ead9fc893a92f875ca5b
+SHA256: 679f935c7d851053e77456ab3cd4d88482558ab126aa1d374df9dcd943134da4
+Homepage: https://cockpit-project.org/
+Description: Cockpit remote servers and dashboard
+Description-md5: 1b1adf0b10d4d95da33a41c0d668cfd1
+
+Package: cockpit-doc
+Architecture: all
+Version: 178-1~ubuntu16.04.1
+Priority: optional
+Section: universe/doc
+Source: cockpit
+Origin: Ubuntu
+Maintainer: Ubuntu Developers <ubuntu-devel-discuss@lists.ubuntu.com>
+Original-Maintainer: Utopia Maintenance Team <pkg-utopia-maintainers@lists.alioth.debian.org>
+Bugs: https://bugs.launchpad.net/ubuntu/+filebug
+Installed-Size: 1348
+Filename: pool/universe/c/cockpit/cockpit-doc_178-1~ubuntu16.04.1_all.deb
+Size: 975460
+MD5sum: 4c6e9302d0806e7207242697e7aa6912
+SHA1: 5c15d415938ad7b347c24b8d5b31e2f70ec76fe6
+SHA256: 49b09a84eaf53c5a101ba314a7f32eb8abb8668bcb027a0c7d1934a14d2dcf17
+Homepage: https://cockpit-project.org/
+Description: Cockpit deployment and developer guide
+Description-md5: 917dc8f7798407683627da6ebb139a47
+
+Package: cockpit-docker
+Architecture: all
+Version: 178-1~ubuntu16.04.1
+Priority: optional
+Section: universe/admin
+Source: cockpit
+Origin: Ubuntu
+Maintainer: Ubuntu Developers <ubuntu-devel-discuss@lists.ubuntu.com>
+Original-Maintainer: Utopia Maintenance Team <pkg-utopia-maintainers@lists.alioth.debian.org>
+Bugs: https://bugs.launchpad.net/ubuntu/+filebug
+Installed-Size: 326
+Depends: python3, cockpit-bridge (>= 138)
+Recommends: docker.io (>= 1.3.0) | docker-engine (>= 1.3.0) | docker-ce (>= 1.3.0)
+Filename: pool/universe/c/cockpit/cockpit-docker_178-1~ubuntu16.04.1_all.deb
+Size: 295370
+MD5sum: 893c91a25f5ea72cf1940c08b43ef08c
+SHA1: 24dd948d60dba416d49b591df19d0b1f2f4c0f1a
+SHA256: 2f21ad3937656ffd82717b57ef7171d2ff4883ae8e08b2ccd8c43eaf93aef46a
+Homepage: https://cockpit-project.org/
+Description: Cockpit user interface for Docker containers
+Description-md5: c02e70ed63df0326f1a1b12deeb24144
+
+Package: cockpit-machines
+Architecture: all
+Version: 178-1~ubuntu16.04.1
+Priority: optional
+Section: universe/admin
+Source: cockpit
+Origin: Ubuntu
+Maintainer: Ubuntu Developers <ubuntu-devel-discuss@lists.ubuntu.com>
+Original-Maintainer: Utopia Maintenance Team <pkg-utopia-maintainers@lists.alioth.debian.org>
+Bugs: https://bugs.launchpad.net/ubuntu/+filebug
+Installed-Size: 535
+Depends: libvirt-daemon-system, libvirt-clients | libvirt-bin, libosinfo-bin
+Recommends: virtinst, libvirt-dbus
+Filename: pool/universe/c/cockpit/cockpit-machines_178-1~ubuntu16.04.1_all.deb
+Size: 511120
+MD5sum: 13866b6745c36a3172549bd33683a6aa
+SHA1: ca755f88de260ae47803c57323ecac8d89ef305c
+SHA256: 2014b2fa7161feed0dce28fc20257543a55b57ee6eca8b10a35711509b3ed0f3
+Homepage: https://cockpit-project.org/
+Description: Cockpit user interface for virtual machines
+Description-md5: a902f6feddb06225624681441d26bc7d
+
+Package: cockpit-networkmanager
+Architecture: all
+Version: 178-1~ubuntu16.04.1
+Priority: optional
+Section: universe/admin
+Source: cockpit
+Origin: Ubuntu
+Maintainer: Ubuntu Developers <ubuntu-devel-discuss@lists.ubuntu.com>
+Original-Maintainer: Utopia Maintenance Team <pkg-utopia-maintainers@lists.alioth.debian.org>
+Bugs: https://bugs.launchpad.net/ubuntu/+filebug
+Installed-Size: 197
+Depends: cockpit-bridge (>= 138), network-manager
+Filename: pool/universe/c/cockpit/cockpit-networkmanager_178-1~ubuntu16.04.1_all.deb
+Size: 164740
+MD5sum: 48c19f1aaa84a99aa87a14d232b4e8be
+SHA1: 487c42248c958075295e868f5ab5a6b4a61f01cf
+SHA256: b55b813ef29e3607a6420fbd26cec1fd4774168dcfed0fc3d654facdcc1e34f2
+Homepage: https://cockpit-project.org/
+Description: Cockpit user interface for networking
+Description-md5: 3ec1a60ecda81a24c8267c56cf7a9a3f
+
+Package: cockpit-packagekit
+Architecture: all
+Version: 178-1~ubuntu16.04.1
+Priority: optional
+Section: universe/admin
+Source: cockpit
+Origin: Ubuntu
+Maintainer: Ubuntu Developers <ubuntu-devel-discuss@lists.ubuntu.com>
+Original-Maintainer: Utopia Maintenance Team <pkg-utopia-maintainers@lists.alioth.debian.org>
+Bugs: https://bugs.launchpad.net/ubuntu/+filebug
+Installed-Size: 300
+Depends: cockpit-bridge (>= 138), packagekit
+Filename: pool/universe/c/cockpit/cockpit-packagekit_178-1~ubuntu16.04.1_all.deb
+Size: 257154
+MD5sum: 61d1dcc251f458f9d8ef8e9df5118f39
+SHA1: 766b1f34d9b8e2756594eb49dbd630cbe3173125
+SHA256: 409616ca2140adbaca463ec857358df7cdf90e61dac8714868b586b5244e86ce
+Homepage: https://cockpit-project.org/
+Description: Cockpit user interface for packages
+Description-md5: 01ecbad973ab31bb91eb03019d4352aa
+
+Package: cockpit-pcp
+Architecture: amd64
+Version: 178-1~ubuntu16.04.1
+Priority: optional
+Section: universe/admin
+Source: cockpit
+Origin: Ubuntu
+Maintainer: Ubuntu Developers <ubuntu-devel-discuss@lists.ubuntu.com>
+Original-Maintainer: Utopia Maintenance Team <pkg-utopia-maintainers@lists.alioth.debian.org>
+Bugs: https://bugs.launchpad.net/ubuntu/+filebug
+Installed-Size: 233
+Depends: libc6 (>= 2.11), libglib2.0-0 (>= 2.35.9), libjson-glib-1.0-0 (>= 0.16.0), libpcp3, libsystemd0, cockpit-bridge (>= 138), pcp
+Filename: pool/universe/c/cockpit/cockpit-pcp_178-1~ubuntu16.04.1_amd64.deb
+Size: 66500
+MD5sum: 43b44c7a0e77b79beed42f921deba0c1
+SHA1: 37c65c6d2df223244ac52efd575f8e8fb910e9f5
+SHA256: 8df0f0ec4bf0c0c465de6b41a7419c64900efa714b6769804573b8b5dba95f54
+Homepage: https://cockpit-project.org/
+Description: Cockpit PCP integration
+Description-md5: 2bcebebdc8b56e2cd8c2ba8755912a8f
+
+Package: cockpit-storaged
+Architecture: all
+Version: 178-1~ubuntu16.04.1
+Priority: optional
+Section: universe/admin
+Source: cockpit
+Origin: Ubuntu
+Maintainer: Ubuntu Developers <ubuntu-devel-discuss@lists.ubuntu.com>
+Original-Maintainer: Utopia Maintenance Team <pkg-utopia-maintainers@lists.alioth.debian.org>
+Bugs: https://bugs.launchpad.net/ubuntu/+filebug
+Installed-Size: 375
+Depends: udisks2, udisks2 (<< 2.7) | libblockdev-mdraid2, cockpit-bridge (>= 138), python3, python3-dbus
+Filename: pool/universe/c/cockpit/cockpit-storaged_178-1~ubuntu16.04.1_all.deb
+Size: 346286
+MD5sum: 91ea77abf317e4aff7c22ea9cfb2ff9d
+SHA1: 84060ed482f96146b92d85ba73f4808ce3488754
+SHA256: 3023691507d8ca52f195dad39f53bffbabde1aa00ec24461476bc2f6107ad8e6
+Homepage: https://cockpit-project.org/
+Description: Cockpit user interface for storage
+Description-md5: f6107ca2b49a2b554a0abcd9b73419c5
+
+Package: cockpit-system
+Architecture: all
+Version: 178-1~ubuntu16.04.1
+Priority: optional
+Section: universe/admin
+Source: cockpit
+Origin: Ubuntu
+Maintainer: Ubuntu Developers <ubuntu-devel-discuss@lists.ubuntu.com>
+Original-Maintainer: Utopia Maintenance Team <pkg-utopia-maintainers@lists.alioth.debian.org>
+Bugs: https://bugs.launchpad.net/ubuntu/+filebug
+Installed-Size: 978
+Provides: cockpit-realmd, cockpit-shell, cockpit-systemd, cockpit-tuned, cockpit-users
+Depends: cockpit-bridge (>= 138), libpwquality-tools, openssl
+Recommends: policykit-1
+Conflicts: cockpit-shell
+Replaces: cockpit-shell
+Filename: pool/universe/c/cockpit/cockpit-system_178-1~ubuntu16.04.1_all.deb
+Size: 849664
+MD5sum: d22273b7b411de4ecf1c21e987a16175
+SHA1: 170e99f02b2cb7c1fa6a18f34775feac85a87d6c
+SHA256: 605780b4b2d08a5dd848f663c60520d9106170023e98b3a3a2686cf7baf2dbf6
+Homepage: https://cockpit-project.org/
+Description: Cockpit admin interface for a system
+Description-md5: 305239ce7fcb5c6043156a1e54c69f73
+
+Package: cockpit-tests
+Architecture: amd64
+Version: 178-1~ubuntu16.04.1
+Priority: optional
+Section: universe/admin
+Source: cockpit
+Origin: Ubuntu
+Maintainer: Ubuntu Developers <ubuntu-devel-discuss@lists.ubuntu.com>
+Original-Maintainer: Utopia Maintenance Team <pkg-utopia-maintainers@lists.alioth.debian.org>
+Bugs: https://bugs.launchpad.net/ubuntu/+filebug
+Installed-Size: 313
+Provides: cockpit-test-assets
+Depends: libc6 (>= 2.4), libpam0g (>= 0.99.7.1), cockpit-system (>= 178-1~ubuntu16.04.1), openssh-client
+Conflicts: cockpit-test-assets
+Replaces: cockpit-test-assets
+Filename: pool/universe/c/cockpit/cockpit-tests_178-1~ubuntu16.04.1_amd64.deb
+Size: 245288
+MD5sum: 339cdbfc0aa2d2704e53aec61b8a5cd4
+SHA1: 8f28b74018a4ee37ace07e7fe8cd48509b049758
+SHA256: bc221c2194453af6f4426785205ac1ceab2541f2b8766ff2709a2ccdca9a9ebc
+Homepage: https://cockpit-project.org/
+Description: Tests for Cockpit
+Description-md5: 0b4ed46aa862cd96d493b081c605101e
+
+Package: cockpit-ws
+Architecture: amd64
+Version: 178-1~ubuntu16.04.1
+Priority: optional
+Section: universe/admin
+Source: cockpit
+Origin: Ubuntu
+Maintainer: Ubuntu Developers <ubuntu-devel-discuss@lists.ubuntu.com>
+Original-Maintainer: Utopia Maintenance Team <pkg-utopia-maintainers@lists.alioth.debian.org>
+Bugs: https://bugs.launchpad.net/ubuntu/+filebug
+Installed-Size: 1693
+Depends: init-system-helpers (>= 1.18~), libc6 (>= 2.15), libglib2.0-0 (>= 2.33.14), libgssapi-krb5-2 (>= 1.11+dfsg), libjson-glib-1.0-0 (>= 0.16.0), libkrb5-3 (>= 1.10+dfsg~alpha1), libpam0g (>= 0.99.7.1), libsystemd0, glib-networking, adduser, openssl
+Filename: pool/universe/c/cockpit/cockpit-ws_178-1~ubuntu16.04.1_amd64.deb
+Size: 753744
+MD5sum: 107fb62937dc6d8ba79ff6508376a5e0
+SHA1: 9cf2d0cb1db17547e6a32482a5f0f156ea5efae6
+SHA256: c30782da48a4505127f3ada346f0ba875285a69ff670f64699bf6721612a3c7f
+Homepage: https://cockpit-project.org/
+Description: Cockpit Web Service
+Description-md5: 2e29c9c1deb6c6ed9c90530647c8f651
+
+Package: dh-systemd
+Architecture: all
+Version: 10.2.2ubuntu1~ubuntu16.04.1
+Multi-Arch: foreign
+Priority: extra
+Section: universe/admin
+Source: debhelper
+Origin: Ubuntu
+Maintainer: Ubuntu Developers <ubuntu-devel-discuss@lists.ubuntu.com>
+Original-Maintainer: Debhelper Maintainers <debhelper-devel@lists.alioth.debian.org>
+Bugs: https://bugs.launchpad.net/ubuntu/+filebug
+Installed-Size: 104
+Depends: debhelper (>= 9.20160709)
+Filename: pool/universe/d/debhelper/dh-systemd_10.2.2ubuntu1~ubuntu16.04.1_all.deb
+Size: 2604
+MD5sum: a1f6cf39f6b8dd8f760132f5851fb998
+SHA1: e57247abeea9942aaf922b2393992b0c7ca8d6b3
+SHA256: e44f5d87027dc0f9fa3800a00bb0279e8b0b05ca0ee7832f0adb22b587a79a59
+Description: debhelper add-on to handle systemd unit files - transitional package
+Description-md5: 67a68071a0cbbaa9df2bcd81ec5a29b1
+
+Package: gir-to-d
+Architecture: amd64
+Version: 0.10.0-1~ubuntu16.04.1
+Priority: optional
+Section: universe/devel
+Origin: Ubuntu
+Maintainer: Ubuntu Developers <ubuntu-devel-discuss@lists.ubuntu.com>
+Original-Maintainer: Debian D Language Group <pkg-d-devel@lists.alioth.debian.org>
+Bugs: https://bugs.launchpad.net/ubuntu/+filebug
+Installed-Size: 882
+Depends: libc6 (>= 2.14), libphobos2-ldc71
+Filename: pool/universe/g/gir-to-d/gir-to-d_0.10.0-1~ubuntu16.04.1_amd64.deb
+Size: 197570
+MD5sum: 1902bffc57fd64fbd0af4a02dba083cf
+SHA1: a07214ba762685ea2cd11420694c49af094ea0d1
+SHA256: 2d325e5bcb52d54992fd753e1cfb2bd0f823ddf739cb47ddc5b681c8a75612b3
+Homepage: https://github.com/gtkd-developers/gir-to-d
+Description: Create D bindings from GObject introspection files
+Description-md5: 90c17ef30a28a2fce3a4a14842121350
+
+Package: golang-1.10
+Architecture: all
+Version: 1.10-1ubuntu1~16.04.1
+Priority: optional
+Section: universe/devel
+Origin: Ubuntu
+Maintainer: Ubuntu Developers <ubuntu-devel-discuss@lists.ubuntu.com>
+Original-Maintainer: Go Compiler Team <pkg-golang-devel@lists.alioth.debian.org>
+Bugs: https://bugs.launchpad.net/ubuntu/+filebug
+Installed-Size: 84
+Depends: golang-1.10-doc (>= 1.10-1ubuntu1~16.04.1), golang-1.10-go (>= 1.10-1ubuntu1~16.04.1), golang-1.10-src (>= 1.10-1ubuntu1~16.04.1)
+Filename: pool/universe/g/golang-1.10/golang-1.10_1.10-1ubuntu1~16.04.1_all.deb
+Size: 17450
+MD5sum: 77f337c27b094984bdcaf425e4907a98
+SHA1: 62668eb3b6a6d24761c6cd2e9b1578f5680b2ca6
+SHA256: 09f52af5eb3fe1bc89a0aa299a1882be48cf526d03a976bffecf4119d6cc56de
+Homepage: https://golang.org
+Description: Go programming language compiler - metapackage
+Description-md5: 8650a23f44e2d60a785ad3123733d6d8
+
+Package: golang-1.10-doc
+Architecture: all
+Version: 1.10-1ubuntu1~16.04.1
+Priority: optional
+Section: universe/doc
+Source: golang-1.10
+Origin: Ubuntu
+Maintainer: Ubuntu Developers <ubuntu-devel-discuss@lists.ubuntu.com>
+Original-Maintainer: Go Compiler Team <pkg-golang-devel@lists.alioth.debian.org>
+Bugs: https://bugs.launchpad.net/ubuntu/+filebug
+Installed-Size: 4117
+Depends: golang-1.10-go
+Filename: pool/universe/g/golang-1.10/golang-1.10-doc_1.10-1ubuntu1~16.04.1_all.deb
+Size: 2423530
+MD5sum: 15af6e3a301f2e10586b7b8d530e699d
+SHA1: 5e57476320f727ae2b054719007b18c306b8d4f7
+SHA256: 2a030723de96225e82416c4b3afeac245b2d10b33b02e7621b1329c77492e703
+Homepage: https://golang.org
+Description: Go programming language - documentation
+Description-md5: c56cb747f65b0bf2f5cac5edc1d0e9a5
+
+Package: golang-1.10-go
+Architecture: amd64
+Version: 1.10-1ubuntu1~16.04.1
+Priority: optional
+Section: universe/devel
+Source: golang-1.10
+Origin: Ubuntu
+Maintainer: Ubuntu Developers <ubuntu-devel-discuss@lists.ubuntu.com>
+Original-Maintainer: Go Compiler Team <pkg-golang-devel@lists.alioth.debian.org>
+Bugs: https://bugs.launchpad.net/ubuntu/+filebug
+Installed-Size: 145859
+Depends: golang-1.10-src (>= 1.10-1ubuntu1~16.04.1), libc6 (>= 2.4)
+Recommends: g++, gcc, golang-1.10-race-detector-runtime, libc6-dev, pkg-config
+Suggests: bzr, ca-certificates, git, mercurial, subversion
+Filename: pool/universe/g/golang-1.10/golang-1.10-go_1.10-1ubuntu1~16.04.1_amd64.deb
+Size: 28329324
+MD5sum: a0273978607c9c7a56e129f49577cfb3
+SHA1: 012508bc7b6dca141dcc8524b09e3cf3b2e234d8
+SHA256: 86733d5c315e9b421314c0842717bf095f5aec7648d8e5a6b7e7456f10097803
+Homepage: https://golang.org
+Description: Go programming language compiler, linker, compiled stdlib
+Description-md5: 9791676e1d7825e569bdb76ce1ad2e08
+
+Package: golang-1.10-race-detector-runtime
+Architecture: amd64
+Version: 0.0+svn285455-0ubuntu1~16.04.1
+Priority: optional
+Section: universe/devel
+Origin: Ubuntu
+Maintainer: Michael Hudson-Doyle <michael.hudson@ubuntu.com>
+Bugs: https://bugs.launchpad.net/ubuntu/+filebug
+Installed-Size: 3355
+Filename: pool/universe/g/golang-1.10-race-detector-runtime/golang-1.10-race-detector-runtime_0.0+svn285455-0ubuntu1~16.04.1_amd64.deb
+Size: 432446
+MD5sum: e096fec9b142bc85e0d811eaa61fd5fb
+SHA1: 5c291c4ba35964138a94fbd695f6eb5a21d8df48
+SHA256: f415d4ca22e21988b4db5bca53498e0faac465c2637feab13df58658734e5a68
+Description: Runtime support for Go's race detector
+Description-md5: 74191b3870ef4efd74929bb804af379a
+
+Package: golang-1.10-src
+Architecture: amd64
+Version: 1.10-1ubuntu1~16.04.1
+Priority: optional
+Section: universe/devel
+Source: golang-1.10
+Origin: Ubuntu
+Maintainer: Ubuntu Developers <ubuntu-devel-discuss@lists.ubuntu.com>
+Original-Maintainer: Go Compiler Team <pkg-golang-devel@lists.alioth.debian.org>
+Bugs: https://bugs.launchpad.net/ubuntu/+filebug
+Installed-Size: 60157
+Filename: pool/universe/g/golang-1.10/golang-1.10-src_1.10-1ubuntu1~16.04.1_amd64.deb
+Size: 10110902
+MD5sum: 48f937010f908c71e3c417e3fe8b9133
+SHA1: 78f20d0c502b0ade3715f1cdf514f5bf7308dab9
+SHA256: b4ce20fae011afbe6fc69e2226390a17ebbb321d26516a647b62e7d9533490ce
+Homepage: https://golang.org
+Description: Go programming language - source files
+Description-md5: 541938e00b2a0c85f1fbae617a75fcd4
+
+Package: golang-1.9
+Architecture: all
+Version: 1.9.2-3ubuntu1~16.04.1
+Priority: optional
+Section: universe/devel
+Origin: Ubuntu
+Maintainer: Ubuntu Developers <ubuntu-devel-discuss@lists.ubuntu.com>
+Original-Maintainer: Go Compiler Team <pkg-golang-devel@lists.alioth.debian.org>
+Bugs: https://bugs.launchpad.net/ubuntu/+filebug
+Installed-Size: 84
+Depends: golang-1.9-doc (>= 1.9.2-3ubuntu1~16.04.1), golang-1.9-go (>= 1.9.2-3ubuntu1~16.04.1), golang-1.9-src (>= 1.9.2-3ubuntu1~16.04.1)
+Filename: pool/universe/g/golang-1.9/golang-1.9_1.9.2-3ubuntu1~16.04.1_all.deb
+Size: 17470
+MD5sum: d7b7f981cdf089750ffbaa58006946db
+SHA1: bab6b7b4f4aef01061e749cae9448275e69cfabe
+SHA256: 3aca20d200c06983a5144af9e0735e5cbed5e3c092d57f0a0198d766116e48ef
+Homepage: https://golang.org
+Description: Go programming language compiler - metapackage
+Description-md5: 8650a23f44e2d60a785ad3123733d6d8
+
+Package: golang-1.9-doc
+Architecture: all
+Version: 1.9.2-3ubuntu1~16.04.1
+Priority: optional
+Section: universe/doc
+Source: golang-1.9
+Origin: Ubuntu
+Maintainer: Ubuntu Developers <ubuntu-devel-discuss@lists.ubuntu.com>
+Original-Maintainer: Go Compiler Team <pkg-golang-devel@lists.alioth.debian.org>
+Bugs: https://bugs.launchpad.net/ubuntu/+filebug
+Installed-Size: 4076
+Depends: golang-1.9-go
+Filename: pool/universe/g/golang-1.9/golang-1.9-doc_1.9.2-3ubuntu1~16.04.1_all.deb
+Size: 2443816
+MD5sum: d8103940fcfc28f96caf8d4767a5b821
+SHA1: 3602a44ca6666f6e0a9db1b763ddd2c5b3337cf8
+SHA256: 6efb92296e91864828ae5a26a4885c3c7c1279c5fa7d733f01ebf9a5d9d8a046
+Homepage: https://golang.org
+Description: Go programming language - documentation
+Description-md5: c56cb747f65b0bf2f5cac5edc1d0e9a5
+
+Package: golang-1.9-go
+Architecture: amd64
+Version: 1.9.2-3ubuntu1~16.04.1
+Priority: optional
+Section: universe/devel
+Source: golang-1.9
+Origin: Ubuntu
+Maintainer: Ubuntu Developers <ubuntu-devel-discuss@lists.ubuntu.com>
+Original-Maintainer: Go Compiler Team <pkg-golang-devel@lists.alioth.debian.org>
+Bugs: https://bugs.launchpad.net/ubuntu/+filebug
+Installed-Size: 125025
+Depends: golang-1.9-src (>= 1.9.2-3ubuntu1~16.04.1), libc6 (>= 2.4)
+Recommends: g++, gcc, golang-1.9-race-detector-runtime, libc6-dev, pkg-config
+Suggests: bzr, ca-certificates, git, mercurial, subversion
+Filename: pool/universe/g/golang-1.9/golang-1.9-go_1.9.2-3ubuntu1~16.04.1_amd64.deb
+Size: 24839826
+MD5sum: 901f74620297805cc5206a8e7220af10
+SHA1: a7b3da5f45e93d0817f38195c8c111508a7562f8
+SHA256: 56bc988f7015bc0ed1365f889de2c742b86442563c1d5e6ff7a3a2b672d1f894
+Homepage: https://golang.org
+Description: Go programming language compiler, linker, compiled stdlib
+Description-md5: 9791676e1d7825e569bdb76ce1ad2e08
+
+Package: golang-1.9-race-detector-runtime
+Architecture: amd64
+Version: 0.0+svn285455-0ubuntu1~16.04.1
+Priority: extra
+Section: universe/devel
+Origin: Ubuntu
+Maintainer: Michael Hudson-Doyle <michael.hudson@ubuntu.com>
+Bugs: https://bugs.launchpad.net/ubuntu/+filebug
+Installed-Size: 3355
+Filename: pool/universe/g/golang-1.9-race-detector-runtime/golang-1.9-race-detector-runtime_0.0+svn285455-0ubuntu1~16.04.1_amd64.deb
+Size: 433688
+MD5sum: 63f38bcc96950ac63a0c7095b566149d
+SHA1: 054703d8bacae8bb3451f4be470be1991374670d
+SHA256: 68d138ef5c25e29acf785c1961524d2a037d6d95aed4792251909245557f36d2
+Description: Runtime support for Go's race detector
+Description-md5: 74191b3870ef4efd74929bb804af379a
+
+Package: golang-1.9-src
+Architecture: amd64
+Version: 1.9.2-3ubuntu1~16.04.1
+Priority: optional
+Section: universe/devel
+Source: golang-1.9
+Origin: Ubuntu
+Maintainer: Ubuntu Developers <ubuntu-devel-discuss@lists.ubuntu.com>
+Original-Maintainer: Go Compiler Team <pkg-golang-devel@lists.alioth.debian.org>
+Bugs: https://bugs.launchpad.net/ubuntu/+filebug
+Installed-Size: 52786
+Filename: pool/universe/g/golang-1.9/golang-1.9-src_1.9.2-3ubuntu1~16.04.1_amd64.deb
+Size: 8785058
+MD5sum: d2a5de80df7045abb769aecf5c26f4a4
+SHA1: b7707ff50c0dc50aa7aecbfa02c61012fbfea3e0
+SHA256: 0873c5e66393b074d7bc3ed402b73fa895c73648ab9a10471fef89313d8fad10
+Homepage: https://golang.org
+Description: Go programming language - source files
+Description-md5: 541938e00b2a0c85f1fbae617a75fcd4
+
+Package: ldc
+Architecture: amd64
+Version: 1:1.1.0+b3-1build1~ubuntu16.04.1
+Priority: extra
+Section: universe/devel
+Origin: Ubuntu
+Maintainer: Ubuntu Developers <ubuntu-devel-discuss@lists.ubuntu.com>
+Original-Maintainer: Debian D Language Group <pkg-d-devel@lists.alioth.debian.org>
+Bugs: https://bugs.launchpad.net/ubuntu/+filebug
+Installed-Size: 37678
+Provides: d-compiler, d-v2-compiler
+Depends: libphobos2-ldc-dev (= 1:1.1.0+b3-1build1~ubuntu16.04.1), libc6 (>= 2.15), libconfig9, libgcc1 (>= 1:3.4), libphobos2-ldc68 (>= 1:0.17.0~beta2-1), libstdc++6 (>= 5.2), libtinfo5 (>= 6), zlib1g (>= 1:1.2.0)
+Filename: pool/universe/l/ldc/ldc_1.1.0+b3-1build1~ubuntu16.04.1_amd64.deb
+Size: 10381320
+MD5sum: d63461926ab59741d712c362d3f9956d
+SHA1: c64fe5e25e675e4c24cea64169bbc946a5be440c
+SHA256: 424686fb99ab9a869ba26cadabada17abded59e33dfc765bc7239c901624af7c
+Homepage: https://github.com/ldc-developers/ldc
+Description: LLVM D Compiler
+Description-md5: 486f2a4a0d475755a0957a9b047ea2ef
+
+Package: liblmdb-dev
+Architecture: amd64
+Version: 0.9.18-4~ubuntu16.04.1
+Multi-Arch: same
+Priority: optional
+Section: universe/libdevel
+Source: lmdb
+Origin: Ubuntu
+Maintainer: Ubuntu Developers <ubuntu-devel-discuss@lists.ubuntu.com>
+Original-Maintainer: Debian Berkeley DB Group <pkg-db-devel@lists.alioth.debian.org>
+Bugs: https://bugs.launchpad.net/ubuntu/+filebug
+Installed-Size: 184
+Depends: liblmdb0 (= 0.9.18-4~ubuntu16.04.1)
+Recommends: lmdb-doc
+Filename: pool/universe/l/lmdb/liblmdb-dev_0.9.18-4~ubuntu16.04.1_amd64.deb
+Size: 57922
+MD5sum: e9f1115f0a5d2192424dd4e01a533549
+SHA1: 794a367702fbc855a87206be322ffd93069f9870
+SHA256: 6741bc0909a1f678c21660eb3d0dda69fcd6800838afc76048f1804bfabb6b72
+Homepage: http://symas.com/mdb/
+Description: Lightning Memory-Mapped Database development files
+Description-md5: 5f89a06580a0fff610ed7f46de603936
+Supported: 3y
+
+Package: liblmdb0
+Architecture: amd64
+Version: 0.9.18-4~ubuntu16.04.1
+Multi-Arch: same
+Priority: optional
+Section: universe/libs
+Source: lmdb
+Origin: Ubuntu
+Maintainer: Ubuntu Developers <ubuntu-devel-discuss@lists.ubuntu.com>
+Original-Maintainer: Debian Berkeley DB Group <pkg-db-devel@lists.alioth.debian.org>
+Bugs: https://bugs.launchpad.net/ubuntu/+filebug
+Installed-Size: 100
+Depends: libc6 (>= 2.14)
+Filename: pool/universe/l/lmdb/liblmdb0_0.9.18-4~ubuntu16.04.1_amd64.deb
+Size: 42880
+MD5sum: 58b782205d02f0a61e48df5374ac3a00
+SHA1: 27771bb9081ecdd014abe0da553757b66ef32a9c
+SHA256: 0397a9055bcf9db2b8c572761700db08af3890fac6eb51645d4a8d48ea18780a
+Homepage: http://symas.com/mdb/
+Description: Lightning Memory-Mapped Database shared library
+Task: kubuntu-desktop, kubuntu-full
+Description-md5: 205529036e221ed86db40fcd32032a9e
+Supported: 3y
+
+Package: libmustache-d-dev
+Architecture: amd64
+Version: 0.1.3-1~ubuntu16.04.1
+Priority: optional
+Section: universe/libdevel
+Source: mustache-d
+Origin: Ubuntu
+Maintainer: Ubuntu Developers <ubuntu-devel-discuss@lists.ubuntu.com>
+Original-Maintainer: Debian D Language Group <pkg-d-devel@lists.alioth.debian.org>
+Bugs: https://bugs.launchpad.net/ubuntu/+filebug
+Installed-Size: 68
+Filename: pool/universe/m/mustache-d/libmustache-d-dev_0.1.3-1~ubuntu16.04.1_amd64.deb
+Size: 12870
+MD5sum: 5170fb5a2e141f4a6d2e7701b0fc43ee
+SHA1: ee49d2c285d458089597648a2b51b2e2087b5de1
+SHA256: 5a371979661b862089a8ba9e8100a9b7bf4755ff56ce79daab8f201487b2b827
+Homepage: https://github.com/repeatedly/mustache-d
+Description: Mustache rendering engine for D
+Description-md5: dd778293605d48aeb3ccb2c396a14f94
+
+Package: libphobos2-ldc-dev
+Architecture: amd64
+Version: 1:1.1.0+b3-1build1~ubuntu16.04.1
+Priority: extra
+Section: universe/libdevel
+Source: ldc
+Origin: Ubuntu
+Maintainer: Ubuntu Developers <ubuntu-devel-discuss@lists.ubuntu.com>
+Original-Maintainer: Debian D Language Group <pkg-d-devel@lists.alioth.debian.org>
+Bugs: https://bugs.launchpad.net/ubuntu/+filebug
+Installed-Size: 38778
+Depends: libphobos2-ldc71 (= 1:1.1.0+b3-1build1~ubuntu16.04.1)
+Filename: pool/universe/l/ldc/libphobos2-ldc-dev_1.1.0+b3-1build1~ubuntu16.04.1_amd64.deb
+Size: 3774140
+MD5sum: 97c3bb981044958d94faa83f4007ee7e
+SHA1: 26e5520765701468b979cce085f8634976ae1adf
+SHA256: f8c5fffb2c94ea7116ae62a52d058e58af899ed4c2453ad0dbda3ef14adf70a1
+Homepage: https://github.com/ldc-developers/ldc
+Description: LLVM D Compiler - Phobos2 Standard library, imports
+Description-md5: b341b8776d65d648c3d9a2d216c9f827
+
+Package: libphobos2-ldc71
+Architecture: amd64
+Version: 1:1.1.0+b3-1build1~ubuntu16.04.1
+Multi-Arch: same
+Priority: optional
+Section: universe/libdevel
+Source: ldc
+Origin: Ubuntu
+Maintainer: Ubuntu Developers <ubuntu-devel-discuss@lists.ubuntu.com>
+Original-Maintainer: Debian D Language Group <pkg-d-devel@lists.alioth.debian.org>
+Bugs: https://bugs.launchpad.net/ubuntu/+filebug
+Installed-Size: 5725
+Depends: libc6 (>= 2.14), libgcc1 (>= 1:3.3), zlib1g (>= 1:1.2.0)
+Suggests: libphobos2-ldc-dev (= 1:1.1.0+b3-1build1~ubuntu16.04.1)
+Filename: pool/universe/l/ldc/libphobos2-ldc71_1.1.0+b3-1build1~ubuntu16.04.1_amd64.deb
+Size: 1040214
+MD5sum: d85ff21e30384ce613451b020e3e9eb0
+SHA1: c794ea6269b04caeab791a83f6b425ede11bd724
+SHA256: d6ee95162d119ce86f6b6404c8efe5e9f1accdfb11b76baecc0a803ea57210c1
+Homepage: https://github.com/ldc-developers/ldc
+Description: LLVM D Compiler - Phobos2 Standard library, shared objects
+Description-md5: 008779e61b9f161b2f64c0069b695f3a
+
+Package: lmdb-doc
+Architecture: all
+Version: 0.9.18-4~ubuntu16.04.1
+Priority: optional
+Section: universe/doc
+Source: lmdb
+Origin: Ubuntu
+Maintainer: Ubuntu Developers <ubuntu-devel-discuss@lists.ubuntu.com>
+Original-Maintainer: Debian Berkeley DB Group <pkg-db-devel@lists.alioth.debian.org>
+Bugs: https://bugs.launchpad.net/ubuntu/+filebug
+Installed-Size: 2289
+Breaks: liblmdb-dev (<< 0.9.9-1)
+Replaces: liblmdb-dev (<< 0.9.9-1)
+Filename: pool/universe/l/lmdb/lmdb-doc_0.9.18-4~ubuntu16.04.1_all.deb
+Size: 260240
+MD5sum: 1f1a63e641a1e82e3d32942789ff45a6
+SHA1: afbf4fa184b8bfd267c7b6534ff8fc471863b37a
+SHA256: afd7d090e1af84950af31ba9665653cd498c29efd967f95eaa3b3fda692739ce
+Homepage: http://symas.com/mdb/
+Description: Lightning Memory-Mapped Database doxygen documentation
+Description-md5: 76adb97f0851fb6cf4f777f7c68adab4
+Supported: 3y
+
+Package: lmdb-utils
+Architecture: amd64
+Version: 0.9.18-4~ubuntu16.04.1
+Multi-Arch: foreign
+Priority: optional
+Section: universe/database
+Source: lmdb
+Origin: Ubuntu
+Maintainer: Ubuntu Developers <ubuntu-devel-discuss@lists.ubuntu.com>
+Original-Maintainer: Debian Berkeley DB Group <pkg-db-devel@lists.alioth.debian.org>
+Bugs: https://bugs.launchpad.net/ubuntu/+filebug
+Installed-Size: 352
+Depends: libc6 (>= 2.14)
+Filename: pool/universe/l/lmdb/lmdb-utils_0.9.18-4~ubuntu16.04.1_amd64.deb
+Size: 60536
+MD5sum: efdfccecad80a12f7b4c173a7b02e9b3
+SHA1: 3de3223e8f6350c90254c1686a9b1f33527874a3
+SHA256: 19cce69717202400d44ff1db25572f8941e0224ef2a15d4addc5ad05bb60e962
+Homepage: http://symas.com/mdb/
+Description: Lightning Memory-Mapped Database Utilities
+Description-md5: e456d80fa8a524a61833c95d96211e00
+
+Package: meson
+Architecture: all
+Version: 0.40.1-1~ubuntu16.04.1
+Priority: optional
+Section: universe/devel
+Origin: Ubuntu
+Maintainer: Ubuntu Developers <ubuntu-devel-discuss@lists.ubuntu.com>
+Original-Maintainer: Jussi Pakkanen <jpakkane@gmail.com>
+Bugs: https://bugs.launchpad.net/ubuntu/+filebug
+Installed-Size: 1053
+Depends: ninja-build (>= 1.6), python3
+Filename: pool/universe/m/meson/meson_0.40.1-1~ubuntu16.04.1_all.deb
+Size: 171358
+MD5sum: 8652c72e1b161cf4fc3e1c808b11346b
+SHA1: b9b4045eeb078bdd88f023f8b27941042a773882
+SHA256: 6436f315f6939c88ef1a1b0817c564374e41d2f24647ae48fc2e211312c3874c
+Homepage: http://mesonbuild.com
+Description: high-productivity build system
+Description-md5: 05e8ad52532257641a3b106a0836e789
+
+Package: ninja-build
+Architecture: amd64
+Version: 1.7.1-1~ubuntu16.04.1
+Priority: optional
+Section: universe/devel
+Origin: Ubuntu
+Maintainer: Ubuntu Developers <ubuntu-devel-discuss@lists.ubuntu.com>
+Original-Maintainer: Felix Geyer <fgeyer@debian.org>
+Bugs: https://bugs.launchpad.net/ubuntu/+filebug
+Installed-Size: 286
+Depends: libc6 (>= 2.15), libstdc++6 (>= 5.2)
+Conflicts: ninja
+Filename: pool/universe/n/ninja-build/ninja-build_1.7.1-1~ubuntu16.04.1_amd64.deb
+Size: 91424
+MD5sum: 6384d9c31ca18803e90b7bf3f5c3ab28
+SHA1: ab64ea16c36a39bbfd6929351fff8e2d5768e801
+SHA256: 8f8ba3ccb7873cb264bd648437eb8e7d7abd4093254135f6830e368a25512b9f
+Homepage: https://ninja-build.org/
+Description: small build system closest in spirit to Make
+Description-md5: 5ef1371c63de86fcf36c1ddc875d2f26
+
+Package: python-distro-info
+Architecture: all
+Version: 0.18~ubuntu16.04.1
+Priority: optional
+Section: universe/python
+Source: distro-info
+Origin: Ubuntu
+Maintainer: Ubuntu Developers <ubuntu-devel-discuss@lists.ubuntu.com>
+Original-Maintainer: Benjamin Drung <bdrung@debian.org>
+Bugs: https://bugs.launchpad.net/ubuntu/+filebug
+Installed-Size: 53
+Depends: distro-info-data, python:any (<< 2.8), python:any (>= 2.7.5-5~)
+Breaks: distro-info (<< 0.3~)
+Replaces: distro-info (<< 0.3~)
+Filename: pool/universe/d/distro-info/python-distro-info_0.18~ubuntu16.04.1_all.deb
+Size: 9078
+MD5sum: 7e852554dc4a406f5ea9a0293e32a215
+SHA1: 0758707b8c2dcc6c2e18e533bcd1ca0783112178
+SHA256: c2362c9cbaee1334f8f9f52dbe1923a92e02ba27dbd2a5d8ce3eb4fc90a6936a
+Description: information about distributions' releases (Python module)
+Task: ubuntu-sdk
+Description-md5: d6f02716543992714864a0bcca58d98c
+

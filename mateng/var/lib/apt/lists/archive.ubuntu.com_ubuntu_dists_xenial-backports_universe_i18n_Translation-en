@@ -1,0 +1,386 @@
+Package: ansible
+Description-md5: db2b21b0d2286fccc4401d5982361488
+Description-en: Configuration management, deployment, and task execution system
+ Ansible is a radically simple model-driven configuration management,
+ multi-node deployment, and remote task execution system. Ansible works
+ over SSH and does not require any software or daemons to be installed
+ on remote nodes. Extension modules can be written in any language and
+ are transferred to managed machines automatically.
+
+Package: appstream-index
+Description-md5: 303e99a55dc11a5b27161702a0cd1d09
+Description-en: Transitional package (appstream-index -> appstream)
+ Transitional dummy package replacing appstream-index with
+ appstream.
+
+Package: bsdcpio
+Description-md5: 0d0614fc5b8366385e38162f0cfff695
+Description-en: transitional dummy package for moving bsdcpio to libarchive-tools
+ The bsdcpio program is the default system 'cpio' program used on FreeBSD.
+ bsdcpio uses the libarchive library as a backend which does all of the work for
+ reading and writing archives in various formats.
+ .
+ This is a transitional package for the migration of the bsdcpio tool to
+ the libarchive-tools package.
+
+Package: bsdtar
+Description-md5: 74b38cb72c3d7fd4cf1c23df80a00577
+Description-en: transitional dummy package for moving bsdtar to libarchive-tools
+ The bsdtar program is the default system 'tar' program used on FreeBSD. bsdtar
+ uses the libarchive library as a backend which does all of the work for reading
+ and writing archives in various formats.
+ .
+ This is a transitional package for the migration of the bsdtar tool to
+ the libarchive-tools package.
+
+Package: cockpit
+Description-md5: 5eb1d21349be18ee9bad20c445921f54
+Description-en: User interface for Linux servers
+ Cockpit runs in a browser and can manage your network of GNU/Linux
+ machines.
+
+Package: cockpit-bridge
+Description-md5: 34419f40043aa83e9a0fb5968fe56ce7
+Description-en: Cockpit bridge server-side component
+ The Cockpit bridge component installed server side and runs commands on
+ the system on behalf of the web based user interface.
+
+Package: cockpit-dashboard
+Description-md5: 1b1adf0b10d4d95da33a41c0d668cfd1
+Description-en: Cockpit remote servers and dashboard
+ Cockpit support for connecting to remote servers (through ssh)
+ bastion hosts, and a basic dashboard.
+
+Package: cockpit-doc
+Description-md5: 917dc8f7798407683627da6ebb139a47
+Description-en: Cockpit deployment and developer guide
+ The Cockpit Deployment and Developer Guide shows sysadmins how to deploy
+ Cockpit on their machines as well as helps developers who want to embed
+ or extend Cockpit.
+
+Package: cockpit-docker
+Description-md5: c02e70ed63df0326f1a1b12deeb24144
+Description-en: Cockpit user interface for Docker containers
+ The Cockpit components for interacting with Docker and user interface.
+
+Package: cockpit-machines
+Description-md5: a902f6feddb06225624681441d26bc7d
+Description-en: Cockpit user interface for virtual machines
+ The Cockpit components for managing virtual machines.
+ .
+ If the "virtinst" package is installed, you can also create new virtual
+ machines.
+
+Package: cockpit-networkmanager
+Description-md5: 3ec1a60ecda81a24c8267c56cf7a9a3f
+Description-en: Cockpit user interface for networking
+ The Cockpit components for interacting with networking configuration.
+
+Package: cockpit-packagekit
+Description-md5: 01ecbad973ab31bb91eb03019d4352aa
+Description-en: Cockpit user interface for packages
+ The Cockpit component for installing packages, via PackageKit.
+
+Package: cockpit-pcp
+Description-md5: 2bcebebdc8b56e2cd8c2ba8755912a8f
+Description-en: Cockpit PCP integration
+ Cockpit support for reading PCP metrics and loading PCP archives.
+
+Package: cockpit-storaged
+Description-md5: f6107ca2b49a2b554a0abcd9b73419c5
+Description-en: Cockpit user interface for storage
+ The Cockpit components for interacting with storage.
+
+Package: cockpit-system
+Description-md5: 305239ce7fcb5c6043156a1e54c69f73
+Description-en: Cockpit admin interface for a system
+ Cockpit admin interface package for configuring and
+ troubleshooting a system.
+
+Package: cockpit-tests
+Description-md5: 0b4ed46aa862cd96d493b081c605101e
+Description-en: Tests for Cockpit
+ This package contains tests and files used while testing Cockpit.
+ These files are not required for running Cockpit.
+
+Package: cockpit-ws
+Description-md5: 2e29c9c1deb6c6ed9c90530647c8f651
+Description-en: Cockpit Web Service
+ The Cockpit Web Service listens on the network, and authenticates
+ users.
+
+Package: dh-systemd
+Description-md5: 67a68071a0cbbaa9df2bcd81ec5a29b1
+Description-en: debhelper add-on to handle systemd unit files - transitional package
+ This package is for transitional purposes and can be removed safely.
+
+Package: gir-to-d
+Description-md5: 90c17ef30a28a2fce3a4a14842121350
+Description-en: Create D bindings from GObject introspection files
+ GObject Introspection provides machine readable introspection data
+ of the API of C libraries.
+ .
+ GirToD is a command-line tool which builds bindings for the
+ D programming language from GObject Introspection (GIR) data.
+
+Package: golang-1.10
+Description-md5: 8650a23f44e2d60a785ad3123733d6d8
+Description-en: Go programming language compiler - metapackage
+ The Go programming language is an open source project to make
+ programmers more productive. Go is expressive, concise, clean, and
+ efficient. Its concurrency mechanisms make it easy to write programs
+ that get the most out of multicore and networked machines, while its
+ novel type system enables flexible and modular program construction.
+ Go compiles quickly to machine code yet has the convenience of
+ garbage collection and the power of run-time reflection. It's a
+ fast, statically typed, compiled language that feels like a
+ dynamically typed, interpreted language.
+ .
+ This package is a metapackage that, when installed, guarantees
+ that (most of) a full Go development environment is installed.
+
+Package: golang-1.10-doc
+Description-md5: c56cb747f65b0bf2f5cac5edc1d0e9a5
+Description-en: Go programming language - documentation
+ The Go programming language is an open source project to make
+ programmers more productive. Go is expressive, concise, clean, and
+ efficient. Its concurrency mechanisms make it easy to write programs
+ that get the most out of multicore and networked machines, while its
+ novel type system enables flexible and modular program construction.
+ Go compiles quickly to machine code yet has the convenience of
+ garbage collection and the power of run-time reflection. It's a fast,
+ statically typed, compiled language that feels like a dynamically
+ typed, interpreted language.
+ .
+ This package provides the documentation for the Go programming
+ language. You can view the formatted documentation by running "godoc
+ --http=:6060", and then visiting http://localhost:6060/doc/install.html.
+
+Package: golang-1.10-go
+Description-md5: 9791676e1d7825e569bdb76ce1ad2e08
+Description-en: Go programming language compiler, linker, compiled stdlib
+ The Go programming language is an open source project to make programmers more
+ productive. Go is expressive, concise, clean, and efficient. Its concurrency
+ mechanisms make it easy to write programs that get the most out of multicore
+ and networked machines, while its novel type system enables flexible and
+ modular program construction. Go compiles quickly to machine code yet has the
+ convenience of garbage collection and the power of run-time reflection. It's a
+ fast, statically typed, compiled language that feels like a dynamically typed,
+ interpreted language.
+ .
+ This package provides an assembler, compiler, linker, and compiled libraries
+ for the Go programming language.
+ .
+ Go supports cross-compilation, but as of Go 1.5, it is no longer necessary to
+ pre-compile the standard library inside GOROOT for cross-compilation to work.
+
+Package: golang-1.10-race-detector-runtime
+Description-md5: 74191b3870ef4efd74929bb804af379a
+Description-en: Runtime support for Go's race detector
+ The runtime support for the race detector is included as a binary
+ file in the go source distribution so this package exists to build it
+ from source on trusted infrastructure.
+ .
+ Installing this package will make the -race flag to the go tool functional.
+
+Package: golang-1.10-src
+Description-md5: 541938e00b2a0c85f1fbae617a75fcd4
+Description-en: Go programming language - source files
+ The Go programming language is an open source project to make programmers more
+ productive. Go is expressive, concise, clean, and efficient. Its concurrency
+ mechanisms make it easy to write programs that get the most out of multicore
+ and networked machines, while its novel type system enables flexible and
+ modular program construction. Go compiles quickly to machine code yet has the
+ convenience of garbage collection and the power of run-time reflection. It's a
+ fast, statically typed, compiled language that feels like a dynamically typed,
+ interpreted language.
+ .
+ This package provides the Go programming language source files needed for
+ cross-compilation.
+
+Package: golang-1.9
+Description-md5: 8650a23f44e2d60a785ad3123733d6d8
+Description-en: Go programming language compiler - metapackage
+ The Go programming language is an open source project to make
+ programmers more productive. Go is expressive, concise, clean, and
+ efficient. Its concurrency mechanisms make it easy to write programs
+ that get the most out of multicore and networked machines, while its
+ novel type system enables flexible and modular program construction.
+ Go compiles quickly to machine code yet has the convenience of
+ garbage collection and the power of run-time reflection. It's a
+ fast, statically typed, compiled language that feels like a
+ dynamically typed, interpreted language.
+ .
+ This package is a metapackage that, when installed, guarantees
+ that (most of) a full Go development environment is installed.
+
+Package: golang-1.9-doc
+Description-md5: c56cb747f65b0bf2f5cac5edc1d0e9a5
+Description-en: Go programming language - documentation
+ The Go programming language is an open source project to make
+ programmers more productive. Go is expressive, concise, clean, and
+ efficient. Its concurrency mechanisms make it easy to write programs
+ that get the most out of multicore and networked machines, while its
+ novel type system enables flexible and modular program construction.
+ Go compiles quickly to machine code yet has the convenience of
+ garbage collection and the power of run-time reflection. It's a fast,
+ statically typed, compiled language that feels like a dynamically
+ typed, interpreted language.
+ .
+ This package provides the documentation for the Go programming
+ language. You can view the formatted documentation by running "godoc
+ --http=:6060", and then visiting http://localhost:6060/doc/install.html.
+
+Package: golang-1.9-go
+Description-md5: 9791676e1d7825e569bdb76ce1ad2e08
+Description-en: Go programming language compiler, linker, compiled stdlib
+ The Go programming language is an open source project to make programmers more
+ productive. Go is expressive, concise, clean, and efficient. Its concurrency
+ mechanisms make it easy to write programs that get the most out of multicore
+ and networked machines, while its novel type system enables flexible and
+ modular program construction. Go compiles quickly to machine code yet has the
+ convenience of garbage collection and the power of run-time reflection. It's a
+ fast, statically typed, compiled language that feels like a dynamically typed,
+ interpreted language.
+ .
+ This package provides an assembler, compiler, linker, and compiled libraries
+ for the Go programming language.
+ .
+ Go supports cross-compilation, but as of Go 1.5, it is no longer necessary to
+ pre-compile the standard library inside GOROOT for cross-compilation to work.
+
+Package: golang-1.9-race-detector-runtime
+Description-md5: 74191b3870ef4efd74929bb804af379a
+Description-en: Runtime support for Go's race detector
+ The runtime support for the race detector is included as a binary
+ file in the go source distribution so this package exists to build it
+ from source on trusted infrastructure.
+ .
+ Installing this package will make the -race flag to the go tool functional.
+
+Package: golang-1.9-src
+Description-md5: 541938e00b2a0c85f1fbae617a75fcd4
+Description-en: Go programming language - source files
+ The Go programming language is an open source project to make programmers more
+ productive. Go is expressive, concise, clean, and efficient. Its concurrency
+ mechanisms make it easy to write programs that get the most out of multicore
+ and networked machines, while its novel type system enables flexible and
+ modular program construction. Go compiles quickly to machine code yet has the
+ convenience of garbage collection and the power of run-time reflection. It's a
+ fast, statically typed, compiled language that feels like a dynamically typed,
+ interpreted language.
+ .
+ This package provides the Go programming language source files needed for
+ cross-compilation.
+
+Package: ldc
+Description-md5: 486f2a4a0d475755a0957a9b047ea2ef
+Description-en: LLVM D Compiler
+ LDC is a compiler for the D programming Language. It is based on the
+ latest DMD frontend and uses LLVM as backend.
+ .
+ This is the actual ldc compiler
+
+Package: liblmdb-dev
+Description-md5: 5f89a06580a0fff610ed7f46de603936
+Description-en: Lightning Memory-Mapped Database development files
+ This package contains the development libraries, header files.  Install
+ lmdb-doc package for man pages.
+ .
+ Lighting Memory-Mapped Database (LMDB) is an ultra-fast, ultra-compact
+ key-value embedded data store developed for the OpenLDAP Project.  It uses
+ memory-mapped files, so it has the read performance of a pure in-memory
+ database while still offering the persistence of standard disk-based
+ databases, and is only limited to the size of the virtual address space, (it
+ is not limited to the size of physical RAM).
+
+Package: liblmdb0
+Description-md5: 205529036e221ed86db40fcd32032a9e
+Description-en: Lightning Memory-Mapped Database shared library
+ This package contains the LMDB shared library.
+ .
+ Lighting Memory-Mapped Database (LMDB) is an ultra-fast, ultra-compact
+ key-value embedded data store developed for the OpenLDAP Project.  It uses
+ memory-mapped files, so it has the read performance of a pure in-memory
+ database while still offering the persistence of standard disk-based
+ databases, and is only limited to the size of the virtual address space, (it
+ is not limited to the size of physical RAM).
+
+Package: libmustache-d-dev
+Description-md5: dd778293605d48aeb3ccb2c396a14f94
+Description-en: Mustache rendering engine for D
+ Mustache is a push-strategy (a.k.a logic-less) template engine.
+ .
+ This package contains an implementation in the D programming language.
+
+Package: libphobos2-ldc-dev
+Description-md5: b341b8776d65d648c3d9a2d216c9f827
+Description-en: LLVM D Compiler - Phobos2 Standard library, imports
+ LDC is a compiler for the D programming Language. It is based on the
+ latest DMD frontend and uses LLVM as backend.
+ .
+ This package includes the D imports for Phobos2 Standard Library
+
+Package: libphobos2-ldc71
+Description-md5: 008779e61b9f161b2f64c0069b695f3a
+Description-en: LLVM D Compiler - Phobos2 Standard library, shared objects
+ LDC is a compiler for the D programming Language. It is based on the
+ latest DMD frontend and uses LLVM as backend.
+ .
+ This package includes the libs for Phobos2 Standard Library
+
+Package: lmdb-doc
+Description-md5: 76adb97f0851fb6cf4f777f7c68adab4
+Description-en: Lightning Memory-Mapped Database doxygen documentation
+ This package contains the doxygen generated documentation and the man
+ pages for the LMDB library.
+ .
+ Lighting Memory-Mapped Database (LMDB) is an ultra-fast, ultra-compact
+ key-value embedded data store developed for the OpenLDAP Project.  It uses
+ memory-mapped files, so it has the read performance of a pure in-memory
+ database while still offering the persistence of standard disk-based
+ databases, and is only limited to the size of the virtual address space, (it
+ is not limited to the size of physical RAM).
+
+Package: lmdb-utils
+Description-md5: e456d80fa8a524a61833c95d96211e00
+Description-en: Lightning Memory-Mapped Database Utilities
+ This package provides tools for manipulating LMDB databases:
+  * mdb_stat - LMDB environment status tool
+  * mdb_copy - LMDB environment copy tool
+ .
+ Lighting Memory-Mapped Database (LMDB) is an ultra-fast, ultra-compact
+ key-value embedded data store developed for the OpenLDAP Project.  It uses
+ memory-mapped files, so it has the read performance of a pure in-memory
+ database while still offering the persistence of standard disk-based
+ databases, and is only limited to the size of the virtual address space, (it
+ is not limited to the size of physical RAM).
+
+Package: meson
+Description-md5: 05e8ad52532257641a3b106a0836e789
+Description-en: high-productivity build system
+ Meson is a build system designed to increase programmer
+ productivity. It does this by providing a fast, simple and easy to
+ use interface for modern software development tools and practices.
+
+Package: ninja-build
+Description-md5: 5ef1371c63de86fcf36c1ddc875d2f26
+Description-en: small build system closest in spirit to Make
+ Ninja is yet another build system. It takes as input the interdependencies of
+ files (typically source code and output executables) and orchestrates
+ building them, quickly.
+ .
+ Ninja joins a sea of other build systems. Its distinguishing goal is to be
+ fast. It is born from the Chromium browser project, which has over 30,000
+ source files and whose other build systems can take ten seconds to start
+ building after changing one file. Ninja is under a second.
+
+Package: python-distro-info
+Description-md5: d6f02716543992714864a0bcca58d98c
+Description-en: information about distributions' releases (Python module)
+ Information about all releases of Debian and Ubuntu.
+ .
+ This package contains a Python module for parsing the data in
+ distro-info-data. There is also a command line interface in the distro-info
+ package.
+

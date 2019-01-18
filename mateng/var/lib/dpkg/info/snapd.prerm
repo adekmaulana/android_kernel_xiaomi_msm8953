@@ -1,0 +1,16 @@
+#!/bin/sh
+set -e
+# Automatically added by dh_installdeb
+dpkg-maintscript-helper rm_conffile /etc/apparmor.d/usr.lib.snapd.snap-confine 2.23.6~ -- "$@"
+# End automatically added section
+# Automatically added by dh_installdeb
+dpkg-maintscript-helper rm_conffile /etc/ld.so.conf.d/snappy.conf 2.0.7~ -- "$@"
+# End automatically added section
+# Automatically added by dh_installdeb
+dpkg-maintscript-helper rm_conffile /etc/grub.d/09_snappy 1.7.3ubuntu1 -- "$@"
+# End automatically added section
+# Automatically added by dh_systemd_start
+if [ -d /run/systemd/system ]; then
+	deb-systemd-invoke stop snapd.autoimport.service snapd.core-fixup.service snapd.service snapd.snap-repair.service snapd.snap-repair.timer snapd.socket snapd.system-shutdown.service >/dev/null
+fi
+# End automatically added section

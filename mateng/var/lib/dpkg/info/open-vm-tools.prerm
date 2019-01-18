@@ -1,0 +1,22 @@
+#!/bin/bash
+
+set -e
+
+# let debhelper stop the service first...
+
+# Automatically added by dh_installinit
+if [ -x "/etc/init.d/open-vm-tools" ] || [ -e "/etc/init/open-vm-tools.conf" ]; then
+	invoke-rc.d open-vm-tools stop || exit $?
+fi
+# End automatically added section
+
+
+# then notify vmware about it
+
+if which vmware-checkvm 1>/dev/null && which vmware-rpctool 1>/dev/null; then
+    if vmware-checkvm &>/dev/null; then
+        vmware-rpctool 'tools.set.version 0' &> /dev/null || /bin/true
+    fi
+fi
+
+exit 0

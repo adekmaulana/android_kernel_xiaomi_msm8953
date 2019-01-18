@@ -1,0 +1,5 @@
+74bdeebbde16d1f3ef06d78bcd65f8dd  lib/systemd/system/zram-config.service
+a08cfb019e28a7245aeff10759fd9ab0  usr/bin/end-zram-swapping
+e62eb7b22e30bdd3002cbb69fc5e8bec  usr/bin/init-zram-swapping
+933522165a06d812c4b7c1dee97ba2ce  usr/share/doc/zram-config/changelog.gz
+5f3c211bcb2e1c9b49c46e1cefa82262  usr/share/doc/zram-config/copyright

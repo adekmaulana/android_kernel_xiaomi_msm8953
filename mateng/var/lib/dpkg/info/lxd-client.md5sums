@@ -1,0 +1,6 @@
+5913fb9e5ac8d350243ba8e2e8dfbe93  usr/bin/lxc
+10a55d0a3073c3c8b5c8b50c3274827b  usr/share/bash-completion/completions/lxc
+b295790b4ab4db88fb42f3bc97368c39  usr/share/doc/lxd-client/changelog.Debian.gz
+b2fea80c645107a91e00727ecac9b49b  usr/share/doc/lxd-client/copyright
+e318a7d32dc1e3e59ea63e22a56abdb9  usr/share/lintian/overrides/lxd-client
+a127697d010c9ba7b47d618720b9dbff  usr/share/man/man1/lxc.1.gz

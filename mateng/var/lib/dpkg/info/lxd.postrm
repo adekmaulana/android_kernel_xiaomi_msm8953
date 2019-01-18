@@ -1,0 +1,77 @@
+#!/bin/sh
+set -e
+
+# Automatically added by dh_installdeb
+dpkg-maintscript-helper rm_conffile /etc/cron.hourly/lxd 2.0.0~rc2-0ubuntu3~ -- "$@"
+# End automatically added section
+# Automatically added by dh_systemd_start
+if [ -d /run/systemd/system ]; then
+	systemctl --system daemon-reload >/dev/null || true
+fi
+# End automatically added section
+# Automatically added by dh_installinit
+if [ "$1" = "purge" ] ; then
+	update-rc.d lxd remove >/dev/null
+fi
+
+
+# In case this system is running systemd, we make systemd reload the unit files
+# to pick up changes.
+if [ -d /run/systemd/system ] ; then
+	systemctl --system daemon-reload >/dev/null || true
+fi
+# End automatically added section
+# Automatically added by dh_systemd_enable
+if [ "$1" = "remove" ]; then
+	if [ -x "/usr/bin/deb-systemd-helper" ]; then
+		deb-systemd-helper mask lxd-containers.service >/dev/null
+	fi
+fi
+
+if [ "$1" = "purge" ]; then
+	if [ -x "/usr/bin/deb-systemd-helper" ]; then
+		deb-systemd-helper purge lxd-containers.service >/dev/null
+		deb-systemd-helper unmask lxd-containers.service >/dev/null
+	fi
+fi
+# End automatically added section
+# Automatically added by dh_systemd_enable
+if [ "$1" = "remove" ]; then
+	if [ -x "/usr/bin/deb-systemd-helper" ]; then
+		deb-systemd-helper mask lxd.service lxd.socket >/dev/null
+	fi
+fi
+
+if [ "$1" = "purge" ]; then
+	if [ -x "/usr/bin/deb-systemd-helper" ]; then
+		deb-systemd-helper purge lxd.service lxd.socket >/dev/null
+		deb-systemd-helper unmask lxd.service lxd.socket >/dev/null
+	fi
+fi
+# End automatically added section
+# Automatically added by dh_installdebconf
+if [ "$1" = purge ] && [ -e /usr/share/debconf/confmodule ]; then
+	. /usr/share/debconf/confmodule
+	db_purge
+fi
+# End automatically added section
+# Automatically added by dh_apparmor
+if [ "$1" = "purge" ] && ! [ -e "/etc/apparmor.d/usr.lib.lxd.lxd-bridge-proxy" ] ; then
+    rm -f "/etc/apparmor.d/disable/usr.lib.lxd.lxd-bridge-proxy" || true
+    rm -f "/etc/apparmor.d/force-complain/usr.lib.lxd.lxd-bridge-proxy" || true
+    rm -f "/etc/apparmor.d/local/usr.lib.lxd.lxd-bridge-proxy" || true
+    rmdir /etc/apparmor.d/disable 2>/dev/null || true
+    rmdir /etc/apparmor.d/local   2>/dev/null || true
+    rmdir /etc/apparmor.d         2>/dev/null || true
+fi
+# End automatically added section
+
+
+# Manual init script handling
+if [ -d /run/systemd/system ]; then
+	deb-systemd-invoke stop lxd.service >/dev/null || true
+elif [ -x "/etc/init.d/lxd" ] || [ -e "/etc/init/lxd.conf" ]; then
+	invoke-rc.d lxd stop || true
+fi
+
+exit 0

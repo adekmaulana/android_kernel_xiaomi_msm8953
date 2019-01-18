@@ -1,0 +1,45 @@
+#!/bin/sh
+
+# vlan-network-interface - configure a network bridge
+#
+# This service checks whether a physical network device that has been added
+# has VLAN defined in /etc/network/interfaces that should be brought up
+set -e
+
+if [ -z "$INTERFACE" ]; then
+    echo "missing \$INTERFACE" >&2
+    exit 1
+fi
+
+if ! which ifquery >/dev/null; then
+    exit 0
+fi
+
+if [ ! -x /etc/network/if-pre-up.d/vlan ]; then
+    exit 0
+fi
+
+mkdir -p /run/network
+for IFACE in $(ifquery --list --allow auto); do
+    IF_VLAN_RAW_DEVICE=$(ifquery $IFACE | sed -n -e's/^vlan[_-]raw[_-]device: //p')
+
+    # If there is no vlan-raw-device defined, check for vlan-formatted name
+    # for example, eth1.123
+    if [ -z "$IF_VLAN_RAW_DEVICE" ]; then
+        IF_VLAN_RAW_DEVICE=${IFACE%%.*}
+        [ "$IFACE" = "$IF_VLAN_RAW_DEVICE" ] && continue
+    fi
+
+    # Check if this (vlan) $IFACE uses raw-device $INTERFACE
+    [ "$IF_VLAN_RAW_DEVICE" != "$INTERFACE" ] && continue
+
+    # If we're being called directly from udev, we only want to create the
+    # vlan interface if there is no associated ifupdown config for the
+    # raw-device; otherwise the ifup for the raw-device will create the
+    # vlan interface(s)
+    [ "$1" = "UDEV" ] && ifquery $IF_VLAN_RAW_DEVICE && continue
+
+    # Create the VLAN interface(s) related to the raw-device interface
+    export IFACE IF_VLAN_RAW_DEVICE
+    /etc/network/if-pre-up.d/vlan
+done

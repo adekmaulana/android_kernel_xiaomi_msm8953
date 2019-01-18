@@ -1,0 +1,5 @@
+b3ee9d4dedae546cd1b05cfce65182a3  usr/share/doc/cloud-initramfs-dyn-netconf/changelog.gz
+fede884dc2a00de53599bffe6a6a40f5  usr/share/doc/cloud-initramfs-dyn-netconf/copyright
+eea14200788970c2eba9ed81aabfe69d  usr/share/initramfs-tools/hooks/cloud-initramfs-dyn-netconf
+2a704d68bff75f9c913753e1dbd692bb  usr/share/initramfs-tools/scripts/init-bottom/cloud-initramfs-dyn-netconf
+96a4d6dfe7b5d1f4002aa85384238e44  usr/share/initramfs-tools/scripts/init-premount/cloud-initramfs-dyn-netconf

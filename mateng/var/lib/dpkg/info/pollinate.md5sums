@@ -1,0 +1,5 @@
+bd52b97b089fc12a162ba946ac5c0e41  lib/systemd/system/pollinate.service
+2b33169ebcd484838605fa0bbb89be92  usr/bin/pollinate
+141375eec5fe598aea40f0700e19be2f  usr/share/doc/pollinate/changelog.Debian.gz
+f1d0d6adfea0f0f17144024c32375c45  usr/share/doc/pollinate/copyright
+40b4b526165d7f30bbe1478e328eda46  usr/share/man/man1/pollinate.1.gz

@@ -1,0 +1,11 @@
+9b1f9bda2462e5724199ec7d0ad13238  lib/udev/rules.d/60-vlan-network-interface.rules
+9d3296d96d31a32aa6543e2149813f85  lib/udev/vlan-network-interface
+f255436dcff06daacaee5fabf412bd6e  sbin/vconfig
+a06f8f7a4226f2253135ffec9b1036c7  usr/share/doc/vlan/NEWS.Debian.gz
+00519dfb758e7478c84147d70fa98395  usr/share/doc/vlan/TODO.Debian
+b378ead9206000c8d2c2531255519194  usr/share/doc/vlan/changelog.Debian.gz
+c58c6adac4ee1fef018f57bef8ae8e44  usr/share/doc/vlan/copyright
+5856f35b11b22522111ac53cecba15b7  usr/share/doc/vlan/howto.html
+5b82ca7aeb32ef338d04a53648eee479  usr/share/doc/vlan/vlan.html
+81a9c6b60376933d44c4890135abd8a4  usr/share/man/man5/vlan-interfaces.5.gz
+de75f0ac23a239a10ee9d989054fbf43  usr/share/man/man8/vconfig.8.gz

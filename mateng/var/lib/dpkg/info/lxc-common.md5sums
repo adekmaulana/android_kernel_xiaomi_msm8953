@@ -1,0 +1,17 @@
+13ad65ccba289bd5be843466c30c426b  usr/lib/x86_64-linux-gnu/lxc/lxc-apparmor-load
+1ff4466d4590108659d3a276d9a20628  usr/lib/x86_64-linux-gnu/lxc/lxc-monitord
+086dba55a63d33d3913827049c668998  usr/lib/x86_64-linux-gnu/lxc/lxc-user-nic
+f0a403189ad4035f9155e9024118794d  usr/share/doc/lxc-common/copyright
+9adb385a5f745fd4250f9b8b06dd3ae2  usr/share/doc/lxc-common/examples/lxc-complex.conf
+5ba817a699f9eca32f75ab6e86846203  usr/share/doc/lxc-common/examples/lxc-empty-netns.conf
+7e1e29afbf6eae546704d80d23d8806b  usr/share/doc/lxc-common/examples/lxc-macvlan.conf
+55de935f623886a265e35547da7b6416  usr/share/doc/lxc-common/examples/lxc-no-netns.conf
+b439c3f00ad418a751d5f082d643e0b4  usr/share/doc/lxc-common/examples/lxc-phys.conf
+5e30ce808c40df72f837be44c02dddbc  usr/share/doc/lxc-common/examples/lxc-veth.conf
+e2bdafaf012f83848655e84a1f0f39ea  usr/share/doc/lxc-common/examples/lxc-vlan.conf
+b334c860c3db7b8d9c90ae0ce596ffc9  usr/share/doc/lxc-common/examples/seccomp-v1.conf
+85af50030d1b66a91ac98ca1e97d4d64  usr/share/doc/lxc-common/examples/seccomp-v2-blacklist.conf
+95fdf44f8bac6ec526b9defa0108cef7  usr/share/doc/lxc-common/examples/seccomp-v2.conf
+a0bf39dac70b80d3819221025444d673  usr/share/lintian/overrides/lxc-common
+c358210ffaecd83e136d10de260239fa  usr/share/lxc/selinux/lxc.if
+721ac59411bd121e4d7b02ef72e8a0ce  usr/share/lxc/selinux/lxc.te

@@ -1,0 +1,5 @@
+/etc/apparmor.d/usr.lib.lxd.lxd-bridge-proxy
+/etc/init.d/lxd
+/etc/init/lxd.conf
+/etc/logrotate.d/lxd
+/etc/sysctl.d/10-lxd-inotify.conf
