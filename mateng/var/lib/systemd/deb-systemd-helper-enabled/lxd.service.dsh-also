@@ -1,2 +1,0 @@
-/etc/systemd/system/multi-user.target.wants/lxd-containers.service
-/etc/systemd/system/sockets.target.wants/lxd.socket

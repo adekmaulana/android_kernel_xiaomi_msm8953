@@ -1,2 +1,0 @@
-/etc/systemd/system/sysinit.target.wants/open-iscsi.service
-/etc/systemd/system/iscsi.service

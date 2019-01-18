@@ -1,8 +1,0 @@
-80de10a8b9f13365de8cc4bbf8efec5e  /etc/rsyslog.d/50-default.conf
-ba34f926d08b14b2ba22aadc5d077a5b  /etc/ufw/before.rules
-3719c04fb954c26afe4e09700b2ffdc1  /etc/ufw/before6.rules
-53e906b055d9145d03b6a2fadeca20f1  /etc/ufw/after.rules
-c70580b5cabf73080989400422349ab2  /etc/ufw/after6.rules
-f551420658a305cfaabb9653ab255f0e  /run/grub/menu.lst
-1c261d6541420797f8b824d65ac5c197  /etc/apt/apt.conf.d/20auto-upgrades
-bf33f2664c03882d71d648b7c37f2f9e  /etc/apt/apt.conf.d/50unattended-upgrades

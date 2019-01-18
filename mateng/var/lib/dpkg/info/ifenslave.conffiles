@@ -1,3 +1,0 @@
-/etc/network/if-post-down.d/ifenslave
-/etc/network/if-pre-up.d/ifenslave
-/etc/network/if-up.d/ifenslave
